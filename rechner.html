@@ -285,6 +285,58 @@ tbody tr.amort-row td { background: #F0F6FF !important; color: var(--primary) !i
 }
 .cta-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30,91,191,.35); }
 
+/* ASSUMPTIONS BOX */
+.assumptions-box {
+  background: #F0F6FF; border: 1.5px solid var(--primary-soft);
+  border-radius: 12px; padding: 14px 16px;
+}
+.ass-title {
+  font-size: 10px; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .08em; color: var(--primary); margin-bottom: 10px;
+}
+.ass-row {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: var(--ink-2); padding: 5px 0;
+  border-bottom: 1px solid var(--primary-soft);
+}
+.ass-row:last-child { border-bottom: none; }
+.ass-row strong { color: var(--primary); font-weight: 700; }
+sup { font-size: 9px; vertical-align: super; line-height: 0; color: var(--ink-3); }
+
+/* DISCLAIMER */
+.disclaimer-section {
+  max-width: 1240px; margin: 0 auto; padding: 0 24px 56px;
+}
+.disclaimer-box {
+  background: var(--white); border: 1.5px solid var(--line);
+  border-radius: var(--r); padding: 28px 32px;
+  box-shadow: var(--shadow);
+}
+.disclaimer-footnotes {
+  font-size: 12px; color: var(--ink-3); line-height: 1.7;
+  margin-bottom: 20px;
+}
+.disclaimer-footnotes p { margin-bottom: 4px; }
+.disclaimer-divider { height: 1px; background: var(--line); margin: 20px 0; }
+.disclaimer-title {
+  font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.disclaimer-title::before {
+  content: '⚠';
+  font-size: 14px;
+}
+.disclaimer-text {
+  font-size: 12px; color: var(--ink-3); line-height: 1.75;
+}
+.disclaimer-text p { margin-bottom: 8px; }
+.disclaimer-text p:last-child { margin-bottom: 0; }
+.disclaimer-footer {
+  margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line);
+  font-size: 11px; color: var(--ink-3); display: flex;
+  justify-content: space-between; flex-wrap: wrap; gap: 8px;
+}
+
 /* SPEICHER TOGGLE */
 .speicher-toggle {
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
@@ -421,15 +473,21 @@ tbody tr.amort-row td { background: #F0F6FF !important; color: var(--primary) !i
       </div>
 
       <div class="divider"></div>
-      <div class="group-label">Annahmen</div>
 
-      <div class="field">
-        <div class="field-label">
-          Jährl. Strompreissteigerung
-          <span class="field-value"><span id="val-steigerung">3,0</span> <span class="field-unit">%</span></span>
+      <div class="assumptions-box">
+        <div class="ass-title">Eingerechnete Annahmen</div>
+        <div class="ass-row">
+          <span>Strompreissteigerung p.a.<sup>2</sup></span>
+          <strong>3,0 %</strong>
         </div>
-        <input type="range" id="sl-steigerung" min="0" max="6" step="0.1" value="3">
-        <div class="range-mm"><span>0 %</span><span>6 %</span></div>
+        <div class="ass-row">
+          <span>Ertragsfaktor Bayern<sup>1</sup></span>
+          <strong>950 kWh/kWp</strong>
+        </div>
+        <div class="ass-row">
+          <span>Einspeisevergütung (EEG)<sup>4</sup></span>
+          <strong>8,11 ct/kWh</strong>
+        </div>
       </div>
 
     </div>
@@ -442,7 +500,7 @@ tbody tr.amort-row td { background: #F0F6FF !important; color: var(--primary) !i
     <div class="summary-card">
       <div class="summary-top">
         <div>
-          <div class="summary-main-label">Gesamtersparnis über 25 Jahre</div>
+          <div class="summary-main-label">Gesamtersparnis über 25 Jahre<sup style="font-size:10px;opacity:.7">1</sup></div>
           <div class="summary-main-value" id="res-gesamt">— <span>€</span></div>
           <div class="summary-main-sub" id="res-gesamt-sub">inkl. Einspeisevergütung und Strompreissteigerung</div>
         </div>
@@ -471,13 +529,13 @@ tbody tr.amort-row td { background: #F0F6FF !important; color: var(--primary) !i
     <div class="kpi-grid">
       <div class="kpi-card green">
         <div class="kc-icon">⚡</div>
-        <div class="kc-label">Eigenverbrauch / Jahr</div>
+        <div class="kc-label">Eigenverbrauch / Jahr<sup>1</sup></div>
         <div class="kc-value green" id="res-ev-kwh">—</div>
         <div class="kc-sub" id="res-ev-sub">kWh selbst genutzter Solarstrom</div>
       </div>
       <div class="kpi-card accent">
         <div class="kc-icon">💰</div>
-        <div class="kc-label">Einspeisevergütung / Jahr</div>
+        <div class="kc-label">Einspeisevergütung / Jahr<sup>4</sup></div>
         <div class="kc-value accent" id="res-einspeisung">—</div>
         <div class="kc-sub" id="res-einsp-sub">€ aus Netzeinspeisung</div>
       </div>
@@ -492,7 +550,7 @@ tbody tr.amort-row td { background: #F0F6FF !important; color: var(--primary) !i
     <!-- CHART -->
     <div class="chart-card">
       <div class="card-head">
-        <span class="card-title">Kumulierte Ersparnis vs. Investition</span>
+        <span class="card-title">Kumulierte Ersparnis vs. Investition<sup>1</sup></span>
         <span class="card-hint" id="chart-hint">Amortisation im Jahr —</span>
       </div>
       <div class="chart-wrap">
@@ -503,7 +561,7 @@ tbody tr.amort-row td { background: #F0F6FF !important; color: var(--primary) !i
     <!-- TABLE -->
     <div class="table-card">
       <button class="table-toggle" onclick="toggleTable(this)">
-        Jahresübersicht (25 Jahre)
+        Jahresübersicht (25 Jahre)<sup>1</sup>
         <span class="toggle-arrow">▼</span>
       </button>
       <div class="table-body" id="year-table-body">
@@ -541,6 +599,31 @@ tbody tr.amort-row td { background: #F0F6FF !important; color: var(--primary) !i
   </div>
 </div>
 
+<!-- DISCLAIMER -->
+<div class="disclaimer-section">
+  <div class="disclaimer-box">
+    <div class="disclaimer-footnotes">
+      <p><sup>1</sup> Schätzwert. Die tatsächlichen Erträge hängen von Standort, Ausrichtung, Verschattung, Wetterbedingungen und individuellem Verbrauchsverhalten ab.</p>
+      <p><sup>2</sup> Schätzwert, basierend auf historischer Strompreisentwicklung für Privatkunden in Deutschland (3,0 % p.a.).</p>
+      <p><sup>3</sup> Schätzwert für Gesamtkosten inkl. Module, Wechselrichter, ggf. Batteriespeicher, Unterkonstruktion, Kabel, Kleinmaterial, Montage AC &amp; DC, Planung und Transport.</p>
+      <p><sup>4</sup> Die Zahlung einer Einspeisevergütung erfolgt durch den Vor-Ort-Netzbetreiber und hängt von bestimmten gesetzlichen Vorgaben ab (Erneuerbare-Energien-Gesetz). Der aktuell angezeigte Tarif (8,11 ct/kWh) gilt für Anlagen bis 10 kWp; für größere Anlagen gelten abweichende Vergütungssätze.</p>
+      <p><sup>5</sup> Wir empfehlen, zusätzlich eine Anlagenversicherung abzuschließen bzw. Rücklagen zu bilden, z. B. für Hagelschäden oder den Austausch von Wechselrichtern.</p>
+    </div>
+    <div class="disclaimer-divider"></div>
+    <div class="disclaimer-title">Wichtiger Hinweis</div>
+    <div class="disclaimer-text">
+      <p>Wir weisen ausdrücklich darauf hin, dass dieses unverbindliche Beispiel keine verbindliche Berechnung, sondern eine rein informative Schätzung darstellt und lediglich zu Ihrer Information erstellt wurde.</p>
+      <p>Es ist weder Bestandteil eines verbindlichen Angebots, noch selbst ein Vertragsangebot und stellt weder eine Aufforderung zum Erwerb noch eine individuelle Anlageberatung dar.</p>
+      <p>Das Beispiel enthält zukunftsgerichtete Aussagen, die auf aktuellen Annahmen, Schätzungen sowie Prognosen beruhen. Die tatsächlichen Werte können erheblich vom Beispiel abweichen, da diese von nicht vorhersehbaren künftigen Ereignissen, Ihrem Stromverbrauchsverhalten, Umgebungs- und Wetterbedingungen sowie einer Vielzahl weiterer Faktoren beeinflusst werden.</p>
+      <p>Die Pilsner Vertriebs GmbH übernimmt daher keine Garantie oder sonstige Gewähr für die Richtigkeit, Verlässlichkeit und Vollständigkeit des Beispiels. Insbesondere hängt die Zahlung einer Einspeisevergütung von bestimmten gesetzlichen Vorgaben ab (Erneuerbare-Energien-Gesetz), auf die die Pilsner Vertriebs GmbH keinen Einfluss hat.</p>
+    </div>
+    <div class="disclaimer-footer">
+      <span>© 2026 Solar Energie Partner — eine Marke der Pilsner Vertriebs GmbH, Detterstraße 38, 94469 Deggendorf</span>
+      <span>Alle Angaben ohne Gewähr</span>
+    </div>
+  </div>
+</div>
+
 <script>
 const EEG_RATE = 0.0811;       // ct/kWh Einspeisevergütung (aktuell ~8,11 ct für <10 kWp)
 const ERTRAG_FAKTOR = 950;     // kWh/kWp/Jahr (Süddeutschland)
@@ -570,7 +653,7 @@ function getInputs() {
     kwp:        +document.getElementById('sl-kwp').value,
     invest:     +document.getElementById('sl-invest').value,
     eigen:      (mitSpeicher ? 75 : 38) / 100,
-    steigerung: +document.getElementById('sl-steigerung').value / 100,
+    steigerung: 0.03,
   };
 }
 
@@ -742,11 +825,10 @@ function bindSlider(id, valId, dec, suffix) {
   upd();
 }
 
-bindSlider('sl-verbrauch',  'val-verbrauch',  0);
-bindSlider('sl-preis',      'val-preis',      0);
-bindSlider('sl-kwp',        'val-kwp',        0);
-bindSlider('sl-invest',     'val-invest',     0);
-bindSlider('sl-steigerung', 'val-steigerung', 1);
+bindSlider('sl-verbrauch', 'val-verbrauch', 0);
+bindSlider('sl-preis',     'val-preis',     0);
+bindSlider('sl-kwp',       'val-kwp',       0);
+bindSlider('sl-invest',    'val-invest',    0);
 </script>
 </body>
 </html>
