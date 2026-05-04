@@ -39,7 +39,7 @@
     "name": "Pilsner Vertriebs GmbH",
     "url": "https://pilsner-vertrieb.de"
   },
-  "telephone": "+49991402275660",
+  "telephone": "+4999140227560",
   "email": "info@solar-energie-partner.de",
   "address": {
     "@type": "PostalAddress",
@@ -152,6 +152,7 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--line);
+    overflow: visible;
   }
   .nav {
     display: flex;
@@ -585,6 +586,7 @@
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    position: relative;
   }
   .service-card:hover {
     border-color: var(--primary);
@@ -639,6 +641,11 @@
     font-size: 13px;
     color: var(--primary);
     font-weight: 600;
+  }
+  .service-card .arrow::after {
+    content: '';
+    position: absolute;
+    inset: 0;
   }
   .service-card .arrow svg { transition: transform 0.3s; }
   .service-card:hover .arrow svg { transform: translateX(6px); }
@@ -2637,6 +2644,22 @@
 
   function toggleFaq(btn) {
     btn.parentElement.classList.toggle('open');
+  }
+
+  // Mobile menu
+  const mobileBtn = document.querySelector('.mobile-menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+  if (mobileBtn && navLinks) {
+    mobileBtn.addEventListener('click', () => {
+      const open = navLinks.style.display === 'flex';
+      navLinks.style.cssText = open
+        ? ''
+        : 'display:flex;flex-direction:column;gap:16px;position:absolute;top:100%;left:0;right:0;background:#fff;padding:20px 24px;border-bottom:1px solid var(--line);box-shadow:0 8px 24px rgba(11,31,58,.08)';
+      mobileBtn.setAttribute('aria-expanded', String(!open));
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navLinks.style.cssText = '';
+    }));
   }
 
   const obs = new IntersectionObserver(entries => {
