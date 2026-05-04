@@ -285,6 +285,33 @@ tbody tr.amort-row td { background: #F0F6FF !important; color: var(--primary) !i
 }
 .cta-btn:hover { background: var(--primary-dark); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(30,91,191,.35); }
 
+/* SPEICHER TOGGLE */
+.speicher-toggle {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.stog-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 12px 10px; border-radius: 12px;
+  border: 1.5px solid var(--line); background: var(--white);
+  cursor: pointer; font-family: inherit; transition: all .2s;
+}
+.stog-btn:hover { border-color: var(--primary); }
+.stog-btn.active {
+  border-color: var(--primary); background: var(--primary-soft);
+}
+.stog-icon { font-size: 20px; }
+.stog-text { font-size: 12px; font-weight: 700; color: var(--ink-2); }
+.stog-pct {
+  font-family: 'Source Serif 4', serif;
+  font-size: 18px; font-weight: 600; color: var(--ink-3);
+}
+.stog-btn.active .stog-pct { color: var(--primary); }
+.stog-btn.active .stog-text { color: var(--primary); }
+.stog-hint {
+  font-size: 12px; color: var(--ink-3); margin-top: 6px;
+}
+.stog-hint strong { color: var(--primary); }
+
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .main-wrap { grid-template-columns: 1fr; }
@@ -377,12 +404,20 @@ tbody tr.amort-row td { background: #F0F6FF !important; color: var(--primary) !i
       </div>
 
       <div class="field">
-        <div class="field-label">
-          Eigenverbrauchsquote
-          <span class="field-value"><span id="val-eigen">35</span> <span class="field-unit">%</span></span>
+        <div class="field-label" style="margin-bottom:8px;">Speicher vorhanden?</div>
+        <div class="speicher-toggle">
+          <button class="stog-btn" id="btn-ohne" onclick="setSpeicher(false)">
+            <span class="stog-icon">🔋</span>
+            <span class="stog-text">Ohne Speicher</span>
+            <span class="stog-pct">38 %</span>
+          </button>
+          <button class="stog-btn active" id="btn-mit" onclick="setSpeicher(true)">
+            <span class="stog-icon">⚡</span>
+            <span class="stog-text">Mit Speicher</span>
+            <span class="stog-pct">75 %</span>
+          </button>
         </div>
-        <input type="range" id="sl-eigen" min="15" max="85" step="1" value="35">
-        <div class="range-mm"><span>15 %</span><span>85 %</span></div>
+        <div class="stog-hint" id="stog-hint">Eigenverbrauchsquote: <strong>75 %</strong></div>
       </div>
 
       <div class="divider"></div>
@@ -512,6 +547,17 @@ const ERTRAG_FAKTOR = 950;     // kWh/kWp/Jahr (Süddeutschland)
 const CO2_FAKTOR = 0.380;      // kg CO₂/kWh Netzstrom Deutschland
 
 let chart;
+let mitSpeicher = true;
+
+function setSpeicher(val) {
+  mitSpeicher = val;
+  document.getElementById('btn-mit').classList.toggle('active', val);
+  document.getElementById('btn-ohne').classList.toggle('active', !val);
+  const pct = val ? 75 : 38;
+  document.getElementById('stog-hint').innerHTML =
+    `Eigenverbrauchsquote: <strong>${pct} %</strong>`;
+  calculate();
+}
 
 function fmt(n, dec=0) {
   return n.toLocaleString('de-DE', { minimumFractionDigits: dec, maximumFractionDigits: dec });
@@ -519,11 +565,11 @@ function fmt(n, dec=0) {
 
 function getInputs() {
   return {
-    verbrauch: +document.getElementById('sl-verbrauch').value,
-    preis:     +document.getElementById('sl-preis').value / 100,
-    kwp:       +document.getElementById('sl-kwp').value,
-    invest:    +document.getElementById('sl-invest').value,
-    eigen:     +document.getElementById('sl-eigen').value / 100,
+    verbrauch:  +document.getElementById('sl-verbrauch').value,
+    preis:      +document.getElementById('sl-preis').value / 100,
+    kwp:        +document.getElementById('sl-kwp').value,
+    invest:     +document.getElementById('sl-invest').value,
+    eigen:      (mitSpeicher ? 75 : 38) / 100,
     steigerung: +document.getElementById('sl-steigerung').value / 100,
   };
 }
@@ -700,7 +746,6 @@ bindSlider('sl-verbrauch',  'val-verbrauch',  0);
 bindSlider('sl-preis',      'val-preis',      0);
 bindSlider('sl-kwp',        'val-kwp',        0);
 bindSlider('sl-invest',     'val-invest',     0);
-bindSlider('sl-eigen',      'val-eigen',      0);
 bindSlider('sl-steigerung', 'val-steigerung', 1);
 </script>
 </body>
