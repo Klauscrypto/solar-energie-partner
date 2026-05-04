@@ -385,8 +385,15 @@
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
+  .hero-card-3 {
+    top: 50%;
+    left: -32px;
+    transform: translateY(-50%);
+    animation-delay: -2s;
+  }
   .hero-card-1 .hero-card-icon { background: var(--accent-soft); color: var(--accent-dark); }
   .hero-card-2 .hero-card-icon { background: var(--primary-soft); color: var(--primary); }
+  .hero-card-3 .hero-card-icon { background: #DCFCE7; color: #16A34A; }
   .hero-card-text strong {
     display: block;
     font-size: 15px;
@@ -1662,7 +1669,7 @@
       grid-template-columns: 1fr;
     }
     .target-tab { padding: 12px 18px; font-size: 13px; }
-    .hero-card-1, .hero-card-2 { display: none; }
+    .hero-card-1, .hero-card-2, .hero-card-3 { display: none; }
     .hero-meta { gap: 16px; }
   }
 </style>
@@ -1679,7 +1686,7 @@
   <div class="container">
     <nav class="nav">
       <a href="/" class="logo">
-        <img src="/logo.png" alt="Solar Energie Partner – Pilsner Vertriebs GmbH" style="height:40px;width:auto;display:block;">
+        <img src="/logo.png" alt="Solar Energie Partner – Pilsner Vertriebs GmbH" style="height:56px;width:auto;display:block;">
       </a>
       <ul class="nav-links">
         <li><a href="#leistungen">Leistungen</a></li>
@@ -1756,7 +1763,7 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <div class="hero-card-text">
-            <strong>Über 600 Anlagen</strong>
+            <strong>Über 300 Anlagen</strong>
             <span>seit Firmengründung</span>
           </div>
         </div>
@@ -1767,6 +1774,15 @@
           <div class="hero-card-text">
             <strong>Bis −50% Strompreis</strong>
             <span>im PPA-Modell</span>
+          </div>
+        </div>
+        <div class="hero-card-floating hero-card-3">
+          <div class="hero-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="hero-card-text">
+            <strong>Bis 80% Einsparung</strong>
+            <span>mit eigener Anlage</span>
           </div>
         </div>
       </div>
@@ -1812,7 +1828,7 @@
   <div class="container">
     <div class="stats-grid">
       <div class="stat-item fade-up">
-        <div class="stat-number"><span class="count" data-target="600">0</span><span class="stat-suffix">+</span></div>
+        <div class="stat-number"><span class="count" data-target="300">0</span><span class="stat-suffix">+</span></div>
         <div class="stat-label">Realisierte Anlagen</div>
         <div class="stat-sub">Privat & Gewerbe, bundesweit</div>
       </div>

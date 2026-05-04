@@ -354,7 +354,7 @@ sup { font-size: 9px; vertical-align: super; line-height: 0; color: var(--ink-3)
   display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
 }
 .stog-btn {
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
   padding: 12px 10px; border-radius: 12px;
   border: 1.5px solid var(--line); background: var(--white);
   cursor: pointer; font-family: inherit; transition: all .2s;
@@ -365,32 +365,46 @@ sup { font-size: 9px; vertical-align: super; line-height: 0; color: var(--ink-3)
 }
 .stog-icon { font-size: 20px; }
 .stog-text { font-size: 12px; font-weight: 700; color: var(--ink-2); }
+.stog-btn.active .stog-text { color: var(--primary); }
+
+/* % input — looks like a real editable field */
 .stog-pct {
-  display: flex; align-items: baseline; gap: 2px;
+  display: flex; align-items: center; gap: 2px;
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  border-radius: 8px;
+  padding: 3px 8px 3px 10px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.stog-btn.active .stog-pct {
+  border-color: var(--primary);
+}
+.stog-pct:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(30,91,191,.15);
 }
 .stog-pct-input {
   font-family: 'Source Serif 4', serif;
-  font-size: 18px; font-weight: 600; color: var(--ink-3);
-  width: 42px; border: none; background: transparent;
+  font-size: 18px; font-weight: 600; color: var(--ink);
+  width: 38px; border: none; background: transparent;
   text-align: right; outline: none; padding: 0;
   -moz-appearance: textfield;
+  cursor: text;
 }
 .stog-pct-input::-webkit-inner-spin-button,
 .stog-pct-input::-webkit-outer-spin-button { -webkit-appearance: none; }
 .stog-pct-suffix {
   font-family: 'Source Serif 4', serif;
-  font-size: 18px; font-weight: 600; color: var(--ink-3);
-}
-.stog-btn.active .stog-pct-input,
-.stog-btn.active .stog-pct-suffix { color: var(--primary); }
-.stog-btn.active .stog-text { color: var(--primary); }
-.stog-pct-input:focus {
-  background: rgba(30,91,191,.07); border-radius: 4px;
+  font-size: 15px; font-weight: 600; color: var(--ink-2);
 }
 .stog-hint {
   font-size: 12px; color: var(--ink-3); margin-top: 6px;
 }
 .stog-hint strong { color: var(--primary); }
+.stog-edit-hint {
+  font-size: 10px; color: var(--ink-3); margin-top: 2px;
+  text-align: center; letter-spacing: .03em;
+}
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -415,7 +429,7 @@ sup { font-size: 9px; vertical-align: super; line-height: 0; color: var(--ink-3)
 <header>
   <div class="nav">
     <a href="/" class="logo">
-      <img src="/logo.png" alt="Solar Energie Partner – Pilsner Vertriebs GmbH" style="height:36px;width:auto;display:block;">
+      <img src="/logo.png" alt="Solar Energie Partner – Pilsner Vertriebs GmbH" style="height:56px;width:auto;display:block;">
     </a>
     <a href="/" class="nav-back">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5m7-7l-7 7 7 7"/></svg>
@@ -503,6 +517,7 @@ sup { font-size: 9px; vertical-align: super; line-height: 0; color: var(--ink-3)
           </button>
         </div>
         <div class="stog-hint" id="stog-hint">Eigenverbrauchsquote: <strong>75 %</strong></div>
+        <div class="stog-edit-hint">↑ %-Werte direkt bearbeiten</div>
       </div>
 
       <div class="divider"></div>
@@ -519,7 +534,7 @@ sup { font-size: 9px; vertical-align: super; line-height: 0; color: var(--ink-3)
         </div>
         <div class="ass-row">
           <span>Einspeisevergütung (EEG)<sup>4</sup></span>
-          <strong>8,11 ct/kWh</strong>
+          <strong>7,66 ct/kWh</strong>
         </div>
       </div>
 
@@ -639,7 +654,7 @@ sup { font-size: 9px; vertical-align: super; line-height: 0; color: var(--ink-3)
       <p><sup>1</sup> Schätzwert. Die tatsächlichen Erträge hängen von Standort, Ausrichtung, Verschattung, Wetterbedingungen und individuellem Verbrauchsverhalten ab.</p>
       <p><sup>2</sup> Schätzwert, basierend auf historischer Strompreisentwicklung für Privatkunden in Deutschland (3,0 % p.a.).</p>
       <p><sup>3</sup> Schätzwert für Gesamtkosten inkl. Module, Wechselrichter, ggf. Batteriespeicher, Unterkonstruktion, Kabel, Kleinmaterial, Montage AC &amp; DC, Planung und Transport.</p>
-      <p><sup>4</sup> Die Zahlung einer Einspeisevergütung erfolgt durch den Vor-Ort-Netzbetreiber und hängt von bestimmten gesetzlichen Vorgaben ab (Erneuerbare-Energien-Gesetz). Der aktuell angezeigte Tarif (8,11 ct/kWh) gilt für Anlagen bis 10 kWp; für größere Anlagen gelten abweichende Vergütungssätze.</p>
+      <p><sup>4</sup> Die Zahlung einer Einspeisevergütung erfolgt durch den Vor-Ort-Netzbetreiber und hängt von bestimmten gesetzlichen Vorgaben ab (Erneuerbare-Energien-Gesetz). Der aktuell angezeigte Tarif (7,66 ct/kWh) gilt für Anlagen bis 10 kWp; für größere Anlagen gelten abweichende Vergütungssätze.</p>
       <p><sup>5</sup> Wir empfehlen, zusätzlich eine Anlagenversicherung abzuschließen bzw. Rücklagen zu bilden, z. B. für Hagelschäden oder den Austausch von Wechselrichtern.</p>
     </div>
     <div class="disclaimer-divider"></div>
@@ -658,7 +673,7 @@ sup { font-size: 9px; vertical-align: super; line-height: 0; color: var(--ink-3)
 </div>
 
 <script>
-const EEG_RATE = 0.0811;       // ct/kWh Einspeisevergütung (aktuell ~8,11 ct für <10 kWp)
+const EEG_RATE = 0.0766;       // ct/kWh Einspeisevergütung (aktuell ~7,66 ct für <10 kWp)
 const ERTRAG_FAKTOR = 950;     // kWh/kWp/Jahr (Süddeutschland)
 const CO2_FAKTOR = 0.380;      // kg CO₂/kWh Netzstrom Deutschland
 
