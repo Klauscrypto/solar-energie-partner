@@ -366,11 +366,27 @@ sup { font-size: 9px; vertical-align: super; line-height: 0; color: var(--ink-3)
 .stog-icon { font-size: 20px; }
 .stog-text { font-size: 12px; font-weight: 700; color: var(--ink-2); }
 .stog-pct {
+  display: flex; align-items: baseline; gap: 2px;
+}
+.stog-pct-input {
+  font-family: 'Source Serif 4', serif;
+  font-size: 18px; font-weight: 600; color: var(--ink-3);
+  width: 42px; border: none; background: transparent;
+  text-align: right; outline: none; padding: 0;
+  -moz-appearance: textfield;
+}
+.stog-pct-input::-webkit-inner-spin-button,
+.stog-pct-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.stog-pct-suffix {
   font-family: 'Source Serif 4', serif;
   font-size: 18px; font-weight: 600; color: var(--ink-3);
 }
-.stog-btn.active .stog-pct { color: var(--primary); }
+.stog-btn.active .stog-pct-input,
+.stog-btn.active .stog-pct-suffix { color: var(--primary); }
 .stog-btn.active .stog-text { color: var(--primary); }
+.stog-pct-input:focus {
+  background: rgba(30,91,191,.07); border-radius: 4px;
+}
 .stog-hint {
   font-size: 12px; color: var(--ink-3); margin-top: 6px;
 }
@@ -470,12 +486,20 @@ sup { font-size: 9px; vertical-align: super; line-height: 0; color: var(--ink-3)
           <button class="stog-btn" id="btn-ohne" onclick="setSpeicher(false)">
             <span class="stog-icon">🔋</span>
             <span class="stog-text">Ohne Speicher</span>
-            <span class="stog-pct">38 %</span>
+            <span class="stog-pct">
+              <input class="stog-pct-input" id="pct-ohne" type="number" min="1" max="100" value="38"
+                onclick="event.stopPropagation()" oninput="onPctChange()">
+              <span class="stog-pct-suffix">%</span>
+            </span>
           </button>
           <button class="stog-btn active" id="btn-mit" onclick="setSpeicher(true)">
             <span class="stog-icon">⚡</span>
             <span class="stog-text">Mit Speicher</span>
-            <span class="stog-pct">75 %</span>
+            <span class="stog-pct">
+              <input class="stog-pct-input" id="pct-mit" type="number" min="1" max="100" value="75"
+                onclick="event.stopPropagation()" oninput="onPctChange()">
+              <span class="stog-pct-suffix">%</span>
+            </span>
           </button>
         </div>
         <div class="stog-hint" id="stog-hint">Eigenverbrauchsquote: <strong>75 %</strong></div>
@@ -641,11 +665,24 @@ const CO2_FAKTOR = 0.380;      // kg CO₂/kWh Netzstrom Deutschland
 let chart;
 let mitSpeicher = true;
 
+function getSpeicherPct() {
+  const id = mitSpeicher ? 'pct-mit' : 'pct-ohne';
+  const val = parseFloat(document.getElementById(id).value);
+  return Math.min(100, Math.max(1, isNaN(val) ? (mitSpeicher ? 75 : 38) : val));
+}
+
 function setSpeicher(val) {
   mitSpeicher = val;
   document.getElementById('btn-mit').classList.toggle('active', val);
   document.getElementById('btn-ohne').classList.toggle('active', !val);
-  const pct = val ? 75 : 38;
+  const pct = getSpeicherPct();
+  document.getElementById('stog-hint').innerHTML =
+    `Eigenverbrauchsquote: <strong>${pct} %</strong>`;
+  calculate();
+}
+
+function onPctChange() {
+  const pct = getSpeicherPct();
   document.getElementById('stog-hint').innerHTML =
     `Eigenverbrauchsquote: <strong>${pct} %</strong>`;
   calculate();
@@ -661,7 +698,7 @@ function getInputs() {
     preis:      +document.getElementById('sl-preis').value / 100,
     kwp:        +document.getElementById('sl-kwp').value,
     invest:     +document.getElementById('sl-invest').value,
-    eigen:      (mitSpeicher ? 75 : 38) / 100,
+    eigen:      getSpeicherPct() / 100,
     steigerung: 0.03,
   };
 }
