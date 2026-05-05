@@ -177,6 +177,7 @@
           </p>
         </div>
 
+        <div className="kauf-vs-ppa-table" style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr", border: `3px solid ${COL.black}`, background: COL.white, fontFamily: fonts.mono, fontSize: 13 }}>
           {/* Header row */}
           <div style={{ background: COL.black, color: COL.yellow, padding: "16px 20px", fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em" }}>► KRITERIUM</div>
@@ -191,8 +192,9 @@
             </React.Fragment>
           ))}
         </div>
+        </div>
 
-        <div style={{ marginTop: 24, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+        <div style={{ marginTop: 24, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 20 }}>
           <div style={{ background: COL.pink, border: `3px solid ${COL.black}`, padding: 24 }}>
             <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 8 }}>► WANN KAUF?</div>
             <p style={{ fontFamily: fonts.serif, fontSize: 17, lineHeight: 1.4, fontStyle: "italic", margin: 0 }}>
