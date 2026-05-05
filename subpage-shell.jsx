@@ -97,7 +97,8 @@
               ]],
               ["FIRMA", [
                 ["Über uns", `${base}ueber-uns.html`],
-                ["Kontakt", `${base}index.html#kontakt`],
+                ["Kontakt", `${base}kontakt.html`],
+                ["Referenzen", `${base}referenzen.html`],
                 ["Impressum", `${base}impressum.html`],
                 ["Datenschutz", `${base}datenschutz.html`],
               ]],
