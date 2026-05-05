@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Solarförderung Bayern 2026 — KfW, BAFA, Landesförderung | Solar Energie Partner</title>
+<meta name="description" content="Solarförderung 2026 im Überblick: KfW 270, KfW 442, BAFA, 0% MwSt., bayerische Landesförderung. Solar Energie Partner aus Deggendorf erklärt und beantragt mit." />
+<meta property="og:title" content="Solarförderung 2026 — KfW, MwSt., Landesförderung | Solar Energie Partner" />
+<meta property="og:description" content="Alle Förderprogramme für PV-Anlagen 2026 auf einen Blick. Wir beantragen kostenlos mit." />
+<link rel="canonical" href="https://solar-energie-partner.de/foerderung.html" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Gibt es 0% MwSt. auf PV-Anlagen 2026?","acceptedAnswer":{"@type":"Answer","text":"Ja. Seit 01.01.2023 gilt 0% MwSt. auf Kauf und Installation von PV-Anlagen bis 30 kWp bei Privatpersonen und bestimmten Gebäuden (§ 12 Abs. 3 UStG). Für Gewerbebetriebe gilt der normale Vorsteuerabzug — auch hier effektiv kostenneutral."}},{"@type":"Question","name":"Was fördert der KfW-Kredit 270?","acceptedAnswer":{"@type":"Answer","text":"Der KfW-Kredit 270 (Erneuerbare Energien Standard) finanziert PV-Anlagen, Speicher und Wallboxen zu günstigen Zinssätzen. Kreditbetrag bis 150 Mio. Euro, tilgungsfreie Anlaufjahre möglich. Antrag über die Hausbank vor Projektstart."}},{"@type":"Question","name":"Was fördert KfW 442 (Solarstrom für Elektroautos)?","acceptedAnswer":{"@type":"Answer","text":"KfW 442 fördert die Kombination aus PV-Anlage + Batteriespeicher + Wallbox. Zuschuss bis zu 10.200 Euro möglich (Speicher + Wallbox). Für Privatpersonen bei selbstgenutzten Eigenheimen."}},{"@type":"Question","name":"Gibt es bayerische Landesförderung für PV?","acceptedAnswer":{"@type":"Answer","text":"Bayern fördert über das Bayerische Förderprogramm Energie Innovativ (BEI) verschiedene Maßnahmen. Zudem gibt es kommunale Förderprogramme in vielen Landkreisen und Städten in Niederbayern. Wir prüfen für jedes Projekt individuell, welche Programme anwendbar sind."}}]}</script>
+<link rel="stylesheet" href="fonts/fonts.css" />
+<link rel="stylesheet" href="radikal-base.css" />
+<style>
+  @media(max-width:768px){
+    header nav{display:none !important}
+    .mq span{font-size:32px !important;padding:0 16px !important}
+    .foerder-grid{grid-template-columns:1fr !important}
+    .faq-grid{grid-template-columns:1fr !important}
+    footer > div:first-child > div{grid-template-columns:1fr 1fr !important}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="vendor/react.min.js"></script>
+<script src="vendor/react-dom.min.js"></script>
+<script src="vendor/babel.min.js"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+const D = window.SITE_DATA;
+const { useState } = React;
+
+const foerderungen = [
+  {
+    prog: "0% MwSt.",
+    title: "Kein Mehrwertsteuer auf PV",
+    tag: "SOFORT · KEIN ANTRAG",
+    tagCol: COL.cyan,
+    fuer: "Privatpersonen · bis 30 kWp",
+    betrag: "19% gespart",
+    stand: "seit 01.01.2023 · unbefristet",
+    body: "Auf Kauf und Installation von PV-Anlagen bis 30 kWp bei privaten Eigenheimen fällt 0% MwSt. an (§ 12 Abs. 3 UStG). Kein Antrag nötig — gilt automatisch. Bei einer 15.000 €-Anlage spart das rund 2.850 €.",
+    highlight: true,
+  },
+  {
+    prog: "KfW 270",
+    title: "Günstigkredit für PV & Speicher",
+    tag: "KREDIT",
+    tagCol: COL.yellow,
+    fuer: "Privatpersonen & Unternehmen",
+    betrag: "bis 150 Mio. €",
+    stand: "fortlaufend",
+    body: "Finanzierung von PV-Anlage, Speicher und Wallbox zu vergünstigten Konditionen. Laufzeit bis 30 Jahre, tilgungsfreie Anlaufjahre möglich. Antrag über die Hausbank vor Baubeginn — wir erklären den Ablauf.",
+  },
+  {
+    prog: "KfW 442",
+    title: "Solarstrom für Elektroautos",
+    tag: "ZUSCHUSS",
+    tagCol: COL.pink,
+    fuer: "Privatpersonen · selbstgenutzt",
+    betrag: "bis 10.200 €",
+    stand: "solange Mittel vorhanden",
+    body: "Kombination aus PV + Speicher + Wallbox wird mit Zuschuss gefördert. Speicher: bis 600 € je kWh (max. 3.000 €), Wallbox: bis 200 € je Ladepunkt. Antrag vor Kauf stellen.",
+  },
+  {
+    prog: "EEG-Einspeisevergütung",
+    title: "Festpreis für überschüssigen Strom",
+    tag: "EINSPEISUNG",
+    tagCol: COL.orange,
+    fuer: "Alle PV-Betreiber",
+    betrag: "7,66 ct/kWh",
+    stand: "Anlagen bis Ende 2025 in Betrieb",
+    body: "Für 20 Jahre garantierter Festpreis für eingespeisten Überschussstrom. Bei Anlagen bis 10 kWp: 7,66 ct/kWh Volleinspeiseoption; Teileinspeisung: 8,03 ct/kWh. Automatisch, kein gesonderter Antrag.",
+  },
+  {
+    prog: "Bayern: BEI",
+    title: "Bayerisches Förderprogramm Energie",
+    tag: "LANDESFÖRDERUNG",
+    tagCol: COL.cyan,
+    fuer: "Bayern · verschiedene Zielgruppen",
+    betrag: "variiert",
+    stand: "laufend",
+    body: "Das Bayerische Förderprogramm Energie Innovativ (BEI) fördert Speicher, innovative PV-Lösungen und Beratung. Zusätzlich: viele Landkreise und Kommunen in Niederbayern haben eigene Zuschüsse.",
+  },
+  {
+    prog: "BAFA",
+    title: "Bundesförderung Energieberatung",
+    tag: "BERATUNG",
+    tagCol: COL.yellow,
+    fuer: "Eigenheimbesitzer",
+    betrag: "bis 1.300 €",
+    stand: "laufend",
+    body: "BAFA fördert einen qualifizierten Energieberater mit bis zu 80% der Kosten (max. 1.300 €). Eine gute Basis-Analyse vor dem PV-Kauf — wir empfehlen diesen Schritt besonders bei älteren Gebäuden.",
+  },
+];
+
+const faqs = [
+  { q: "Muss ich Förderung vor dem Kauf beantragen?", a: "KfW-Kredite (270, 442) und BAFA-Zuschüsse müssen VOR Vertragsschluss beantragt werden. Die 0% MwSt. gilt automatisch. EEG-Vergütung wird nach Inbetriebnahme angemeldet. Wir begleiten den gesamten Prozess und sorgen dafür, dass nichts vergessen wird." },
+  { q: "Lassen sich mehrere Förderprogramme kombinieren?", a: "Ja, in vielen Fällen. 0% MwSt. + KfW 270 + ggf. kommunale Förderung ist eine typische Kombination. KfW 270 und KfW 442 können nicht für dieselbe Maßnahme kombiniert werden. Wir prüfen für jede Anlage individuell." },
+  { q: "Welche Förderung gilt für Gewerbe?", a: "Unternehmen nutzen den Vorsteuerabzug auf MwSt. statt 0%-Regelung. KfW 270 gilt auch für Gewerbebetriebe. Für PPA-Anlagen entfallen Förderfragen weitgehend — der Kapitaleinsatz ist null, keine Förderung nötig." },
+  { q: "Wie lange dauert die Förderabwicklung?", a: "KfW-Anträge dauern 2–4 Wochen. BAFA Energieberatungsantrag 1–2 Wochen. EEG-Anmeldung beim Netzbetreiber 4–8 Wochen. Wir starten alle Anträge parallel zur Planungsphase, damit es keine Verzögerungen gibt." },
+];
+
+function FoerderGrid() {
+  return (
+    <Section kapitel="ÜBERSICHT" title="ALLE" italicPart="programme." blackPart="2026." color={COL.black}>
+      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", color: COL.yellow, maxWidth: 720, marginBottom: 40 }}>
+        Für die meisten Eigenheim-Anlagen sind 0% MwSt. + KfW 270 die relevanten Programme. Wir beantragen alles kostenlos mit.
+      </p>
+      <div className="foerder-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
+        {foerderungen.map((f, i) => (
+          <div key={i} className="lift" style={{
+            background: f.tagCol, border: `3px solid ${COL.yellow}`,
+            padding: 0, position: "relative",
+            transform: `rotate(${[0.5,-0.5,1,-1,0.5,-0.5][i]||0}deg)`,
+            boxShadow: f.highlight ? `0 0 0 4px ${COL.yellow}` : "none",
+          }}>
+            {f.highlight && (
+              <div style={{ position: "absolute", top: -18, left: "50%", transform: "translateX(-50%) rotate(-2deg)", background: COL.yellow, color: COL.black, padding: "4px 16px", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, border: `2px solid ${COL.black}`, whiteSpace: "nowrap" }}>
+                ★ SOFORT WIRKSAM
+              </div>
+            )}
+            <div style={{ background: COL.black, color: f.tagCol, padding: "14px 20px", borderBottom: `3px solid ${COL.yellow}`, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em" }}>{f.tag}</div>
+              <div style={{ fontFamily: fonts.heading, fontSize: 20, fontWeight: 800, letterSpacing: "-.03em" }}>{f.prog}</div>
+            </div>
+            <div style={{ padding: 20, color: COL.black }}>
+              <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 22, lineHeight: 1, textTransform: "uppercase", letterSpacing: "-.03em", marginBottom: 12 }}>{f.title}</div>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 14 }}>
+                <div style={{ background: "rgba(0,0,0,0.08)", padding: "8px 10px" }}>
+                  <div style={{ fontFamily: fonts.mono, fontSize: 9, fontWeight: 700, textTransform: "uppercase", opacity: .7 }}>FÜR</div>
+                  <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, marginTop: 2 }}>{f.fuer}</div>
+                </div>
+                <div style={{ background: "rgba(0,0,0,0.08)", padding: "8px 10px" }}>
+                  <div style={{ fontFamily: fonts.mono, fontSize: 9, fontWeight: 700, textTransform: "uppercase", opacity: .7 }}>BETRAG</div>
+                  <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, marginTop: 2 }}>{f.betrag}</div>
+                </div>
+              </div>
+              <p style={{ fontFamily: fonts.serif, fontSize: 14, lineHeight: 1.5, fontStyle: "italic", margin: "0 0 10px" }}>{f.body}</p>
+              <div style={{ fontFamily: fonts.mono, fontSize: 10, opacity: .6, textTransform: "uppercase" }}>Stand: {f.stand}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function FAQSection() {
+  const [open, setOpen] = useState(null);
+  return (
+    <Section kapitel="FAQ" title="HÄUFIGE" italicPart="fragen." blackPart="" color={COL.yellow}>
+      <div className="faq-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginTop: 8 }}>
+        {faqs.map((f, i) => (
+          <div key={i} style={{ border: `3px solid ${COL.black}`, background: open === i ? COL.cyan : COL.white }}>
+            <button onClick={() => setOpen(open === i ? null : i)} style={{
+              width: "100%", textAlign: "left", padding: "16px 20px", background: "none", border: "none",
+              display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12,
+              cursor: "crosshair", fontFamily: fonts.heading, fontWeight: 700, fontSize: 15,
+              textTransform: "uppercase", letterSpacing: "-.01em", lineHeight: 1.2,
+            }}>
+              <span>{f.q}</span>
+              <span style={{ flexShrink: 0, fontSize: 20, lineHeight: 1 }}>{open === i ? "−" : "+"}</span>
+            </button>
+            {open === i && (
+              <div style={{ padding: "0 20px 20px", fontFamily: fonts.serif, fontSize: 16, lineHeight: 1.6, fontStyle: "italic" }}>{f.a}</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function App() {
+  return (
+    <Page active="">
+      <PageHero
+        kapitel="FÖRDERUNG"
+        kicker="STAND 2026"
+        title="FÖRDERUNG"
+        italicPart="verstehen."
+        blackHeadlinePart="NUTZEN."
+        sub="0% MwSt., KfW 270, KfW 442, EEG-Vergütung, Landesförderung Bayern — wir überblicken alle Programme und beantragen kostenlos mit."
+        color={COL.yellow}
+        accentColor={COL.black}
+      />
+      <Marquee items={["0% MWST.", "KFW 270", "KFW 442", "EEG-VERGÜTUNG", "LANDESFÖRDERUNG BAYERN", "KOMMUNALE ZUSCHÜSSE", "KOSTENLOS BEANTRAGEN"]} />
+      <StatGrid items={[
+        { l: "MwSt. auf PV-Anlagen (privat)", v: "0%", u: "" },
+        { l: "KfW 270 Kreditrahmen", v: "150", u: "Mio." },
+        { l: "KfW 442 Zuschuss max.", v: "10.200", u: "€" },
+        { l: "EEG-Vergütung (Überschuss)", v: "7,66", u: "ct/kWh" },
+      ]} />
+      <FoerderGrid />
+      <FAQSection />
+      <BigQuote
+        quote="Förderung ist kein Bonus. Sie ist einkalkulierter Bestandteil der Wirtschaftlichkeit. Wer sie nicht beantragt, schenkt Geld."
+        by="Doris Pilsner-Albrecht"
+        role="Inhaberin"
+      />
+      <Cta
+        kicker="FÖRDERBERATUNG"
+        big="WIR BEANTRAGEN MIT."
+        sub="Kostenlos, vollständig, rechtzeitig. Kein Förderprogramm wird übersehen."
+        href="kontakt.html"
+        btn="JETZT ANFRAGEN"
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

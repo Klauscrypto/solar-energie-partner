@@ -91,6 +91,7 @@
                 ["Repowering", `${base}repowering.html`],
               ]],
               ["WISSEN", [
+                ["Förderung 2026", `${base}foerderung.html`],
                 ["Blog & Ratgeber", `${base}blog/`],
                 ["FAQ", `${base}index.html#faq`],
                 ["Referenzen", `${base}referenzen.html`],
