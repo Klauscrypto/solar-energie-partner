@@ -126,7 +126,6 @@
           <span style={{ display: "flex", gap: 20 }}>
             <a href={`${base}impressum.html`} style={{ color: COL.yellow, textDecoration: "none" }}>IMPRESSUM</a>
             <a href={`${base}datenschutz.html`} style={{ color: COL.yellow, textDecoration: "none" }}>DATENSCHUTZ</a>
-            <a href="#" style={{ color: COL.yellow, textDecoration: "none" }}>AGB</a>
           </span>
         </div>
       </footer>

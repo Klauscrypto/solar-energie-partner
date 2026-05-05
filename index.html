@@ -4,9 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SOLAR // RADIKAL</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="fonts/fonts.css" />
 <style>
   *,*::before,*::after{box-sizing:border-box}
   html,body{margin:0;padding:0;background:var(--bg,#fdfd00);color:#0a0a0a;overflow-x:hidden;cursor:crosshair}
@@ -160,9 +158,9 @@
 <body>
 <div id="cur"></div>
 <div id="root"></div>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="vendor/react.min.js"></script>
+<script src="vendor/react-dom.min.js"></script>
+<script src="vendor/babel.min.js"></script>
 <script src="data.js"></script>
 <script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="radikal-extras.jsx"></script>
@@ -254,7 +252,7 @@ function StickerLayer() {
     { text: "SEIT 2014", cls: "cyan", top: "38%", left: "2%", rot: 6 },
     { text: "EHRLICH ✓", cls: "orange", top: "55%", right: "3%", rot: -10 },
     { text: "DEGGENDORF", cls: "pink", top: "72%", left: "4%", rot: 4 },
-    { text: "TÜV ✓", cls: "black", top: "85%", right: "5%", rot: -6 },
+    { text: "GEPRÜFT ✓", cls: "black", top: "85%", right: "5%", rot: -6 },
   ];
   return (
     <>
@@ -472,7 +470,7 @@ function Hero() {
       {/* Big marquee */}
       <div style={{ marginTop: 60, background: COL.black, color: COL.yellow, padding: "20px 0", overflow: "hidden", borderTop: `4px solid ${COL.black}`, borderBottom: `4px solid ${COL.black}` }}>
         <div className="mq">
-          {[...Array(2)].flatMap((_,k) => ["★ EHRLICHE BERATUNG", "★ ZERTIFIZIERTE PARTNER", "★ EHRLICHER VERTRIEB", "★ FESTPREIS-GARANTIE", "★ TÜV-ZERTIFIZIERT", "★ SEIT 2014", "★ 250+ ANLAGEN"].map((s,i) => (
+          {[...Array(2)].flatMap((_,k) => ["★ EHRLICHE BERATUNG", "★ ZERTIFIZIERTE PARTNER", "★ EHRLICHER VERTRIEB", "★ FESTPREIS-GARANTIE", "★ FACHBETRIEBE", "★ SEIT 2014", "★ 250+ ANLAGEN"].map((s,i) => (
             <span key={`${k}-${i}`} style={{ fontFamily: headingFont, fontSize: 56, fontWeight: 800, padding: "0 32px", whiteSpace: "nowrap", textTransform: "uppercase", letterSpacing: "-0.03em" }}>
               {s}
             </span>
@@ -552,9 +550,9 @@ function Services() {
 // ─── KAUF ─── eigene Anlage
 function Kauf() {
   const examples = [
-    { tag: "EIGENHEIM KLEIN", title: "8 kWp + 7 kWh Speicher", desc: "Reihenhaus · 4-köpfige Familie · 4.500 kWh/J.", price: "ca. 15.000 €", saving: "~1.850 €/J.", amort: "~7,4 J.", col: COL.cyan, img: "https://images.unsplash.com/flagged/photo-1566838616631-f2618f74a6a2?fm=jpg&q=80&w=800&auto=format&fit=crop" },
+    { tag: "EIGENHEIM KLEIN", title: "8 kWp + 7 kWh Speicher", desc: "Reihenhaus · 4-köpfige Familie · 4.500 kWh/J.", price: "ca. 15.000 €", saving: "~1.850 €/J.", amort: "~7,4 J.", col: COL.cyan, img: "pv-eigenheim-klein.jpg" },
     { tag: "EIGENHEIM GROSS", title: "12 kWp + 12 kWh + Wallbox", desc: "Einfamilienhaus · Deggendorf · Eigenverbrauch optimiert", price: "ca. 23.000 €", saving: "~4.300 €/J.", amort: "~5,3 J.", col: COL.pink, img: "eigenheim-deggendorf.jpg", imgFilter: "contrast(1.12) saturate(1.25) brightness(1.05)" },
-    { tag: "GEWERBE", title: "50 kWp Halle", desc: "Werkstatt · 60.000 kWh/J. · PPA-Option möglich", price: "ca. 47.000 €", saving: "~9.000 €/J.", amort: "~5,9 J.", col: COL.yellow, img: "https://plus.unsplash.com/premium_photo-1666345066540-545e2d61ca3c?fm=jpg&q=80&w=800&auto=format&fit=crop" },
+    { tag: "GEWERBE", title: "50 kWp Halle", desc: "Werkstatt · 60.000 kWh/J. · PPA-Option möglich", price: "ca. 47.000 €", saving: "~9.000 €/J.", amort: "~5,9 J.", col: COL.yellow, img: "pv-gewerbe-halle.jpg" },
   ];
   return (
     <section id="kauf" style={{ background: COL.white, color: COL.black, padding: "80px 24px", borderTop: `4px solid ${COL.black}` }}>
