@@ -31,7 +31,7 @@ window.SITE_DATA = {
   },
 
   trustBar: [
-    { k: "Geprüfte Partner", v: "zertifizierte Installateure" },
+    { k: "Fachbetriebe", v: "mit eigenem Festpersonal" },
     { k: "30 Jahre", v: "Modulgarantie" },
     { k: "Bundesweit aktiv", v: "Hauptstandort Bayern" },
     { k: "250+ Anlagen", v: "seit Firmengründung" },
@@ -137,7 +137,7 @@ window.SITE_DATA = {
     body: "Solar Energie Partner ist eine Marke der Pilsner Vertriebs GmbH – eines inhabergeführten Betriebs aus Deggendorf. Seit 2014 vermitteln und koordinieren wir Photovoltaik-Projekte in Bayern und bundesweit. Wir arbeiten ausschließlich mit geprüften, zertifizierten Installateuren zusammen — und stehen persönlich für jedes Ergebnis gerade.",
     points: [
       ["Inhabergeführt", "Doris Pilsner-Albrecht steht persönlich hinter jedem Projekt"],
-      ["Geprüfte Installateure", "wir arbeiten nur mit zertifizierten Partnerbetrieben — jeder einzeln ausgewählt"],
+      ["Fachbetriebe mit eigenem Personal", "keine Einzelunternehmer — nur Betriebe mit ausgebildetem Festpersonal"],
       ["Standort Deggendorf", "Hauptbüro Detterstraße 38, Einsatzgebiet ganz Bayern und darüber hinaus"],
       ["24/7 Notfall-Hotline", "direkter Draht zu unserem Serviceteam, nicht zur Warteschleife"],
       ["Eingetragener Fachbetrieb", "zertifiziert, versichert, nach VDE geprüft"],
