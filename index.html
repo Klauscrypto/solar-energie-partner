@@ -145,6 +145,12 @@
     /* Sonne verkleinern */
     .hero-sun{width:300px !important;height:300px !important;top:-120px !important;right:-120px !important}
 
+    /* Hero Sub-Row: 3 Spalten → 1 Spalte */
+    .hero-subrow{grid-template-columns:1fr !important}
+
+    /* Marquee Font auf Mobile verkleinern */
+    .mq span{font-size:32px !important;padding:0 16px !important}
+
     /* Vergleichstabelle scrollbar statt kollabiert */
     .kauf-vs-ppa-table{overflow-x:auto !important;-webkit-overflow-scrolling:touch}
     .kauf-vs-ppa-table > div{min-width:480px !important;grid-template-columns:1.5fr 1fr 1fr !important}
@@ -430,7 +436,7 @@ function Hero() {
         </h1>
 
         {/* Sub-row */}
-        <div style={{ marginTop: 40, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
+        <div className="hero-subrow" style={{ marginTop: 40, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
           <div>
             <p style={{ fontFamily: serifFont, fontSize: 22, lineHeight: 1.3, margin: 0, fontStyle: "italic" }}>
               Photovoltaik-Anlagen, Speicher und PPA-Stromverträge — ohne Investment, ohne Bullshit.
