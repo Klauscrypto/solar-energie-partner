@@ -24,15 +24,12 @@
   // ─── Header ──────────────────────────────
   function Header({ active, base = "" }) {
     const links = [
-      { id: "photovoltaik",  label: "PV", href: `${base}photovoltaik.html` },
-      { id: "speicher",      label: "Speicher", href: `${base}speicher.html` },
-      { id: "waermepumpe",   label: "Wärmepumpe", href: `${base}waermepumpe.html` },
-      { id: "ppa",           label: "PPA", href: `${base}ppa.html` },
-      { id: "foerderung",    label: "Förderung", href: `${base}foerderung.html` },
-      { id: "preise",        label: "Preise", href: `${base}preise.html` },
-      { id: "referenzen",    label: "Referenzen", href: `${base}referenzen.html` },
-      { id: "ueberuns",      label: "Über uns", href: `${base}ueber-uns.html` },
-      { id: "blog",          label: "Blog", href: `${base}blog.html` },
+      { id: "eigenheim",  label: "Eigenheim", href: `${base}eigenheim.html` },
+      { id: "gewerbe",    label: "Gewerbe", href: `${base}gewerbe.html` },
+      { id: "speicher",   label: "Speicher", href: `${base}speicher.html` },
+      { id: "ppa",        label: "PPA", href: `${base}ppa.html` },
+      { id: "repowering", label: "Repowering", href: `${base}repowering.html` },
+      { id: "referenzen", label: "Referenzen", href: `${base}referenzen.html` },
     ];
     const [t, setT] = useState(new Date());
     useEffect(() => { const i = setInterval(() => setT(new Date()), 1000); return () => clearInterval(i); }, []);
@@ -87,10 +84,11 @@
             </div>
             {[
               ["LEISTUNG", [
-                ["Photovoltaik", `${base}photovoltaik.html`],
+                ["Eigenheim", `${base}eigenheim.html`],
+                ["Gewerbe", `${base}gewerbe.html`],
                 ["Speicher", `${base}speicher.html`],
-                ["Wärmepumpe", `${base}waermepumpe.html`],
                 ["PPA-Vertrag", `${base}ppa.html`],
+                ["Repowering", `${base}repowering.html`],
               ]],
               ["WISSEN", [
                 ["Förderung 2026", `${base}foerderung.html`],

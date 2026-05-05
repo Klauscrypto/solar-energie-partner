@@ -74,12 +74,12 @@ window.SITE_DATA = {
   },
 
   services: [
-    { no: "01", cat: "Solarmodule", title: "PV-Anlagen-Bau", body: "Auslegung nach Verbrauch, nicht nach Dachfläche. Wir nehmen lieber 2 kWp weniger und dafür die richtige Dimensionierung – das macht über 25 Jahre den Unterschied." },
-    { no: "02", cat: "Speichertechnik", title: "Batteriespeicher", body: "Lithium-Eisenphosphat als Standard – langlebig, sicher, brandschutztechnisch unbedenklich. Wir verbauen, was wir auch zuhause hätten." },
-    { no: "03", cat: "Stromvertrag", title: "PPA-Lösungen", body: "Sie zahlen nur für gelieferten Strom. Punkt. Kein Kapitaleinsatz, kein Reparaturärger, keine Verwaltungslast – wir kümmern uns um alles dahinter." },
-    { no: "04", cat: "E-Mobilität", title: "Wallbox-Installation", body: "Mit Lastmanagement und Solar-Überschuss-Ladung. So lädt das Auto bevorzugt mit Eigenstrom – und Sie sparen sich teure Netzkilowattstunden." },
-    { no: "05", cat: "Heiztechnik", title: "Wärmepumpen", body: "Eine Wärmepumpe ist nur so gut wie ihre Auslegung. Wir berechnen, prüfen Heizlast und hydraulischen Abgleich – und liefern, was wirklich passt." },
-    { no: "06", cat: "Betreuung", title: "Service & Wartung", body: "Wir behalten Ihre Anlage im Blick – aus der Ferne. Bei Auffälligkeiten melden wir uns bei Ihnen, nicht umgekehrt. So bleibt der Ertrag, wo er hingehört." },
+    { no: "01", cat: "Eigenheim", title: "PV Eigenheim", body: "Auslegung nach Verbrauch, nicht nach Dachfläche. Lieber 2 kWp weniger und dafür die richtige Dimensionierung — das macht über 25 Jahre den Unterschied.", href: "eigenheim.html" },
+    { no: "02", cat: "Gewerbe & Industrie", title: "PV Gewerbe", body: "Hallendächer, Logistik, Produktion — 50 bis 750+ kWp. Kauf oder PPA ohne Kapitaleinsatz. Ehrliche Wirtschaftlichkeitsrechnung, ein Ansprechpartner.", href: "gewerbe.html" },
+    { no: "03", cat: "Stromvertrag", title: "PPA-Lösungen", body: "Kein Kapitaleinsatz, kein Reparaturärger. Wir koordinieren die Anlage auf deinem Dach — du kaufst den Strom zu einem Preis der garantiert unter dem Netztarif liegt.", href: "ppa.html" },
+    { no: "04", cat: "Speichertechnik", title: "Batteriespeicher", body: "Lithium-Eisenphosphat als Standard — langlebig, sicher. Eigenverbrauch von 30% auf 70–85% steigern. Für neue und bestehende Anlagen nachrüstbar.", href: "speicher.html" },
+    { no: "05", cat: "Altanlagen", title: "Repowering & Entsorgung", body: "EEG läuft aus, Wechselrichter kaputt, Dachsanierung geplant? Wir analysieren, sanieren oder ersetzen — und sorgen für rechtssichere Modulentsorgung.", href: "repowering.html" },
+    { no: "06", cat: "E-Mobilität & Wärme", title: "Wallbox & Wärmepumpe", body: "Solar-Überschuss-Ladung fürs E-Auto, Wärmepumpen-Integration. Sektorkopplung — damit dein Solarstrom nirgends verschwendet wird.", href: "#kontakt" },
   ],
 
   process: [

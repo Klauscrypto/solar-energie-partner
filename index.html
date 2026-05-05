@@ -528,10 +528,11 @@ function Services() {
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginTop: 32 }}>
         {D.services.map((s, i) => (
           <Tilt key={i} max={10}>
-          <div ref={useReveal()} className="rv" style={{
+          <a href={s.href || "#kontakt"} ref={useReveal()} className="rv lift" style={{
             background: colors[i % colors.length], border: `3px solid ${COL.black}`,
             padding: "24px 20px",
             display: "flex", flexDirection: "column", minHeight: 280, position: "relative",
+            textDecoration: "none", color: COL.black,
           }}>
             <div style={{ position: "absolute", top: -14, right: -14, background: COL.black, color: COL.yellow, padding: "4px 10px", fontFamily: monoFont, fontSize: 12, fontWeight: 700 }}>
               {s.no}
@@ -540,7 +541,7 @@ function Services() {
             <h3 className="glitch" data-text={s.title} style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 32, lineHeight: 0.95, margin: "0 0 12px", letterSpacing: "-0.03em", textTransform: "uppercase" }}>{s.title}</h3>
             <p style={{ fontFamily: serifFont, fontSize: 16, lineHeight: 1.4, margin: 0, flex: 1 }}>{s.body}</p>
             <div style={{ marginTop: 16, fontFamily: monoFont, fontSize: 12, fontWeight: 700 }}>→ MEHR_INFO</div>
-          </div>
+          </a>
           </Tilt>
         ))}
       </div>
