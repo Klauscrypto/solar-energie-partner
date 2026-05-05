@@ -216,7 +216,7 @@
   function AboutDoris() {
     const werte = [
       ["EHRLICH", "Wenn sich was nicht rechnet, sagen wirs.", COL.pink],
-      ["EIGENES TEAM", "Keine Subunternehmer. Nie.", COL.cyan],
+      ["ZERTIFIZIERTE PARTNER", "Nur geprüfte Installationsbetriebe. Immer.", COL.cyan],
       ["SCHNELL", "Anlagen in 1–5 Tagen fertig.", COL.orange],
       ["DA", "24/7 Notfall. Echte Menschen.", COL.yellow],
     ];
