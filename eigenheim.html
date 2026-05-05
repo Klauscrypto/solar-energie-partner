@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Photovoltaik fürs Eigenheim — Solar Energie Partner</title>
+<meta name="description" content="PV-Anlage fürs Einfamilienhaus in Bayern: Planung, Koordination, Speicher, Wallbox — alles aus einer Hand. Ab 8 kWp, Amortisation unter 8 Jahren." />
+<meta property="og:title" content="Photovoltaik fürs Eigenheim — Solar Energie Partner" />
+<meta property="og:description" content="Dein Dach. Deine Energie. Dein Geld. PV-Anlagen für Einfamilienhäuser in Bayern — ehrlich kalkuliert, sauber koordiniert." />
+<link rel="canonical" href="https://solar-energie-partner.de/eigenheim.html" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Photovoltaik Eigenheim","provider":{"@type":"LocalBusiness","name":"Solar Energie Partner","address":{"@type":"PostalAddress","streetAddress":"Detterstraße 38","addressLocality":"Deggendorf","postalCode":"94469","addressCountry":"DE"}},"areaServed":"Bayern","description":"Photovoltaik-Anlagen für Einfamilienhäuser"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="radikal-base.css" />
+<style>
+  @media(max-width:768px){
+    header nav{display:none !important}
+    .mq span{font-size:32px !important;padding:0 16px !important}
+    .process-grid{grid-template-columns:1fr !important}
+    .systems-grid{grid-template-columns:1fr !important}
+    .faq-grid{grid-template-columns:1fr !important}
+    .include-grid{grid-template-columns:repeat(2,1fr) !important}
+    footer > div:first-child > div{grid-template-columns:1fr 1fr !important}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+const D = window.SITE_DATA;
+
+const systems = [
+  {
+    size: "KLEIN",
+    kwp: "8 kWp",
+    for: "Für 2–3 Personen · ~3.500 kWh/J. Verbrauch",
+    modules: "16 Module",
+    speicher: "Ohne Speicher",
+    price: "ca. 15.000 €",
+    saving: "~1.850 €/J.",
+    amort: "~8,1 J.",
+    col: COL.cyan,
+  },
+  {
+    size: "MITTEL",
+    kwp: "12 kWp",
+    for: "Für 3–4 Personen · ~5.000 kWh/J. Verbrauch",
+    modules: "24 Module + 10 kWh Speicher",
+    speicher: "Mit Speicher",
+    price: "ca. 23.000 €",
+    saving: "~4.300 €/J.",
+    amort: "~5,3 J.",
+    col: COL.yellow,
+    highlight: true,
+  },
+  {
+    size: "GROSS",
+    kwp: "18 kWp",
+    for: "Für 4–5 Personen + Wallbox · ~7.500 kWh/J.",
+    modules: "36 Module + 18 kWh Speicher + Wallbox",
+    speicher: "Komplett-Paket",
+    price: "ca. 38.000 €",
+    saving: "~6.800 €/J.",
+    amort: "~5,6 J.",
+    col: COL.pink,
+  },
+];
+
+const includes = [
+  { no: "01", tag: "PLANUNG", title: "Dachanalyse & Ertragsgutachten", body: "Wir schauen uns dein Dach an — Ausrichtung, Verschattung, Statik. Du bekommst eine ehrliche Zahl, keine Traumrechnung." },
+  { no: "02", tag: "TECHNIK", title: "Modulauswahl & Wechselrichter", body: "Nur Markenmodule mit 25–30 Jahren Garantie. Wir empfehlen was passt, nicht was Marge bringt." },
+  { no: "03", tag: "GENEHMIGUNG", title: "Anmeldung & Netzeinspeisepapiere", body: "Netzbetreiber, Marktstammdatenregister, Förderantrag — wir koordinieren das mit unseren Partnern." },
+  { no: "04", tag: "INSTALLATION", title: "Koordination der Montage", body: "Unsere zertifizierten Fachbetriebe mit eigenem Festpersonal. Kein Wechsel, kein Subunternehmer-Chaos." },
+  { no: "05", tag: "INBETRIEBNAHME", title: "Abnahme & Monitoring-Setup", body: "Anlage läuft, App zeigt Ertrag, du weißt was rauskommt. Wir sind erst fertig wenn du zufrieden bist." },
+  { no: "06", tag: "SERVICE", title: "Wartung & 24h Notfall", body: "Direkter Draht zu uns — nicht zu einem Callcenter. Bei Störung bist du binnen 24h versorgt." },
+];
+
+const process = [
+  { n: "01", title: "Kostenloses Erstgespräch", body: "Telefon oder vor Ort. 30 Minuten. Du sagst was du brauchst, wir sagen was möglich ist — ehrlich." },
+  { n: "02", title: "Angebot & Wirtschaftlichkeit", body: "Individuelles Angebot mit Ertragsberechnung, Amortisation und realen Strompreis-Szenarien. Keine versteckten Kosten." },
+  { n: "03", title: "Koordination & Montage", body: "Wir stimmen alle Gewerke ab: Dachdecker, Elektriker, Netzbetreiber. Du musst dich um nichts kümmern." },
+  { n: "04", title: "Inbetriebnahme & Übergabe", body: "Alles läuft, alles ist erklärt, alle Papiere sind da. Anlage in der Regel in 1–3 Tagen montiert." },
+];
+
+const faqs = [
+  {
+    q: "Lohnt sich PV bei Norddach oder Flachdach?",
+    a: "Ja — auch Nord-Ost oder Flachdach rechnet sich. Entscheidend ist die Gesamtfläche und der Eigenverbrauch. Wir haben Anlagen auf schwierigen Dächern gebaut die sich in unter 7 Jahren amortisiert haben.",
+  },
+  {
+    q: "Brauche ich einen Speicher?",
+    a: "Kommt auf deinen Verbrauchsrhythmus an. Tagsüber viel Verbrauch (Homeoffice, Wärmepumpe) → Speicher bringt weniger. Viel Verbrauch abends → Speicher lohnt sich stark. Wir rechnen beides durch.",
+  },
+  {
+    q: "Was kostet eine Genehmigung und wer macht das?",
+    a: "Die Anmeldung beim Netzbetreiber und das Marktstammdatenregister sind kostenlos. Wir koordinieren das mit. Der einzige Zeitaufwand für dich: einmal Unterschrift.",
+  },
+  {
+    q: "Gibt es noch Förderung 2026?",
+    a: "Ja: 0% MwSt. auf Kauf und Installation bis 30 kWp gilt weiter. Dazu KfW 270 Kredit für Speicher und in manchen Gemeinden lokale Zuschüsse. Wir beantragen das mit.",
+  },
+];
+
+function Systems() {
+  return (
+    <Section kapitel="PREISE" title="DREI" italicPart="typische" blackPart="ANLAGEN." color={COL.black}>
+      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", color: COL.yellow, maxWidth: 720, marginBottom: 32 }}>
+        Richtwerte — jede Anlage ist anders. Dein Angebot bekommst du nach dem ersten Gespräch.
+      </p>
+      <div className="systems-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
+        {systems.map((s, i) => (
+          <div key={i} className="lift" style={{
+            background: s.col, border: `3px solid ${s.highlight ? COL.yellow : COL.black}`,
+            padding: 0, position: "relative",
+            transform: `rotate(${i % 2 === 0 ? -0.5 : 0.5}deg)`,
+            boxShadow: s.highlight ? `0 0 0 4px ${COL.yellow}` : "none",
+          }}>
+            {s.highlight && (
+              <div style={{ position: "absolute", top: -18, left: "50%", transform: "translateX(-50%) rotate(-2deg)", background: COL.yellow, color: COL.black, padding: "4px 16px", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, border: `2px solid ${COL.black}`, whiteSpace: "nowrap" }}>
+                ★ BELIEBTESTE WAHL
+              </div>
+            )}
+            <div style={{ background: COL.black, color: s.col, padding: "16px 20px", borderBottom: `3px solid ${COL.black}` }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, opacity: 0.7, marginBottom: 4 }}>{s.size}</div>
+              <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 40, lineHeight: 0.9, letterSpacing: "-0.04em" }}>{s.kwp}</div>
+            </div>
+            <div style={{ padding: 20 }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 11, marginBottom: 16, opacity: 0.8 }}>{s.for}</div>
+              <div style={{ fontFamily: fonts.mono, fontSize: 12, marginBottom: 20, fontWeight: 700 }}>{s.modules}</div>
+              <div style={{ borderTop: `2px solid ${COL.black}`, paddingTop: 16 }}>
+                <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 32, letterSpacing: "-0.03em" }}>{s.price}</div>
+                <div style={{ fontFamily: fonts.mono, fontSize: 12, marginTop: 8 }}>
+                  <span style={{ fontWeight: 700 }}>{s.saving}</span> Ersparnis/J.<br/>
+                  <span style={{ opacity: 0.7 }}>Amortisation {s.amort}</span>
+                </div>
+              </div>
+              <a href="#kontakt" style={{ display: "block", marginTop: 20, background: COL.black, color: s.col, padding: "12px 16px", fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase", textDecoration: "none", border: `2px solid ${COL.black}`, textAlign: "center" }}>
+                → ANGEBOT ANFRAGEN
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Process() {
+  return (
+    <Section kapitel="ABLAUF" title="SO" italicPart="läuft" blackPart="ES_AB." color={COL.cyan}>
+      <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 0, border: `3px solid ${COL.black}` }}>
+        {process.map((p, i) => (
+          <div key={i} style={{
+            padding: 28, borderRight: i < process.length - 1 ? `2px solid ${COL.black}` : "none",
+            background: i % 2 === 0 ? COL.cyan : COL.yellow,
+          }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 32, fontWeight: 700, lineHeight: 1, marginBottom: 12, color: COL.black, opacity: 0.25 }}>{p.n}</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 20, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 10px", lineHeight: 1 }}>{p.title}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Faq() {
+  return (
+    <Section kapitel="FAQ" title="ECHTE" italicPart="fragen," blackPart="EHRLICHE_ANTWORTEN." color={COL.yellow}>
+      <div className="faq-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
+        {faqs.map((f, i) => (
+          <div key={i} style={{ background: i % 2 === 0 ? COL.black : COL.pink, color: i % 2 === 0 ? COL.yellow : COL.black, border: `3px solid ${COL.black}`, padding: 28 }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase", marginBottom: 12, color: i % 2 === 0 ? COL.cyan : COL.black, opacity: 0.8 }}>► FRAGE</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 22, lineHeight: 1, letterSpacing: "-0.02em", textTransform: "uppercase", margin: "0 0 14px" }}>{f.q}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 16, lineHeight: 1.55, margin: 0, fontStyle: "italic" }}>{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function App() {
+  return (
+    <Page active="eigenheim">
+      <PageHero
+        kapitel="EIGENHEIM"
+        kicker="PHOTOVOLTAIK_FUER_DEIN_HAUS"
+        title="DEIN DACH."
+        italicPart="deine"
+        blackHeadlinePart="ENERGIE."
+        sub="Photovoltaik für Einfamilienhäuser in Bayern — ehrlich kalkuliert, sauber koordiniert, schnell fertig. Ab 8 kWp, Amortisation unter 8 Jahren."
+        color={COL.yellow}
+        accentColor={COL.pink}
+      />
+
+      <Marquee items={["AB 8 KWP", "SPEICHER OPTIONAL", "WALLBOX MÖGLICH", "AMORTISATION AB 5 J.", "250+ ANLAGEN", "BAYERN + BW", "FÖRDERUNG INKLUSIVE"]} />
+
+      <Section kapitel="ZAHLEN" title="WAS" italicPart="du" blackPart="SPARST." color={COL.pink}>
+        <StatGrid items={[
+          { l: "Typische Ersparnis", v: "70", u: "%", s: "Eigenverbrauchsquote mit Speicher" },
+          { l: "Stromkosten runter", v: "−60", u: "%", s: "im Vergleich zum reinen Netzbezug" },
+          { l: "Ø Amortisation", v: "5–8", s: "Jahre — je nach Anlage und Verbrauch" },
+          { l: "Modulgarantie", v: "30", u: " J.", s: "Leistungsgarantie auf alle Module" },
+        ]} color={COL.cyan} alt={COL.yellow} />
+      </Section>
+
+      <Section kapitel="LEISTUNG" title="WAS" italicPart="wir" blackPart="KOORDINIEREN." color={COL.yellow}>
+        <FeatureGrid items={includes} cols={3} />
+      </Section>
+
+      <Systems />
+
+      <Process />
+
+      <BigQuote
+        quote="Das Dach schaut jetzt nach Süden und Norden. Doris hat uns erklärt warum das trotzdem funktioniert — und sie hatte recht. 82% Autarkie laut App."
+        by="Familie Berger, Deggendorf"
+        role="12 kWp + 18 kWh Speicher"
+        color={COL.orange}
+      />
+
+      <Faq />
+
+      <Cta
+        kicker="DEIN_ANGEBOT"
+        big={<>KOSTENLOS<br/><span style={{ background: COL.pink, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>ANFRAGEN.</span></>}
+        sub="Kein Verkäufergespräch. Wir schauen uns dein Dach an, rechnen ehrlich durch und sagen dir ob es sich lohnt — auch wenn das Ergebnis Nein ist."
+        btn="BERATUNGSTERMIN"
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
