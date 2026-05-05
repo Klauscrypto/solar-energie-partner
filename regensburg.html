@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Photovoltaik Regensburg — Solar Energie Partner</title>
+<meta name="description" content="Photovoltaik in Regensburg, Landkreis Regensburg, Kelheim und Neumarkt: PV-Anlagen für Eigenheim und Gewerbe, koordiniert von Solar Energie Partner aus Deggendorf. Kostenlose Beratung, zertifizierte Fachbetriebe." />
+<meta property="og:title" content="Photovoltaik Regensburg — Solar Energie Partner" />
+<meta property="og:description" content="PV-Anlagen für Eigenheim und Gewerbe in Regensburg und der Oberpfalz — vermittelt und koordiniert von Solar Energie Partner. Ehrlich kalkuliert, sauber umgesetzt." />
+<link rel="canonical" href="https://solar-energie-partner.de/regensburg.html" />
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "name": "Solar Energie Partner",
+      "description": "PV-Vermittler und Koordinator für Photovoltaik-Anlagen in Regensburg, Landkreis Regensburg, Kelheim und Neumarkt",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Detterstraße 38",
+        "addressLocality": "Deggendorf",
+        "postalCode": "94469",
+        "addressCountry": "DE"
+      },
+      "telephone": "+49 991 40227560",
+      "email": "info@solar-energie-partner.de",
+      "url": "https://solar-energie-partner.de",
+      "areaServed": [
+        { "@type": "City", "name": "Regensburg" },
+        { "@type": "AdministrativeArea", "name": "Landkreis Regensburg" },
+        { "@type": "AdministrativeArea", "name": "Kelheim" },
+        { "@type": "AdministrativeArea", "name": "Neumarkt in der Oberpfalz" }
+      ],
+      "sameAs": "https://solar-energie-partner.de"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Kann ich in der Regensburger Altstadt eine PV-Anlage installieren lassen — auch unter Denkmalschutz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Im denkmalgeschützten Bereich der Regensburger Altstadt gelten strenge Auflagen: PV-Anlagen müssen vom Straßenbild aus unsichtbar sein, Flachdächer sind oft einfacher umsetzbar als Schrägdächer. Wir prüfen mit unseren Fachbetrieben vorab, ob und wie eine Genehmigung möglich ist — und welche Auflagen die untere Denkmalschutzbehörde stellt. In vielen Fällen gibt es praxistaugliche Lösungen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welcher Netzbetreiber ist in Regensburg und dem Landkreis zuständig?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In Regensburg und dem Landkreis Regensburg ist die Bayernwerk Netz GmbH der zuständige Verteilnetzbetreiber. Wir kennen die Prozesse, Antragsfristen und typischen Bearbeitungszeiten aus zahlreichen Projekten in der Region — Netzanmeldung, Einspeisezusage und Marktstammdatenregister koordinieren wir vollständig für Sie."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Gibt es Förderprogramme der Stadt Regensburg für PV-Anlagen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Neben den bundesweiten Programmen (0% MwSt. bis 30 kWp, KfW 270 für Speicher) hat die Stadt Regensburg in der Vergangenheit eigene Klimaschutzförderprogramme aufgelegt. Wir prüfen zum Zeitpunkt Ihrer Anfrage welche kommunalen Zuschüsse aktuell verfügbar sind und beantragen diese mit. Zusätzlich können Fördermittel des Freistaats Bayern über das BayernFonds-Programm relevant sein."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Lohnt sich eine PV-Anlage im Landkreis Regensburg — trotz mancher bewölkter Tage?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja, eindeutig. Der Landkreis Regensburg gehört zu den sonnenreichsten Regionen Deutschlands — mit über 1.000 Sonnenstunden pro Jahr und einer günstigen Einstrahlungsbilanz. Besonders in den Neubaugebieten rund um Pentling, Lappersdorf und Sinzing sowie auf den landwirtschaftlichen Betrieben im Landkreis sind die Voraussetzungen hervorragend. Auf einer 10-kWp-Anlage erzielen Sie hier in der Regel 9.500–10.500 kWh Jahresertrag."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<link rel="stylesheet" href="fonts/fonts.css" />
+<link rel="stylesheet" href="radikal-base.css" />
+<style>
+  @media(max-width:768px){
+    header nav{display:none !important}
+    .mq span{font-size:32px !important;padding:0 16px !important}
+    .process-grid{grid-template-columns:1fr !important}
+    .leistung-grid{grid-template-columns:repeat(2,1fr) !important}
+    .faq-grid{grid-template-columns:1fr !important}
+    footer > div:first-child > div{grid-template-columns:1fr 1fr !important}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="vendor/react.min.js"></script>
+<script src="vendor/react-dom.min.js"></script>
+<script src="vendor/babel.min.js"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+const D = window.SITE_DATA;
+
+const leistungen = [
+  {
+    no: "01",
+    tag: "EIGENHEIM",
+    title: "PV fürs Eigenheim",
+    body: "Einfamilienhaus in Pentling, Lappersdorf oder Sinzing — wir planen die Anlage nach Ihrem Verbrauch. Ab 8 kWp, Amortisation unter 8 Jahren, 0% MwSt. für Privatpersonen.",
+  },
+  {
+    no: "02",
+    tag: "GEWERBE",
+    title: "Gewerbe & Industrie",
+    body: "Hallendächer in Burgweinting, Haslbach oder im Landkreis — Kauf oder PPA ohne Eigenkapitaleinsatz. Stromkosten dauerhaft und planbar reduzieren.",
+  },
+  {
+    no: "03",
+    tag: "LANDWIRTSCHAFT",
+    title: "Agrar & Hofanlagen",
+    body: "Große Dachflächen auf Stallgebäuden und Scheunen im Landkreis Regensburg und Kelheim. Wir koordinieren Direktlieferverträge und passende Speicherlösungen.",
+  },
+  {
+    no: "04",
+    tag: "SPEICHER",
+    title: "Batteriespeicher",
+    body: "LFP-Speicher für maximalen Eigenverbrauch. Eigenverbrauchsquote von 30% auf 70–85% steigern — auch als Nachrüstung für bestehende Anlagen möglich.",
+  },
+  {
+    no: "05",
+    tag: "DENKMALSCHUTZ",
+    title: "Denkmal & Bestand",
+    body: "Altbau oder denkmalgeschütztes Gebäude? Wir prüfen mit Fachbetrieben vor Ort, welche Lösungen genehmigungsfähig sind — und beantragen das vollständig mit.",
+  },
+  {
+    no: "06",
+    tag: "PPA",
+    title: "PPA-Stromvertrag",
+    body: "Wir bauen, finanzieren und betreiben. Sie kaufen nur den Strom — zu einem garantierten Preis unter Netztarif. Kein Eigenkapital, keine Bilanzbelastung.",
+  },
+];
+
+const process = [
+  {
+    n: "01",
+    title: "Kostenloses Erstgespräch",
+    body: "Telefon oder vor Ort in Regensburg. 30 Minuten. Wir schauen uns Ihre Situation an und sagen ehrlich, ob und was sich lohnt — auch wenn das Ergebnis Nein ist.",
+  },
+  {
+    n: "02",
+    title: "Angebot & Wirtschaftlichkeit",
+    body: "Individuelles Angebot mit Ertragsberechnung, Amortisationsrechnung und realen Strompreis-Szenarien. Kein verstecktes Kleingedrucktes.",
+  },
+  {
+    n: "03",
+    title: "Koordination & Montage",
+    body: "Wir stimmen alle Gewerke ab: Dachdecker, Elektriker, Netzbetreiber (Bayernwerk Netz). Sie müssen sich um nichts kümmern.",
+  },
+  {
+    n: "04",
+    title: "Inbetriebnahme & Übergabe",
+    body: "Anlage läuft, App zeigt den Ertrag, alle Papiere sind vollständig. Montage in der Regel in 1–3 Tagen abgeschlossen.",
+  },
+];
+
+function Process() {
+  return (
+    <Section kapitel="ABLAUF" title="SO" italicPart="läuft" blackPart="ES_AB." color={COL.cyan}>
+      <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 0, border: `3px solid ${COL.black}` }}>
+        {process.map((p, i) => (
+          <div key={i} style={{
+            padding: 28,
+            borderRight: i < process.length - 1 ? `2px solid ${COL.black}` : "none",
+            background: i % 2 === 0 ? COL.cyan : COL.yellow,
+          }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 32, fontWeight: 700, lineHeight: 1, marginBottom: 12, color: COL.black, opacity: 0.25 }}>{p.n}</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 20, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 10px", lineHeight: 1 }}>{p.title}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function App() {
+  return (
+    <Page active="">
+      <PageHero
+        title="PHOTOVOLTAIK"
+        italicPart="in Regensburg."
+        sub="Von Deggendorf aus koordinieren wir PV-Projekte in Regensburg, Landkreis Regensburg, Kelheim und der Oberpfalz."
+        color={COL.black}
+        accentColor={COL.cyan}
+        kicker="REGENSBURG · OBERPFALZ"
+      />
+
+      <Marquee items={["REGENSBURG", "LANDKREIS REGENSBURG", "KELHEIM", "OBERPFALZ", "85 KM", "SEIT 2014"]} />
+
+      <Section kapitel="ZAHLEN" title="SOLAR" italicPart="energie" blackPart="PARTNER." color={COL.cyan}>
+        <StatGrid items={[
+          { l: "km nach Regensburg", v: "85" },
+          { l: "Anlagen Bayern", v: "200+" },
+          { l: "Fachbetriebe", v: "10+" },
+          { l: "Jahre Erfahrung", v: "12+" },
+        ]} color={COL.cyan} alt={COL.yellow} />
+      </Section>
+
+      <Section kapitel="LEISTUNGEN" title="WAS" italicPart="wir" blackPart="ANBIETEN." color={COL.yellow}>
+        <FeatureGrid items={leistungen} cols={3} />
+      </Section>
+
+      <Section kapitel="REGION REGENSBURG" title="REGENSBURG" italicPart="und die" blackPart="OBERPFALZ." color={COL.pink}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32 }}>
+          <div>
+            <p style={{ fontFamily: fonts.serif, fontSize: 20, lineHeight: 1.6, fontStyle: "italic", margin: "0 0 24px" }}>
+              Regensburg ist eine Universitätsstadt im Wandel — eine junge, wachsende Bevölkerung, viele Neubausiedlungen im Landkreis (Pentling, Lappersdorf, Sinzing) und ein steigendes Interesse an Eigenversorgung. Junge Eigenheimbesitzer fragen häufiger nach PV als anderswo — und die Dachflächen in den Neubaugebieten bieten ideale Voraussetzungen.
+            </p>
+            <p style={{ fontFamily: fonts.serif, fontSize: 18, lineHeight: 1.6, fontStyle: "italic", margin: "0 0 24px" }}>
+              Die Regensburger Altstadt ist eine eigene Herausforderung: historische Dachlandschaft, enge Bebauung und Denkmalschutzauflagen machen einfache Lösungen selten. Wir kennen die Rahmenbedingungen und prüfen gemeinsam mit der Unteren Denkmalschutzbehörde, was genehmigungsfähig ist — oft mehr als man zunächst erwartet.
+            </p>
+            <p style={{ fontFamily: fonts.serif, fontSize: 18, lineHeight: 1.6, fontStyle: "italic", margin: 0 }}>
+              Der Landkreis punktet mit vielen Landwirtschaftsbetrieben mit großen Dachflächen sowie gut ausgerichteten Einfamilienhäusern. Kelheim hat eine sehr gute Globalstrahlung und bietet hervorragende Bedingungen für Anlagen mit Süd- und Südwestausrichtung. Netzbetreiber in der gesamten Region ist Bayernwerk Netz — wir kennen die Prozesse persönlich.
+            </p>
+          </div>
+          <div>
+            <div style={{ border: `3px solid ${COL.black}`, background: COL.black, color: COL.yellow, padding: 28, marginBottom: 20 }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, color: COL.cyan, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.05em" }}>► REGION IM ÜBERBLICK</div>
+              {[
+                ["Regensburg Altstadt", "Denkmalschutz — Einzelfallprüfung, Flachdächer oft lösbar"],
+                ["Pentling, Lappersdorf, Sinzing", "Ideale Neubausiedlungen, optimale Dachausrichtungen"],
+                ["Landkreis Regensburg", "Landwirtschaft, große Dachflächen, viele Höfe"],
+                ["Kelheim", "Sehr gute Sonneneinstrahlung, starke Einfamilienhaus-Dichte"],
+                ["Neumarkt i. d. OPf.", "Wachsende Gewerbegebiete, gute PV-Bedingungen"],
+                ["Netzbetreiber", "Bayernwerk Netz GmbH — Anmeldung übernehmen wir"],
+                ["Gewerbegebiete", "Haslbach und Burgweinting — große Hallendächer"],
+              ].map(([k, v], i) => (
+                <div key={i} style={{ borderTop: i === 0 ? "none" : `1px solid rgba(253,253,0,0.2)`, paddingTop: i === 0 ? 0 : 12, marginTop: i === 0 ? 0 : 12 }}>
+                  <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", color: COL.orange, marginBottom: 4 }}>→ {k}</div>
+                  <div style={{ fontFamily: fonts.serif, fontSize: 14, fontStyle: "italic", opacity: 0.85 }}>{v}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Process />
+
+      <BigQuote
+        quote="Regensburg ist interessant — viele Neubausiedlungen im Landkreis, gute Ausrichtung, Bayernwerk kennen wir persönlich."
+        by="Doris Pilsner-Albrecht"
+        role="Inhaberin"
+        color={COL.yellow}
+      />
+
+      <Cta
+        kicker="REGENSBURG"
+        big="ANFRAGE STELLEN."
+        sub="Kostenlos, unverbindlich, ohne Druck."
+        href="index.html#kontakt"
+        btn="JETZT ANFRAGEN"
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

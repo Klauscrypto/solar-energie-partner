@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Startseite -->
   <url><loc>https://solar-energie-partner.de/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+
+  <!-- Leistungsseiten -->
   <url><loc>https://solar-energie-partner.de/eigenheim.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://solar-energie-partner.de/gewerbe.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://solar-energie-partner.de/speicher.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://solar-energie-partner.de/ppa.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://solar-energie-partner.de/repowering.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://solar-energie-partner.de/referenzen.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Stadtseiten (lokale SEO) -->
+  <url><loc>https://solar-energie-partner.de/deggendorf.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://solar-energie-partner.de/straubing.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solar-energie-partner.de/passau.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solar-energie-partner.de/landshut.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solar-energie-partner.de/regensburg.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://solar-energie-partner.de/muenchen.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Firma -->
   <url><loc>https://solar-energie-partner.de/ueber-uns.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/referenzen.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://solar-energie-partner.de/kontakt.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Blog -->
   <url><loc>https://solar-energie-partner.de/blog/</loc><changefreq>daily</changefreq><priority>0.7</priority></url>
+
+  <!-- Legal (kein SEO-Wert, trotzdem drin) -->
   <url><loc>https://solar-energie-partner.de/impressum.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <url><loc>https://solar-energie-partner.de/datenschutz.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
 </urlset>

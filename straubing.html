@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Photovoltaik Straubing — Solar Energie Partner</title>
+<meta name="description" content="PV-Anlagen in Straubing und Straubing-Bogen: Eigenheim, Gewerbe, Speicher, Wallbox. Solar Energie Partner koordiniert zertifizierte Fachbetriebe — kostenlose Beratung, faire Preise, 12 Jahre Erfahrung." />
+<meta property="og:title" content="Photovoltaik Straubing — Solar Energie Partner" />
+<meta property="og:description" content="Photovoltaik in Straubing und Straubing-Bogen: Wir koordinieren PV-Anlagen für Eigenheim und Gewerbe — ehrlich beraten, sauber abgewickelt." />
+<link rel="canonical" href="https://solar-energie-partner.de/straubing.html" />
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Solar Energie Partner",
+  "legalName": "Pilsner Vertriebs GmbH",
+  "url": "https://solar-energie-partner.de",
+  "telephone": "+499911234567",
+  "email": "info@solar-energie-partner.de",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Detterstraße 38",
+    "addressLocality": "Deggendorf",
+    "postalCode": "94469",
+    "addressCountry": "DE"
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Straubing"},
+    {"@type": "AdministrativeArea", "name": "Straubing-Bogen"},
+    {"@type": "AdministrativeArea", "name": "Bayerischer Wald"},
+    {"@type": "State", "name": "Bayern"}
+  ],
+  "description": "Koordination von Photovoltaik-Anlagen für Eigenheim und Gewerbe in Straubing, Straubing-Bogen und dem Bayerischen Wald.",
+  "knowsAbout": ["Photovoltaik", "Solaranlage", "Stromspeicher", "Wallbox", "PPA", "Repowering"],
+  "foundingDate": "2014",
+  "sameAs": []
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Lohnt sich Photovoltaik in Straubing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja, eindeutig. Straubing gehört mit rund 1.700 Sonnenstunden pro Jahr zu den sonnenreichsten Regionen Bayerns. Eine 10 kWp Anlage erzeugt hier ca. 9.500–10.500 kWh im Jahr. Bei aktuellen Strompreisen rechnet sich eine gut geplante Anlage in 5–8 Jahren."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welcher Netzbetreiber ist in Straubing zuständig?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Im Stadtgebiet Straubing ist die Stadtwerke Straubing GmbH & Co. KG für die Netzanmeldung zuständig. Im Landkreis Straubing-Bogen ist es überwiegend Bayernwerk Netz GmbH. Wir koordinieren die Anmeldung beim jeweiligen Netzbetreiber — ihr müsst euch um nichts kümmern."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Fördermittel gibt es für PV in Straubing 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Für Privatpersonen gilt 0% MwSt. auf Kauf und Installation bis 30 kWp (§ 12 Abs. 3 UStG). Zusätzlich ist der KfW 270 Kredit für Speicher nutzbar. Die Stadt Straubing und der Landkreis Straubing-Bogen bieten punktuell weitere kommunale Zuschüsse — wir beantragen das mit und halten uns immer auf dem aktuellen Stand."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lange dauert die Montage einer PV-Anlage in Straubing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die eigentliche Montage eines Eigenheim-Dachs dauert in der Regel 1–3 Tage. Von der Unterschrift bis zur fertigen Anlage planen wir realistisch 6–10 Wochen — das beinhaltet Netzanmeldung, Materialbestellung und Abstimmung mit dem Fachbetrieb. Wir koordinieren alles, ihr bekommt einen festen Terminplan."
+      }
+    }
+  ]
+}</script>
+<link rel="stylesheet" href="fonts/fonts.css" />
+<link rel="stylesheet" href="radikal-base.css" />
+<style>
+  @media(max-width:768px){
+    header nav{display:none !important}
+    .mq span{font-size:32px !important;padding:0 16px !important}
+    .process-grid{grid-template-columns:1fr !important}
+    .feature-grid{grid-template-columns:repeat(2,1fr) !important}
+    .stat-grid{grid-template-columns:repeat(2,1fr) !important}
+    .faq-grid{grid-template-columns:1fr !important}
+    .warum-grid{grid-template-columns:1fr !important}
+    footer > div:first-child > div{grid-template-columns:1fr 1fr !important}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="vendor/react.min.js"></script>
+<script src="vendor/react-dom.min.js"></script>
+<script src="vendor/babel.min.js"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+const D = window.SITE_DATA;
+
+const leistungen = [
+  { no: "01", tag: "EIGENHEIM", title: "Privat-Dach PV", body: "Von 6 bis 30 kWp: Wir koordinieren Planung, Netzanmeldung und Montage durch unsere zertifizierten Fachbetriebe. Für Eigentümer in Straubing und dem gesamten Landkreis." },
+  { no: "02", tag: "GEWERBE", title: "Gewerbe & Industrie", body: "Hallendächer ab 50 kWp: Kauf oder PPA ohne Kapitaleinsatz. Eigenverbrauchsoptimierung, Lastspitzenmanagement, Direktliefervertrag." },
+  { no: "03", tag: "SPEICHER", title: "Batteriespeicher", body: "Mehr Eigenverbrauch, weniger Netzabhängigkeit. Wir dimensionieren den Speicher passend zur Anlage — nicht nach Lagerliste." },
+  { no: "04", tag: "PPA-VERTRAG", title: "Power Purchase Agreement", body: "PV ohne Investition: Anlage auf eurem Dach, wir liefern Strom zum Festpreis. Besonders für Gewerbe mit wenig freiem Kapital attraktiv." },
+  { no: "05", tag: "WALLBOX", title: "E-Auto Laden", body: "Wallbox direkt an die PV-Anlage gekoppelt: Tagsüber das Auto mit Sonnenstrom laden. Wir koordinieren Installation und Netzzulassung." },
+  { no: "06", tag: "REPOWERING", title: "Altanlage aufrüsten", body: "Bestandsanlage aus 2010–2018? Oft lohnt sich Modulaustausch oder Wechselrichter-Update deutlich. Wir analysieren ehrlich was möglich ist." },
+];
+
+const ablauf = [
+  { n: "01", title: "Kostenloses Erstgespräch", body: "Telefon, Video oder bei euch vor Ort in Straubing. 30 Minuten. Ihr sagt was ihr braucht, wir sagen was möglich ist — ehrlich und ohne Kaufdruck.", col: COL.cyan },
+  { n: "02", title: "Angebot & Wirtschaftlichkeit", body: "Individuelles Angebot mit Ertragsberechnung für euren Straubinger Standort, Amortisationsrechnung und realen Strompreisszenarien. Keine versteckten Kosten.", col: COL.yellow },
+  { n: "03", title: "Koordination & Montage", body: "Wir stimmen alle Gewerke ab: Dachdecker, Elektriker, Netzbetreiber-Anmeldung. Zertifizierter Fachbetrieb vor Ort — ihr müsst euch um nichts kümmern.", col: COL.cyan },
+  { n: "04", title: "Inbetriebnahme & Übergabe", body: "Alles läuft, alles ist erklärt, alle Papiere sind da — einschließlich Marktstammdatenregister. Monitoring-App eingerichtet. Wir sind erst fertig wenn ihr zufrieden seid.", col: COL.yellow },
+];
+
+function Process() {
+  return (
+    <Section kapitel="ABLAUF" title="SO" italicPart="läuft" blackPart="ES_AB." color={COL.cyan}>
+      <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 0, border: `3px solid ${COL.black}` }}>
+        {ablauf.map((p, i) => (
+          <div key={i} style={{
+            padding: 28,
+            borderRight: i < ablauf.length - 1 ? `2px solid ${COL.black}` : "none",
+            background: p.col,
+          }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 32, fontWeight: 700, lineHeight: 1, marginBottom: 12, color: COL.black, opacity: 0.25 }}>{p.n}</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 20, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 10px", lineHeight: 1 }}>{p.title}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function WarumWir() {
+  const punkte = [
+    {
+      icon: "◎",
+      title: "35 km Entfernung",
+      body: "Unser Büro ist in Deggendorf — Straubing ist eines unserer Kerngebiete. Wir sind schnell vor Ort, kennen die Region und haben hier bereits Dutzende Anlagen koordiniert.",
+    },
+    {
+      icon: "◈",
+      title: "Netzbetreiber-Kenntnis",
+      body: "Im Stadtgebiet Straubing: Stadtwerke Straubing. Im Landkreis: Bayernwerk Netz. Wir kennen beide Prozesse, die üblichen Bearbeitungszeiten und die richtigen Ansprechpartner.",
+    },
+    {
+      icon: "◉",
+      title: "Lokale Baugenehmigungen",
+      body: "Dachneigung, Denkmalschutz, Bebauungspläne — wir kennen was in Straubing und Straubing-Bogen typischerweise relevant ist und koordinieren entsprechend.",
+    },
+    {
+      icon: "◆",
+      title: "Keine Installateure",
+      body: "Wir sind Koordinatoren und Berater — keine Installateure. Das bedeutet: kein Interessenkonflikt bei der Produktauswahl, keine Lagerhaltung, nur ehrliche Empfehlung.",
+    },
+  ];
+  return (
+    <Section kapitel="WARUM WIR" title="REGIONAL." italicPart="vernetzt," blackPart="UNABHÄNGIG." color={COL.yellow}>
+      <div className="warum-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
+        {punkte.map((p, i) => (
+          <div key={i} style={{
+            background: i % 2 === 0 ? COL.black : COL.pink,
+            color: i % 2 === 0 ? COL.yellow : COL.black,
+            border: `3px solid ${COL.black}`,
+            padding: 32,
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 28, fontWeight: 700, lineHeight: 1, color: i % 2 === 0 ? COL.cyan : COL.black, opacity: 0.7 }}>{p.icon}</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 26, lineHeight: 0.95, letterSpacing: "-0.02em", textTransform: "uppercase", margin: 0 }}>{p.title}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 16, lineHeight: 1.55, margin: 0, fontStyle: "italic" }}>{p.body}</p>
+          </div>
+        ))}
+      </div>
+      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", color: COL.black, marginTop: 32, maxWidth: 760, lineHeight: 1.5 }}>
+        Wir koordinieren PV-Projekte in Straubing, Straubing-Bogen und dem gesamten Bayerischen Wald — von Bogen bis Cham, von Mallersdorf bis Deggendorf. Seit 2014.
+      </p>
+    </Section>
+  );
+}
+
+function App() {
+  return (
+    <Page active="">
+      <PageHero
+        kapitel="REGION"
+        kicker="PHOTOVOLTAIK_STRAUBING"
+        title="PHOTOVOLTAIK"
+        italicPart="in Straubing."
+        blackHeadlinePart=""
+        sub="Wir koordinieren PV-Anlagen in Straubing, Straubing-Bogen und dem gesamten Bayerischen Wald."
+        color={COL.black}
+        accentColor={COL.cyan}
+      />
+
+      <Marquee items={["STRAUBING", "STRAUBING-BOGEN", "BAYERISCHER WALD", "SEIT 2014", "DEGGENDORF", "KOSTENLOS BERATEN"]} />
+
+      <Section kapitel="ZAHLEN" title="STRAUBING" italicPart="in" blackPart="ZAHLEN." color={COL.pink}>
+        <div className="stat-grid">
+          <StatGrid items={[
+            { l: "km Entfernung", v: "35", s: "von unserem Büro in Deggendorf" },
+            { l: "Jahre Erfahrung", v: "12+", s: "PV-Koordination seit 2014" },
+            { l: "Anlagen Bayern", v: "200+", s: "koordinierte PV-Projekte" },
+            { l: "Fachbetriebe", v: "10+", s: "zertifizierte Partner vor Ort" },
+          ]} color={COL.cyan} alt={COL.yellow} />
+        </div>
+      </Section>
+
+      <Section kapitel="LEISTUNGEN" title="WAS WIR" italicPart="für Straubing" blackPart="KOORDINIEREN." color={COL.cyan}>
+        <FeatureGrid items={leistungen} cols={3} />
+      </Section>
+
+      <WarumWir />
+
+      <Process />
+
+      <BigQuote
+        quote="Straubing ist eines unserer Kerneinsatzgebiete — ich kenn jeden Netzbetreiber da persönlich."
+        by="Doris Pilsner-Albrecht"
+        role="Inhaberin Solar Energie Partner"
+        color={COL.orange}
+      />
+
+      <Cta
+        kicker="STRAUBING"
+        big="KOSTENLOS BERATEN?"
+        sub="30 Minuten. Kein Druck. Doris oder Thomas melden sich."
+        btn="JETZT ANFRAGE STELLEN"
+        href="index.html#kontakt"
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

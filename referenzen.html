@@ -79,7 +79,7 @@ function Filter({ projects }) {
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
         {filtered.map((p, i) => (
-          <a key={p.id} href={`referenz-detail.html?id=${p.id}`} className="lift" style={{ background: p.color, border: `3px solid ${COL.black}`, padding: 0, textDecoration: "none", color: COL.black, transform: `rotate(${i%2 ? 0.5 : -0.5}deg)` }}>
+          <div key={p.id} className="lift" style={{ background: p.color, border: `3px solid ${COL.black}`, padding: 0, color: COL.black, transform: `rotate(${i%2 ? 0.5 : -0.5}deg)` }}>
             <div style={{ aspectRatio: "4/3", background: `repeating-linear-gradient(45deg, ${COL.black}, ${COL.black} 6px, transparent 6px, transparent 14px), ${p.color}`, borderBottom: `3px solid ${COL.black}`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ fontFamily: fonts.mono, fontSize: 11, color: COL.black, background: COL.white, padding: "6px 12px", border: `2px solid ${COL.black}`, fontWeight: 700 }}>FOTO_{p.id}.JPG</span>
               <div style={{ position: "absolute", top: 12, right: 12, background: COL.black, color: COL.yellow, padding: "4px 8px", fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, textTransform: "uppercase" }}>{p.tag}</div>
@@ -89,7 +89,7 @@ function Filter({ projects }) {
               <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 22, margin: "0 0 8px", textTransform: "uppercase", letterSpacing: "-0.02em", lineHeight: 0.95 }}>{p.title}</h3>
               <p style={{ fontFamily: fonts.serif, fontSize: 14, lineHeight: 1.4, margin: 0, fontStyle: "italic" }}>{p.body}</p>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </Section>
