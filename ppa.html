@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PPA // SOLAR RADIKAL</title>
+<meta name="description" content="PPA-Stromvertrag — Photovoltaik ohne Investment. Wir bauen, du verbrauchst. Festpreis 20 Jahre. Für Gewerbe und Industrie." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="radikal-base.css" />
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+const { useState } = React;
+
+function PPACalc() {
+  const [k, setK] = useState(120000);
+  const yearly = Math.round(k * 0.14);
+  return (
+    <Section kapitel="RECHNER" title="DEINE" italicPart="ersparnis," blackPart="LIVE." color={COL.cyan}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "stretch" }}>
+        <div style={{ background: COL.white, border: `3px solid ${COL.black}`, padding: 28 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8, fontFamily: fonts.mono, fontSize: 12, textTransform: "uppercase" }}>
+            <span>JAHRESVERBRAUCH</span>
+            <span style={{ fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>{k.toLocaleString("de-DE")} kWh</span>
+          </div>
+          <input type="range" min="20000" max="800000" step="5000" value={k} onChange={e => setK(+e.target.value)} style={{ width: "100%", accentColor: COL.pink, height: 24 }}/>
+          <div style={{ display: "flex", justifyContent: "space-between", fontFamily: fonts.mono, fontSize: 10, opacity: 0.5 }}>
+            <span>20k</span><span>800k</span>
+          </div>
+        </div>
+        <div style={{ background: COL.black, color: COL.yellow, border: `3px solid ${COL.black}`, padding: 28 }}>
+          <div style={{ fontFamily: fonts.mono, fontSize: 11, textTransform: "uppercase", opacity: 0.6 }}>► ERSPARNIS / JAHR</div>
+          <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: "clamp(72px,9vw,140px)", lineHeight: 0.85, letterSpacing: "-0.04em", color: COL.cyan, fontVariantNumeric: "tabular-nums" }}>{yearly.toLocaleString("de-DE")}<span style={{ fontSize: ".4em", color: COL.pink }}>€</span></div>
+          <div style={{ fontFamily: fonts.mono, fontSize: 12, marginTop: 10, opacity: 0.7 }}>~ {(yearly*20).toLocaleString("de-DE")} € über 20 Jahre</div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+const how = [
+  { no: "01", tag: "WIR INVESTIEREN", title: "0 € für dich", body: "Wir tragen die komplette Investition für die Anlage. Du musst keinen Cent vorfinanzieren." },
+  { no: "02", tag: "DEIN DACH, UNSERE ANLAGE", title: "Pacht für 20 J.", body: "Die Anlage steht auf deinem Dach, gehört aber uns. Wir pachten die Dachfläche zum Symbol-Preis." },
+  { no: "03", tag: "DU VERBRAUCHST", title: "Direkt-Strom", body: "Strom fließt direkt in deinen Verbrauch. Du zahlst nur was du nutzt — zum festen PPA-Tarif." },
+  { no: "04", tag: "WIR KÜMMERN UNS", title: "Wartung inkl.", body: "Wartung, Reparatur, Versicherung — alles bei uns. Du musst dich um nichts kümmern." },
+  { no: "05", tag: "NACH 20 J.", title: "Übernahme oder neu", body: "Du übernimmst die Anlage zum Restwert oder verlängerst den Vertrag. Deine Wahl." },
+];
+
+const wer = [
+  { tag: "PASST", title: "GEWERBE 50–500k kWh", body: "Höchste Ersparnis. Tarif konkurrenzlos. Bilanz-Vorteil als Operating-Lease.", color: COL.cyan },
+  { tag: "PASST", title: "INDUSTRIE 500k+ kWh", body: "Großanlagen ab 100 kWp. Bundesweit. Tarif weiter verhandelbar.", color: COL.pink },
+  { tag: "PASST", title: "KOMMUNEN", body: "Schulen, Bauhöfe, Kläranlagen — keine Investition aus dem Haushalt nötig.", color: COL.yellow },
+  { tag: "PASST NICHT", title: "PRIVAT < 5000 kWh", body: "Bei kleinen Verbräuchen lohnt sich der Vertrags-Aufwand nicht. Da empfehlen wir Kauf.", color: COL.orange },
+];
+
+function App() {
+  return (
+    <Page active="ppa">
+      <PageHero
+        kapitel="LEISTUNG_04"
+        kicker="PPA-VERTRAG"
+        title="STROM"
+        italicPart="ohne"
+        blackHeadlinePart="INVESTITION."
+        sub="PPA = Power Purchase Agreement. Wir investieren, bauen, betreiben — du bezahlst nur den Strom, den du tatsächlich verbrauchst. 20 Jahre Festpreis. Cashflow ab Tag 1 positiv."
+        color={COL.pink}
+        accentColor={COL.cyan}
+        stickers={[
+          { text: "ZERO INVEST", top: "12%", right: "5%", rot: 5, bg: COL.cyan },
+          { text: "20 J. FESTPREIS", top: "78%", left: "3%", rot: -4, bg: COL.yellow },
+        ]}
+      />
+
+      <Marquee items={["ZERO INVESTMENT", "FESTPREIS 20 J.", "WARTUNG INKL.", "BILANZ-OPTIMIERT", "ESG-DOKUMENTIERT", "AB 100 kWp"]} />
+
+      <Section kapitel="WIE_GEHT_DAS" title="IN 5" italicPart="schritten" blackPart="FERTIG." color={COL.yellow}>
+        <FeatureGrid cols={5} palette={[COL.white, COL.cyan, COL.pink, COL.orange, COL.white]} items={how}/>
+      </Section>
+
+      <PPACalc />
+
+      <Section kapitel="WANN_PASSTS" title="FÜR" italicPart="wen" blackPart="LOHNTS?" color={COL.black} blackHeadlineColor={COL.pink}>
+        <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32, color: COL.yellow }}>
+          PPA ist nicht für jeden. Wir sagen ehrlich, wann's nicht passt.
+        </p>
+        <FeatureGrid cols={4} palette={wer.map(w => w.color)} items={wer}/>
+      </Section>
+
+      <Section kapitel="VS_KAUF" title="KAUF" italicPart="vs." blackPart="PPA." color={COL.cyan}>
+        <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr", border: `3px solid ${COL.black}`, background: COL.white, fontFamily: fonts.mono, fontSize: 13 }}>
+          <div style={{ background: COL.black, color: COL.yellow, padding: "16px 20px", fontWeight: 700, textTransform: "uppercase" }}>► KRITERIUM</div>
+          <div style={{ background: COL.pink, padding: "16px 20px", fontWeight: 700, textTransform: "uppercase", borderLeft: `3px solid ${COL.black}` }}>KAUF</div>
+          <div style={{ background: COL.cyan, padding: "16px 20px", fontWeight: 700, textTransform: "uppercase", borderLeft: `3px solid ${COL.black}` }}>PPA</div>
+          {[
+            ["Kapital", "8.000 € – keine Grenzen", "0 €"],
+            ["Wartung", "Eigentümer", "wir"],
+            ["Cashflow J.1", "negativ", "positiv"],
+            ["Bilanz", "Aktivierung", "Operating-Lease"],
+            ["Risiko", "Eigentümer", "wir"],
+            ["Vertrag", "lebenslang", "20 J. + Option"],
+          ].map(([c,k,p], i) => <React.Fragment key={i}>
+            <div style={{ padding: "14px 20px", borderTop: `1px solid ${COL.black}`, fontWeight: 700, textTransform: "uppercase" }}>{c}</div>
+            <div style={{ padding: "14px 20px", borderTop: `1px solid ${COL.black}`, borderLeft: `3px solid ${COL.black}`, fontFamily: fonts.serif, fontStyle: "italic", fontSize: 15 }}>{k}</div>
+            <div style={{ padding: "14px 20px", borderTop: `1px solid ${COL.black}`, borderLeft: `3px solid ${COL.black}`, fontFamily: fonts.serif, fontStyle: "italic", fontSize: 15, fontWeight: 700, background: i%2 ? "rgba(0,255,234,0.15)" : "transparent" }}>{p}</div>
+          </React.Fragment>)}
+        </div>
+      </Section>
+
+      <BigQuote
+        quote="PPA ist Solaranlage als Service. Wie Strom aus der Steckdose, nur billiger und ohne Vertrieb."
+        by="Pilsner Vertriebs Team"
+        color={COL.orange}
+      />
+
+      <Cta
+        kicker="JETZT_PPA"
+        big={<>PPA-CHECK.<br/><span style={{ fontFamily: fonts.serif, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>30 minuten —</span> <span style={{ background: COL.pink, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>FERTIG.</span></>}
+        sub="Wir prüfen kostenlos, ob sich PPA für dich rechnet. Mit Tarif-Indikation und Vertragsentwurf."
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

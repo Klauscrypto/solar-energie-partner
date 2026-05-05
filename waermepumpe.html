@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WÄRMEPUMPE // SOLAR RADIKAL</title>
+<meta name="description" content="Wärmepumpe einbauen lassen — Luft-Wasser, Sole-Wasser, Hybrid. BAFA-Förderung bis 70%. Aus Deggendorf für Bayern und Baden-Württemberg." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="radikal-base.css" />
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+
+const types = [
+  { no: "01", tag: "EFFIZIENT + GÜNSTIG", title: "Luft / Wasser", body: "Häufigste Bauart. Außenaufstellung, kein Erdarbeit. Funktioniert auch bei -15°C. JAZ ~3,5–4,5." },
+  { no: "02", tag: "TOP-EFFIZIENZ", title: "Sole / Wasser", body: "Erdsonde oder -kollektor. Höchste Effizienz (JAZ 4,5–5,5), aber Bohrung nötig. Ideal bei Neubau." },
+  { no: "03", tag: "ALTBAU-LÖSUNG", title: "Hybrid", body: "Wärmepumpe + bestehender Gas-/Ölkessel. Sinnvoll bei schlecht gedämmten Altbauten." },
+];
+
+const koeff = [
+  { l: "JAZ LUFT/W.", v: "3.5–4.5", s: "Aus 1 kWh Strom = 3.5–4.5 kWh Wärme" },
+  { l: "JAZ SOLE/W.", v: "4.5–5.5", s: "Erdsonden — höchste Effizienz" },
+  { l: "BAFA-FÖRDERUNG", v: "bis 70%", u: "", s: "der Investition als Zuschuss" },
+  { l: "AMORTISATION", v: "8–14", u: " J.", s: "je nach Altanlage und Förderung" },
+];
+
+const combo = [
+  { no: "★", tag: "PV + WP", title: "Selbst gemachter Strom heizt", body: "Wärmepumpe läuft mit deinem PV-Strom. Heizkosten sinken massiv — oft um 60-80%.", color: COL.pink },
+  { no: "★", tag: "WP + SPEICHER", title: "Pufferspeicher = mehr PV-Wärme", body: "Pufferspeicher fängt PV-Überschuss ein und gibt ihn als Wärme ab. Maximaler Eigenverbrauch.", color: COL.cyan },
+  { no: "★", tag: "WP + SMART", title: "App-Steuerung", body: "Heizung und Warmwasser auf Tagesverlauf der Sonne abstimmen. Geht alles automatisch.", color: COL.orange },
+];
+
+function App() {
+  return (
+    <Page active="waermepumpe">
+      <PageHero
+        kapitel="LEISTUNG_03"
+        kicker="WÄRMEPUMPE"
+        title="HEIZUNG"
+        italicPart="aus"
+        blackHeadlinePart="LUFT."
+        sub="Wärmepumpen statt Gas oder Öl. BAFA-Förderung bis 70%. In Kombination mit Photovoltaik macht jede Heizstunde fast nichts mehr."
+        color={COL.orange}
+        accentColor={COL.cyan}
+        stickers={[
+          { text: "BAFA bis 70%", top: "12%", right: "5%", rot: 5, bg: COL.cyan },
+          { text: "+ PV = Heizen für ~0", top: "78%", left: "3%", rot: -4, bg: COL.pink },
+        ]}
+      />
+
+      <Marquee items={["LUFT/WASSER", "SOLE/WASSER", "HYBRID", "BAFA bis 70%", "JAZ 4+", "MITSUBISHI", "VAILLANT", "STIEBEL"]} />
+
+      <Section kapitel="BAUARTEN" title="DREI" italicPart="systeme,  drei" blackPart="ZWECKE." color={COL.yellow}>
+        <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
+          Welche Bauart bei dir richtig ist hängt am Gebäude (Neubau, Sanierung, Altbau), an Platz und an Heizflächen. Wir beraten ehrlich — wenn's keine Wärmepumpe sein sollte, sagen wir das auch.
+        </p>
+        <FeatureGrid cols={3} palette={[COL.cyan, COL.pink, COL.yellow]} items={types}/>
+      </Section>
+
+      <Section kapitel="ZAHLEN" title="WAS" italicPart="bringt's" blackPart="KONKRET?" color={COL.black} blackHeadlineColor={COL.orange}>
+        <StatGrid items={koeff} color={COL.orange} alt={COL.yellow} />
+        <p style={{ fontFamily: fonts.mono, fontSize: 11, color: COL.yellow, opacity: 0.7, marginTop: 16, textTransform: "uppercase" }}>
+          ⚠ JAZ = Jahres-Arbeits-Zahl. Werte für gut gedämmte Häuser. Bei Altbau ggf. niedriger.
+        </p>
+      </Section>
+
+      <Section kapitel="KOMBI" title="ZUSAMMEN" italicPart="mit" blackPart="PV." color={COL.cyan}>
+        <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
+          Eine Wärmepumpe alleine ist okay. Wärmepumpe + PV + Speicher ist die Energie-Waffe schlechthin. Heizen kostet dann fast nichts.
+        </p>
+        <FeatureGrid cols={3} palette={combo.map(c => c.color)} items={combo}/>
+      </Section>
+
+      <Section kapitel="HERSTELLER" title="WAS" italicPart="wir" blackPart="VERBAUEN." color={COL.pink}>
+        <FeatureGrid cols={4} palette={[COL.yellow, COL.cyan, COL.white, COL.orange]} items={[
+          { no: "JP", tag: "Marktführer", title: "Mitsubishi", body: "Ecodan-Reihe. Sehr leise, hohe Effizienz, robust." },
+          { no: "DE", tag: "Made in Germany", title: "Vaillant", body: "aroTHERM plus. Mit Kältemittel R290 (Propan), zukunftssicher." },
+          { no: "DE", tag: "Made in Germany", title: "Stiebel", body: "WPL-Reihe. Sehr hohe Effizienz, große Auswahl an Typen." },
+          { no: "DE", tag: "Hybrid-Spezialist", title: "Viessmann", body: "Vitocal. Stark bei Sanierung und Hybrid-Lösungen." },
+        ]}/>
+      </Section>
+
+      <BigQuote
+        quote="Wärmepumpen sind keine Magie. Aber wenn das Gebäude passt und die Auslegung stimmt, ist's die billigste Heizung, die's gibt."
+        by="Pilsner Vertriebs Team"
+        color={COL.yellow}
+      />
+
+      <Cta
+        kicker="JETZT_WP"
+        big={<>WÄRME<br/><span style={{ fontFamily: fonts.serif, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>aus der</span> <span style={{ background: COL.orange, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>LUFT.</span></>}
+        sub="Förderung-Check, Vor-Ort-Termin, Festpreis. Anruf reicht."
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

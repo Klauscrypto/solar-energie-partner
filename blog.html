@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BLOG // SOLAR RADIKAL</title>
+<meta name="description" content="Solar-Wissen aus Deggendorf — Förderung, PPA, Speicher, Strompreis. Klartext ohne PR-Sprech." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="radikal-base.css" />
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, Cta, Marquee, COL, fonts } = window.RadShell;
+const { useState } = React;
+
+const posts = [
+  { id: "01", cat: "FÖRDERUNG", title: "KfW-442 ausgeschöpft? Was jetzt geht.", body: "Der Speicher-Topf war 2025 in 4 Wochen leer. Wir zeigen, welche Alternativen 2026 wirken — bayerische Landesförderung, kommunale Programme, kombinierte Anträge.", date: "12.05.2026", read: 6, big: true, color: COL.pink, by: "Doris" },
+  { id: "02", cat: "PPA", title: "Warum 80% der Gewerbe-Angebote scheitern.", body: "Wir haben 50 PPA-Angebote von Mitbewerbern analysiert. Die häufigsten Stolperfallen: Indexierung versteckt im Kleingedruckten, fehlende Abnahmegrenzen, schwammige Restwert-Klauseln.", date: "28.04.2026", read: 9, color: COL.cyan, by: "Markus" },
+  { id: "03", cat: "TECHNIK", title: "Lithium-Eisenphosphat vs. NMC — Klartext.", body: "LFP ist langlebiger, sicherer, günstiger pro Zyklus. NMC ist energiedichter. Für Eigenheim-Speicher gibts trotzdem nur eine Antwort. Hier die Zahlen.", date: "15.04.2026", read: 7, color: COL.yellow, by: "Markus" },
+  { id: "04", cat: "RECHT", title: "§14a EnWG: Was die neue Steuer-Regel für Wallboxen bedeutet.", body: "Ab 2026 dürfen Netzbetreiber bei steuerbaren Verbrauchern dimmen. Bedeutung für Eigenheim-Wallboxen, Wärmepumpen und Anlagen >7 kW. Was du tun kannst.", date: "02.04.2026", read: 11, color: COL.orange, by: "Sabine" },
+  { id: "05", cat: "PROJEKT", title: "Bauernhof Cham: 96 kWp auf einem Stalldach.", body: "Projekttagebuch — von der Statikprüfung bis zur Inbetriebnahme. Mit allen Problemen unterwegs (es waren einige).", date: "20.03.2026", read: 8, color: COL.cyan, by: "Stefan" },
+  { id: "06", cat: "STROMMARKT", title: "Strompreis-Prognose 2026–2030: Was kommt.", body: "Wir schauen auf Future-Märkte, Bundesnetzagentur-Szenarien, EEG-Reform. Spoiler: Eigenstrom wird sich noch stärker lohnen.", date: "08.03.2026", read: 12, color: COL.pink, by: "Doris" },
+  { id: "07", cat: "FAQ", title: "Modul-Hersteller 2026: Wer ist Tier-1?", body: "Die Liste ändert sich. Welche Hersteller wir aktuell verbauen — und welche wir aus Erfahrung meiden.", date: "21.02.2026", read: 5, color: COL.yellow, by: "Markus" },
+  { id: "08", cat: "WÄRMEPUMPE", title: "Wärmepumpe + PV: Lohnt sich Kombi-Förderung?", body: "Bundesförderung Effiziente Gebäude (BEG) mit eigener PV-Anlage kombinieren — wann es sich rechnet.", date: "10.02.2026", read: 10, color: COL.orange, by: "Julia" },
+  { id: "09", cat: "MEINUNG", title: "Warum wir keine Module aus Asien-Drittländern nehmen.", body: "Eine Doris-Albrecht-Kolumne. Es geht um Lieferketten, Garantien und Wiederbeschaffung in 15 Jahren.", date: "01.02.2026", read: 7, color: COL.cyan, by: "Doris" },
+];
+
+const cats = ["ALLE", ...new Set(posts.map(p => p.cat))];
+
+function App() {
+  const [filter, setFilter] = useState("ALLE");
+  const filtered = posts.filter(p => filter === "ALLE" || p.cat === filter);
+  const big = filtered.find(p => p.big) || filtered[0];
+  const rest = filtered.filter(p => p !== big);
+
+  return (
+    <Page active="blog">
+      <PageHero
+        kapitel="MAGAZIN"
+        kicker="WISSEN // BLOG"
+        title="BLOG"
+        italicPart="—"
+        blackHeadlinePart="KLARTEXT."
+        sub="Solar-Wissen ohne PR-Sprech. Wir schreiben über Förderung, Recht, Technik, PPA — was wir auch unseren Kunden am Telefon erzählen."
+        color={COL.pink}
+        accentColor={COL.cyan}
+        stickers={[
+          { text: "★ Neue Artikel jeden Monat", top: "14%", right: "5%", rot: 5, bg: COL.yellow },
+          { text: "RSS verfügbar", top: "78%", left: "3%", rot: -3, bg: COL.cyan },
+        ]}
+      />
+
+      <Marquee items={["KEIN PR-SPRECH", "MONATLICH NEU", "★ ECHTE PROJEKTE", "TECHNIK + RECHT + GELD", "VON DORIS, MARKUS & TEAM"]} />
+
+      <Section kapitel="ARTIKEL" title="DAS" italicPart="archiv —" blackPart="9_BEITRÄGE." color={COL.yellow}>
+        {/* Filter */}
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 32, alignItems: "center" }}>
+          <span style={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, marginRight: 12 }}>► KATEGORIE:</span>
+          {cats.map(c => (
+            <button key={c} onClick={() => setFilter(c)} style={{
+              background: filter === c ? COL.black : "transparent",
+              color: filter === c ? COL.yellow : COL.black,
+              border: `2px solid ${COL.black}`, padding: "6px 12px",
+              cursor: "crosshair", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase",
+            }}>{c}</button>
+          ))}
+          <span style={{ marginLeft: "auto", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700 }}>► {filtered.length} BEITRÄGE</span>
+        </div>
+
+        {/* Featured */}
+        {big && (
+          <a href={`blog-detail.html?id=${big.id}`} className="lift" style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr", background: big.color, border: `3px solid ${COL.black}`, marginBottom: 24, textDecoration: "none", color: COL.black, transform: "rotate(-0.3deg)" }}>
+            <div style={{ aspectRatio: "16/9", background: `repeating-linear-gradient(135deg, ${COL.black}, ${COL.black} 6px, transparent 6px, transparent 16px), ${big.color}`, borderRight: `3px solid ${COL.black}`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{ background: COL.white, color: COL.black, padding: "8px 14px", fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, border: `2px solid ${COL.black}` }}>HEADER_{big.id}.JPG</span>
+              <div style={{ position: "absolute", top: 14, left: 14, background: COL.black, color: COL.yellow, padding: "6px 12px", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase" }}>★ FEATURED</div>
+            </div>
+            <div style={{ padding: 28 }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 12 }}>► {big.cat} ░ {big.date}</div>
+              <h3 style={{ fontFamily: fonts.heading, fontSize: 40, fontWeight: 800, lineHeight: 0.95, letterSpacing: "-0.03em", textTransform: "uppercase", margin: "0 0 16px" }}>{big.title}</h3>
+              <p style={{ fontFamily: fonts.serif, fontSize: 17, lineHeight: 1.5, fontStyle: "italic", margin: "0 0 16px" }}>{big.body}</p>
+              <div style={{ borderTop: `2px dashed ${COL.black}`, paddingTop: 16, fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", display: "flex", justifyContent: "space-between" }}>
+                <span>► {big.by}</span>
+                <span>{big.read} MIN LESEN →</span>
+              </div>
+            </div>
+          </a>
+        )}
+
+        {/* Grid */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
+          {rest.map((p, i) => (
+            <a key={p.id} href={`blog-detail.html?id=${p.id}`} className="lift" style={{ background: p.color, border: `3px solid ${COL.black}`, padding: 0, textDecoration: "none", color: COL.black, transform: `rotate(${i%2?0.3:-0.3}deg)` }}>
+              <div style={{ aspectRatio: "16/10", background: `repeating-linear-gradient(${i*30}deg, ${COL.black}, ${COL.black} 5px, transparent 5px, transparent 14px), ${p.color}`, borderBottom: `3px solid ${COL.black}`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <span style={{ background: COL.white, color: COL.black, padding: "5px 10px", fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, border: `2px solid ${COL.black}` }}>HEADER_{p.id}.JPG</span>
+              </div>
+              <div style={{ padding: 18 }}>
+                <div style={{ fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, textTransform: "uppercase", marginBottom: 8 }}>► {p.cat} ░ {p.date}</div>
+                <h3 style={{ fontFamily: fonts.heading, fontSize: 22, fontWeight: 800, lineHeight: 1, letterSpacing: "-0.02em", textTransform: "uppercase", margin: "0 0 10px" }}>{p.title}</h3>
+                <p style={{ fontFamily: fonts.serif, fontSize: 14, lineHeight: 1.4, fontStyle: "italic", margin: "0 0 12px" }}>{p.body.slice(0, 110)}…</p>
+                <div style={{ borderTop: `1px dashed ${COL.black}`, paddingTop: 8, fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, textTransform: "uppercase", display: "flex", justifyContent: "space-between" }}>
+                  <span>► {p.by}</span>
+                  <span>{p.read} MIN →</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </Section>
+
+      <Section kapitel="NEWSLETTER" title="EINMAL" italicPart="im monat — " blackPart="EHRLICH." color={COL.black} blackHeadlineColor={COL.cyan}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: 32, alignItems: "center", color: COL.yellow }}>
+          <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", lineHeight: 1.4, margin: 0 }}>
+            Einmal pro Monat ein Update: was sich bei Förderung tut, ein Tipp aus der Praxis, ein Projekt-Bericht. Kein Newsletter-Spam, keine Verkaufs-Emails. Versprochen.
+          </p>
+          <form onSubmit={(e) => { e.preventDefault(); alert("Demo — Eintrag nicht gespeichert."); }} style={{ display: "flex", gap: 0, border: `3px solid ${COL.yellow}` }}>
+            <input type="email" placeholder="DEINE_MAIL@..." required style={{ flex: 1, padding: 18, border: "none", background: COL.black, color: COL.yellow, fontFamily: fonts.mono, fontSize: 14, outline: "none" }} />
+            <button type="submit" className="lift" style={{ background: COL.yellow, color: COL.black, padding: "18px 24px", border: "none", fontFamily: fonts.heading, fontSize: 18, fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.01em", cursor: "crosshair" }}>[→] ABO</button>
+          </form>
+        </div>
+      </Section>
+
+      <BigQuote
+        quote="Wir schreiben hier nichts, was wir am Telefon nicht auch sagen würden. Klartext, Praxis, manchmal Meinung. Marketing-Sprech gibts woanders."
+        by="Doris Pilsner-Albrecht"
+        color={COL.orange}
+      />
+
+      <Cta
+        kicker="FRAGE_OFFEN"
+        big={<>NACHGEFRAGT?<br/><span style={{ fontFamily: fonts.serif, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>einfach</span> <span style={{ background: COL.cyan, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>SCHREIBEN.</span></>}
+        sub="Hast du eine Frage zu einem Artikel? Schick uns ne Mail — wir antworten meist am gleichen Tag."
+        btn="MAIL_SCHREIBEN"
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

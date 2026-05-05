@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SPEICHER // SOLAR RADIKAL</title>
+<meta name="description" content="Stromspeicher für Photovoltaik — BYD, sonnen, Fronius, Tesla. Eigenverbrauch hoch, Stromrechnung runter. Aus Deggendorf." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="radikal-base.css" />
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+const { useState } = React;
+
+function Calc() {
+  const [k, setK] = useState(10);
+  const eigenOhne = 0.30;
+  const eigenMit = 0.70;
+  const verbrauch = 5500;
+  const ohne = Math.round(verbrauch * eigenOhne * 0.30);
+  const mit = Math.round(verbrauch * eigenMit * 0.30);
+  const diff = mit - ohne;
+  return (
+    <Section kapitel="EIGENVERBRAUCH" title="OHNE" italicPart="vs." blackPart="MIT_SPEICHER." color={COL.black} blackHeadlineColor={COL.cyan}>
+      <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32, color: COL.yellow }}>
+        Mit Speicher steigt deine Eigenverbrauchsquote von ~30% auf 60–80%. Konkret heißt das:
+      </p>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+        <div style={{ background: COL.pink, color: COL.black, border: `3px solid ${COL.yellow}`, padding: 28 }}>
+          <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 8 }}>► OHNE SPEICHER</div>
+          <div style={{ fontFamily: fonts.heading, fontSize: 80, fontWeight: 800, lineHeight: 0.9, letterSpacing: "-0.04em" }}>{ohne}<span style={{ fontSize: 30 }}>€/J.</span></div>
+          <div style={{ fontFamily: fonts.mono, fontSize: 12, marginTop: 8, opacity: 0.7 }}>30 % Eigenverbrauch · Rest fließt für 8 ct ins Netz</div>
+        </div>
+        <div style={{ background: COL.cyan, color: COL.black, border: `3px solid ${COL.yellow}`, padding: 28 }}>
+          <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 8 }}>► MIT SPEICHER</div>
+          <div style={{ fontFamily: fonts.heading, fontSize: 80, fontWeight: 800, lineHeight: 0.9, letterSpacing: "-0.04em" }}>{mit}<span style={{ fontSize: 30 }}>€/J.</span></div>
+          <div style={{ fontFamily: fonts.mono, fontSize: 12, marginTop: 8, opacity: 0.7 }}>70 % Eigenverbrauch · Du nutzt deinen eigenen Strom</div>
+        </div>
+      </div>
+      <div style={{ marginTop: 24, background: COL.yellow, color: COL.black, padding: 24, border: `3px solid ${COL.yellow}` }}>
+        <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase" }}>► MEHR-ERSPARNIS / JAHR</div>
+        <div style={{ fontFamily: fonts.heading, fontSize: "clamp(56px,8vw,120px)", fontWeight: 800, lineHeight: 1, letterSpacing: "-0.05em", color: COL.red }}>+{diff}<span style={{ fontSize: ".4em", color: COL.black }}> €</span></div>
+      </div>
+    </Section>
+  );
+}
+
+const sizes = [
+  { l: "EIGENHEIM 4 PERS.", v: "5–8", u: " kWh", s: "ca. 4500 kWh / Jahr Verbrauch" },
+  { l: "GROSSHAUSHALT", v: "10–15", u: " kWh", s: "+ E-Auto, Wärmepumpe" },
+  { l: "GEWERBE / HALLE", v: "30+", u: " kWh", s: "modular skalierbar" },
+];
+
+const brands = [
+  { tag: "Tier 1", title: "BYD", body: "Battery-Box Premium HVS/HVM. Skalierbar, lange Lebensdauer. Aus China, weltweit größter Akku-Hersteller.", no: "★" },
+  { tag: "Made in Germany", title: "sonnen", body: "Allgäuer Hersteller. sonnenBatterie 10 mit smarter Software, Cloud-Optionen.", no: "DE" },
+  { tag: "Made in Austria", title: "Fronius", body: "Hybrid-Wechselrichter mit Speicheroption. Wir verbauen die seit Jahren — extrem zuverlässig.", no: "AT" },
+  { tag: "Premium", title: "Tesla", body: "Powerwall 3. Großer Speicher, schickes Design, Backup-Funktion bei Stromausfall.", no: "US" },
+];
+
+function App() {
+  return (
+    <Page active="speicher">
+      <PageHero
+        kapitel="LEISTUNG_02"
+        kicker="STROM-SPEICHER"
+        title="STROM"
+        italicPart="für"
+        blackHeadlinePart="SPÄTER."
+        sub="Stromspeicher heben deine Eigenverbrauchsquote von 30% auf 70%+. Konkret: hunderte Euro mehr im Jahr und unabhängiger vom Netz."
+        color={COL.cyan}
+        accentColor={COL.pink}
+        stickers={[
+          { text: "BYD ★ SONNEN", top: "12%", right: "5%", rot: 4, bg: COL.pink },
+          { text: "Backup-fähig ⚡", top: "78%", left: "3%", rot: -3, bg: COL.yellow },
+        ]}
+      />
+
+      <Marquee items={["BYD", "SONNEN", "FRONIUS", "TESLA", "10 J. GARANTIE", "BIS 80% EIGENVERBRAUCH", "BACKUP-FÄHIG"]} />
+
+      <Calc />
+
+      <Section kapitel="GRÖSSE" title="WIE GROSS" italicPart="muss er" blackPart="SEIN?" color={COL.yellow}>
+        <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
+          Faustregel: 1 kWh Speicher pro 1.000 kWh Jahresverbrauch. Über-dimensionieren ist teuer und macht meist keinen Sinn.
+        </p>
+        <StatGrid items={sizes} color={COL.cyan} alt={COL.yellow} />
+      </Section>
+
+      <Section kapitel="HERSTELLER" title="WAS WIR" italicPart="verbauen —" blackPart="UNGESCHMINKT." color={COL.pink}>
+        <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
+          Wir setzen auf Tier-1. Jeder Hersteller hat Stärken — wir empfehlen je nach Lastprofil und Budget. Keine Provisions-Geschichten.
+        </p>
+        <FeatureGrid cols={4} palette={[COL.yellow, COL.cyan, COL.white, COL.orange]} items={brands}/>
+      </Section>
+
+      <Section kapitel="EXTRAS" title="MEHR ALS" italicPart="nur" blackPart="STROM_BUNKERN." color={COL.black} blackHeadlineColor={COL.yellow}>
+        <FeatureGrid cols={3} palette={[COL.pink, COL.cyan, COL.orange]} items={[
+          { no: "01", tag: "Notstrom", title: "Backup-Modus", body: "Bei Stromausfall liefert dein Speicher weiter. Kühlschrank, Licht, WLAN — alles bleibt an." },
+          { no: "02", tag: "Smart", title: "App-Steuerung", body: "Du siehst Erzeugung, Verbrauch, Akku-Stand live. Optimierst Großverbraucher (Wärmepumpe, Wallbox)." },
+          { no: "03", tag: "Sektorkopplung", title: "+E-Auto +WP", body: "Speicher koppelt mit Wallbox und Wärmepumpe. Dein eigener Strom wird maximal genutzt." },
+        ]}/>
+      </Section>
+
+      <BigQuote
+        quote="Ein Speicher muss zur Anlage passen, nicht zur Marketingbroschüre. Wir rechnen das durch — und sagen auch, wenn sich's nicht lohnt."
+        by="Doris Pilsner-Albrecht"
+        role="Inhaberin"
+        color={COL.orange}
+      />
+
+      <Cta
+        kicker="JETZT_SPEICHER"
+        big={<>SPEICHER<br/><span style={{ fontFamily: fonts.serif, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>für deine</span> <span style={{ background: COL.pink, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>ANLAGE.</span></>}
+        sub="Wir sagen dir in 30 Minuten am Telefon, ob sich ein Speicher für dich rechnet. Ehrlich."
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

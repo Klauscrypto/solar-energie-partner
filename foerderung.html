@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FÖRDERUNG 2026 // SOLAR RADIKAL</title>
+<meta name="description" content="Photovoltaik-Förderung 2026 — KfW 270, KfW 442, BAFA, Bayern. Wir prüfen und beantragen kostenfrei." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="radikal-base.css" />
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+
+const programs = [
+  { code: "KfW-270", level: "BUND", name: "Erneuerbare Energien Standard", body: "Zinsgünstiger Kredit für PV, Speicher, WP. Bis 100% der Investitionssumme.", max: "bis 50 Mio €", color: COL.cyan, frist: "laufend" },
+  { code: "KfW-442", level: "BUND", name: "Solarstrom für E-Autos", body: "Zuschuss für PV+Speicher+Wallbox als Komplettlösung. Antrag VOR Kauf!", max: "bis 10.200 €", color: COL.pink, frist: "begrenztes Kontingent" },
+  { code: "BAFA-BEG", level: "BUND", name: "Effiziente Gebäude", body: "Heizungstausch + Wärmepumpe. Bis 70% der Investitionskosten.", max: "bis 23.500 €", color: COL.orange, frist: "laufend" },
+  { code: "10000-Häuser", level: "BAYERN", name: "PV-Speicher-Bonus", body: "Landes-Förderung für Eigenheim-Speicher. Ergänzung zur KfW.", max: "bis 3.200 €", color: COL.yellow, frist: "laufend" },
+  { code: "BW-Kommunal", level: "BADEN-WÜRTTEMBERG", name: "Kommunale Solar-Förderung", body: "Viele Kommunen in BW haben eigene Programme. Wir prüfen je Standort.", max: "varies", color: COL.cyan, frist: "siehe Kommune" },
+  { code: "EEG-2023", level: "BUND", name: "Einspeise-Vergütung", body: "Garantierte Vergütung über 20 Jahre. Aktueller Tarif richtet sich nach Anlagengröße.", max: "8,11 ct/kWh", color: COL.pink, frist: "automatisch" },
+];
+
+const ablauf = [
+  { no: "01", tag: "ANALYSE", title: "Wir prüfen", body: "Welche Programme passen zu deinem Vorhaben? Bund, Land, Kommune — wir checken alles." },
+  { no: "02", tag: "ANTRAG", title: "Wir machen", body: "Anträge sind komplex. Wir füllen aus, sammeln Unterlagen, reichen ein. Du unterschreibst." },
+  { no: "03", tag: "BEWILLIGUNG", title: "Wir warten", body: "Manche Programme dauern. Wir kümmern uns um Nachfragen, Ergänzungen, Streit." },
+  { no: "04", tag: "AUSZAHLUNG", title: "Du kassierst", body: "Geld fließt direkt zu dir oder wird von der Rechnung abgezogen — wie das Programm es vorsieht." },
+];
+
+function App() {
+  return (
+    <Page active="foerderung">
+      <PageHero
+        kapitel="WISSEN"
+        kicker="FÖRDERUNG 2026"
+        title="FREIES"
+        italicPart="geld vom"
+        blackHeadlinePart="STAAT."
+        sub="Photovoltaik wird massiv gefördert — Bund, Land, Kommune. Aber unübersichtlich. Wir kennen die Programme, füllen die Anträge aus, streiten mit der Behörde. Kostenfrei."
+        color={COL.pink}
+        accentColor={COL.cyan}
+        stickers={[
+          { text: "★ KfW + BAFA + Bayern", top: "12%", right: "5%", rot: 4, bg: COL.cyan },
+          { text: "Förder-Check gratis", top: "78%", left: "3%", rot: -3, bg: COL.yellow },
+        ]}
+      />
+
+      <Marquee items={["KfW-270", "KfW-442", "BAFA-BEG", "10000-HÄUSER BAYERN", "EEG 2023", "KOMMUNAL", "FÖRDER-CHECK GRATIS"]} />
+
+      <Section kapitel="ÜBERSICHT_2026" title="ALLE" italicPart="programme," blackPart="EHRLICH." color={COL.yellow}>
+        <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
+          Was 2026 verfügbar ist. Beträge sind Maximum, abhängig von Anlage, Region, Antragstellung. Wir rechnen für dein konkretes Projekt durch.
+        </p>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
+          {programs.map((p, i) => (
+            <div key={i} className="lift" style={{ background: p.color, border: `3px solid ${COL.black}`, padding: 24, position: "relative", transform: `rotate(${[1,-1,1.5,-1.5,0.5,-0.5][i]||0}deg)` }}>
+              <div style={{ position: "absolute", top: -14, left: 14, background: COL.black, color: COL.yellow, padding: "4px 10px", fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, textTransform: "uppercase" }}>{p.level}</div>
+              <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 6, opacity: 0.7 }}>► {p.code}</div>
+              <h3 style={{ fontFamily: fonts.heading, fontSize: 26, fontWeight: 800, lineHeight: 0.95, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 12px" }}>{p.name}</h3>
+              <p style={{ fontFamily: fonts.serif, fontSize: 14, lineHeight: 1.4, margin: "0 0 16px" }}>{p.body}</p>
+              <div style={{ borderTop: `2px dashed ${COL.black}`, paddingTop: 10, fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase" }}>
+                <div>MAX: <span style={{ color: COL.red, fontSize: 16 }}>{p.max}</span></div>
+                <div style={{ marginTop: 4, opacity: 0.7 }}>FRIST: {p.frist}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section kapitel="ABLAUF" title="WIE" italicPart="läufts mit" blackPart="UNS?" color={COL.cyan}>
+        <FeatureGrid cols={4} palette={[COL.white, COL.yellow, COL.pink, COL.orange]} items={ablauf}/>
+      </Section>
+
+      <Section kapitel="VORSICHT" title="STOLPER" italicPart="-" blackPart="FALLEN." color={COL.black} blackHeadlineColor={COL.yellow}>
+        <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32, color: COL.yellow }}>
+          Häufigste Fehler bei Förderanträgen — die wir für dich vermeiden:
+        </p>
+        <FeatureGrid cols={3} palette={[COL.pink, COL.cyan, COL.orange]} items={[
+          { no: "⚠", tag: "TIMING", title: "Antrag zu spät", body: "Manche Programme (KfW-442) muss VOR Kauf beantragt werden. Sonst: kein Cent." },
+          { no: "⚠", tag: "DOPPELT", title: "Doppel-Förderung", body: "Manche Programme schließen sich aus. Falsche Kombi = Rückforderung." },
+          { no: "⚠", tag: "FORM", title: "Falsche Dokumente", body: "Energieberater-Bescheinigungen, ISFP, Hydraulischer Abgleich — Pflicht je Programm." },
+        ]}/>
+      </Section>
+
+      <BigQuote
+        quote="Förderung ist kein Bonus, sondern Standard. Wer's nicht beantragt, verschenkt Geld. Wir machen das mit, weil's dazugehört."
+        by="Pilsner Vertriebs Team"
+        color={COL.orange}
+      />
+
+      <Cta
+        kicker="JETZT_FÖRDERN"
+        big={<>FÖRDER<br/><span style={{ fontFamily: fonts.serif, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>-check.</span> <span style={{ background: COL.pink, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>GRATIS.</span></>}
+        sub="30 Minuten — du bekommst eine Liste aller Programme, Beträge, Fristen. Konkret für dein Vorhaben."
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

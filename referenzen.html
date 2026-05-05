@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>REFERENZEN // SOLAR RADIKAL</title>
+<meta name="description" content="250+ installierte Anlagen — Photovoltaik, Speicher, PPA. Eigenheim, Gewerbe, Industrie. Aus Deggendorf für Bayern und Baden-Württemberg." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="radikal-base.css" />
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+const { useState } = React;
+
+const D = window.SITE_DATA;
+
+// 12 example projects across categories
+const allProjects = [
+  { id: "01", title: "Logistik Straubing", spec: "PPA · 380 kWp", body: "Hallendach, dreischichtig. Eigenstromquote 78%.", tag: "PPA", typ: "Gewerbe", region: "Bayern", color: COL.pink },
+  { id: "02", title: "EFH Plattling", spec: "PV · 14 kWp", body: "Familienhaus mit Speicher und Wallbox. Komplett-Paket.", tag: "EIGENHEIM", typ: "Eigenheim", region: "Bayern", color: COL.cyan },
+  { id: "03", title: "Bauernhof Cham", spec: "PV · 96 kWp", body: "Stalldach, mit eigenem Verbrauch für Melkmaschine und Kühlung.", tag: "AGRAR", typ: "Agrar", region: "Bayern", color: COL.orange },
+  { id: "04", title: "Möbel Augsburg", spec: "PPA · 220 kWp", body: "Verkaufshalle. Klimatisierung läuft jetzt mit Sonne.", tag: "PPA", typ: "Gewerbe", region: "Bayern", color: COL.yellow },
+  { id: "05", title: "EFH Stuttgart", spec: "PV · 9 kWp", body: "Reihenhaus, schwieriges Dach mit 3 Flächen — wir habens hingekriegt.", tag: "EIGENHEIM", typ: "Eigenheim", region: "BW", color: COL.cyan },
+  { id: "06", title: "Schreinerei Passau", spec: "PV+SP · 45 kWp", body: "Werkstatt mit großem Speicher. Maschinen laufen tagsüber komplett solar.", tag: "GEWERBE", typ: "Gewerbe", region: "Bayern", color: COL.pink },
+  { id: "07", title: "Karlsruhe Industrie", spec: "PPA · 750 kWp", body: "Zulieferer Automotive. Maximale Anlage auf der Halle.", tag: "PPA", typ: "Industrie", region: "BW", color: COL.orange },
+  { id: "08", title: "MFH Regensburg", spec: "PV · 28 kWp", body: "6-Parteien-Haus mit Mieterstrom-Modell.", tag: "MFH", typ: "MFH", region: "Bayern", color: COL.yellow },
+  { id: "09", title: "Bäckerei Mannheim", spec: "PV · 35 kWp", body: "Backofen läuft tagsüber mit Sonnenstrom — Bäcker happy.", tag: "GEWERBE", typ: "Gewerbe", region: "BW", color: COL.cyan },
+  { id: "10", title: "EFH Deggendorf", spec: "PV · 11 kWp", body: "Haus der Inhaberin selbst. Doris hat eigene Anlage seit 2016.", tag: "INTERN", typ: "Eigenheim", region: "Bayern", color: COL.pink },
+  { id: "11", title: "Schule Landshut", spec: "PPA · 95 kWp", body: "Realschule. Stadt spart, Schüler lernen über Anlage.", tag: "ÖFFENTLICH", typ: "Öffentlich", region: "Bayern", color: COL.orange },
+  { id: "12", title: "EFH Heilbronn", spec: "PV+WP · 13 kWp", body: "Komplett-Sanierung. PV + Wärmepumpe + Speicher in einem Paket.", tag: "EIGENHEIM", typ: "Eigenheim", region: "BW", color: COL.yellow },
+];
+
+function Filter({ projects }) {
+  const [typFilter, setTyp] = useState("ALLE");
+  const [regFilter, setReg] = useState("ALLE");
+  const typs = ["ALLE", ...new Set(projects.map(p => p.typ))];
+  const regs = ["ALLE", "Bayern", "BW"];
+  const filtered = projects.filter(p =>
+    (typFilter === "ALLE" || p.typ === typFilter) &&
+    (regFilter === "ALLE" || p.region === regFilter)
+  );
+  return (
+    <Section kapitel="ALLE_250PLUS" title="UNSERE" italicPart="anlagen —" blackPart="GEFILTERT." color={COL.yellow}>
+      <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 24 }}>
+        Eine Auswahl. Wir haben über 250+ Anlagen installiert. Bei Bedarf Referenz-Telefonnummern auf Anfrage.
+      </p>
+
+      <div style={{ display: "flex", gap: 24, flexWrap: "wrap", marginBottom: 32, fontFamily: fonts.mono, fontSize: 12, textTransform: "uppercase" }}>
+        <div>
+          <span style={{ marginRight: 8, fontWeight: 700 }}>► TYP:</span>
+          {typs.map(t => (
+            <button key={t} onClick={() => setTyp(t)} style={{
+              background: typFilter === t ? COL.black : "transparent",
+              color: typFilter === t ? COL.yellow : COL.black,
+              border: `2px solid ${COL.black}`, padding: "4px 10px", marginRight: 6, marginBottom: 4,
+              cursor: "crosshair", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase",
+            }}>{t}</button>
+          ))}
+        </div>
+        <div>
+          <span style={{ marginRight: 8, fontWeight: 700 }}>► REGION:</span>
+          {regs.map(r => (
+            <button key={r} onClick={() => setReg(r)} style={{
+              background: regFilter === r ? COL.pink : "transparent",
+              color: COL.black, border: `2px solid ${COL.black}`, padding: "4px 10px", marginRight: 6, marginBottom: 4,
+              cursor: "crosshair", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase",
+            }}>{r}</button>
+          ))}
+        </div>
+        <div style={{ marginLeft: "auto", fontWeight: 700 }}>► {filtered.length} ANLAGEN</div>
+      </div>
+
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
+        {filtered.map((p, i) => (
+          <a key={p.id} href={`referenz-detail.html?id=${p.id}`} className="lift" style={{ background: p.color, border: `3px solid ${COL.black}`, padding: 0, textDecoration: "none", color: COL.black, transform: `rotate(${i%2 ? 0.5 : -0.5}deg)` }}>
+            <div style={{ aspectRatio: "4/3", background: `repeating-linear-gradient(45deg, ${COL.black}, ${COL.black} 6px, transparent 6px, transparent 14px), ${p.color}`, borderBottom: `3px solid ${COL.black}`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{ fontFamily: fonts.mono, fontSize: 11, color: COL.black, background: COL.white, padding: "6px 12px", border: `2px solid ${COL.black}`, fontWeight: 700 }}>FOTO_{p.id}.JPG</span>
+              <div style={{ position: "absolute", top: 12, right: 12, background: COL.black, color: COL.yellow, padding: "4px 8px", fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, textTransform: "uppercase" }}>{p.tag}</div>
+            </div>
+            <div style={{ padding: 20 }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 11, marginBottom: 6, fontWeight: 700, textTransform: "uppercase" }}>► {p.spec}</div>
+              <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 22, margin: "0 0 8px", textTransform: "uppercase", letterSpacing: "-0.02em", lineHeight: 0.95 }}>{p.title}</h3>
+              <p style={{ fontFamily: fonts.serif, fontSize: 14, lineHeight: 1.4, margin: 0, fontStyle: "italic" }}>{p.body}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function App() {
+  return (
+    <Page active="referenzen">
+      <PageHero
+        kapitel="WERK"
+        kicker="REFERENZEN"
+        title="250+"
+        italicPart="installierte"
+        blackHeadlinePart="ANLAGEN."
+        sub="Vom Reihenhaus in Plattling bis zur 750-kWp-Halle in Karlsruhe. Eine Auswahl unserer Projekte — geordnet nach Typ und Region."
+        color={COL.cyan}
+        accentColor={COL.pink}
+      />
+
+      <Marquee items={["250+ ANLAGEN", "BAYERN + BW", "EIGENHEIM ★ GEWERBE ★ INDUSTRIE", "PPA bis 750 kWp", "SEIT 2014"]} />
+
+      <Section kapitel="ZAHLEN" title="UNSER" italicPart="track" blackPart="RECORD." color={COL.pink}>
+        <StatGrid items={[
+          { l: "ANLAGEN", v: "250+", s: "seit 2014" },
+          { l: "INSTALL. LEISTUNG", v: "12", u: " MWp", s: "kumuliert" },
+          { l: "EIGENVERBRAUCH ⌀", v: "68%", s: "über alle PV-Speicher-Kombis" },
+          { l: "RATING", v: "4.9", u: "★", s: "127 Bewertungen" },
+        ]} color={COL.cyan} alt={COL.yellow} />
+      </Section>
+
+      <Filter projects={allProjects} />
+
+      <BigQuote
+        quote="Jede Anlage ist anders. Aber das Prinzip ist immer dasselbe: Dach gucken, Verbrauch verstehen, ehrlich kalkulieren, sauber bauen, fertig."
+        by="Pilsner Vertriebs Team"
+        color={COL.orange}
+      />
+
+      <Cta
+        kicker="DEINE_ANLAGE"
+        big={<>NÄCHSTE<br/><span style={{ background: COL.pink, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>313.</span></>}
+        sub="Wir würden uns freuen, deine als Nummer 313 in der Liste zu führen."
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
