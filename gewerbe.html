@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Photovoltaik für Gewerbe & Industrie — Solar Energie Partner</title>
+<meta name="description" content="Gewerbliche PV-Anlagen in Bayern: 50–750+ kWp, Kauf oder PPA ohne Kapitaleinsatz. Für Hallen, Logistik, Produktion. Ehrliche Wirtschaftlichkeitsrechnung." />
+<meta property="og:title" content="Photovoltaik Gewerbe & Industrie — Solar Energie Partner" />
+<meta property="og:description" content="Strom von deiner Halle. PV für Betriebe ab 50 kWp — Kauf oder PPA. Wir koordinieren alles, du sparst sofort." />
+<link rel="canonical" href="https://solar-energie-partner.de/gewerbe.html" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Photovoltaik Gewerbe","provider":{"@type":"LocalBusiness","name":"Solar Energie Partner","address":{"@type":"PostalAddress","streetAddress":"Detterstraße 38","addressLocality":"Deggendorf","postalCode":"94469","addressCountry":"DE"}},"areaServed":"Bayern","description":"Gewerbliche Photovoltaik-Anlagen und PPA-Verträge"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="radikal-base.css" />
+<style>
+  @media(max-width:768px){
+    header nav{display:none !important}
+    .mq span{font-size:32px !important;padding:0 16px !important}
+    .process-grid{grid-template-columns:1fr !important}
+    .systems-grid{grid-template-columns:1fr !important}
+    .faq-grid{grid-template-columns:1fr !important}
+    .feature-grid{grid-template-columns:repeat(2,1fr) !important}
+    .ppa-grid{grid-template-columns:1fr !important}
+    footer > div:first-child > div{grid-template-columns:1fr 1fr !important}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+const D = window.SITE_DATA;
+
+const systems = [
+  {
+    size: "KLEIN",
+    kwp: "50–100 kWp",
+    for: "Handwerk, Bäckerei, Schreinerei · bis 80.000 kWh/J.",
+    detail: "Satteldach oder Pultdach · Wallbox optional",
+    model: "Kauf",
+    price: "ca. 45.000–80.000 €",
+    saving: "~8.000–14.000 €/J.",
+    amort: "~5–7 J.",
+    col: COL.cyan,
+  },
+  {
+    size: "MITTEL",
+    kwp: "100–300 kWp",
+    for: "Logistik, Produktion, Lebensmittel · bis 250.000 kWh/J.",
+    detail: "Hallendach · Kauf oder PPA möglich",
+    model: "Kauf / PPA",
+    price: "ab 85.000 € oder 0 € (PPA)",
+    saving: "~15.000–40.000 €/J.",
+    amort: "~4–6 J. (Kauf) · sofort (PPA)",
+    col: COL.yellow,
+    highlight: true,
+  },
+  {
+    size: "GROSS",
+    kwp: "300–750+ kWp",
+    for: "Industrie, Automotive-Zulieferer · 300.000+ kWh/J.",
+    detail: "Mehrere Dachflächen · PPA bevorzugt · ESG-Reporting",
+    model: "PPA",
+    price: "0 € Kapitaleinsatz (PPA)",
+    saving: "~50.000–120.000 €/J.",
+    amort: "sofort positiver Cashflow",
+    col: COL.pink,
+  },
+];
+
+const includes = [
+  { no: "01", tag: "ANALYSE", title: "Dachvermessung & Statik", body: "Wir analysieren Dachfläche, Tragfähigkeit und Ausrichtung — Grundlage für jede seriöse Planung." },
+  { no: "02", tag: "WIRTSCHAFT", title: "Vollständige Wirtschaftlichkeitsrechnung", body: "Amortisation, IRR, Eigenverbrauchsquote, Break-even — mit realen Strompreisszenarien, nicht mit Marketing-Zahlen." },
+  { no: "03", tag: "RECHT", title: "Genehmigung & Netzeinspeisepapiere", body: "Netzbetreiber, BNetzA, Marktstammdatenregister. Für große Anlagen koordinieren wir auch Baugenehmigung und EEG-Anmeldung." },
+  { no: "04", tag: "MONTAGE", title: "Koordination Fachbetriebe", body: "Zertifizierte Installationsbetriebe mit eigenem Festpersonal. Wir steuern Dachdecker, Elektriker und Gerüst aus einer Hand." },
+  { no: "05", tag: "INBETRIEB", title: "Abnahme, Übergabe, Monitoring", body: "Professionelles Monitoring-System mit Fernzugriff. Ihr Energieverantwortlicher sieht Ertrag und Eigenverbrauch in Echtzeit." },
+  { no: "06", tag: "ESG", title: "ESG-Dokumentation", body: "Für Unternehmen mit Berichtspflicht: wir liefern die Energiedaten in der Form die euer Auditor braucht." },
+];
+
+const process = [
+  { n: "01", title: "Kostenloses Erstgespräch", body: "Telefon, Teams oder vor Ort. Verbrauchsanalyse + erster Blick auf Google Maps. 45 Minuten reichen für eine erste Einschätzung." },
+  { n: "02", title: "Angebot Kauf oder PPA", body: "Wir zeigen beide Modelle nebeneinander: Kapitaleinsatz, Cashflow Jahr 1, Amortisation, 20-Jahres-Rendite. Ihr entscheidet was passt." },
+  { n: "03", title: "Koordination & Umsetzung", body: "Wir steuern alle Gewerke — ihr habt einen Ansprechpartner für alles. Kein Ping-Pong zwischen Installateur, Netzbetreiber und Förderbank." },
+  { n: "04", title: "Betrieb & Reporting", body: "Anlage läuft, Monitoring ist eingerichtet, ESG-Daten fließen. Bei Störung: 24h Reaktionszeit, direkter Draht zu uns." },
+];
+
+const faqs = [
+  {
+    q: "Kauf oder PPA — was ist besser für Betriebe?",
+    a: "Kommt auf Kapital und Bilanzstrategie an. PPA: 0 € Investition, sofort positiver Cashflow, Operating-Lease. Kauf: höhere Rendite über 20 Jahre, Eigentum. Wir zeigen beides mit echten Zahlen — ihr entscheidet.",
+  },
+  {
+    q: "Ab wann lohnt sich eine Gewerbeanlage?",
+    a: "Als Faustregel: ab 50.000 kWh Jahresverbrauch lohnt sich eine eigene Anlage deutlich. Entscheidend ist die Gleichzeitigkeit — also ob der Verbrauch tagsüber stattfindet wenn die Anlage produziert.",
+  },
+  {
+    q: "Was kostet die Planung und ist das verbindlich?",
+    a: "Das Erstgespräch und die erste Wirtschaftlichkeitsrechnung sind kostenlos. Verbindlich wird es erst wenn ihr das Angebot unterschreibt. Keine versteckten Planungskosten.",
+  },
+  {
+    q: "Wir haben ein Flachdach mit Oberlichtbändern — geht das?",
+    a: "Ja, mit Aufständerung auf Flachdach sind wir erfahren. Oberlichtbänder und Lüftungsaufbauten berücksichtigen wir bei der Planung. Wir haben ähnliche Situationen mehrfach gelöst.",
+  },
+];
+
+function PpaHighlight() {
+  return (
+    <Section kapitel="MODELL" title="KEIN" italicPart="Kapital?" blackPart="PPA." color={COL.black}>
+      <div className="ppa-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, border: `3px solid ${COL.yellow}` }}>
+        <div style={{ padding: 40, borderRight: `3px solid ${COL.yellow}` }}>
+          <div style={{ fontFamily: fonts.mono, fontSize: 11, color: COL.cyan, fontWeight: 700, textTransform: "uppercase", marginBottom: 16 }}>► POWER PURCHASE AGREEMENT</div>
+          <p style={{ fontFamily: fonts.serif, fontSize: 22, lineHeight: 1.55, fontStyle: "italic", color: COL.yellow, margin: "0 0 24px" }}>
+            Wir finanzieren, planen und koordinieren die Anlage auf eurem Dach. Ihr kauft den Strom von uns — zu einem Preis der garantiert unter dem Netztarif liegt.
+          </p>
+          <ul style={{ fontFamily: fonts.mono, fontSize: 13, color: COL.yellow, paddingLeft: 0, listStyle: "none", lineHeight: 2 }}>
+            <li>► 0 € Kapitaleinsatz</li>
+            <li>► Sofort positiver Cashflow</li>
+            <li>► Wartung, Versicherung, Monitoring: bei uns</li>
+            <li>► Fester Strompreis für 20 Jahre — planbar</li>
+            <li>► Operating-Lease: kein Anlagevermögen in der Bilanz</li>
+          </ul>
+        </div>
+        <div style={{ padding: 40, background: COL.yellow }}>
+          <div style={{ fontFamily: fonts.mono, fontSize: 11, color: COL.black, fontWeight: 700, textTransform: "uppercase", marginBottom: 16 }}>► BEISPIELRECHNUNG · 200 KWP</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            {[
+              ["Netztarif heute", "28 ct/kWh"],
+              ["PPA-Preis", "14 ct/kWh"],
+              ["Einsparung", "14 ct/kWh → ~28.000 €/J."],
+              ["Investition eures Betriebs", "0 €"],
+              ["Cashflow ab Tag 1", "positiv"],
+            ].map(([l, v], i) => (
+              <div key={i} style={{ display: "flex", justifyContent: "space-between", borderBottom: `1px solid ${COL.black}`, paddingBottom: 8, fontFamily: fonts.mono, fontSize: 13 }}>
+                <span style={{ opacity: 0.7 }}>{l}</span>
+                <span style={{ fontWeight: 700 }}>{v}</span>
+              </div>
+            ))}
+          </div>
+          <a href="ppa.html" style={{ display: "block", marginTop: 24, background: COL.black, color: COL.yellow, padding: "14px 20px", fontFamily: fonts.mono, fontSize: 13, fontWeight: 700, textTransform: "uppercase", textDecoration: "none", border: `2px solid ${COL.black}`, textAlign: "center" }}>
+            → MEHR ZUM PPA-MODELL
+          </a>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function Systems() {
+  return (
+    <Section kapitel="ANLAGEN" title="DREI" italicPart="typische" blackPart="BETRIEBSGROSSEN." color={COL.cyan}>
+      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
+        Richtwerte. Jede Anlage wird individuell kalkuliert — nach eurem Verbrauch, eurer Dachfläche und eurem Finanzierungsmodell.
+      </p>
+      <div className="systems-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
+        {systems.map((s, i) => (
+          <div key={i} className="lift" style={{
+            background: s.col, border: `3px solid ${COL.black}`,
+            padding: 0, position: "relative",
+            transform: `rotate(${i % 2 === 0 ? -0.4 : 0.4}deg)`,
+            boxShadow: s.highlight ? `0 0 0 4px ${COL.black}` : "none",
+          }}>
+            {s.highlight && (
+              <div style={{ position: "absolute", top: -18, left: "50%", transform: "translateX(-50%) rotate(-2deg)", background: COL.black, color: COL.yellow, padding: "4px 16px", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, border: `2px solid ${COL.black}`, whiteSpace: "nowrap" }}>
+                ★ HÄUFIGSTE ANFRAGE
+              </div>
+            )}
+            <div style={{ background: COL.black, color: s.col, padding: "16px 20px", borderBottom: `3px solid ${COL.black}` }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, opacity: 0.7, marginBottom: 4 }}>{s.size}</div>
+              <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 32, lineHeight: 0.9, letterSpacing: "-0.04em" }}>{s.kwp}</div>
+            </div>
+            <div style={{ padding: 20 }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 11, marginBottom: 8, opacity: 0.8 }}>{s.for}</div>
+              <div style={{ fontFamily: fonts.mono, fontSize: 11, marginBottom: 16, opacity: 0.6 }}>{s.detail}</div>
+              <div style={{ background: COL.black, color: COL.yellow, display: "inline-block", padding: "3px 10px", fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, marginBottom: 16 }}>{s.model}</div>
+              <div style={{ borderTop: `2px solid ${COL.black}`, paddingTop: 16 }}>
+                <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 24, letterSpacing: "-0.03em", lineHeight: 1.1 }}>{s.price}</div>
+                <div style={{ fontFamily: fonts.mono, fontSize: 11, marginTop: 8 }}>
+                  <span style={{ fontWeight: 700 }}>{s.saving}</span> Ersparnis/J.<br/>
+                  <span style={{ opacity: 0.7 }}>Amortisation: {s.amort}</span>
+                </div>
+              </div>
+              <a href="#kontakt" style={{ display: "block", marginTop: 20, background: COL.black, color: s.col, padding: "12px 16px", fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase", textDecoration: "none", border: `2px solid ${COL.black}`, textAlign: "center" }}>
+                → ANGEBOT ANFRAGEN
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Process() {
+  return (
+    <Section kapitel="ABLAUF" title="SO" italicPart="arbeiten" blackPart="WIR." color={COL.orange}>
+      <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 0, border: `3px solid ${COL.black}` }}>
+        {process.map((p, i) => (
+          <div key={i} style={{
+            padding: 28, borderRight: i < process.length - 1 ? `2px solid ${COL.black}` : "none",
+            background: i % 2 === 0 ? COL.orange : COL.yellow,
+          }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 32, fontWeight: 700, lineHeight: 1, marginBottom: 12, opacity: 0.2 }}>{p.n}</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 20, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 10px", lineHeight: 1 }}>{p.title}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Faq() {
+  return (
+    <Section kapitel="FAQ" title="FRAGEN" italicPart="von" blackPart="BETRIEBEN." color={COL.yellow}>
+      <div className="faq-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
+        {faqs.map((f, i) => (
+          <div key={i} style={{ background: i % 2 === 0 ? COL.black : COL.cyan, color: i % 2 === 0 ? COL.yellow : COL.black, border: `3px solid ${COL.black}`, padding: 28 }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase", marginBottom: 12, color: i % 2 === 0 ? COL.cyan : COL.black, opacity: 0.8 }}>► FRAGE</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 22, lineHeight: 1, letterSpacing: "-0.02em", textTransform: "uppercase", margin: "0 0 14px" }}>{f.q}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 16, lineHeight: 1.55, margin: 0, fontStyle: "italic" }}>{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function App() {
+  return (
+    <Page active="gewerbe">
+      <PageHero
+        kapitel="GEWERBE"
+        kicker="PV_FUER_BETRIEBE_UND_INDUSTRIE"
+        title="STROM VON"
+        italicPart="deiner"
+        blackHeadlinePart="HALLE."
+        sub="Photovoltaik für Gewerbe und Industrie in Bayern — 50 bis 750+ kWp, Kauf oder PPA ohne Kapitaleinsatz. Ehrliche Wirtschaftlichkeitsrechnung, ein Ansprechpartner für alles."
+        color={COL.orange}
+        accentColor={COL.cyan}
+      />
+
+      <Marquee items={["AB 50 KWP", "BIS 750+ KWP", "KAUF ODER PPA", "0 € KAPITALEINSATZ MÖGLICH", "ESG-REPORTING", "HALLENDACH SPEZIALIST", "250+ ANLAGEN"]} />
+
+      <Section kapitel="ZAHLEN" title="WAS" italicPart="euer Betrieb" blackPart="SPART." color={COL.pink}>
+        <StatGrid items={[
+          { l: "Ø Stromkostenersparnis", v: "−50", u: "%", s: "im Vergleich zum reinen Netzbezug" },
+          { l: "Anlagengrößen", v: "50–750", u: " kWp", s: "je nach Dachfläche und Verbrauch" },
+          { l: "PPA Kapitaleinsatz", v: "0", u: " €", s: "wir finanzieren, ihr spart sofort" },
+          { l: "ESG-Daten", v: "fertig", s: "dokumentiert für euren Auditor" },
+        ]} color={COL.cyan} alt={COL.yellow} />
+      </Section>
+
+      <Section kapitel="LEISTUNG" title="WAS" italicPart="wir" blackPart="ÜBERNEHMEN." color={COL.yellow}>
+        <FeatureGrid items={includes} cols={3} />
+      </Section>
+
+      <PpaHighlight />
+
+      <Systems />
+
+      <Process />
+
+      <BigQuote
+        quote="Die Entscheidung Kauf vs. PPA hat uns drei Monate gekostet. Doris hat uns die Zahlen in einer Stunde so erklärt dass es klar war. Wir haben PPA genommen — und bereuen es nicht."
+        by="Logistikbetrieb Straubing"
+        role="380 kWp · PPA-Vertrag"
+        color={COL.cyan}
+      />
+
+      <Faq />
+
+      <Cta
+        kicker="EUER_ANGEBOT"
+        big={<>WIRTSCHAFTLICH<br/><span style={{ background: COL.yellow, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>RECHNEN.</span></>}
+        sub="Kostenloses Erstgespräch mit vollständiger Wirtschaftlichkeitsrechnung — Kauf und PPA nebeneinander. Kein Verkäuferdruck, klare Zahlen."
+        btn="JETZT ANFRAGEN"
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>
