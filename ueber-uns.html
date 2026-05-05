@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Über uns — Solar Energie Partner Deggendorf</title>
+<meta name="description" content="Solar Energie Partner: Inhabergeführt seit 2014 in Deggendorf. Doris Pilsner-Albrecht und ihr Team vermitteln Photovoltaik-Projekte in Bayern und bundesweit — mit echten Fachbetrieben, eigenem Festpersonal." />
+<meta property="og:title" content="Über Solar Energie Partner — Deggendorf" />
+<meta property="og:description" content="Seit 2014 vermitteln und koordinieren wir PV-Projekte in Bayern. Inhabergeführt. Echte Fachbetriebe. Kein Callcenter." />
+<link rel="canonical" href="https://solar-energie-partner.de/ueber-uns.html" />
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Solar Energie Partner",
+  "legalName": "Pilsner Vertriebs GmbH",
+  "description": "Vermittlung und Koordination von Photovoltaik-Projekten für Eigenheim und Gewerbe in Bayern und bundesweit.",
+  "url": "https://solar-energie-partner.de",
+  "telephone": "+49991402275600",
+  "email": "info@solar-energie-partner.de",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Detterstraße 38",
+    "addressLocality": "Deggendorf",
+    "postalCode": "94469",
+    "addressCountry": "DE"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 48.8327,
+    "longitude": 12.9612
+  },
+  "areaServed": ["Bayern", "Baden-Württemberg", "Deutschland"],
+  "foundingDate": "2014",
+  "numberOfEmployees": { "@type": "QuantitativeValue", "value": 3 }
+}</script>
+<link rel="stylesheet" href="fonts/fonts.css" />
+<link rel="stylesheet" href="radikal-base.css" />
+<style>
+  @media(max-width:768px){
+    header nav{display:none !important}
+    .mq span{font-size:32px !important;padding:0 16px !important}
+    .timeline-grid{grid-template-columns:1fr !important}
+    .team-grid{grid-template-columns:1fr !important}
+    .werte-grid{grid-template-columns:1fr 1fr !important}
+    .partner-grid{grid-template-columns:1fr 1fr !important}
+    footer > div:first-child > div{grid-template-columns:1fr 1fr !important}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="vendor/react.min.js"></script>
+<script src="vendor/react-dom.min.js"></script>
+<script src="vendor/babel.min.js"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+const D = window.SITE_DATA;
+
+const timeline = [
+  { year: "2014", title: "Gründung", body: "Pilsner Vertriebs GmbH gegründet. Erste PV-Koordinationen in Deggendorf und Umgebung. Doris installiert als erstes ihr eigenes Dach." },
+  { year: "2016", title: "Netzwerk wächst", body: "Drei feste Fachbetriebe im Partnernetzwerk. Erste Gewerbeanlage mit 40 kWp in Plattling. Speicher kommen ins Portfolio." },
+  { year: "2019", title: "PPA-Modell eingeführt", body: "Solar Energie Partner wird einer der ersten Vermittler in Niederbayern mit echtem PPA-Angebot für Gewerbetreibende." },
+  { year: "2021", title: "Expansion Bayern & BW", body: "Partnernetzwerk wächst auf 8 zertifizierte Fachbetriebe. Projekte in ganz Bayern und Baden-Württemberg." },
+  { year: "2024", title: "Marke Solar Energie Partner", body: "Neuer Markenauftritt. Online-Rechner. Monitoring für alle Bestandsanlagen. Über 200 installierte Anlagen." },
+  { year: "2026", title: "Heute", body: "250+ Anlagen. 3 Mitarbeiter intern. 10+ Partnerbetriebe. Fokus: Gewerbe-PPA, Repowering und Eigenheim mit Wärmepumpe." },
+];
+
+const werte = [
+  { k: "EHRLICH", v: "Wenn sich was nicht rechnet, sagen wir es. Auch wenn das bedeutet: kein Auftrag.", c: COL.cyan },
+  { k: "VERLÄSSLICH", v: "Wir koordinieren alle Gewerke — du musst nichts selbst klären.", c: COL.yellow },
+  { k: "LOKAL", v: "Hauptsitz Deggendorf. Kein Callcenter. Kein Konzern. Echter Ansprechpartner.", c: COL.pink },
+  { k: "LANGFRISTIG", v: "Wir sind nach dem Auftrag noch da. Monitoring, Wartung, Notfall.", c: COL.orange },
+];
+
+const team = [
+  {
+    name: "Doris Pilsner-Albrecht",
+    rolle: "Geschäftsführerin & Inhaberin",
+    seit: "seit 2014",
+    quote: "Ich verkaufe nur, was ich auch meiner Mutter aufs Dach setzen würde.",
+    detail: "Gründerin der Pilsner Vertriebs GmbH. Kaufmännische Ausbildung, 12 Jahre Erfahrung in erneuerbaren Energien. Persönlich für jedes Projekt verantwortlich.",
+    initial: "D",
+    col: COL.yellow,
+  },
+  {
+    name: "Thomas Egger",
+    rolle: "Projektkoordination & Technik",
+    seit: "seit 2018",
+    quote: "Ein sauber geplantes Projekt hat hinterher keine Überraschungen.",
+    detail: "Elektrotechniker, spezialisiert auf Wechselrichter-Konfiguration und Netzeinspeiseprojekte. Koordiniert alle technischen Abläufe von Anmeldung bis Abnahme.",
+    initial: "T",
+    col: COL.cyan,
+  },
+  {
+    name: "Katharina Reiter",
+    rolle: "Kundenbetreuung & Förderung",
+    seit: "seit 2021",
+    quote: "Förderung beantragen ist nicht kompliziert — wenn man weiß, wo man schauen muss.",
+    detail: "Kaufmännische Fachwirtin. Zuständig für Kundenanfragen, Fördermittelbeantragung (KfW, BAFA, Landes­programme) und laufende Projektbegleitung.",
+    initial: "K",
+    col: COL.pink,
+  },
+];
+
+const partnerData = [
+  { k: "10+", v: "Zertifizierte Fachbetriebe im Netzwerk" },
+  { k: "100%", v: "Betriebe mit eigenem Festpersonal — keine Solo-Selbständigen" },
+  { k: "VDE", v: "Alle Betriebe geprüft nach VDE-Normen" },
+  { k: "25 J.", v: "Produktgarantie auf alle eingesetzten Module" },
+];
+
+function Hero() {
+  return (
+    <PageHero
+      kapitel="ÜBER UNS"
+      kicker="DEGGENDORF · SEIT 2014"
+      title="HANDWERK"
+      italicPart="mit Haltung."
+      sub="Solar Energie Partner ist eine Marke der Pilsner Vertriebs GmbH — eines inhabergeführten Unternehmens aus Deggendorf. Seit 2014 vermitteln und koordinieren wir Photovoltaik-Projekte in Bayern und bundesweit."
+      color={COL.black}
+      accentColor={COL.cyan}
+    />
+  );
+}
+
+function Timeline() {
+  return (
+    <Section kapitel="GESCHICHTE" title="WIE WIR" italicPart="dahin kamen." blackPart="" color={COL.yellow}>
+      <div className="timeline-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginTop: 40 }}>
+        {timeline.map((t, i) => (
+          <div key={i} className="lift" style={{
+            background: i % 2 === 0 ? COL.black : COL.white,
+            color: i % 2 === 0 ? COL.yellow : COL.black,
+            border: `3px solid ${COL.black}`,
+            padding: 24,
+            transform: `rotate(${[0.5,-0.5,1,-1,0.8,-0.8][i]||0}deg)`,
+            position: "relative",
+          }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 40, fontWeight: 700, lineHeight: 1, marginBottom: 4, color: i % 2 === 0 ? COL.cyan : COL.black, opacity: 0.3 }}>{t.year}</div>
+            <div style={{ fontFamily: fonts.heading, fontSize: 22, fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.02em", marginBottom: 10, lineHeight: 1.1 }}>{t.title}</div>
+            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.5, fontStyle: "italic", margin: 0, opacity: 0.9 }}>{t.body}</p>
+            <div style={{ position: "absolute", top: -12, right: 12, background: i % 2 === 0 ? COL.cyan : COL.black, color: i % 2 === 0 ? COL.black : COL.yellow, padding: "3px 10px", fontFamily: fonts.mono, fontSize: 10, fontWeight: 700 }}>{t.year}</div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function TeamSection() {
+  return (
+    <Section kapitel="TEAM" title="DREI" italicPart="Menschen." blackPart="EIN ZIEL." color={COL.black}>
+      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", color: COL.yellow, maxWidth: 720, marginBottom: 40 }}>
+        Wir sind klein — absichtlich. Jeder kennt jeden Auftrag. Kein Kunde fällt durchs Raster.
+      </p>
+      <div className="team-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
+        {team.map((m, i) => (
+          <div key={i} className="lift" style={{
+            background: m.col, color: COL.black, border: `3px solid ${COL.yellow}`,
+            padding: 0, transform: `rotate(${[-1.5, 1, -0.5][i]||0}deg)`,
+          }}>
+            <div style={{ background: COL.black, padding: "24px 24px 20px", borderBottom: `3px solid ${COL.yellow}`, display: "flex", alignItems: "center", gap: 16 }}>
+              <div style={{ width: 56, height: 56, borderRadius: "50%", background: m.col, border: `3px solid ${COL.yellow}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: fonts.heading, fontSize: 24, fontWeight: 800, color: COL.black, flexShrink: 0 }}>{m.initial}</div>
+              <div>
+                <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 16, textTransform: "uppercase", letterSpacing: "-0.02em", color: COL.yellow, lineHeight: 1.1 }}>{m.name}</div>
+                <div style={{ fontFamily: fonts.mono, fontSize: 10, color: COL.cyan, marginTop: 4, textTransform: "uppercase", letterSpacing: ".05em" }}>{m.rolle}</div>
+                <div style={{ fontFamily: fonts.mono, fontSize: 10, color: COL.yellow, opacity: 0.6, marginTop: 2 }}>{m.seit}</div>
+              </div>
+            </div>
+            <div style={{ padding: 20 }}>
+              <blockquote style={{ fontFamily: fonts.serif, fontSize: 17, fontStyle: "italic", lineHeight: 1.4, margin: "0 0 16px 0", borderLeft: `3px solid ${COL.black}`, paddingLeft: 12 }}>"{m.quote}"</blockquote>
+              <p style={{ fontFamily: fonts.mono, fontSize: 12, lineHeight: 1.6, margin: 0, textTransform: "uppercase", letterSpacing: ".02em" }}>{m.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function WerteSection() {
+  return (
+    <Section kapitel="WERTE" title="WAS UNS" italicPart="antreibt." blackPart="" color={COL.yellow}>
+      <div className="werte-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginTop: 40 }}>
+        {werte.map((w, i) => (
+          <div key={i} className="lift" style={{
+            background: w.c, border: `3px solid ${COL.black}`, padding: 24,
+            transform: `rotate(${[1,-1,2,-2][i]||0}deg)`,
+          }}>
+            <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 36, textTransform: "uppercase", letterSpacing: "-0.04em", lineHeight: 0.9, marginBottom: 12 }}>{w.k}</div>
+            <p style={{ fontFamily: fonts.mono, fontSize: 12, margin: 0, lineHeight: 1.6, textTransform: "uppercase", letterSpacing: ".02em" }}>{w.v}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function PartnerSection() {
+  return (
+    <Section kapitel="PARTNERNETZWERK" title="NICHT WIR" italicPart="bauen." blackPart="FACHLEUTE BAUEN." color={COL.black}>
+      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", color: COL.yellow, maxWidth: 720, marginBottom: 40 }}>
+        Solar Energie Partner ist Vermittler und Koordinator — kein Installateur. Wir arbeiten mit einem festen Netzwerk geprüfter, zertifizierter Fachbetriebe zusammen. Jeder Betrieb beschäftigt eigenes, ausgebildetes Festpersonal.
+      </p>
+      <div className="partner-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginBottom: 40 }}>
+        {partnerData.map((p, i) => (
+          <div key={i} className="lift" style={{
+            background: [COL.cyan, COL.pink, COL.orange, COL.yellow][i],
+            border: `3px solid ${COL.yellow}`, padding: 24,
+            transform: `rotate(${[0.5,-0.5,1,-1][i]||0}deg)`,
+          }}>
+            <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 42, textTransform: "uppercase", letterSpacing: "-0.05em", lineHeight: 0.9, marginBottom: 8, color: COL.black }}>{p.k}</div>
+            <p style={{ fontFamily: fonts.mono, fontSize: 11, margin: 0, lineHeight: 1.6, textTransform: "uppercase", letterSpacing: ".03em", color: COL.black }}>{p.v}</p>
+          </div>
+        ))}
+      </div>
+      <div style={{ border: `3px solid ${COL.yellow}`, padding: 0 }}>
+        {[
+          ["Warum Vermittler?", "Weil wir so für jeden Projekttyp den richtigen Betrieb einsetzen können — kein Unternehmen ist in allem gleich gut."],
+          ["Was prüfen wir?", "Zertifizierungen, Versicherungen, Referenzprojekte, VDE-Normen, Personalstruktur. Kein Einzelunternehmer, kein Subunternehmer-Wirrwarr."],
+          ["Wer haftet?", "Wir. Solar Energie Partner koordiniert das Gesamtprojekt und steht als Ansprechpartner gerade — auch wenn ein Fachbetrieb mal wechselt."],
+          ["Vorteil für Kunden?", "Mehr Auswahl, mehr Spezialisierung, gleiche Verlässlichkeit. Und du sprichst immer mit uns — nicht mit 5 verschiedenen Leuten."],
+        ].map(([k, v], i) => (
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "220px 1fr", borderTop: i ? `2px solid ${COL.yellow}` : "none", padding: "14px 20px", fontFamily: fonts.mono, fontSize: 12, alignItems: "center", gap: 20 }}>
+            <span style={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em", color: COL.cyan }}>► {k}</span>
+            <span style={{ opacity: 0.85, lineHeight: 1.6 }}>{v}</span>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function GebietSection() {
+  const gebiete = [
+    { name: "DEGGENDORF", note: "Hauptsitz", col: COL.yellow },
+    { name: "STRAUBING", note: "Kerngebiet", col: COL.cyan },
+    { name: "PASSAU", note: "Kerngebiet", col: COL.cyan },
+    { name: "LANDSHUT", note: "Kerngebiet", col: COL.cyan },
+    { name: "REGENSBURG", note: "Kerngebiet", col: COL.cyan },
+    { name: "AUGSBURG", note: "Bayern", col: COL.pink },
+    { name: "MÜNCHEN", note: "Bayern", col: COL.pink },
+    { name: "INGOLSTADT", note: "Bayern", col: COL.pink },
+    { name: "NÜRNBERG", note: "Bayern", col: COL.pink },
+    { name: "STUTTGART", note: "BW", col: COL.orange },
+    { name: "MANNHEIM", note: "BW", col: COL.orange },
+    { name: "BUNDESWEIT", note: "Auf Anfrage", col: COL.white },
+  ];
+  return (
+    <Section kapitel="EINSATZGEBIET" title="VON DEGGENDORF" italicPart="aus" blackPart="DEUTSCHLAND." color={COL.yellow}>
+      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
+        Unser Schwerpunkt liegt in Niederbayern und der Oberpfalz — aber unsere Fachbetriebe sind in ganz Bayern und Baden-Württemberg aktiv.
+      </p>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+        {gebiete.map((g, i) => (
+          <div key={i} className="lift" style={{
+            background: g.col, border: `3px solid ${COL.black}`, padding: "10px 16px",
+            transform: `rotate(${(i % 3 === 0 ? 1 : i % 3 === 1 ? -0.5 : 0.7)}deg)`,
+          }}>
+            <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 16, textTransform: "uppercase", letterSpacing: "-0.02em" }}>{g.name}</div>
+            <div style={{ fontFamily: fonts.mono, fontSize: 10, opacity: 0.7, textTransform: "uppercase" }}>{g.note}</div>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function App() {
+  return (
+    <Page active="ueber-uns">
+      <Hero />
+      <Marquee items={["SEIT 2014", "DEGGENDORF", "INHABERGEFÜHRT", "3 MITARBEITER", "10+ FACHBETRIEBE", "250+ ANLAGEN", "GANZ BAYERN", "EHRLICH."]} />
+      <StatGrid items={[
+        { l: "Gründungsjahr", v: "2014" },
+        { l: "Installierte Anlagen", v: "250+" },
+        { l: "Partnerbetriebe", v: "10+" },
+        { l: "Erfahrung PV", v: "12 J." },
+      ]} />
+      <WerteSection />
+      <TeamSection />
+      <Timeline />
+      <PartnerSection />
+      <GebietSection />
+      <BigQuote
+        quote="Ich verkaufe nur, was ich auch meiner Mutter aufs Dach setzen würde. Punkt."
+        by="Doris Pilsner-Albrecht"
+        role="Inhaberin · Pilsner Vertriebs GmbH"
+      />
+      <Cta
+        kicker="KONTAKT"
+        big="PERSÖNLICHES GESPRÄCH?"
+        sub="Kein Formular, kein Funnel. Ruf an oder schreib uns — Doris oder Thomas melden sich persönlich."
+        href="index.html#kontakt"
+        btn="JETZT KONTAKT AUFNEHMEN"
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

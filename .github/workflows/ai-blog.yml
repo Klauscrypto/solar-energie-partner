@@ -1,0 +1,51 @@
+name: KI-Blog-Generator
+
+on:
+  # Täglich 08:00 Uhr (MEZ = UTC+1 / MESZ = UTC+2)
+  # Gerader Tag → Ratgeber, Ungerader Tag → Blog-Artikel
+  # Das Python-Skript entscheidet den Typ selbst anhand des Datums
+  schedule:
+    - cron: "0 7 * * *"  # 07:00 UTC = 08:00 MEZ
+  # Manueller Auslöser (zum Testen)
+  workflow_dispatch:
+
+jobs:
+  generate-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Anthropic SDK installieren
+        run: pip install anthropic
+
+      - name: Blog-Artikel generieren
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 scripts/generate-blog.py
+
+      - name: Änderungen committen und pushen
+        run: |
+          git config user.name  "KI-Blog-Bot"
+          git config user.email "bot@solar-energie-partner.de"
+          git add blog/
+          git diff --cached --quiet || git commit -m "auto: neuer Artikel $(date +'%Y-%m-%d')"
+          git push
+
+      - name: Auf Server deployen (git pull via SSH)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 94.130.191.178
+          username: root
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          script: |
+            cd /opt/solar-energie-partner/html
+            GIT_SSH_COMMAND="ssh -i /root/.ssh/git_deploy -o StrictHostKeyChecking=no" git pull origin main
