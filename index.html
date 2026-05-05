@@ -162,7 +162,6 @@
 <script src="vendor/react-dom.min.js"></script>
 <script src="vendor/babel.min.js"></script>
 <script src="data.js"></script>
-<script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="radikal-extras.jsx"></script>
 <script type="text/babel">
 const D = window.SITE_DATA;
@@ -910,18 +909,12 @@ function Footer() {
 }
 
 function App() {
-  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const t = TWEAK_DEFAULTS;
 
   useEffect(() => {
     document.documentElement.style.setProperty("--bg", t.bg);
-    COL.yellow = t.bg;
-    COL.pink = t.accent1;
-    COL.cyan = t.accent2;
-    COL.orange = t.accent3;
-    document.body.classList.toggle("no-noise", !t.noise);
     document.documentElement.style.setProperty("--chaos", String(t.chaos ?? 1));
-    document.body.classList.toggle("compact", !!t.compact);
-  }, [t.bg, t.accent1, t.accent2, t.accent3, t.noise, t.chaos, t.compact]);
+  }, []);
 
   return (
     <TweakCtx.Provider value={t}>
@@ -959,28 +952,6 @@ function App() {
           </svg>
         </a>
 
-        <TweaksPanel title="Tweaks">
-          <TweakSection label="Inhalt" />
-          <TweakText label="Headline" value={t.headline} onChange={(v) => setTweak("headline", v)} />
-          <TweakText label="Subline" value={t.subline} onChange={(v) => setTweak("subline", v)} />
-          <TweakText label="Preis" value={t.price} onChange={(v) => setTweak("price", v)} />
-
-          <TweakSection label="Farben" />
-          <TweakColor label="Background" value={t.bg} onChange={(v) => setTweak("bg", v)} />
-          <TweakColor label="Accent 1 (pink)" value={t.accent1} onChange={(v) => setTweak("accent1", v)} />
-          <TweakColor label="Accent 2 (cyan)" value={t.accent2} onChange={(v) => setTweak("accent2", v)} />
-          <TweakColor label="Accent 3 (orange)" value={t.accent3} onChange={(v) => setTweak("accent3", v)} />
-
-          <TweakSection label="Effekte" />
-          <TweakToggle label="Noise / Grain" value={t.noise} onChange={(v) => setTweak("noise", v)} />
-          <TweakToggle label="Custom Cursor" value={t.customCursor} onChange={(v) => setTweak("customCursor", v)} />
-          <TweakToggle label="Glitch Headline" value={t.glitch} onChange={(v) => setTweak("glitch", v)} />
-          <TweakToggle label="3D Tilt" value={t.tilt} onChange={(v) => setTweak("tilt", v)} />
-          <TweakToggle label="Confetti Burst" value={t.confetti} onChange={(v) => setTweak("confetti", v)} />
-          <TweakSlider label="Tilt Intensität" value={t.intensity} min={0} max={2.5} step={0.1} onChange={(v) => setTweak("intensity", v)} />
-          <TweakSlider label="Chaos / Lautstärke" value={t.chaos} min={0} max={2} step={0.1} onChange={(v) => setTweak("chaos", v)} />
-          <TweakToggle label="Compact Layout" value={t.compact} onChange={(v) => setTweak("compact", v)} />
-        </TweaksPanel>
       </div>
     </TweakCtx.Provider>
   );
