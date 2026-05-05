@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Repowering, Modulabbau & Entsorgung alter PV-Anlagen — Solar Energie Partner</title>
+<meta name="description" content="Alte PV-Anlage tauschen oder stilllegen? Wir koordinieren Modulabbau, fachgerechte Entsorgung, Wechselrichtertausch und komplettes Repowering. Bayern + BW." />
+<meta property="og:title" content="Repowering & Modulentsorgung — Solar Energie Partner" />
+<meta property="og:description" content="Anlage aus den 2000ern oder frühen 2010ern? Wir analysieren, sanieren oder ersetzen komplett — und sorgen für rechtssichere Entsorgung alter Module." />
+<link rel="canonical" href="https://solar-energie-partner.de/repowering.html" />
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Repowering und Modulentsorgung","provider":{"@type":"LocalBusiness","name":"Solar Energie Partner","address":{"@type":"PostalAddress","streetAddress":"Detterstraße 38","addressLocality":"Deggendorf","postalCode":"94469","addressCountry":"DE"}},"areaServed":"Bayern","description":"Repowering alter Photovoltaik-Anlagen und fachgerechte Modulentsorgung"}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="radikal-base.css" />
+<style>
+  @media(max-width:768px){
+    header nav{display:none !important}
+    .mq span{font-size:32px !important;padding:0 16px !important}
+    .check-grid{grid-template-columns:1fr !important}
+    .leistung-grid{grid-template-columns:repeat(2,1fr) !important}
+    .process-grid{grid-template-columns:1fr !important}
+    .faq-grid{grid-template-columns:1fr !important}
+    footer > div:first-child > div{grid-template-columns:1fr 1fr !important}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="data.js"></script>
+<script type="text/babel" src="subpage-shell.jsx"></script>
+<script type="text/babel">
+const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
+const D = window.SITE_DATA;
+
+const checks = [
+  {
+    signal: "► EEG-EINSPEISEVERGÜTUNG LÄUFT AUS",
+    title: "20 Jahre vorbei?",
+    body: "Anlagen aus 2004–2006 fallen jetzt aus der EEG-Förderung. Einspeisen für ~2 ct lohnt kaum noch. Jetzt ist der richtige Zeitpunkt für Repowering mit Eigenverbrauch-Fokus.",
+    col: COL.pink,
+  },
+  {
+    signal: "► LEISTUNGSVERLUST SICHTBAR",
+    title: "Weniger Ertrag als früher?",
+    body: "PV-Module verlieren ~0,5% Leistung pro Jahr — nach 20 Jahren also bis zu 10%. Dazu kommen Mikrorisse und Zelldegeneration. Wir messen den tatsächlichen Zustand.",
+    col: COL.yellow,
+  },
+  {
+    signal: "► WECHSELRICHTER DEFEKT ODER ALT",
+    title: "Ersatzteile nicht mehr lieferbar?",
+    body: "Wechselrichter halten 10–15 Jahre. Viele Modelle aus der Frühphase sind nicht mehr reparierbar. Ein Tausch auf moderne Geräte erhöht oft den Ertrag um 5–10%.",
+    col: COL.cyan,
+  },
+  {
+    signal: "► DACHSANIERUNG STEHT AN",
+    title: "Neue Eindeckung geplant?",
+    body: "Bevor der Dachdecker kommt, müssen die Module runter. Wir koordinieren Abbau, sichere Lagerung und Wiedermontage — oder direkt Repowering auf dem neuen Dach.",
+    col: COL.orange,
+  },
+];
+
+const leistungen = [
+  { no: "01", tag: "ANALYSE", title: "Ertragsanalyse & Zustandsbewertung", body: "Wir lesen das Monitoring aus, messen ggf. Modulleistung und geben eine ehrliche Einschätzung: sanieren, ersetzen oder stilllegen?" },
+  { no: "02", tag: "WECHSELRICHTER", title: "Wechselrichtertausch", body: "Moderner Wechselrichter mit Speicher-Interface, besserer Effizienz und neuem Monitoring. Oft schnell amortisiert." },
+  { no: "03", tag: "REPOWERING", title: "Komplettes Repowering", body: "Alte Module raus, neue rein — selbe Fläche, deutlich mehr Leistung. Aus einer 5 kWp-Anlage von 2005 werden heute 8–10 kWp." },
+  { no: "04", tag: "NACHRÜSTUNG", title: "Speicher & Wallbox ergänzen", body: "Bei Repowering direkt Speicher und Wallbox mitplanen — moderner Wechselrichter macht das einfach und günstig." },
+  { no: "05", tag: "ABBAU", title: "Modulabbau bei Dachsanierung", body: "Fachgerechter Abbau, sichere Zwischenlagerung, Wiedermontage nach Dacharbeiten. Alles aus einer Hand koordiniert." },
+  { no: "06", tag: "ENTSORGUNG", title: "Rechtssichere Modulentsorgung", body: "PV-Module sind Elektronikschrott und müssen nach ElektroG entsorgt werden. Wir koordinieren die Abholung durch zertifizierte Recyclingbetriebe." },
+];
+
+const process = [
+  { n: "01", title: "Unterlagen & Monitoring prüfen", body: "Wir schauen uns Anlagenalter, vorhandene Monitoring-Daten und Wechselrichtertyp an — oft reicht das für eine erste Einschätzung." },
+  { n: "02", title: "Vor-Ort-Termin & Messung", body: "Bei Bedarf kommen wir vorbei: Sichtprüfung, Ertragsvergleich, Wechselrichterstatus. Klares Ergebnis: lohnt sich Repowering?" },
+  { n: "03", title: "Angebot Sanierung oder Neubau", body: "Du bekommst zwei Optionen nebeneinander: Teilsanierung vs. komplettes Repowering — mit Kosten, Mehrertrag und Amortisation." },
+  { n: "04", title: "Koordination & Entsorgung", body: "Unsere Fachbetriebe bauen ab, entsorgen fachgerecht und bauen die neue Anlage auf. Alle Papiere inklusive — Recyclingnachweis, neue EEG-Anmeldung." },
+];
+
+const faqs = [
+  {
+    q: "Was passiert mit alten Modulen — darf ich die einfach wegwerfen?",
+    a: "Nein. PV-Module sind Elektroaltgeräte nach ElektroG und müssen von zertifizierten Recyclingbetrieben entsorgt werden. Widerrechtliche Entsorgung ist bußgeldbewehrt. Wir koordinieren das korrekt.",
+  },
+  {
+    q: "Lohnt sich Repowering wirtschaftlich?",
+    a: "Oft ja. Eine 5 kWp-Anlage von 2005 erzielt heute mit derselben Modulfläche 8–10 kWp, weil moderne Module deutlich leistungsfähiger sind. Dazu kommt höherer Eigenverbrauch statt Einspeisung für 2 ct. Wir rechnen es durch.",
+  },
+  {
+    q: "Muss ich eine neue EEG-Anmeldung machen?",
+    a: "Bei wesentlicher Änderung der Anlage (neue Module, höhere Leistung) ja. Wir koordinieren die neue Anmeldung beim Netzbetreiber und im Marktstammdatenregister — das gehört für uns dazu.",
+  },
+  {
+    q: "Wie läuft Modulabbau vor einer Dachsanierung ab?",
+    a: "Wir koordinieren: Abbau durch Fachbetrieb, Zwischenlagerung, Abklärung mit dem Dachdecker, Wiedermontage danach. Alternativ direkt Repowering auf dem neuen Dach — oft günstiger als zweimal montieren.",
+  },
+];
+
+function Checks() {
+  return (
+    <Section kapitel="ANLASS" title="WANN ES" italicPart="Zeit wird" blackPart="ZU_HANDELN." color={COL.yellow}>
+      <div className="check-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
+        {checks.map((c, i) => (
+          <div key={i} className="lift" style={{ background: c.col, border: `3px solid ${COL.black}`, padding: 28, transform: `rotate(${i%2===0?-0.4:0.4}deg)` }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 12, background: COL.black, color: c.col, display: "inline-block", padding: "3px 10px" }}>{c.signal}</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 26, lineHeight: 0.95, letterSpacing: "-0.02em", textTransform: "uppercase", margin: "12px 0 12px" }}>{c.title}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 16, lineHeight: 1.55, margin: 0, fontStyle: "italic" }}>{c.body}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Process() {
+  return (
+    <Section kapitel="ABLAUF" title="SO" italicPart="geht's" blackPart="VOR." color={COL.cyan}>
+      <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 0, border: `3px solid ${COL.black}` }}>
+        {process.map((p, i) => (
+          <div key={i} style={{ padding: 28, borderRight: i < process.length - 1 ? `2px solid ${COL.black}` : "none", background: i % 2 === 0 ? COL.cyan : COL.yellow }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 32, fontWeight: 700, lineHeight: 1, marginBottom: 12, opacity: 0.2 }}>{p.n}</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 18, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 10px", lineHeight: 1.1 }}>{p.title}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 14, lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Faq() {
+  return (
+    <Section kapitel="FAQ" title="FRAGEN" italicPart="zur" blackPart="ALTEN_ANLAGE." color={COL.yellow}>
+      <div className="faq-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
+        {faqs.map((f, i) => (
+          <div key={i} style={{ background: i % 2 === 0 ? COL.black : COL.orange, color: i % 2 === 0 ? COL.yellow : COL.black, border: `3px solid ${COL.black}`, padding: 28 }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase", marginBottom: 12, color: i % 2 === 0 ? COL.cyan : COL.black, opacity: 0.8 }}>► FRAGE</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 20, lineHeight: 1, letterSpacing: "-0.02em", textTransform: "uppercase", margin: "0 0 14px" }}>{f.q}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.55, margin: 0, fontStyle: "italic" }}>{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
+
+function Entsorgung() {
+  return (
+    <Section kapitel="ENTSORGUNG" title="RECYCLING" italicPart="rechtssicher" blackPart="KOORDINIERT." color={COL.black}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, border: `3px solid ${COL.yellow}` }}>
+        <div style={{ padding: 40, borderRight: `3px solid ${COL.yellow}` }}>
+          <div style={{ fontFamily: fonts.mono, fontSize: 11, color: COL.cyan, fontWeight: 700, textTransform: "uppercase", marginBottom: 16 }}>► WAS DU WISSEN MUSST</div>
+          <p style={{ fontFamily: fonts.serif, fontSize: 20, lineHeight: 1.55, fontStyle: "italic", color: COL.yellow, margin: "0 0 20px" }}>
+            PV-Module enthalten Schwermetalle wie Blei und Cadmium. Entsorgung über den Restmüll ist illegal. Das ElektroG schreibt Rücknahme und Recycling vor.
+          </p>
+          <ul style={{ fontFamily: fonts.mono, fontSize: 12, color: COL.yellow, paddingLeft: 0, listStyle: "none", lineHeight: 2.2 }}>
+            <li>► Abholung durch zertifizierten Recyclingbetrieb</li>
+            <li>► Entsorgungsnachweis für deine Unterlagen</li>
+            <li>► Silber, Aluminium, Glas werden zurückgewonnen</li>
+            <li>► Gilt für alte wie neue Module gleichermaßen</li>
+          </ul>
+        </div>
+        <div style={{ padding: 40, background: COL.yellow }}>
+          <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 16 }}>► WAS WIR KOORDINIEREN</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+            {[
+              ["Abholung koordinieren", "wir beauftragen den Recyclingbetrieb"],
+              ["Entsorgungsnachweis", "für deine Unterlagen und das Finanzamt"],
+              ["Demontage", "durch unsere Fachbetriebe"],
+              ["Wiederverwendung prüfen", "funktionierende Module ggf. für Carport etc."],
+              ["Komplettpaket möglich", "Abbau + Entsorgung + Repowering in einem"],
+            ].map(([l, v], i) => (
+              <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", borderBottom: `1px solid ${COL.black}`, paddingBottom: 10, gap: 12 }}>
+                <span style={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700 }}>{l}</span>
+                <span style={{ fontFamily: fonts.serif, fontSize: 13, fontStyle: "italic", textAlign: "right", opacity: 0.7 }}>{v}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </Section>
+  );
+}
+
+function App() {
+  return (
+    <Page active="repowering">
+      <PageHero
+        kapitel="REPOWERING"
+        kicker="ALTE_ANLAGE_NEU_DENKEN"
+        title="ANLAGE"
+        italicPart="aus den"
+        blackHeadlinePart="2000ern?"
+        sub="Repowering, Wechselrichtertausch, Modulabbau bei Dachsanierung und rechtssichere Entsorgung alter Module — alles koordiniert, alles aus einer Hand."
+        color={COL.orange}
+        accentColor={COL.yellow}
+      />
+
+      <Marquee items={["WECHSELRICHTERTAUSCH", "KOMPLETTES REPOWERING", "MODULABBAU", "RECHTSSICHERE ENTSORGUNG", "DACHSANIERUNG", "EEG-AUSLAUF 2004–2006", "RECYCLINGNACHWEIS"]} />
+
+      <Section kapitel="ZAHLEN" title="WAS" italicPart="heute möglich" blackPart="IST." color={COL.pink}>
+        <StatGrid items={[
+          { l: "Mehrleistung durch neue Module", v: "+40", u: "%", s: "selbe Fläche, deutlich mehr kWp" },
+          { l: "Anlagen aus EEG-Auslauf", v: "100.000+", s: "in DE — viele davon in Bayern" },
+          { l: "Recyclingquote PV-Module", v: "95", u: "%", s: "Glas, Silber, Alu werden zurückgewonnen" },
+          { l: "Wechselrichter Lebensdauer", v: "10–15", u: " J.", s: "danach oft nicht mehr reparierbar" },
+        ]} color={COL.cyan} alt={COL.yellow} />
+      </Section>
+
+      <Checks />
+
+      <Section kapitel="LEISTUNGEN" title="WAS WIR" italicPart="für dich" blackPart="ÜBERNEHMEN." color={COL.yellow}>
+        <FeatureGrid items={leistungen} cols={3} />
+      </Section>
+
+      <Entsorgung />
+
+      <Process />
+
+      <BigQuote
+        quote="Viele Anlagen aus der Frühzeit laufen noch — aber nicht mehr wirtschaftlich. Wir schauen uns das nüchtern an und sagen dir was sich wirklich lohnt."
+        by="Doris Pilsner-Albrecht"
+        role="Inhaberin Solar Energie Partner"
+        color={COL.cyan}
+      />
+
+      <Faq />
+
+      <Cta
+        kicker="DEINE_ALTE_ANLAGE"
+        big={<>JETZT<br/><span style={{ background: COL.orange, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>ANALYSIEREN.</span></>}
+        sub="Schick uns Anlagenalter, kWp und ob du noch Monitoring-Daten hast — wir sagen dir in einem Erstgespräch was Sinn macht."
+        btn="KOSTENLOSE ANALYSE"
+      />
+    </Page>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+</script>
+</body>
+</html>

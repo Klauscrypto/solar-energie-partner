@@ -3,12 +3,26 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>SPEICHER // SOLAR RADIKAL</title>
-<meta name="description" content="Stromspeicher für Photovoltaik — BYD, sonnen, Fronius, Tesla. Eigenverbrauch hoch, Stromrechnung runter. Aus Deggendorf." />
+<title>Batteriespeicher für Photovoltaik — Solar Energie Partner</title>
+<meta name="description" content="Stromspeicher für PV-Anlagen in Bayern: 5–500 kWh für Eigenheim bis Gewerbe. Maximale Autarkie, Notstromfähigkeit, Peak Shaving. Nachrüstbar." />
+<meta property="og:title" content="Batteriespeicher PV — Solar Energie Partner" />
+<meta property="og:description" content="Dein Solarstrom rund um die Uhr. Speicher für neue und bestehende PV-Anlagen — Eigenheim bis Industrie." />
+<link rel="canonical" href="https://solar-energie-partner.de/speicher.html" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="radikal-base.css" />
+<style>
+  @media(max-width:768px){
+    header nav{display:none !important}
+    .mq span{font-size:32px !important;padding:0 16px !important}
+    .types-grid{grid-template-columns:1fr !important}
+    .faq-grid{grid-template-columns:1fr !important}
+    .brands-grid{grid-template-columns:repeat(2,1fr) !important}
+    .extras-grid{grid-template-columns:1fr !important}
+    footer > div:first-child > div{grid-template-columns:1fr 1fr !important}
+  }
+</style>
 </head>
 <body>
 <div id="root"></div>
@@ -19,109 +33,190 @@
 <script type="text/babel" src="subpage-shell.jsx"></script>
 <script type="text/babel">
 const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
-const { useState } = React;
+const D = window.SITE_DATA;
 
-function Calc() {
-  const [k, setK] = useState(10);
-  const eigenOhne = 0.30;
-  const eigenMit = 0.70;
-  const verbrauch = 5500;
-  const ohne = Math.round(verbrauch * eigenOhne * 0.30);
-  const mit = Math.round(verbrauch * eigenMit * 0.30);
-  const diff = mit - ohne;
+const speicherTypes = [
+  {
+    label: "EIGENHEIM",
+    title: "5–15 kWh",
+    for: "Einfamilienhaus · 3–5 Personen",
+    detail: "Nachrüstbar auf bestehende Anlage · AC- oder DC-gekoppelt",
+    bullets: ["Eigenverbrauch bis 80%", "Notstrom-Option möglich", "Wallbox-Integration"],
+    price: "ca. 5.000–12.000 €",
+    col: COL.cyan,
+  },
+  {
+    label: "GROSSES HAUS",
+    title: "15–30 kWh",
+    for: "Großes EFH, MFH, Homeoffice + Wärmepumpe",
+    detail: "Besonders sinnvoll mit Wärmepumpe oder E-Auto",
+    bullets: ["Autarkie bis 90% möglich", "Wärmepumpen-Optimierung", "Modular erweiterbar"],
+    price: "ca. 10.000–22.000 €",
+    col: COL.yellow,
+    highlight: true,
+  },
+  {
+    label: "GEWERBE",
+    title: "30–500 kWh",
+    for: "Betriebe, Produktion, Logistik",
+    detail: "Peak Shaving, Lastspitzenkappung, USV-Funktion",
+    bullets: ["Lastspitzen kappen → Netzentgelt sparen", "Unterbrechungsfreie Stromversorgung", "ESG-Messdaten"],
+    price: "Individuelle Kalkulation",
+    col: COL.pink,
+  },
+];
+
+const vorteile = [
+  { no: "01", tag: "AUTARKIE", title: "Nachts mit Solarstrom", body: "Tagsüber produziert die Anlage, abends und nachts läuft der Haushalt vom Speicher. Kein Netzbezug wenn die Sonne nicht scheint." },
+  { no: "02", tag: "ERSPARNIS", title: "Eigenverbrauch maximieren", body: "Ohne Speicher: ~30% Eigenverbrauch. Mit Speicher: 70–85%. Jede kWh die du selbst nutzt ist eine kWh die du nicht kaufen musst." },
+  { no: "03", tag: "NOTSTROM", title: "Blackout-Schutz", body: "Ausgewählte Speicher können als Notstromversorgung fungieren. Bei Netzausfall läuft das Haus weiter — Kühlschrank, Heizung, Licht." },
+  { no: "04", tag: "GEWERBE", title: "Peak Shaving", body: "Gewerbliche Stromtarife werden nach Lastspitzen abgerechnet. Ein Speicher kappt diese Spitzen und spart damit erhebliche Netzentgelte." },
+  { no: "05", tag: "NACHRÜSTUNG", title: "Auf bestehende Anlage", body: "Du hast schon PV aber keinen Speicher? Wir prüfen Kompatibilität mit deinem Wechselrichter und rüsten nach — oft ohne großen Aufwand." },
+  { no: "06", tag: "ZUKUNFT", title: "Dynamische Tarife & Smart Home", body: "Moderne Speicher kommunizieren mit Smart-Home-Systemen und dynamischen Stromtarifen. Strom günstig laden, teuer sparen." },
+];
+
+const brands = [
+  { tag: "Tier 1 · China", title: "BYD", body: "Battery-Box Premium HVS/HVM. Skalierbar von 5 bis 256 kWh, lange Lebensdauer, marktführende Preise.", no: "★" },
+  { tag: "Made in Germany", title: "sonnen", body: "sonnenBatterie 10 mit smarter Software und Cloud-Community. Stärke: integriertes Energiemanagement.", no: "DE" },
+  { tag: "Made in Austria", title: "Fronius", body: "Hybrid-Wechselrichter mit nahtloser Speicherintegration. Sehr zuverlässig, ideal für bestehende Fronius-Anlagen.", no: "AT" },
+  { tag: "Premium", title: "Tesla Powerwall", body: "Powerwall 3: 13,5 kWh, integrierter Wechselrichter, saubere Optik, starke Backup-Funktion.", no: "US" },
+];
+
+const faqs = [
+  {
+    q: "Wie groß soll mein Speicher sein?",
+    a: "Faustregel: Speichergröße in kWh ≈ Tagesverbrauch × 1,0–1,5. Ein 4-Personen-Haushalt mit 12 kWh Tagesverbrauch braucht ~10–15 kWh. Wir berechnen die optimale Größe nach deinem echten Lastprofil.",
+  },
+  {
+    q: "Kann ich einen Speicher nachrüsten?",
+    a: "Ja — in den meisten Fällen. AC-gekoppelte Speicher funktionieren mit fast jeder bestehenden Anlage unabhängig vom Wechselrichter. DC-Kopplung ist effizienter aber nur bei kompatiblen Wechselrichtern möglich. Wir prüfen das kostenlos.",
+  },
+  {
+    q: "Wie lange hält ein Batteriespeicher?",
+    a: "Lithium-Eisenphosphat (LFP) Speicher halten 4.000–6.000 Ladezyklen — das entspricht 15–20 Jahren bei täglicher Nutzung. Herstellergarantien: üblicherweise 10 Jahre auf mindestens 80% Restkapazität.",
+  },
+  {
+    q: "Gibt es Förderung für Speicher?",
+    a: "KfW 270 finanziert PV + Speicher gemeinsam zu günstigen Konditionen. Einige Bundesländer und Gemeinden haben zusätzliche Zuschüsse. Wir beantragen das mit — du musst dich um nichts kümmern.",
+  },
+];
+
+function SpeicherTypes() {
   return (
-    <Section kapitel="EIGENVERBRAUCH" title="OHNE" italicPart="vs." blackPart="MIT_SPEICHER." color={COL.black} blackHeadlineColor={COL.cyan}>
-      <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32, color: COL.yellow }}>
-        Mit Speicher steigt deine Eigenverbrauchsquote von ~30% auf 60–80%. Konkret heißt das:
-      </p>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-        <div style={{ background: COL.pink, color: COL.black, border: `3px solid ${COL.yellow}`, padding: 28 }}>
-          <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 8 }}>► OHNE SPEICHER</div>
-          <div style={{ fontFamily: fonts.heading, fontSize: 80, fontWeight: 800, lineHeight: 0.9, letterSpacing: "-0.04em" }}>{ohne}<span style={{ fontSize: 30 }}>€/J.</span></div>
-          <div style={{ fontFamily: fonts.mono, fontSize: 12, marginTop: 8, opacity: 0.7 }}>30 % Eigenverbrauch · Rest fließt für 8 ct ins Netz</div>
-        </div>
-        <div style={{ background: COL.cyan, color: COL.black, border: `3px solid ${COL.yellow}`, padding: 28 }}>
-          <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 8 }}>► MIT SPEICHER</div>
-          <div style={{ fontFamily: fonts.heading, fontSize: 80, fontWeight: 800, lineHeight: 0.9, letterSpacing: "-0.04em" }}>{mit}<span style={{ fontSize: 30 }}>€/J.</span></div>
-          <div style={{ fontFamily: fonts.mono, fontSize: 12, marginTop: 8, opacity: 0.7 }}>70 % Eigenverbrauch · Du nutzt deinen eigenen Strom</div>
-        </div>
-      </div>
-      <div style={{ marginTop: 24, background: COL.yellow, color: COL.black, padding: 24, border: `3px solid ${COL.yellow}` }}>
-        <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase" }}>► MEHR-ERSPARNIS / JAHR</div>
-        <div style={{ fontFamily: fonts.heading, fontSize: "clamp(56px,8vw,120px)", fontWeight: 800, lineHeight: 1, letterSpacing: "-0.05em", color: COL.red }}>+{diff}<span style={{ fontSize: ".4em", color: COL.black }}> €</span></div>
+    <Section kapitel="TYPEN" title="FÜR" italicPart="jeden" blackPart="BEDARF." color={COL.black}>
+      <div className="types-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
+        {speicherTypes.map((s, i) => (
+          <div key={i} className="lift" style={{
+            background: s.col, border: `3px solid ${s.highlight ? COL.yellow : COL.black}`,
+            padding: 0, position: "relative",
+            transform: `rotate(${i % 2 === 0 ? -0.4 : 0.4}deg)`,
+          }}>
+            {s.highlight && (
+              <div style={{ position: "absolute", top: -18, left: "50%", transform: "translateX(-50%) rotate(-2deg)", background: COL.yellow, color: COL.black, padding: "4px 16px", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, border: `2px solid ${COL.black}`, whiteSpace: "nowrap" }}>
+                ★ MEISTVERKAUFT
+              </div>
+            )}
+            <div style={{ background: COL.black, color: s.col, padding: "16px 20px", borderBottom: `3px solid ${COL.black}` }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, opacity: 0.7, marginBottom: 4 }}>{s.label}</div>
+              <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 36, lineHeight: 0.9, letterSpacing: "-0.04em" }}>{s.title}</div>
+            </div>
+            <div style={{ padding: 20 }}>
+              <div style={{ fontFamily: fonts.mono, fontSize: 11, marginBottom: 8, fontWeight: 700 }}>{s.for}</div>
+              <div style={{ fontFamily: fonts.mono, fontSize: 11, marginBottom: 16, opacity: 0.7 }}>{s.detail}</div>
+              <ul style={{ paddingLeft: 0, listStyle: "none", margin: "0 0 20px", display: "flex", flexDirection: "column", gap: 6 }}>
+                {s.bullets.map((b, j) => (
+                  <li key={j} style={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700 }}>► {b}</li>
+                ))}
+              </ul>
+              <div style={{ borderTop: `2px solid ${COL.black}`, paddingTop: 16, fontFamily: fonts.heading, fontWeight: 800, fontSize: 22, letterSpacing: "-0.02em" }}>{s.price}</div>
+              <a href="#kontakt" style={{ display: "block", marginTop: 16, background: COL.black, color: s.col, padding: "12px 16px", fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase", textDecoration: "none", border: `2px solid ${COL.black}`, textAlign: "center" }}>
+                → BERATUNG ANFRAGEN
+              </a>
+            </div>
+          </div>
+        ))}
       </div>
     </Section>
   );
 }
 
-const sizes = [
-  { l: "EIGENHEIM 4 PERS.", v: "5–8", u: " kWh", s: "ca. 4500 kWh / Jahr Verbrauch" },
-  { l: "GROSSHAUSHALT", v: "10–15", u: " kWh", s: "+ E-Auto, Wärmepumpe" },
-  { l: "GEWERBE / HALLE", v: "30+", u: " kWh", s: "modular skalierbar" },
-];
-
-const brands = [
-  { tag: "Tier 1", title: "BYD", body: "Battery-Box Premium HVS/HVM. Skalierbar, lange Lebensdauer. Aus China, weltweit größter Akku-Hersteller.", no: "★" },
-  { tag: "Made in Germany", title: "sonnen", body: "Allgäuer Hersteller. sonnenBatterie 10 mit smarter Software, Cloud-Optionen.", no: "DE" },
-  { tag: "Made in Austria", title: "Fronius", body: "Hybrid-Wechselrichter mit Speicheroption. Wir verbauen die seit Jahren — extrem zuverlässig.", no: "AT" },
-  { tag: "Premium", title: "Tesla", body: "Powerwall 3. Großer Speicher, schickes Design, Backup-Funktion bei Stromausfall.", no: "US" },
-];
+function Faq() {
+  return (
+    <Section kapitel="FAQ" title="FRAGEN" italicPart="zum" blackPart="SPEICHER." color={COL.yellow}>
+      <div className="faq-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
+        {faqs.map((f, i) => (
+          <div key={i} style={{ background: i % 2 === 0 ? COL.black : COL.pink, color: i % 2 === 0 ? COL.yellow : COL.black, border: `3px solid ${COL.black}`, padding: 28 }}>
+            <div style={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase", marginBottom: 12, color: i % 2 === 0 ? COL.cyan : COL.black, opacity: 0.8 }}>► FRAGE</div>
+            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 22, lineHeight: 1, letterSpacing: "-0.02em", textTransform: "uppercase", margin: "0 0 14px" }}>{f.q}</h3>
+            <p style={{ fontFamily: fonts.serif, fontSize: 16, lineHeight: 1.55, margin: 0, fontStyle: "italic" }}>{f.a}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+  );
+}
 
 function App() {
   return (
     <Page active="speicher">
       <PageHero
-        kapitel="LEISTUNG_02"
-        kicker="STROM-SPEICHER"
-        title="STROM"
-        italicPart="für"
-        blackHeadlinePart="SPÄTER."
-        sub="Stromspeicher heben deine Eigenverbrauchsquote von 30% auf 70%+. Konkret: hunderte Euro mehr im Jahr und unabhängiger vom Netz."
+        kapitel="SPEICHER"
+        kicker="SOLARSTROM_RUND_UM_DIE_UHR"
+        title="NACHTS MIT"
+        italicPart="deiner"
+        blackHeadlinePart="SONNE."
+        sub="Batteriespeicher für neue und bestehende PV-Anlagen — 5 bis 500 kWh. Eigenheim, Mehrfamilienhaus, Gewerbe. Maximale Autarkie, Notstromschutz, Peak Shaving."
         color={COL.cyan}
         accentColor={COL.pink}
-        stickers={[
-          { text: "BYD ★ SONNEN", top: "12%", right: "5%", rot: 4, bg: COL.pink },
-          { text: "Backup-fähig ⚡", top: "78%", left: "3%", rot: -3, bg: COL.yellow },
-        ]}
       />
 
-      <Marquee items={["BYD", "SONNEN", "FRONIUS", "TESLA", "10 J. GARANTIE", "BIS 80% EIGENVERBRAUCH", "BACKUP-FÄHIG"]} />
+      <Marquee items={["5–500 KWH", "NACHRÜSTBAR", "NOTSTROM MÖGLICH", "PEAK SHAVING", "LFP-TECHNOLOGIE", "BIS 20 JAHRE LEBENSDAUER", "KFW-FÖRDERUNG"]} />
 
-      <Calc />
-
-      <Section kapitel="GRÖSSE" title="WIE GROSS" italicPart="muss er" blackPart="SEIN?" color={COL.yellow}>
-        <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
-          Faustregel: 1 kWh Speicher pro 1.000 kWh Jahresverbrauch. Über-dimensionieren ist teuer und macht meist keinen Sinn.
-        </p>
-        <StatGrid items={sizes} color={COL.cyan} alt={COL.yellow} />
+      <Section kapitel="ZAHLEN" title="WAS" italicPart="ein Speicher" blackPart="BRINGT." color={COL.pink}>
+        <StatGrid items={[
+          { l: "Eigenverbrauch mit Speicher", v: "70–85", u: "%", s: "vs. ~30% ohne Speicher" },
+          { l: "Ladezyklen LFP-Technologie", v: "6.000", s: "entspricht 15–20 Jahren Betrieb" },
+          { l: "Herstellergarantie", v: "10", u: " J.", s: "auf mindestens 80% Restkapazität" },
+          { l: "Autarkie möglich", v: "bis 90", u: "%", s: "mit optimierter Anlage + Speicher" },
+        ]} color={COL.cyan} alt={COL.yellow} />
       </Section>
 
-      <Section kapitel="HERSTELLER" title="WAS WIR" italicPart="verbauen —" blackPart="UNGESCHMINKT." color={COL.pink}>
-        <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
-          Wir setzen auf Tier-1. Jeder Hersteller hat Stärken — wir empfehlen je nach Lastprofil und Budget. Keine Provisions-Geschichten.
-        </p>
-        <FeatureGrid cols={4} palette={[COL.yellow, COL.cyan, COL.white, COL.orange]} items={brands}/>
+      <Section kapitel="VORTEILE" title="SECHS" italicPart="gute" blackPart="GRÜNDE." color={COL.yellow}>
+        <FeatureGrid items={vorteile} cols={3} />
       </Section>
 
-      <Section kapitel="EXTRAS" title="MEHR ALS" italicPart="nur" blackPart="STROM_BUNKERN." color={COL.black} blackHeadlineColor={COL.yellow}>
-        <FeatureGrid cols={3} palette={[COL.pink, COL.cyan, COL.orange]} items={[
-          { no: "01", tag: "Notstrom", title: "Backup-Modus", body: "Bei Stromausfall liefert dein Speicher weiter. Kühlschrank, Licht, WLAN — alles bleibt an." },
-          { no: "02", tag: "Smart", title: "App-Steuerung", body: "Du siehst Erzeugung, Verbrauch, Akku-Stand live. Optimierst Großverbraucher (Wärmepumpe, Wallbox)." },
-          { no: "03", tag: "Sektorkopplung", title: "+E-Auto +WP", body: "Speicher koppelt mit Wallbox und Wärmepumpe. Dein eigener Strom wird maximal genutzt." },
-        ]}/>
+      <SpeicherTypes />
+
+      <Section kapitel="HERSTELLER" title="WAS WIR" italicPart="empfehlen —" blackPart="UNGESCHMINKT." color={COL.pink}>
+        <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
+          Wir setzen auf Tier-1-Hersteller. Jeder hat Stärken — wir empfehlen je nach Lastprofil, Budget und bestehendem Wechselrichter. Keine Provisionsgeschichten.
+        </p>
+        <div className="brands-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16 }}>
+          {brands.map((b, i) => (
+            <div key={i} className="lift" style={{ background: [COL.yellow, COL.cyan, COL.white, COL.orange][i], border: `3px solid ${COL.black}`, padding: 24, position: "relative", transform: `rotate(${i%2===0?-0.4:0.4}deg)` }}>
+              <div style={{ position: "absolute", top: -12, right: -12, background: COL.black, color: COL.yellow, padding: "3px 8px", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700 }}>{b.no}</div>
+              <div style={{ fontFamily: fonts.mono, fontSize: 10, opacity: 0.6, marginBottom: 6, textTransform: "uppercase" }}>{b.tag}</div>
+              <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 32, letterSpacing: "-0.03em", textTransform: "uppercase", margin: "0 0 10px" }}>{b.title}</h3>
+              <p style={{ fontFamily: fonts.serif, fontSize: 14, lineHeight: 1.45, margin: 0, fontStyle: "italic" }}>{b.body}</p>
+            </div>
+          ))}
+        </div>
       </Section>
 
       <BigQuote
-        quote="Ein Speicher muss zur Anlage passen, nicht zur Marketingbroschüre. Wir rechnen das durch — und sagen auch, wenn sich's nicht lohnt."
+        quote="Ein Speicher muss zur Anlage passen, nicht zur Marketingbroschüre. Wir rechnen das durch — und sagen auch wenn sich's nicht lohnt."
         by="Doris Pilsner-Albrecht"
-        role="Inhaberin"
+        role="Inhaberin Solar Energie Partner"
         color={COL.orange}
       />
 
+      <Faq />
+
       <Cta
-        kicker="JETZT_SPEICHER"
-        big={<>SPEICHER<br/><span style={{ fontFamily: fonts.serif, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>für deine</span> <span style={{ background: COL.pink, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>ANLAGE.</span></>}
-        sub="Wir sagen dir in 30 Minuten am Telefon, ob sich ein Speicher für dich rechnet. Ehrlich."
+        kicker="DEIN_SPEICHER"
+        big={<>AUTARKIE<br/><span style={{ background: COL.cyan, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>MAXIMIEREN.</span></>}
+        sub="Wir berechnen die optimale Speichergröße für deine Anlage und deinen Verbrauch — kostenlos, ehrlich, ohne Druck."
+        btn="BERATUNG ANFRAGEN"
       />
     </Page>
   );
