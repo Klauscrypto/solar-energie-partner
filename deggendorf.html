@@ -7,6 +7,11 @@
 <meta name="description" content="Photovoltaik Deggendorf: Solar Energie Partner sitzt mitten in Deggendorf — Detterstraße 38. PV-Anlagen für Eigenheim und Gewerbe in Deggendorf, Plattling, Osterhofen und dem Landkreis. Inhabergeführt seit 2014." />
 <meta property="og:title" content="Photovoltaik Deggendorf — Solar Energie Partner" />
 <meta property="og:description" content="Ihr PV-Ansprechpartner direkt in Deggendorf. Keine 75 km, keine Hotline — wir sitzen in der Detterstraße 38. Persönlich, inhabergeführt, seit 2014." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://solar-energie-partner.de/deggendorf.html" />
+<meta property="og:image" content="https://solar-energie-partner.de/pv-eigenheim-klein.jpg" />
+<meta property="og:image:width" content="800" />
+<meta property="og:image:height" content="600" />
 <link rel="canonical" href="https://solar-energie-partner.de/deggendorf.html" />
 
 <script type="application/ld+json">{
@@ -132,193 +137,335 @@
 </style>
 </head>
 <body>
-<div id="root"></div>
-<script src="vendor/react.min.js"></script>
-<script src="vendor/react-dom.min.js"></script>
-<script src="vendor/babel.min.js"></script>
-<script src="data.js"></script>
-<script type="text/babel" src="subpage-shell.jsx"></script>
-<script type="text/babel">
-const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
-const D = window.SITE_DATA;
 
-const leistungen = [
-  {
-    no: "01",
-    tag: "EIGENHEIM",
-    title: "PV fürs Eigenheim",
-    body: "Einfamilienhaus, Doppelhaushälfte, Altbau in der Altstadt oder Neubau am Stadtrand — wir planen nach Ihrem Verbrauch. Referenz: 11 kWp Deggendorf, Amortisation unter 7 Jahren.",
-  },
-  {
-    no: "02",
-    tag: "GEWERBE & LANDWIRTSCHAFT",
-    title: "Gewerbe & Halle",
-    body: "Große Hallendächer in Plattling und Osterhofen, Landwirtschaft im Landkreis. Kauf oder PPA ohne Eigenkapital. Wir kennen die lokalen Flächennutzungspläne.",
-  },
-  {
-    no: "03",
-    tag: "SPEICHER",
-    title: "Batteriespeicher",
-    body: "LFP-Technologie für maximalen Eigenverbrauch — von 30% auf 75% und mehr. Nachrüstbar für Bestandsanlagen. Wir liefern keine Standardgröße, sondern Ihre optimale Größe.",
-  },
-  {
-    no: "04",
-    tag: "STROMVERTRAG",
-    title: "PPA ohne Eigenkapital",
-    body: "Wir bauen, finanzieren und betreiben Ihre gewerbliche Anlage. Sie kaufen nur den Strom — garantiert unter dem Netztarif. Gerne auch für Deggendorfer Vermieter und WEGs.",
-  },
-  {
-    no: "05",
-    tag: "WALLBOX",
-    title: "Wallbox & E-Auto",
-    body: "Überschuss-Laden für Ihr E-Fahrzeug. Integriertes Energiemanagement — Laden wenn die Sonne scheint, einspeisen wenn sie mehr erzeugt als Sie brauchen.",
-  },
-  {
-    no: "06",
-    tag: "REPOWERING",
-    title: "Altanlagen sanieren",
-    body: "Deggendorf hat viele PV-Anlagen aus dem Boom 2008–2013 — viele EEG-Vergütungen laufen jetzt aus. Wir analysieren, modernisieren und machen Ihre Anlage wieder rentabel.",
-  },
-];
+<!-- HEADER -->
+<header style="position:sticky;top:0;z-index:50;background:#0a0a0a;color:#fdfd00;border-bottom:4px solid #fdfd00;padding:10px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;">
+  <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#fdfd00;">
+    <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+    <span style="font-weight:700;">SOLAR // RADIKAL</span>
+  </a>
+  <nav style="display:flex;gap:18px;flex-wrap:wrap;">
+    <a href="eigenheim.html" style="color:#fdfd00;text-decoration:none;">→ Eigenheim</a>
+    <a href="gewerbe.html" style="color:#fdfd00;text-decoration:none;">→ Gewerbe</a>
+    <a href="speicher.html" style="color:#fdfd00;text-decoration:none;">→ Speicher</a>
+    <a href="ppa.html" style="color:#fdfd00;text-decoration:none;">→ PPA</a>
+    <a href="repowering.html" style="color:#fdfd00;text-decoration:none;">→ Repowering</a>
+    <a href="referenzen.html" style="color:#fdfd00;text-decoration:none;">→ Referenzen</a>
+  </nav>
+  <div style="display:flex;gap:14px;align-items:center;">
+    <span style="color:#00ffea;">● LIVE</span>
+    <span id="clk"></span>
+    <a href="kontakt.html" style="padding:8px 14px;background:#fdfd00;color:#0a0a0a;text-decoration:none;font-weight:700;">RUF_AN</a>
+  </div>
+</header>
 
-const process = [
-  {
-    n: "01",
-    title: "Kurzes Gespräch — vor Ort oder Telefon",
-    body: "Sie kommen vorbei in der Detterstraße 38 oder wir rufen zurück. 30 Minuten. Ehrliche Einschätzung — auch wenn die Antwort Nein ist.",
-  },
-  {
-    n: "02",
-    title: "Angebot & Wirtschaftlichkeit",
-    body: "Individuelles Angebot mit Ertragsberechnung, Amortisationsrechnung und aktuellen Fördermöglichkeiten im Landkreis Deggendorf. Kein Kleingedrucktes.",
-  },
-  {
-    n: "03",
-    title: "Koordination & Montage",
-    body: "Wir stimmen alle Gewerke ab: zertifizierte Fachbetriebe aus der Region, Dachdecker, Elektriker, Anmeldung bei Bayernwerk oder Stadtwerken Deggendorf.",
-  },
-  {
-    n: "04",
-    title: "Inbetriebnahme & Übergabe",
-    body: "Anlage läuft, App zeigt den Ertrag, alle Papiere — Marktstammdatenregister, Einspeisevertrag — vollständig übergeben. Montage typisch in 1–3 Tagen.",
-  },
-];
+<!-- HERO -->
+<section style="position:relative;padding:60px 24px 80px;background:#fdfd00;color:#0a0a0a;overflow:hidden;border-bottom:4px solid #0a0a0a;">
+  <div style="position:absolute;top:-180px;right:-180px;width:500px;height:500px;animation:spin 80s linear infinite;pointer-events:none;opacity:0.7;">
+    <svg id="sun0" viewBox="0 0 200 200" style="width:100%;height:100%;">
+      <circle cx="100" cy="100" r="50" fill="#0a0a0a"/>
+      <circle cx="100" cy="100" r="36" fill="#0a0a0a"/>
+    </svg>
+  </div>
+  <div style="position:relative;z-index:2;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;line-height:1.4;">░░░ PHOTOVOLTAIK ░░░ HEIMATSTADT · DETTERSTRASSE 38 ░░░</div>
+    <h1 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(64px,13vw,200px);line-height:0.82;letter-spacing:-0.05em;margin:0;text-transform:uppercase;">
+      DAHEIM. <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">in Deggendorf.</span>
+    </h1>
+    <p style="font-family:'Instrument Serif',serif;font-size:24px;line-height:1.4;font-style:italic;margin-top:32px;max-width:720px;margin-bottom:0;">Solar Energie Partner kommt aus Deggendorf — nicht aus München, nicht aus Frankfurt. Wir kennen jeden Dachtyp, jeden Netzbetreiber und jede Förderrichtlinie in der Region persönlich.</p>
+  </div>
+</section>
 
-function Process() {
-  return (
-    <Section kapitel="ABLAUF" title="SO" italicPart="läuft" blackPart="ES_AB." color={COL.cyan}>
-      <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 0, border: `3px solid ${COL.black}` }}>
-        {process.map((p, i) => (
-          <div key={i} style={{
-            padding: 28,
-            borderRight: i < process.length - 1 ? `2px solid ${COL.black}` : "none",
-            background: i % 2 === 0 ? COL.cyan : COL.yellow,
-          }}>
-            <div style={{ fontFamily: fonts.mono, fontSize: 32, fontWeight: 700, lineHeight: 1, marginBottom: 12, color: COL.black, opacity: 0.25 }}>{p.n}</div>
-            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 20, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 10px", lineHeight: 1 }}>{p.title}</h3>
-            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>{p.body}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
+<!-- MARQUEE -->
+<div style="background:#0a0a0a;color:#fdfd00;padding:20px 0;overflow:hidden;border-top:4px solid #0a0a0a;border-bottom:4px solid #0a0a0a;">
+  <div class="mq">
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ DEGGENDORF</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ PLATTLING</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ OSTERHOFEN</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ LANDKREIS DEGGENDORF</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ SEIT 2014 HIER</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ INHABERGEFÜHRT</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ DEGGENDORF</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ PLATTLING</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ OSTERHOFEN</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ LANDKREIS DEGGENDORF</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ SEIT 2014 HIER</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ INHABERGEFÜHRT</span>
+  </div>
+</div>
 
-function App() {
-  return (
-    <Page active="">
+<!-- ZAHLEN SECTION -->
+<section style="background:#ff7a00;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;opacity:0.8;">░░░ ZAHLEN ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,128px);line-height:0.85;letter-spacing:-0.04em;margin:0 0 40px;text-transform:uppercase;">
+    DAHEIM <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">in</span> <span style="background:#0a0a0a;color:#ff7a00;padding:0 .1em;display:inline-block;transform:skew(-4deg);">DEGGENDORF.</span>
+  </h2>
+  <!-- StatGrid: color=#fdfd00, alt=#00ffea -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);border:3px solid #0a0a0a;background:#ffffff;">
+    <div style="padding:32px 24px;border-right:2px solid #0a0a0a;background:#fdfd00;color:#0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;opacity:0.7;">► METER ENTFERNUNG</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,7vw,96px);line-height:0.85;letter-spacing:-0.04em;">0</div>
+    </div>
+    <div style="padding:32px 24px;border-right:2px solid #0a0a0a;background:#00ffea;color:#0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;opacity:0.7;">► ANLAGEN DEGGENDORF</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,7vw,96px);line-height:0.85;letter-spacing:-0.04em;">50<span style="font-size:.4em;color:#ff00aa;">+</span></div>
+    </div>
+    <div style="padding:32px 24px;border-right:2px solid #0a0a0a;background:#fdfd00;color:#0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;opacity:0.7;">► JAHRE VOR ORT</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,7vw,96px);line-height:0.85;letter-spacing:-0.04em;">12<span style="font-size:.4em;color:#ff00aa;">+</span></div>
+    </div>
+    <div style="padding:32px 24px;background:#00ffea;color:#0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;opacity:0.7;">► STUNDEN BIS RÜCKRUF</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,7vw,96px);line-height:0.85;letter-spacing:-0.04em;">&lt; 24</div>
+    </div>
+  </div>
+</section>
 
-      <PageHero
-        kapitel="PHOTOVOLTAIK"
-        kicker="HEIMATSTADT · DETTERSTRASSE 38"
-        title="DAHEIM."
-        italicPart="in Deggendorf."
-        sub="Solar Energie Partner kommt aus Deggendorf — nicht aus München, nicht aus Frankfurt. Wir kennen jeden Dachtyp, jeden Netzbetreiber und jede Förderrichtlinie in der Region persönlich."
-        color={COL.yellow}
-        accentColor={COL.black}
-      />
-
-      <Marquee items={["DEGGENDORF", "PLATTLING", "OSTERHOFEN", "LANDKREIS DEGGENDORF", "SEIT 2014 HIER", "INHABERGEFÜHRT"]} />
-
-      <Section kapitel="ZAHLEN" title="DAHEIM" italicPart="in" blackPart="DEGGENDORF." color={COL.orange}>
-        <StatGrid items={[
-          { l: "Meter Entfernung", v: "0" },
-          { l: "Anlagen Deggendorf", v: "50+" },
-          { l: "Jahre vor Ort", v: "12+" },
-          { l: "Stunden bis Rückruf", v: "< 24" },
-        ]} color={COL.yellow} alt={COL.cyan} />
-      </Section>
-
-      <Section kapitel="WARUM DEGGENDORF?" title="WARUM" italicPart="eigentlich" blackPart="DEGGENDORF?" color={COL.pink}>
-        <div className="region-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
-          <div>
-            <p style={{ fontFamily: fonts.serif, fontSize: 20, lineHeight: 1.6, fontStyle: "italic", marginTop: 0, marginBottom: 24 }}>
-              Weil es einen Unterschied macht, ob Ihr Berater eine Stunde anreist oder um die Ecke sitzt. Wir kennen die Stadtwerke Deggendorf und Bayernwerk Netz persönlich — kein anonymer Support-Kanal, sondern direkte Leitungen.
-            </p>
-            <p style={{ fontFamily: fonts.serif, fontSize: 19, lineHeight: 1.6, fontStyle: "italic", marginBottom: 24 }}>
-              Deggendorf hat eine einzigartige Dachlandschaft: steile historische Satteldächer in der Altstadt, ideal für hocheffiziente Modul-Reihen. Flache Scheunen- und Lagerhallendächer im Landkreis — perfekt für große Freifeld-nahe Aufdachanlagen. Neue Siedlungen in Natternberg, Fischerdorf und Grafling mit optimalen Süddächern. Wir kennen alle drei.
-            </p>
-            <p style={{ fontFamily: fonts.serif, fontSize: 19, lineHeight: 1.6, fontStyle: "italic", marginBottom: 24 }}>
-              Doris Pilsner-Albrecht berät ihre Deggendorfer Nachbarn bereits seit 2014. Rund 50 Anlagen allein in der Stadt und dem direkten Umland — jede einzelne persönlich begleitet.
-            </p>
-            <p style={{ fontFamily: fonts.serif, fontSize: 19, lineHeight: 1.6, fontStyle: "italic", marginBottom: 0 }}>
-              Kurze Wege bedeuten schnellere Montage. Lokale Fachbetriebe aus dem Landkreis kommen ohne Anfahrtskosten. Das Ergebnis: niedrigere Installationskosten und ein Ansprechpartner, den Sie notfalls persönlich in der Detterstraße 38 besuchen können.
-            </p>
-          </div>
-          <div>
-            <div style={{ border: `3px solid ${COL.black}`, background: COL.black, color: COL.yellow, padding: 28, marginBottom: 20 }}>
-              <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, color: COL.cyan, marginBottom: 16, textTransform: "uppercase", letterSpacing: "0.05em" }}>► DEGGENDORF IM ÜBERBLICK</div>
-              {[
-                ["Netzbetreiber Stadt", "Stadtwerke Deggendorf GmbH — wir kennen die Ansprechpartner persönlich"],
-                ["Netzbetreiber Landkreis", "Bayernwerk Netz GmbH — Plattling, Osterhofen, Umland"],
-                ["Typische Dächer Altstadt", "Steile Satteldächer, Mansard, Walmdach — Baujahr 1950–1990"],
-                ["Typische Dächer Landkreis", "Flache Scheunen- und Hallendächer, landwirtschaftl. Gebäude"],
-                ["Förderung Landkreis", "0% MwSt., KfW 270, ggf. kommunale Fördertöpfe — wir prüfen alles"],
-                ["Referenz vor Ort", "EFH Deggendorf, 11 kWp — Doris' eigene Anlage seit 2016, besichtigbar"],
-              ].map(([k, v], i) => (
-                <div key={i} style={{ borderTop: i === 0 ? "none" : `1px solid rgba(253,253,0,0.2)`, paddingTop: i === 0 ? 0 : 12, marginTop: i === 0 ? 0 : 12 }}>
-                  <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", color: COL.cyan, marginBottom: 4 }}>→ {k}</div>
-                  <div style={{ fontFamily: fonts.serif, fontSize: 14, fontStyle: "italic", opacity: 0.85, lineHeight: 1.4 }}>{v}</div>
-                </div>
-              ))}
-            </div>
-            <div style={{ border: `3px solid ${COL.black}`, background: COL.yellow, color: COL.black, padding: 24 }}>
-              <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, marginBottom: 12, textTransform: "uppercase", letterSpacing: "0.05em" }}>► REFERENZ HEIMATSTADT</div>
-              <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 22, lineHeight: 1, textTransform: "uppercase", letterSpacing: "-0.02em", marginBottom: 10 }}>EFH DEGGENDORF — 11 KWP</div>
-              <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.45, fontStyle: "italic", margin: 0 }}>
-                Doris' eigene Anlage. Seit 2016 in Betrieb. Süddach, 35° Neigung, LFP-Speicher 10 kWh. Eigenverbrauchsquote aktuell 76%. Amortisation in Jahr 7 erreicht. Besichtigung nach Absprache möglich.
-              </p>
-            </div>
-          </div>
+<!-- WARUM DEGGENDORF SECTION -->
+<section style="background:#ff00aa;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;opacity:0.8;">░░░ WARUM DEGGENDORF? ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,128px);line-height:0.85;letter-spacing:-0.04em;margin:0 0 40px;text-transform:uppercase;">
+    WARUM <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">eigentlich</span> <span style="background:#0a0a0a;color:#ff00aa;padding:0 .1em;display:inline-block;transform:skew(-4deg);">DEGGENDORF?</span>
+  </h2>
+  <div class="region-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+    <div>
+      <p style="font-family:'Instrument Serif',serif;font-size:20px;line-height:1.6;font-style:italic;margin-top:0;margin-bottom:24px;">
+        Weil es einen Unterschied macht, ob Ihr Berater eine Stunde anreist oder um die Ecke sitzt. Wir kennen die Stadtwerke Deggendorf und Bayernwerk Netz persönlich — kein anonymer Support-Kanal, sondern direkte Leitungen.
+      </p>
+      <p style="font-family:'Instrument Serif',serif;font-size:19px;line-height:1.6;font-style:italic;margin-bottom:24px;">
+        Deggendorf hat eine einzigartige Dachlandschaft: steile historische Satteldächer in der Altstadt, ideal für hocheffiziente Modul-Reihen. Flache Scheunen- und Lagerhallendächer im Landkreis — perfekt für große Freifeld-nahe Aufdachanlagen. Neue Siedlungen in Natternberg, Fischerdorf und Grafling mit optimalen Süddächern. Wir kennen alle drei.
+      </p>
+      <p style="font-family:'Instrument Serif',serif;font-size:19px;line-height:1.6;font-style:italic;margin-bottom:24px;">
+        Doris Pilsner-Albrecht berät ihre Deggendorfer Nachbarn bereits seit 2014. Rund 50 Anlagen allein in der Stadt und dem direkten Umland — jede einzelne persönlich begleitet.
+      </p>
+      <p style="font-family:'Instrument Serif',serif;font-size:19px;line-height:1.6;font-style:italic;margin-bottom:0;">
+        Kurze Wege bedeuten schnellere Montage. Lokale Fachbetriebe aus dem Landkreis kommen ohne Anfahrtskosten. Das Ergebnis: niedrigere Installationskosten und ein Ansprechpartner, den Sie notfalls persönlich in der Detterstraße 38 besuchen können.
+      </p>
+    </div>
+    <div>
+      <!-- Info card -->
+      <div style="border:3px solid #0a0a0a;background:#0a0a0a;color:#fdfd00;padding:28px;margin-bottom:20px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.05em;">► DEGGENDORF IM ÜBERBLICK</div>
+        <div style="border-top:none;padding-top:0;margin-top:0;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;margin-bottom:4px;">→ NETZBETREIBER STADT</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;opacity:0.85;line-height:1.4;">Stadtwerke Deggendorf GmbH — wir kennen die Ansprechpartner persönlich</div>
         </div>
-      </Section>
+        <div style="border-top:1px solid rgba(253,253,0,0.2);padding-top:12px;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;margin-bottom:4px;">→ NETZBETREIBER LANDKREIS</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;opacity:0.85;line-height:1.4;">Bayernwerk Netz GmbH — Plattling, Osterhofen, Umland</div>
+        </div>
+        <div style="border-top:1px solid rgba(253,253,0,0.2);padding-top:12px;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;margin-bottom:4px;">→ TYPISCHE DÄCHER ALTSTADT</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;opacity:0.85;line-height:1.4;">Steile Satteldächer, Mansard, Walmdach — Baujahr 1950–1990</div>
+        </div>
+        <div style="border-top:1px solid rgba(253,253,0,0.2);padding-top:12px;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;margin-bottom:4px;">→ TYPISCHE DÄCHER LANDKREIS</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;opacity:0.85;line-height:1.4;">Flache Scheunen- und Hallendächer, landwirtschaftl. Gebäude</div>
+        </div>
+        <div style="border-top:1px solid rgba(253,253,0,0.2);padding-top:12px;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;margin-bottom:4px;">→ FÖRDERUNG LANDKREIS</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;opacity:0.85;line-height:1.4;">0% MwSt., KfW 270, ggf. kommunale Fördertöpfe — wir prüfen alles</div>
+        </div>
+        <div style="border-top:1px solid rgba(253,253,0,0.2);padding-top:12px;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;margin-bottom:4px;">→ REFERENZ VOR ORT</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;opacity:0.85;line-height:1.4;">EFH Deggendorf, 11 kWp — Doris' eigene Anlage seit 2016, besichtigbar</div>
+        </div>
+      </div>
+      <!-- Referenz card -->
+      <div style="border:3px solid #0a0a0a;background:#fdfd00;color:#0a0a0a;padding:24px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.05em;">► REFERENZ HEIMATSTADT</div>
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;line-height:1;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:10px;">EFH DEGGENDORF — 11 KWP</div>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;font-style:italic;margin:0;">
+          Doris' eigene Anlage. Seit 2016 in Betrieb. Süddach, 35° Neigung, LFP-Speicher 10 kWh. Eigenverbrauchsquote aktuell 76%. Amortisation in Jahr 7 erreicht. Besichtigung nach Absprache möglich.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <Section kapitel="LEISTUNGEN" title="WAS" italicPart="wir" blackPart="KOORDINIEREN." color={COL.yellow}>
-        <FeatureGrid items={leistungen} cols={3} />
-      </Section>
+<!-- LEISTUNGEN SECTION -->
+<section style="background:#fdfd00;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;opacity:0.8;">░░░ LEISTUNGEN ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,128px);line-height:0.85;letter-spacing:-0.04em;margin:0 0 40px;text-transform:uppercase;">
+    WAS <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">wir</span> <span style="background:#0a0a0a;color:#fdfd00;padding:0 .1em;display:inline-block;transform:skew(-4deg);">KOORDINIEREN.</span>
+  </h2>
+  <!-- FeatureGrid: 3 cols, palette cycles [#ff00aa, #00ffea, #ff7a00, #fdfd00, #ff00aa, #00ffea] -->
+  <div class="leistung-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+    <div class="lift" style="background:#ff00aa;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(-0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">01</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── EIGENHEIM ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">PV fürs Eigenheim</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">Einfamilienhaus, Doppelhaushälfte, Altbau in der Altstadt oder Neubau am Stadtrand — wir planen nach Ihrem Verbrauch. Referenz: 11 kWp Deggendorf, Amortisation unter 7 Jahren.</p>
+    </div>
+    <div class="lift" style="background:#00ffea;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">02</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── GEWERBE & LANDWIRTSCHAFT ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">Gewerbe & Halle</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">Große Hallendächer in Plattling und Osterhofen, Landwirtschaft im Landkreis. Kauf oder PPA ohne Eigenkapital. Wir kennen die lokalen Flächennutzungspläne.</p>
+    </div>
+    <div class="lift" style="background:#ff7a00;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(-0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">03</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── SPEICHER ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">Batteriespeicher</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">LFP-Technologie für maximalen Eigenverbrauch — von 30% auf 75% und mehr. Nachrüstbar für Bestandsanlagen. Wir liefern keine Standardgröße, sondern Ihre optimale Größe.</p>
+    </div>
+    <div class="lift" style="background:#fdfd00;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">04</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── STROMVERTRAG ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">PPA ohne Eigenkapital</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">Wir bauen, finanzieren und betreiben Ihre gewerbliche Anlage. Sie kaufen nur den Strom — garantiert unter dem Netztarif. Gerne auch für Deggendorfer Vermieter und WEGs.</p>
+    </div>
+    <div class="lift" style="background:#ff00aa;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(-0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">05</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── WALLBOX ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">Wallbox & E-Auto</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">Überschuss-Laden für Ihr E-Fahrzeug. Integriertes Energiemanagement — Laden wenn die Sonne scheint, einspeisen wenn sie mehr erzeugt als Sie brauchen.</p>
+    </div>
+    <div class="lift" style="background:#00ffea;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">06</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── REPOWERING ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">Altanlagen sanieren</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">Deggendorf hat viele PV-Anlagen aus dem Boom 2008–2013 — viele EEG-Vergütungen laufen jetzt aus. Wir analysieren, modernisieren und machen Ihre Anlage wieder rentabel.</p>
+    </div>
+  </div>
+</section>
 
-      <Process />
+<!-- ABLAUF SECTION -->
+<section style="background:#00ffea;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;opacity:0.8;">░░░ ABLAUF ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,128px);line-height:0.85;letter-spacing:-0.04em;margin:0 0 40px;text-transform:uppercase;">
+    SO <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">läuft</span> <span style="background:#0a0a0a;color:#00ffea;padding:0 .1em;display:inline-block;transform:skew(-4deg);">ES_AB.</span>
+  </h2>
+  <div class="process-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:3px solid #0a0a0a;">
+    <div style="padding:28px;border-right:2px solid #0a0a0a;background:#00ffea;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">01</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;">Kurzes Gespräch — vor Ort oder Telefon</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;">Sie kommen vorbei in der Detterstraße 38 oder wir rufen zurück. 30 Minuten. Ehrliche Einschätzung — auch wenn die Antwort Nein ist.</p>
+    </div>
+    <div style="padding:28px;border-right:2px solid #0a0a0a;background:#fdfd00;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">02</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;">Angebot & Wirtschaftlichkeit</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;">Individuelles Angebot mit Ertragsberechnung, Amortisationsrechnung und aktuellen Fördermöglichkeiten im Landkreis Deggendorf. Kein Kleingedrucktes.</p>
+    </div>
+    <div style="padding:28px;border-right:2px solid #0a0a0a;background:#00ffea;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">03</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;">Koordination & Montage</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;">Wir stimmen alle Gewerke ab: zertifizierte Fachbetriebe aus der Region, Dachdecker, Elektriker, Anmeldung bei Bayernwerk oder Stadtwerken Deggendorf.</p>
+    </div>
+    <div style="padding:28px;background:#fdfd00;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">04</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;">Inbetriebnahme & Übergabe</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;">Anlage läuft, App zeigt den Ertrag, alle Papiere — Marktstammdatenregister, Einspeisevertrag — vollständig übergeben. Montage typisch in 1–3 Tagen.</p>
+    </div>
+  </div>
+</section>
 
-      <BigQuote
-        quote="Deggendorf ist meine Heimatstadt. Hier bin ich aufgewachsen, hier habe ich gegründet, hier steht meine eigene PV-Anlage auf dem Dach. Ich nehme jeden Deggendorfer Auftrag persönlich."
-        by="Doris Pilsner-Albrecht"
-        role="Inhaberin · Detterstraße 38"
-        color={COL.cyan}
-      />
+<!-- BIG QUOTE -->
+<section style="background:#00ffea;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <blockquote style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(32px,4.5vw,64px);line-height:1.15;font-style:italic;letter-spacing:-0.02em;max-width:1100px;">"Deggendorf ist meine Heimatstadt. Hier bin ich aufgewachsen, hier habe ich gegründet, hier steht meine eigene PV-Anlage auf dem Dach. Ich nehme jeden Deggendorfer Auftrag persönlich."</blockquote>
+  <div style="margin-top:32px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;font-weight:700;">► Doris Pilsner-Albrecht<span style="opacity:0.6;"> · Inhaberin · Detterstraße 38</span></div>
+</section>
 
-      <Cta
-        kicker="DEGGENDORF"
-        big="EINFACH VORBEIKOMMEN."
-        sub="Detterstraße 38, 94469 Deggendorf. Oder ruf an — wir sind meistens da."
-        href="kontakt.html"
-        btn="KONTAKT AUFNEHMEN"
-      />
+<!-- CTA -->
+<section style="background:#0a0a0a;color:#fdfd00;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;color:#00ffea;">░░░ DEGGENDORF ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,11vw,180px);line-height:0.85;letter-spacing:-0.05em;margin:0;text-transform:uppercase;">EINFACH VORBEIKOMMEN.</h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;margin-top:16px;opacity:0.9;max-width:720px;">Detterstraße 38, 94469 Deggendorf. Oder ruf an — wir sind meistens da.</p>
+  <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;">
+    <a href="kontakt.html" class="lift" style="background:#fdfd00;color:#0a0a0a;padding:20px 28px;border:3px solid #fdfd00;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;text-decoration:none;letter-spacing:-0.01em;">[→] KONTAKT AUFNEHMEN</a>
+    <a href="tel:+4999140227560" class="lift" style="background:#ff00aa;color:#0a0a0a;padding:20px 28px;border:3px solid #fdfd00;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;text-decoration:none;letter-spacing:-0.01em;">[☎] +49 991 40227560</a>
+  </div>
+</section>
 
-    </Page>
-  );
-}
+<!-- FOOTER -->
+<footer style="background:#0a0a0a;color:#fdfd00;border-top:4px solid #fdfd00;">
+  <div style="padding:60px 24px;border-bottom:2px solid #fdfd00;">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:32px;">
+      <div>
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:56px;line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;">SOLAR<br><span style="background:#fdfd00;color:#0a0a0a;padding:0 .1em;display:inline-block;">RADIKAL.</span></div>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;font-style:italic;max-width:320px;margin-top:16px;opacity:0.85;">Photovoltaik. Speicher. PPA. Aus Deggendorf für Bayern, Baden-Württemberg und bundesweit auf Anfrage.</p>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► LEISTUNG</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="eigenheim.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Eigenheim</a></li>
+          <li><a href="gewerbe.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Gewerbe</a></li>
+          <li><a href="speicher.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Speicher</a></li>
+          <li><a href="ppa.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">PPA-Vertrag</a></li>
+          <li><a href="repowering.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Repowering</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► WISSEN</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="foerderung.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Förderung 2026</a></li>
+          <li><a href="blog/" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Blog &amp; Ratgeber</a></li>
+          <li><a href="index.html#faq" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">FAQ</a></li>
+          <li><a href="referenzen.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Referenzen</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► FIRMA</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="ueber-uns.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Über uns</a></li>
+          <li><a href="kontakt.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Kontakt</a></li>
+          <li><a href="referenzen.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Referenzen</a></li>
+          <li><a href="impressum.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Impressum</a></li>
+          <li><a href="datenschutz.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Datenschutz</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► KONTAKT</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="tel:+4999140227560" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">+49 991 40227560</a></li>
+          <li><a href="mailto:info@solar-energie-partner.de" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">info@solar-energie-partner.de</a></li>
+          <li><a href="#" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Detterstraße 38</a></li>
+          <li><a href="#" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">94469 Deggendorf</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- City strip -->
+  <div style="padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00ffea;text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-right:8px;">► EINSATZGEBIET:</span>
+    <a href="deggendorf.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Deggendorf</a>
+    <a href="straubing.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Straubing</a>
+    <a href="passau.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Passau</a>
+    <a href="landshut.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Landshut</a>
+    <a href="regensburg.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Regensburg</a>
+    <a href="muenchen.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">München</a>
+    <a href="augsburg.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Augsburg</a>
+    <a href="ingolstadt.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Ingolstadt</a>
+  </div>
+  <!-- Bottom strip -->
+  <div style="padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;">
+    <span>© 2026 SOLAR_ENERGIE_PARTNER ░ PILSNER_VERTRIEBS_GMBH ░ DEGGENDORF</span>
+    <span style="display:flex;gap:20px;">
+      <a href="impressum.html" style="color:#fdfd00;text-decoration:none;">IMPRESSUM</a>
+      <a href="datenschutz.html" style="color:#fdfd00;text-decoration:none;">DATENSCHUTZ</a>
+    </span>
+  </div>
+</footer>
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+<!-- WhatsApp -->
+<a href="https://wa.me/491753560019?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20PV-Anlage." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Kontakt" style="position:fixed;bottom:24px;right:24px;z-index:999;width:60px;height:60px;border-radius:50%;background:#25D366;border:3px solid #0a0a0a;display:flex;align-items:center;justify-content:center;box-shadow:4px 4px 0 #0a0a0a;text-decoration:none;">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<script>
+(function(){
+  function clk(){var e=document.getElementById('clk');if(e)e.textContent=new Date().toLocaleTimeString('de-DE');}
+  clk();setInterval(clk,1000);
+  document.querySelectorAll('[id^="sun"]').forEach(function(s){
+    for(var i=0;i<36;i++){
+      var a=i*Math.PI*2/36;
+      var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('x1',100+Math.cos(a)*60);l.setAttribute('y1',100+Math.sin(a)*60);
+      l.setAttribute('x2',100+Math.cos(a)*92);l.setAttribute('y2',100+Math.sin(a)*92);
+      l.setAttribute('stroke','#0a0a0a');l.setAttribute('stroke-width','1.5');
+      s.insertBefore(l,s.firstChild);
+    }
+  });
+})();
 </script>
 </body>
 </html>

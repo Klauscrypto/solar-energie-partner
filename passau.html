@@ -7,6 +7,11 @@
 <meta name="description" content="Photovoltaik in Passau, Freyung-Grafenau und dem Passauer Land — Solar Energie Partner koordiniert zertifizierte Fachbetriebe für Ihr PV-Projekt. Kostenlose Erstberatung, 55 km von Passau." />
 <meta property="og:title" content="Photovoltaik Passau — Solar Energie Partner" />
 <meta property="og:description" content="Solaranlagen für Eigenheim und Gewerbe in Passau und Umgebung. Koordiniert von Solar Energie Partner aus Deggendorf — ehrlich beraten, professionell umgesetzt." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://solar-energie-partner.de/passau.html" />
+<meta property="og:image" content="https://solar-energie-partner.de/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <link rel="canonical" href="https://solar-energie-partner.de/passau.html" />
 <script type="application/ld+json">
 {
@@ -101,188 +106,323 @@
     header nav{display:none !important}
     .process-grid{grid-template-columns:1fr !important}
     .faq-grid{grid-template-columns:1fr !important}
+    .feat-grid{grid-template-columns:1fr !important}
+    .stat-grid{grid-template-columns:repeat(2,1fr) !important}
+    .region-grid{grid-template-columns:1fr !important}
   }
 </style>
 </head>
-<body>
-<div id="root"></div>
-<script src="vendor/react.min.js"></script>
-<script src="vendor/react-dom.min.js"></script>
-<script src="vendor/babel.min.js"></script>
-<script src="data.js"></script>
-<script type="text/babel" src="subpage-shell.jsx"></script>
-<script type="text/babel">
-const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
-const D = window.SITE_DATA;
+<body style="margin:0;padding:0;background:#0a0a0a;">
 
-const leistungen = [
-  {
-    no: "01",
-    tag: "EIGENHEIM",
-    title: "Eigenheim PV",
-    body: "Solaranlage fürs Einfamilienhaus in Passau und Umgebung. Auslegung nach Ihrem Stromverbrauch, nicht nach Dachfläche. Amortisation ab 5 Jahren.",
-  },
-  {
-    no: "02",
-    tag: "GEWERBE",
-    title: "Gewerbe PV",
-    body: "Hallendächer, Lager, Produktion im Passauer Land. 50 bis 750+ kWp, Kauf oder PPA ohne Kapitaleinsatz. Ein Ansprechpartner, ein Festpreis.",
-  },
-  {
-    no: "03",
-    tag: "SPEICHER",
-    title: "Batteriespeicher",
-    body: "LFP-Speicher für neue und bestehende Anlagen. Eigenverbrauchsquote von 30% auf bis zu 85% steigern — auch nachrüstbar für ältere Passauer Anlagen.",
-  },
-  {
-    no: "04",
-    tag: "STROMVERTRAG",
-    title: "PPA-Vertrag",
-    body: "Kein Kapital nötig. Wir bauen und betreiben die Anlage auf Ihrem Gewerbedach — Sie zahlen nur den Strom, garantiert unter dem Netztarif.",
-  },
-  {
-    no: "05",
-    tag: "E-MOBILITÄT",
-    title: "Wallbox",
-    body: "Solarüberschuss-Laden für Ihr E-Auto. Wallbox-Installation mit automatischer Steuerung — Laden wenn die Sonne scheint, Netz schonen wenn sie es nicht tut.",
-  },
-  {
-    no: "06",
-    tag: "ALTANLAGEN",
-    title: "Repowering",
-    body: "EEG läuft aus, Wechselrichter defekt oder Dach saniert? Wir analysieren Ihre Bestandsanlage und machen sie fit für die nächsten 20 Jahre.",
-  },
-];
+<!-- HEADER -->
+<header style="position:sticky;top:0;z-index:50;background:#0a0a0a;color:#fdfd00;border-bottom:4px solid #fdfd00;padding:10px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;">
+  <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#fdfd00;">
+    <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+    <span style="font-weight:700;">SOLAR // RADIKAL</span>
+  </a>
+  <nav style="display:flex;gap:18px;flex-wrap:wrap;">
+    <a href="eigenheim.html" style="color:#fdfd00;text-decoration:none;">→ Eigenheim</a>
+    <a href="gewerbe.html" style="color:#fdfd00;text-decoration:none;">→ Gewerbe</a>
+    <a href="speicher.html" style="color:#fdfd00;text-decoration:none;">→ Speicher</a>
+    <a href="ppa.html" style="color:#fdfd00;text-decoration:none;">→ PPA</a>
+    <a href="repowering.html" style="color:#fdfd00;text-decoration:none;">→ Repowering</a>
+    <a href="referenzen.html" style="color:#fdfd00;text-decoration:none;">→ Referenzen</a>
+  </nav>
+  <div style="display:flex;gap:14px;align-items:center;">
+    <span style="color:#00ffea;">● LIVE</span>
+    <span id="clk"></span>
+    <a href="kontakt.html" style="padding:8px 14px;background:#fdfd00;color:#0a0a0a;text-decoration:none;font-weight:700;">RUF_AN</a>
+  </div>
+</header>
 
-const process = [
-  {
-    n: "01",
-    title: "Kostenloses Erstgespräch",
-    body: "Telefon, Video oder vor Ort in Passau. 30 Minuten. Wir hören zu, fragen genau — und sagen Ihnen ehrlich, ob sich die Investition für Sie rechnet.",
-  },
-  {
-    n: "02",
-    title: "Angebot & Wirtschaftlichkeit",
-    body: "Individuelles Angebot mit Ertragsberechnung auf Basis der Passauer Sonneneinstrahlung, Amortisation und realen Strompreis-Szenarien. Keine versteckten Kosten.",
-  },
-  {
-    n: "03",
-    title: "Koordination & Montage",
-    body: "Wir stimmen alle Gewerke ab: zertifizierte Fachbetriebe aus der Region, Dachdecker, Elektriker, Bayernwerk-Anmeldung. Sie kümmern sich um nichts.",
-  },
-  {
-    n: "04",
-    title: "Inbetriebnahme & Übergabe",
-    body: "Anlage in 1–3 Tagen montiert. Alle Papiere fertig — Marktstammdatenregister, Einspeisevertrag, Monitoring-App. Erst fertig wenn Sie zufrieden sind.",
-  },
-];
+<!-- HERO -->
+<section style="position:relative;padding:60px 24px 80px;background:#0a0a0a;color:#fdfd00;overflow:hidden;border-bottom:4px solid #0a0a0a;">
+  <div style="position:absolute;top:-180px;right:-180px;width:500px;height:500px;animation:spin 80s linear infinite;pointer-events:none;opacity:0.7;">
+    <svg id="sun0" viewBox="0 0 200 200" style="width:100%;height:100%;">
+      <circle cx="100" cy="100" r="50" fill="#0a0a0a"/>
+      <circle cx="100" cy="100" r="36" fill="#ff00aa"/>
+    </svg>
+  </div>
+  <div style="position:relative;z-index:2;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;line-height:1.4;">░░░ PHOTOVOLTAIK ░░░ PASSAU_PASSAUER_LAND_FREYUNG-GRAFENAU ░░░</div>
+    <h1 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(64px,13vw,200px);line-height:0.82;letter-spacing:-0.05em;margin:0;text-transform:uppercase;">
+      PHOTOVOLTAIK <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">in Passau.</span>
+    </h1>
+    <p style="font-family:'Instrument Serif',serif;font-size:24px;line-height:1.4;font-style:italic;margin-top:32px;max-width:720px;margin-bottom:0;">Solaranlagen für Eigenheim und Gewerbe in Passau, Freyung-Grafenau und dem Passauer Land — koordiniert von Solar Energie Partner aus Deggendorf.</p>
+  </div>
+</section>
 
-function Process() {
-  return (
-    <Section kapitel="ABLAUF" title="SO" italicPart="läuft" blackPart="ES_AB." color={COL.cyan}>
-      <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 0, border: `3px solid ${COL.black}` }}>
-        {process.map((p, i) => (
-          <div key={i} style={{
-            padding: 28,
-            borderRight: i < process.length - 1 ? `2px solid ${COL.black}` : "none",
-            background: i % 2 === 0 ? COL.cyan : COL.yellow,
-          }}>
-            <div style={{ fontFamily: fonts.mono, fontSize: 32, fontWeight: 700, lineHeight: 1, marginBottom: 12, color: COL.black, opacity: 0.25 }}>{p.n}</div>
-            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 20, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 10px", lineHeight: 1 }}>{p.title}</h3>
-            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>{p.body}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
+<!-- MARQUEE -->
+<div style="background:#0a0a0a;color:#fdfd00;padding:20px 0;overflow:hidden;border-top:4px solid #0a0a0a;border-bottom:4px solid #0a0a0a;">
+  <div class="mq">
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ PASSAU</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ PASSAUER LAND</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ FREYUNG-GRAFENAU</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ SEIT 2014</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ 55 KM VON PASSAU</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ KOSTENLOS BERATEN</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ PASSAU</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ PASSAUER LAND</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ FREYUNG-GRAFENAU</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ SEIT 2014</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ 55 KM VON PASSAU</span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em;">★ KOSTENLOS BERATEN</span>
+  </div>
+</div>
 
-function App() {
-  return (
-    <Page active="">
+<!-- ZAHLEN SECTION -->
+<section style="background:#ff00aa;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;opacity:0.8;">░░░ ZAHLEN ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,128px);line-height:0.85;letter-spacing:-0.04em;margin:0 0 40px;text-transform:uppercase;">
+    PASSAU <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">in</span> <span style="background:#0a0a0a;color:#ff00aa;padding:0 .1em;display:inline-block;transform:skew(-4deg);">ZAHLEN.</span>
+  </h2>
+  <div class="stat-grid" style="display:grid;grid-template-columns:repeat(4,1fr);border:3px solid #0a0a0a;background:#ffffff;">
+    <div style="padding:32px 24px;border-right:2px solid #0a0a0a;background:#00ffea;color:#0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;opacity:0.7;">► km nach Passau</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,7vw,96px);line-height:0.85;letter-spacing:-0.04em;">55</div>
+      <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;margin-top:8px;">Kilometer Entfernung</div>
+    </div>
+    <div style="padding:32px 24px;border-right:2px solid #0a0a0a;background:#fdfd00;color:#0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;opacity:0.7;">► Anlagen Niederbayern</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,7vw,96px);line-height:0.85;letter-spacing:-0.04em;">200<span style="font-size:.4em;color:#ff00aa;">+</span></div>
+      <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;margin-top:8px;">Installierte Anlagen</div>
+    </div>
+    <div style="padding:32px 24px;border-right:2px solid #0a0a0a;background:#00ffea;color:#0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;opacity:0.7;">► Jahre Erfahrung</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,7vw,96px);line-height:0.85;letter-spacing:-0.04em;">12<span style="font-size:.4em;color:#ff00aa;">+</span></div>
+      <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;margin-top:8px;">Seit 2014 aktiv</div>
+    </div>
+    <div style="padding:32px 24px;background:#fdfd00;color:#0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px;opacity:0.7;">► Tage bis Anlage läuft</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,7vw,96px);line-height:0.85;letter-spacing:-0.04em;">1–3</div>
+      <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;margin-top:8px;">Montagetage typisch</div>
+    </div>
+  </div>
+</section>
 
-      <PageHero
-        kapitel="PHOTOVOLTAIK"
-        kicker="PASSAU_PASSAUER_LAND_FREYUNG-GRAFENAU"
-        title="PHOTOVOLTAIK"
-        italicPart="in Passau."
-        sub="Solaranlagen für Eigenheim und Gewerbe in Passau, Freyung-Grafenau und dem Passauer Land — koordiniert von Solar Energie Partner aus Deggendorf."
-        color={COL.black}
-        accentColor={COL.pink}
-      />
+<!-- LEISTUNGEN SECTION -->
+<section style="background:#fdfd00;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;opacity:0.8;">░░░ LEISTUNGEN ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,128px);line-height:0.85;letter-spacing:-0.04em;margin:0 0 40px;text-transform:uppercase;">
+    WAS <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">wir</span> <span style="background:#0a0a0a;color:#fdfd00;padding:0 .1em;display:inline-block;transform:skew(-4deg);">KOORDINIEREN.</span>
+  </h2>
+  <div class="feat-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+    <div class="lift" style="background:#ff00aa;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(-0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">01</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── EIGENHEIM ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">Eigenheim PV</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">Solaranlage fürs Einfamilienhaus in Passau und Umgebung. Auslegung nach Ihrem Stromverbrauch, nicht nach Dachfläche. Amortisation ab 5 Jahren.</p>
+    </div>
+    <div class="lift" style="background:#00ffea;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">02</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── GEWERBE ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">Gewerbe PV</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">Hallendächer, Lager, Produktion im Passauer Land. 50 bis 750+ kWp, Kauf oder PPA ohne Kapitaleinsatz. Ein Ansprechpartner, ein Festpreis.</p>
+    </div>
+    <div class="lift" style="background:#ff7a00;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(-0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">03</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── SPEICHER ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">Batteriespeicher</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">LFP-Speicher für neue und bestehende Anlagen. Eigenverbrauchsquote von 30% auf bis zu 85% steigern — auch nachrüstbar für ältere Passauer Anlagen.</p>
+    </div>
+    <div class="lift" style="background:#fdfd00;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">04</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── STROMVERTRAG ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">PPA-Vertrag</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">Kein Kapital nötig. Wir bauen und betreiben die Anlage auf Ihrem Gewerbedach — Sie zahlen nur den Strom, garantiert unter dem Netztarif.</p>
+    </div>
+    <div class="lift" style="background:#ff00aa;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(-0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">05</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── E-MOBILITÄT ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">Wallbox</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">Solarüberschuss-Laden für Ihr E-Auto. Wallbox-Installation mit automatischer Steuerung — Laden wenn die Sonne scheint, Netz schonen wenn sie es nicht tut.</p>
+    </div>
+    <div class="lift" style="background:#00ffea;border:3px solid #0a0a0a;padding:24px;position:relative;display:flex;flex-direction:column;min-height:220px;color:#0a0a0a;transform:rotate(0.5deg);">
+      <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;">06</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:10px;opacity:0.7;">┌── ALTANLAGEN ──┐</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:28px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 10px;">Repowering</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.45;margin:0;flex:1;">EEG läuft aus, Wechselrichter defekt oder Dach saniert? Wir analysieren Ihre Bestandsanlage und machen sie fit für die nächsten 20 Jahre.</p>
+    </div>
+  </div>
+</section>
 
-      <Marquee items={["PASSAU", "PASSAUER LAND", "FREYUNG-GRAFENAU", "SEIT 2014", "55 KM VON PASSAU", "KOSTENLOS BERATEN"]} />
-
-      <Section kapitel="ZAHLEN" title="PASSAU" italicPart="in" blackPart="ZAHLEN." color={COL.pink}>
-        <StatGrid items={[
-          { l: "km nach Passau", v: "55" },
-          { l: "Anlagen Niederbayern", v: "200+" },
-          { l: "Jahre Erfahrung", v: "12+" },
-          { l: "Tage bis Anlage läuft", v: "1–3" },
-        ]} />
-      </Section>
-
-      <Section kapitel="LEISTUNGEN" title="WAS" italicPart="wir" blackPart="KOORDINIEREN." color={COL.yellow}>
-        <FeatureGrid items={leistungen} cols={3} />
-      </Section>
-
-      <Section kapitel="REGION PASSAU" title="PASSAU" italicPart="und das" blackPart="PASSAUER_LAND." color={COL.cyan}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, alignItems: "start" }}>
-          <div>
-            <p style={{ fontFamily: fonts.serif, fontSize: 19, lineHeight: 1.6, fontStyle: "italic", marginTop: 0 }}>
-              Passau und das Passauer Land zählen zu den bevorzugten Standorten für Photovoltaik in Niederbayern.
-              Mit rund 1.050 kWh Solarertrag je installiertem kWp pro Jahr liegt die Region im oberen Bereich des
-              bayerischen Durchschnitts — vergleichbar mit dem Raum Regensburg und deutlich über norddeutschen Standorten.
-            </p>
-            <p style={{ fontFamily: fonts.serif, fontSize: 19, lineHeight: 1.6, fontStyle: "italic" }}>
-              Die Flusstalanlagen an Inn, Donau und Ilz sowie die Hanglagen des Bayerischen Waldes
-              bieten besonders günstige Voraussetzungen: Südseitig ausgerichtete Hänge erreichen
-              auf geneigten Dächern Spitzenerträge, die in der Fläche selten zu finden sind.
-            </p>
-          </div>
-          <div>
-            <div style={{ border: `3px solid ${COL.black}`, padding: 28, background: COL.black, color: COL.yellow }}>
-              <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, color: COL.cyan, marginBottom: 16, letterSpacing: "0.05em" }}>► REGION IM ÜBERBLICK</div>
-              {[
-                ["Netzbetreiber", "Bayernwerk Netz GmbH (Landkreis), Stadtwerke Passau (Stadtgebiet)"],
-                ["Sonnenstunden/Jahr", "ca. 1.750 h — vergleichbar mit Niederbayern-Schnitt"],
-                ["Spezifischer Ertrag", "~1.050 kWh/kWp/Jahr auf Süddach 30° Neigung"],
-                ["Typische Dachformen", "Satteldach, Walmdach, Mansarddach — viel Altbestand"],
-                ["Besonderheit", "Hanglagen Richtung Süden entlang Inn und Ilztal ideal für Ost-West-Kombination"],
-                ["Förderung", "0% MwSt. bis 30 kWp für Privatpersonen, KfW 270/442 bundesweit"],
-              ].map(([k, v], i) => (
-                <div key={i} style={{ display: "flex", gap: 12, borderTop: i > 0 ? `1px solid ${COL.yellow}20` : "none", paddingTop: i > 0 ? 12 : 0, marginTop: i > 0 ? 12 : 0 }}>
-                  <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", color: COL.cyan, minWidth: 140, flexShrink: 0 }}>{k}</div>
-                  <div style={{ fontFamily: fonts.serif, fontSize: 14, lineHeight: 1.4, fontStyle: "italic" }}>{v}</div>
-                </div>
-              ))}
-            </div>
-          </div>
+<!-- REGION PASSAU SECTION -->
+<section style="background:#00ffea;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;opacity:0.8;">░░░ REGION PASSAU ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,128px);line-height:0.85;letter-spacing:-0.04em;margin:0 0 40px;text-transform:uppercase;">
+    PASSAU <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">und das</span> <span style="background:#0a0a0a;color:#00ffea;padding:0 .1em;display:inline-block;transform:skew(-4deg);">PASSAUER_LAND.</span>
+  </h2>
+  <div class="region-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+    <div>
+      <p style="font-family:'Instrument Serif',serif;font-size:19px;line-height:1.6;font-style:italic;margin-top:0;margin-bottom:24px;">Passau und das Passauer Land zählen zu den bevorzugten Standorten für Photovoltaik in Niederbayern. Mit rund 1.050 kWh Solarertrag je installiertem kWp pro Jahr liegt die Region im oberen Bereich des bayerischen Durchschnitts — vergleichbar mit dem Raum Regensburg und deutlich über norddeutschen Standorten.</p>
+      <p style="font-family:'Instrument Serif',serif;font-size:19px;line-height:1.6;font-style:italic;margin-top:0;margin-bottom:0;">Die Flusstalanlagen an Inn, Donau und Ilz sowie die Hanglagen des Bayerischen Waldes bieten besonders günstige Voraussetzungen: Südseitig ausgerichtete Hänge erreichen auf geneigten Dächern Spitzenerträge, die in der Fläche selten zu finden sind.</p>
+    </div>
+    <div>
+      <div style="border:3px solid #0a0a0a;padding:28px;background:#0a0a0a;color:#fdfd00;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:16px;letter-spacing:0.05em;">► REGION IM ÜBERBLICK</div>
+        <div style="display:flex;gap:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;min-width:140px;flex-shrink:0;">→ Netzbetreiber</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;font-style:italic;">Bayernwerk Netz GmbH (Landkreis), Stadtwerke Passau (Stadtgebiet)</div>
         </div>
-      </Section>
+        <div style="display:flex;gap:12px;border-top:1px solid rgba(253,253,0,0.2);padding-top:12px;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;min-width:140px;flex-shrink:0;">→ Sonnenstunden/Jahr</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;font-style:italic;">ca. 1.750 h — vergleichbar mit Niederbayern-Schnitt</div>
+        </div>
+        <div style="display:flex;gap:12px;border-top:1px solid rgba(253,253,0,0.2);padding-top:12px;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;min-width:140px;flex-shrink:0;">→ Spezifischer Ertrag</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;font-style:italic;">~1.050 kWh/kWp/Jahr auf Süddach 30° Neigung</div>
+        </div>
+        <div style="display:flex;gap:12px;border-top:1px solid rgba(253,253,0,0.2);padding-top:12px;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;min-width:140px;flex-shrink:0;">→ Typische Dachformen</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;font-style:italic;">Satteldach, Walmdach, Mansarddach — viel Altbestand</div>
+        </div>
+        <div style="display:flex;gap:12px;border-top:1px solid rgba(253,253,0,0.2);padding-top:12px;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;min-width:140px;flex-shrink:0;">→ Besonderheit</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;font-style:italic;">Hanglagen Richtung Süden entlang Inn und Ilztal ideal für Ost-West-Kombination</div>
+        </div>
+        <div style="display:flex;gap:12px;border-top:1px solid rgba(253,253,0,0.2);padding-top:12px;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;min-width:140px;flex-shrink:0;">→ Förderung</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;font-style:italic;">0% MwSt. bis 30 kWp für Privatpersonen, KfW 270/442 bundesweit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <Process />
+<!-- ABLAUF SECTION -->
+<section style="background:#00ffea;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;opacity:0.8;">░░░ ABLAUF ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,128px);line-height:0.85;letter-spacing:-0.04em;margin:0 0 40px;text-transform:uppercase;">
+    SO <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">läuft</span> <span style="background:#0a0a0a;color:#00ffea;padding:0 .1em;display:inline-block;transform:skew(-4deg);">ES_AB.</span>
+  </h2>
+  <div class="process-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:3px solid #0a0a0a;">
+    <div style="padding:28px;border-right:2px solid #0a0a0a;background:#00ffea;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">01</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;">Kostenloses Erstgespräch</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;">Telefon, Video oder vor Ort in Passau. 30 Minuten. Wir hören zu, fragen genau — und sagen Ihnen ehrlich, ob sich die Investition für Sie rechnet.</p>
+    </div>
+    <div style="padding:28px;border-right:2px solid #0a0a0a;background:#fdfd00;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">02</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;">Angebot &amp; Wirtschaftlichkeit</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;">Individuelles Angebot mit Ertragsberechnung auf Basis der Passauer Sonneneinstrahlung, Amortisation und realen Strompreis-Szenarien. Keine versteckten Kosten.</p>
+    </div>
+    <div style="padding:28px;border-right:2px solid #0a0a0a;background:#00ffea;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">03</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;">Koordination &amp; Montage</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;">Wir stimmen alle Gewerke ab: zertifizierte Fachbetriebe aus der Region, Dachdecker, Elektriker, Bayernwerk-Anmeldung. Sie kümmern sich um nichts.</p>
+    </div>
+    <div style="padding:28px;background:#fdfd00;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">04</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;">Inbetriebnahme &amp; Übergabe</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;">Anlage in 1–3 Tagen montiert. Alle Papiere fertig — Marktstammdatenregister, Einspeisevertrag, Monitoring-App. Erst fertig wenn Sie zufrieden sind.</p>
+    </div>
+  </div>
+</section>
 
-      <BigQuote
-        quote="Passau hat traumhafte Dachlagen — Hanglagen Richtung Süden. Da holen wir die letzten kWh raus."
-        by="Doris Pilsner-Albrecht"
-        role="Inhaberin"
-        color={COL.orange}
-      />
+<!-- BIG QUOTE -->
+<section style="background:#ff7a00;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <blockquote style="margin:0;font-family:'Instrument Serif',serif;font-size:clamp(32px,4.5vw,64px);line-height:1.15;font-style:italic;letter-spacing:-0.02em;max-width:1100px;">"Passau hat traumhafte Dachlagen — Hanglagen Richtung Süden. Da holen wir die letzten kWh raus."</blockquote>
+  <div style="margin-top:32px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;font-weight:700;">► Doris Pilsner-Albrecht<span style="opacity:0.6;"> · Inhaberin</span></div>
+</section>
 
-      <Cta
-        kicker="PASSAU"
-        big="JETZT ANFRAGEN."
-        sub="Kostenlose Erstberatung. 30 Minuten. Kein Druck."
-        href="index.html#kontakt"
-        btn="ANFRAGE STELLEN"
-      />
+<!-- CTA -->
+<section style="background:#0a0a0a;color:#fdfd00;padding:80px 24px;border-top:4px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;color:#00ffea;">░░░ PASSAU ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,11vw,180px);line-height:0.85;letter-spacing:-0.05em;margin:0;text-transform:uppercase;">JETZT ANFRAGEN.</h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;margin-top:16px;opacity:0.9;max-width:720px;">Kostenlose Erstberatung. 30 Minuten. Kein Druck.</p>
+  <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;">
+    <a href="kontakt.html" class="lift" style="background:#fdfd00;color:#0a0a0a;padding:20px 28px;border:3px solid #fdfd00;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;text-decoration:none;letter-spacing:-0.01em;">[→] ANFRAGE STELLEN</a>
+    <a href="tel:+4999140227560" class="lift" style="background:#ff00aa;color:#0a0a0a;padding:20px 28px;border:3px solid #fdfd00;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;text-decoration:none;letter-spacing:-0.01em;">[☎] +49 991 40227560</a>
+  </div>
+</section>
 
-    </Page>
-  );
-}
+<!-- FOOTER -->
+<footer style="background:#0a0a0a;color:#fdfd00;border-top:4px solid #fdfd00;">
+  <div style="padding:60px 24px;border-bottom:2px solid #fdfd00;">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:32px;">
+      <div>
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:56px;line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;">SOLAR<br><span style="background:#fdfd00;color:#0a0a0a;padding:0 .1em;display:inline-block;">RADIKAL.</span></div>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;font-style:italic;max-width:320px;margin-top:16px;opacity:0.85;">Photovoltaik. Speicher. PPA. Aus Deggendorf für Bayern, Baden-Württemberg und bundesweit auf Anfrage.</p>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► LEISTUNG</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="eigenheim.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Eigenheim</a></li>
+          <li><a href="gewerbe.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Gewerbe</a></li>
+          <li><a href="speicher.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Speicher</a></li>
+          <li><a href="ppa.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">PPA-Vertrag</a></li>
+          <li><a href="repowering.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Repowering</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► WISSEN</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="foerderung.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Förderung 2026</a></li>
+          <li><a href="blog/" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Blog &amp; Ratgeber</a></li>
+          <li><a href="index.html#faq" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">FAQ</a></li>
+          <li><a href="referenzen.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Referenzen</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► FIRMA</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="ueber-uns.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Über uns</a></li>
+          <li><a href="kontakt.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Kontakt</a></li>
+          <li><a href="referenzen.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Referenzen</a></li>
+          <li><a href="impressum.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Impressum</a></li>
+          <li><a href="datenschutz.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Datenschutz</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► KONTAKT</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="tel:+4999140227560" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">+49 991 40227560</a></li>
+          <li><a href="mailto:info@solar-energie-partner.de" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">info@solar-energie-partner.de</a></li>
+          <li><span style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Detterstraße 38</span></li>
+          <li><span style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">94469 Deggendorf</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div style="padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00ffea;text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-right:8px;">► EINSATZGEBIET:</span>
+    <a href="deggendorf.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Deggendorf</a>
+    <a href="straubing.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Straubing</a>
+    <a href="passau.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Passau</a>
+    <a href="landshut.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Landshut</a>
+    <a href="regensburg.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Regensburg</a>
+    <a href="muenchen.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">München</a>
+    <a href="augsburg.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Augsburg</a>
+    <a href="ingolstadt.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Ingolstadt</a>
+  </div>
+  <div style="padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;">
+    <span>© 2026 SOLAR_ENERGIE_PARTNER ░ PILSNER_VERTRIEBS_GMBH ░ DEGGENDORF</span>
+    <span style="display:flex;gap:20px;">
+      <a href="impressum.html" style="color:#fdfd00;text-decoration:none;">IMPRESSUM</a>
+      <a href="datenschutz.html" style="color:#fdfd00;text-decoration:none;">DATENSCHUTZ</a>
+    </span>
+  </div>
+</footer>
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/491753560019?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20PV-Anlage." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Kontakt" style="position:fixed;bottom:24px;right:24px;z-index:999;width:60px;height:60px;border-radius:50%;background:#25D366;border:3px solid #0a0a0a;display:flex;align-items:center;justify-content:center;box-shadow:4px 4px 0 #0a0a0a;text-decoration:none;">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<script>
+(function(){
+  function clk(){var e=document.getElementById('clk');if(e)e.textContent=new Date().toLocaleTimeString('de-DE');}
+  clk();setInterval(clk,1000);
+  document.querySelectorAll('[id^="sun"]').forEach(function(s){
+    for(var i=0;i<36;i++){
+      var a=i*Math.PI*2/36;
+      var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('x1',100+Math.cos(a)*60);l.setAttribute('y1',100+Math.sin(a)*60);
+      l.setAttribute('x2',100+Math.cos(a)*92);l.setAttribute('y2',100+Math.sin(a)*92);
+      l.setAttribute('stroke','#0a0a0a');l.setAttribute('stroke-width','1.5');
+      s.insertBefore(l,s.firstChild);
+    }
+  });
+})();
 </script>
 </body>
 </html>
