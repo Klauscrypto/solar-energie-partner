@@ -121,6 +121,22 @@
             ))}
           </div>
         </div>
+        {/* Standorte strip */}
+        <div style={{ padding: "16px 24px", borderBottom: `1px solid rgba(255,255,255,0.12)`, display: "flex", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
+          <span style={{ fontFamily: fonts.mono, fontSize: 10, color: COL.cyan, textTransform: "uppercase", letterSpacing: ".08em", fontWeight: 700, marginRight: 8 }}>► EINSATZGEBIET:</span>
+          {[
+            ["Deggendorf", `${base}deggendorf.html`],
+            ["Straubing", `${base}straubing.html`],
+            ["Passau", `${base}passau.html`],
+            ["Landshut", `${base}landshut.html`],
+            ["Regensburg", `${base}regensburg.html`],
+            ["München", `${base}muenchen.html`],
+            ["Augsburg", `${base}augsburg.html`],
+            ["Ingolstadt", `${base}ingolstadt.html`],
+          ].map(([city, href], i) => (
+            <a key={i} href={href} style={{ color: COL.yellow, textDecoration: "none", fontFamily: fonts.mono, fontSize: 10, textTransform: "uppercase", letterSpacing: ".05em", padding: "3px 8px", border: `1px solid rgba(255,253,0,0.3)` }}>{city}</a>
+          ))}
+        </div>
         {/* Bottom strip */}
         <div style={{ padding: "20px 24px", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 16, fontFamily: fonts.mono, fontSize: 10, textTransform: "uppercase", letterSpacing: "0.05em" }}>
           <span>© 2026 SOLAR_ENERGIE_PARTNER ░ PILSNER_VERTRIEBS_GMBH ░ DEGGENDORF</span>

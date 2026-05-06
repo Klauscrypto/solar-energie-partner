@@ -860,6 +860,47 @@ function Testimonials() {
   );
 }
 
+// ─── REGIONEN ───
+function Regionen() {
+  const staedte = [
+    { name: "Deggendorf", note: "Unser Hauptsitz", href: "deggendorf.html", col: COL.yellow },
+    { name: "Straubing", note: "35 km", href: "straubing.html", col: COL.cyan },
+    { name: "Passau", note: "55 km", href: "passau.html", col: COL.pink },
+    { name: "Landshut", note: "75 km", href: "landshut.html", col: COL.cyan },
+    { name: "Regensburg", note: "85 km", href: "regensburg.html", col: COL.orange },
+    { name: "München", note: "120 km", href: "muenchen.html", col: COL.pink },
+    { name: "Augsburg", note: "170 km", href: "augsburg.html", col: COL.cyan },
+    { name: "Ingolstadt", note: "155 km", href: "ingolstadt.html", col: COL.yellow },
+  ];
+  return (
+    <section style={{ background: COL.black, color: COL.yellow, padding: "80px 24px", borderTop: `4px solid ${COL.black}` }}>
+      <div style={{ fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16, color: COL.cyan }}>
+        ░░░ EINSATZGEBIET ░░░ GANZ BAYERN ░░░
+      </div>
+      <h2 style={{ fontFamily: headingFont, fontWeight: 800, fontSize: "clamp(48px,8vw,120px)", lineHeight: 0.85, letterSpacing: "-0.04em", margin: "0 0 48px", textTransform: "uppercase" }}>
+        VON DEGGENDORF<br/>
+        <span style={{ fontFamily: serifFont, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>aus überall.</span>
+      </h2>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
+        {staedte.map((s, i) => (
+          <a key={i} href={s.href} className="lift" style={{
+            background: s.col, color: COL.black, border: `3px solid ${s.col}`,
+            padding: "16px 20px", textDecoration: "none",
+            transform: `rotate(${[1,-1,0.5,-0.5,1.5,-1.5,0.8,-0.8][i]||0}deg)`,
+            display: "block",
+          }}>
+            <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 22, textTransform: "uppercase", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.name}</div>
+            <div style={{ fontFamily: monoFont, fontSize: 10, marginTop: 4, opacity: 0.7, textTransform: "uppercase" }}>{s.note}</div>
+          </a>
+        ))}
+      </div>
+      <p style={{ fontFamily: serifFont, fontSize: 18, fontStyle: "italic", marginTop: 40, opacity: 0.7, maxWidth: 600 }}>
+        Alle Städte haben eigene Infoseiten — lokale Netzbetreiber, Förderung und typische Anforderungen erklärt.
+      </p>
+    </section>
+  );
+}
+
 // ─── FAQ ───
 function FAQ() {
   const [open, setOpen] = useState(0);
@@ -966,11 +1007,17 @@ function Footer() {
   return (
     <footer style={{ background: COL.black, color: COL.yellow, padding: "32px 24px", borderTop: `4px solid ${COL.yellow}`, fontFamily: monoFont, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
       <span>© 2026 SOLAR_ENERGIE_PARTNER ░ PILSNER_VERTRIEBS_GMBH ░ DEGGENDORF</span>
-      <span style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
+      <span style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
         <a href="ueber-uns.html" style={{ color: COL.yellow, textDecoration: "none" }}>ÜBER UNS</a>
         <a href="kontakt.html" style={{ color: COL.yellow, textDecoration: "none" }}>KONTAKT</a>
+        <a href="foerderung.html" style={{ color: COL.yellow, textDecoration: "none" }}>FÖRDERUNG</a>
         <a href="blog/" style={{ color: COL.yellow, textDecoration: "none" }}>BLOG</a>
-        <a href="referenzen.html" style={{ color: COL.yellow, textDecoration: "none" }}>REFERENZEN</a>
+        <span style={{ opacity: 0.3 }}>|</span>
+        <a href="deggendorf.html" style={{ color: COL.cyan, textDecoration: "none" }}>DEGGENDORF</a>
+        <a href="straubing.html" style={{ color: COL.cyan, textDecoration: "none" }}>STRAUBING</a>
+        <a href="passau.html" style={{ color: COL.cyan, textDecoration: "none" }}>PASSAU</a>
+        <a href="muenchen.html" style={{ color: COL.cyan, textDecoration: "none" }}>MÜNCHEN</a>
+        <span style={{ opacity: 0.3 }}>|</span>
         <a href="impressum.html" style={{ color: COL.yellow, textDecoration: "none" }}>IMPRESSUM</a>
         <a href="datenschutz.html" style={{ color: COL.yellow, textDecoration: "none" }}>DATENSCHUTZ</a>
       </span>
@@ -1004,6 +1051,7 @@ function App() {
         <window.RadExtras.GebietsKarte />
         <window.RadExtras.Foerderung />
         <Testimonials />
+        <Regionen />
         <FAQ />
         <Contact />
         <Footer />
