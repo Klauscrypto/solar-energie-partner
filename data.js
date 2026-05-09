@@ -7,7 +7,7 @@ window.SITE_DATA = {
     address: "Detterstraße 38, 94469 Deggendorf",
     phone: "+49 991 40227560",
     email: "info@solar-energie-partner.de",
-    founded: 2014,
+    founded: 2022,
     rating: 4.9,
     reviews: 127,
   },
@@ -41,7 +41,7 @@ window.SITE_DATA = {
 
   bigStats: [
     { n: "250+", l: "Realisierte Anlagen", s: "Privat & Gewerbe, bundesweit" },
-    { n: "12", u: "Jahre", l: "Erfahrung im Markt", s: "Planung, Bau & Betrieb" },
+    { n: "4", u: "Jahre", l: "Erfahrung im Markt", s: "Planung, Bau & Betrieb" },
     { n: "−50", u: "%", l: "Weniger Stromkosten", s: "im PPA-Modell möglich" },
     { n: "30", u: "Jahre", l: "Modulgarantie", s: "Langlebig & geprüft" },
   ],
@@ -134,7 +134,7 @@ window.SITE_DATA = {
 
   about: {
     title: ["Handwerk", "mit Haltung.", "Aus Deggendorf."],
-    body: "Solar Energie Partner ist eine Marke der Pilsner Vertriebs GmbH – eines inhabergeführten Betriebs aus Deggendorf. Seit 2014 vermitteln und koordinieren wir Photovoltaik-Projekte in Bayern und bundesweit. Wir arbeiten ausschließlich mit geprüften, zertifizierten Installateuren zusammen — und stehen persönlich für jedes Ergebnis gerade.",
+    body: "Solar Energie Partner ist eine Marke der Pilsner Vertriebs GmbH – eines inhabergeführten Betriebs aus Deggendorf. Seit 2022 vermitteln und koordinieren wir Photovoltaik-Projekte in Bayern und bundesweit. Wir arbeiten ausschließlich mit geprüften, zertifizierten Installateuren zusammen — und stehen persönlich für jedes Ergebnis gerade.",
     points: [
       ["Inhabergeführt", "Doris Pilsner-Albrecht steht persönlich hinter jedem Projekt"],
       ["Fachbetriebe mit eigenem Personal", "keine Einzelunternehmer — nur Betriebe mit ausgebildetem Festpersonal"],

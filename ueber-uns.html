@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Über uns — Solar Energie Partner Deggendorf</title>
-<meta name="description" content="Solar Energie Partner: Inhabergeführt seit 2014 in Deggendorf. Doris Pilsner-Albrecht und ihr Team vermitteln Photovoltaik-Projekte in Bayern und bundesweit — mit echten Fachbetrieben, eigenem Festpersonal." />
+<meta name="description" content="Solar Energie Partner: Inhabergeführt seit 2022 in Deggendorf. Doris Pilsner-Albrecht und ihr Team vermitteln Photovoltaik-Projekte in Bayern und bundesweit — mit echten Fachbetrieben, eigenem Festpersonal." />
 <meta property="og:title" content="Über Solar Energie Partner — Deggendorf" />
-<meta property="og:description" content="Seit 2014 vermitteln und koordinieren wir PV-Projekte in Bayern. Inhabergeführt. Echte Fachbetriebe. Kein Callcenter." />
+<meta property="og:description" content="Seit 2022 vermitteln und koordinieren wir PV-Projekte in Bayern. Inhabergeführt. Echte Fachbetriebe. Kein Callcenter." />
 <meta property="og:image" content="https://solar-energie-partner.de/pv-eigenheim-klein.jpg" />
 <meta property="og:image:width" content="800" />
 <meta property="og:image:height" content="600" />
@@ -35,277 +35,447 @@
     "longitude": 12.9612
   },
   "areaServed": ["Bayern", "Baden-Württemberg", "Deutschland"],
-  "foundingDate": "2014",
+  "foundingDate": "2022",
   "numberOfEmployees": { "@type": "QuantitativeValue", "value": 3 }
 }</script>
 <link rel="stylesheet" href="fonts/fonts.css" />
 <link rel="stylesheet" href="radikal-base.css" />
 <style>
-  @media(max-width:768px){
-    header nav{display:none !important}
-    .mq span{font-size:32px !important;padding:0 16px !important}
-    .timeline-grid{grid-template-columns:1fr !important}
-    .team-grid{grid-template-columns:1fr !important}
-    .werte-grid{grid-template-columns:1fr 1fr !important}
-    .partner-grid{grid-template-columns:1fr 1fr !important}
-    footer > div:first-child > div{grid-template-columns:1fr 1fr !important}
-  }
+*,*::before,*::after{box-sizing:border-box;}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-track{overflow:hidden;border-top:3px solid #0a0a0a;border-bottom:3px solid #0a0a0a;background:#0a0a0a;color:#fdfd00;padding:14px 0;}
+.mq-inner{display:flex;gap:0;animation:mq 18s linear infinite;white-space:nowrap;}
+.mq-item{padding:0 32px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
+@media(max-width:768px){
+  header nav{display:none !important}
+  .timeline-grid{grid-template-columns:1fr !important}
+  .team-grid{grid-template-columns:1fr !important}
+  .werte-grid{grid-template-columns:1fr 1fr !important}
+  .partner-grid{grid-template-columns:1fr 1fr !important}
+}
 </style>
 </head>
-<body>
-<div id="root"></div>
-<script src="vendor/react.min.js"></script>
-<script src="vendor/react-dom.min.js"></script>
-<script src="vendor/babel.min.js"></script>
-<script src="data.js"></script>
-<script type="text/babel" src="subpage-shell.jsx"></script>
-<script type="text/babel">
-const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
-const D = window.SITE_DATA;
+<body style="margin:0;background:#ffffff;font-family:system-ui,sans-serif;">
 
-const timeline = [
-  { year: "2014", title: "Gründung", body: "Pilsner Vertriebs GmbH gegründet. Erste PV-Koordinationen in Deggendorf und Umgebung. Doris installiert als erstes ihr eigenes Dach." },
-  { year: "2016", title: "Netzwerk wächst", body: "Drei feste Fachbetriebe im Partnernetzwerk. Erste Gewerbeanlage mit 40 kWp in Plattling. Speicher kommen ins Portfolio." },
-  { year: "2019", title: "PPA-Modell eingeführt", body: "Solar Energie Partner wird einer der ersten Vermittler in Niederbayern mit echtem PPA-Angebot für Gewerbetreibende." },
-  { year: "2021", title: "Expansion Bayern & BW", body: "Partnernetzwerk wächst auf 8 zertifizierte Fachbetriebe. Projekte in ganz Bayern und Baden-Württemberg." },
-  { year: "2024", title: "Marke Solar Energie Partner", body: "Neuer Markenauftritt. Online-Rechner. Monitoring für alle Bestandsanlagen. Über 200 installierte Anlagen." },
-  { year: "2026", title: "Heute", body: "250+ Anlagen. 3 Mitarbeiter intern. 10+ Partnerbetriebe. Fokus: Gewerbe-PPA, Repowering und Eigenheim mit Wärmepumpe." },
-];
+<header style="position:sticky;top:0;z-index:100;background:#0a0a0a;border-bottom:3px solid #0a0a0a;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);min-height:56px;gap:16px;">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#ffffff;flex-shrink:0;">
+    <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;letter-spacing:-0.01em;">SOLAR // RADIKAL</span>
+  </a>
+  <nav style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;">
+    <a href="eigenheim.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">EIGENHEIM</a>
+    <a href="gewerbe.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">GEWERBE</a>
+    <a href="speicher.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">SPEICHER</a>
+    <a href="ppa.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">PPA</a>
+    <a href="repowering.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">REPOWERING</a>
+    <a href="foerderung.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">FÖRDERUNG</a>
+    <a href="ueber-uns.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#0a0a0a;text-decoration:none;padding:4px 8px;background:#fdfd00;">ÜBER UNS</a>
+    <a href="referenzen.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">REFERENZEN</a>
+  </nav>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#fdfd00;flex-shrink:0;display:flex;align-items:center;gap:16px;">
+    <span id="clk"></span>
+    <a href="tel:+4999140227560" style="color:#fdfd00;text-decoration:none;">09991 40227560</a>
+  </div>
+</header>
 
-const werte = [
-  { k: "EHRLICH", v: "Wenn sich was nicht rechnet, sagen wir es. Auch wenn das bedeutet: kein Auftrag.", c: COL.cyan },
-  { k: "VERLÄSSLICH", v: "Wir koordinieren alle Gewerke — du musst nichts selbst klären.", c: COL.yellow },
-  { k: "LOKAL", v: "Hauptsitz Deggendorf. Kein Callcenter. Kein Konzern. Echter Ansprechpartner.", c: COL.pink },
-  { k: "LANGFRISTIG", v: "Wir sind nach dem Auftrag noch da. Monitoring, Wartung, Notfall.", c: COL.orange },
-];
+<!-- HERO -->
+<section style="background:#0a0a0a;color:#ffffff;border-bottom:3px solid #0a0a0a;padding:clamp(48px,8vw,96px) clamp(16px,4vw,48px);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-60px;right:-60px;opacity:0.12;pointer-events:none;">
+    <svg id="sun1" width="200" height="200" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="48" fill="#00ffea"/>
+    </svg>
+  </div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#00ffea;margin-bottom:16px;">ÜBER UNS</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#ffffff;opacity:0.5;margin-bottom:24px;">DEGGENDORF · SEIT 2022</div>
+  <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(48px,8vw,96px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 24px;">
+    HANDWERK <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;">mit Haltung.</em>
+  </h1>
+  <p style="font-family:'Instrument Serif',serif;font-size:clamp(17px,2vw,22px);font-style:italic;line-height:1.55;max-width:680px;margin:0;color:#ffffff;opacity:0.85;">
+    Solar Energie Partner ist eine Marke der Pilsner Vertriebs GmbH — eines inhabergeführten Unternehmens aus Deggendorf. Seit 2022 vermitteln und koordinieren wir Photovoltaik-Projekte in Bayern und bundesweit.
+  </p>
+</section>
 
-const team = [
-  {
-    name: "Doris Pilsner-Albrecht",
-    rolle: "Geschäftsführerin & Inhaberin",
-    seit: "seit 2014",
-    quote: "Ich verkaufe nur, was ich auch meiner Mutter aufs Dach setzen würde.",
-    detail: "Gründerin der Pilsner Vertriebs GmbH. Kaufmännische Ausbildung, 12 Jahre Erfahrung in erneuerbaren Energien. Persönlich für jedes Projekt verantwortlich.",
-    initial: "D",
-    col: COL.yellow,
-  },
-  {
-    name: "Thomas Egger",
-    rolle: "Projektkoordination & Technik",
-    seit: "seit 2018",
-    quote: "Ein sauber geplantes Projekt hat hinterher keine Überraschungen.",
-    detail: "Elektrotechniker, spezialisiert auf Wechselrichter-Konfiguration und Netzeinspeiseprojekte. Koordiniert alle technischen Abläufe von Anmeldung bis Abnahme.",
-    initial: "T",
-    col: COL.cyan,
-  },
-  {
-    name: "Katharina Reiter",
-    rolle: "Kundenbetreuung & Förderung",
-    seit: "seit 2021",
-    quote: "Förderung beantragen ist nicht kompliziert — wenn man weiß, wo man schauen muss.",
-    detail: "Kaufmännische Fachwirtin. Zuständig für Kundenanfragen, Fördermittelbeantragung (KfW, BAFA, Landes­programme) und laufende Projektbegleitung.",
-    initial: "K",
-    col: COL.pink,
-  },
-];
+<!-- MARQUEE -->
+<div class="mq-track">
+  <div class="mq-inner">
+    <span class="mq-item">SEIT 2022</span><span class="mq-item">✦</span>
+    <span class="mq-item">DEGGENDORF</span><span class="mq-item">✦</span>
+    <span class="mq-item">INHABERGEFÜHRT</span><span class="mq-item">✦</span>
+    <span class="mq-item">3 MITARBEITER</span><span class="mq-item">✦</span>
+    <span class="mq-item">10+ FACHBETRIEBE</span><span class="mq-item">✦</span>
+    <span class="mq-item">250+ ANLAGEN</span><span class="mq-item">✦</span>
+    <span class="mq-item">GANZ BAYERN</span><span class="mq-item">✦</span>
+    <span class="mq-item">EHRLICH.</span><span class="mq-item">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span class="mq-item">SEIT 2022</span><span class="mq-item">✦</span>
+    <span class="mq-item">DEGGENDORF</span><span class="mq-item">✦</span>
+    <span class="mq-item">INHABERGEFÜHRT</span><span class="mq-item">✦</span>
+    <span class="mq-item">3 MITARBEITER</span><span class="mq-item">✦</span>
+    <span class="mq-item">10+ FACHBETRIEBE</span><span class="mq-item">✦</span>
+    <span class="mq-item">250+ ANLAGEN</span><span class="mq-item">✦</span>
+    <span class="mq-item">GANZ BAYERN</span><span class="mq-item">✦</span>
+    <span class="mq-item">EHRLICH.</span><span class="mq-item">✦</span>
+  </div>
+</div>
 
-const partnerData = [
-  { k: "10+", v: "Zertifizierte Fachbetriebe im Netzwerk" },
-  { k: "100%", v: "Betriebe mit eigenem Festpersonal — keine Solo-Selbständigen" },
-  { k: "VDE", v: "Alle Betriebe geprüft nach VDE-Normen" },
-  { k: "25 J.", v: "Produktgarantie auf alle eingesetzten Module" },
-];
+<!-- STAT GRID -->
+<section style="border-bottom:3px solid #0a0a0a;">
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);">
+    <div style="background:#00ffea;border-right:3px solid #0a0a0a;padding:clamp(24px,4vw,48px) clamp(16px,3vw,36px);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.6;margin-bottom:8px;">Gründungsjahr</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;">2022</div>
+    </div>
+    <div style="background:#fdfd00;border-right:3px solid #0a0a0a;padding:clamp(24px,4vw,48px) clamp(16px,3vw,36px);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.6;margin-bottom:8px;">Installierte Anlagen</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;">250+</div>
+    </div>
+    <div style="background:#00ffea;border-right:3px solid #0a0a0a;padding:clamp(24px,4vw,48px) clamp(16px,3vw,36px);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.6;margin-bottom:8px;">Partnerbetriebe</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;">10+</div>
+    </div>
+    <div style="background:#fdfd00;padding:clamp(24px,4vw,48px) clamp(16px,3vw,36px);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.6;margin-bottom:8px;">Erfahrung PV</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;">12 J.</div>
+    </div>
+  </div>
+</section>
 
-function Hero() {
-  return (
-    <PageHero
-      kapitel="ÜBER UNS"
-      kicker="DEGGENDORF · SEIT 2014"
-      title="HANDWERK"
-      italicPart="mit Haltung."
-      sub="Solar Energie Partner ist eine Marke der Pilsner Vertriebs GmbH — eines inhabergeführten Unternehmens aus Deggendorf. Seit 2014 vermitteln und koordinieren wir Photovoltaik-Projekte in Bayern und bundesweit."
-      color={COL.black}
-      accentColor={COL.cyan}
-    />
-  );
-}
+<!-- WERTE SECTION -->
+<section style="background:#fdfd00;border-bottom:3px solid #0a0a0a;padding:clamp(48px,7vw,80px) clamp(16px,4vw,48px);">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.5;margin-bottom:12px;">WERTE</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,6vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;margin:0 0 0;">
+    WAS UNS <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;">antreibt.</em>
+  </h2>
+  <div class="werte-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;">
+    <div style="background:#00ffea;border:3px solid #0a0a0a;padding:28px;transform:rotate(1deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:36px;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.9;margin-bottom:12px;">EHRLICH</div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;margin:0;line-height:1.6;text-transform:uppercase;letter-spacing:0.02em;">Wenn sich was nicht rechnet, sagen wir es. Auch wenn das bedeutet: kein Auftrag.</p>
+    </div>
+    <div style="background:#fdfd00;border:3px solid #0a0a0a;padding:28px;transform:rotate(-1deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:36px;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.9;margin-bottom:12px;">VERLÄSSLICH</div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;margin:0;line-height:1.6;text-transform:uppercase;letter-spacing:0.02em;">Wir koordinieren alle Gewerke — du musst nichts selbst klären.</p>
+    </div>
+    <div style="background:#ff00aa;border:3px solid #0a0a0a;padding:28px;transform:rotate(2deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:36px;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.9;margin-bottom:12px;">LOKAL</div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;margin:0;line-height:1.6;text-transform:uppercase;letter-spacing:0.02em;">Hauptsitz Deggendorf. Kein Callcenter. Kein Konzern. Echter Ansprechpartner.</p>
+    </div>
+    <div style="background:#ff7a00;border:3px solid #0a0a0a;padding:28px;transform:rotate(-2deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:36px;text-transform:uppercase;letter-spacing:-0.04em;line-height:0.9;margin-bottom:12px;">LANGFRISTIG</div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:12px;margin:0;line-height:1.6;text-transform:uppercase;letter-spacing:0.02em;">Wir sind nach dem Auftrag noch da. Monitoring, Wartung, Notfall.</p>
+    </div>
+  </div>
+</section>
 
-function Timeline() {
-  return (
-    <Section kapitel="GESCHICHTE" title="WIE WIR" italicPart="dahin kamen." blackPart="" color={COL.yellow}>
-      <div className="timeline-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20, marginTop: 40 }}>
-        {timeline.map((t, i) => (
-          <div key={i} className="lift" style={{
-            background: i % 2 === 0 ? COL.black : COL.white,
-            color: i % 2 === 0 ? COL.yellow : COL.black,
-            border: `3px solid ${COL.black}`,
-            padding: 24,
-            transform: `rotate(${[0.5,-0.5,1,-1,0.8,-0.8][i]||0}deg)`,
-            position: "relative",
-          }}>
-            <div style={{ fontFamily: fonts.mono, fontSize: 40, fontWeight: 700, lineHeight: 1, marginBottom: 4, color: i % 2 === 0 ? COL.cyan : COL.black, opacity: 0.3 }}>{t.year}</div>
-            <div style={{ fontFamily: fonts.heading, fontSize: 22, fontWeight: 800, textTransform: "uppercase", letterSpacing: "-0.02em", marginBottom: 10, lineHeight: 1.1 }}>{t.title}</div>
-            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.5, fontStyle: "italic", margin: 0, opacity: 0.9 }}>{t.body}</p>
-            <div style={{ position: "absolute", top: -12, right: 12, background: i % 2 === 0 ? COL.cyan : COL.black, color: i % 2 === 0 ? COL.black : COL.yellow, padding: "3px 10px", fontFamily: fonts.mono, fontSize: 10, fontWeight: 700 }}>{t.year}</div>
-          </div>
-        ))}
+<!-- TEAM SECTION -->
+<section style="background:#0a0a0a;color:#ffffff;border-bottom:3px solid #0a0a0a;padding:clamp(48px,7vw,80px) clamp(16px,4vw,48px);">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#fdfd00;opacity:0.7;margin-bottom:12px;">TEAM</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,6vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;margin:0 0 0;color:#ffffff;">
+    DREI <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;">Menschen.</em> EIN ZIEL.
+  </h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:20px;font-style:italic;color:#fdfd00;max-width:720px;margin:24px 0 40px;">
+    Wir sind klein — absichtlich. Jeder kennt jeden Auftrag. Kein Kunde fällt durchs Raster.
+  </p>
+  <div class="team-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+    <!-- Doris -->
+    <div style="border:3px solid #fdfd00;overflow:hidden;transform:rotate(-1.5deg);">
+      <div style="background:#0a0a0a;color:#ffffff;padding:24px 24px 20px;border-bottom:3px solid #fdfd00;display:flex;align-items:center;gap:16px;">
+        <div style="width:56px;height:56px;border-radius:50%;background:#fdfd00;border:3px solid #fdfd00;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0a0a0a;flex-shrink:0;">D</div>
+        <div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;color:#fdfd00;line-height:1.1;">Doris Pilsner-Albrecht</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00ffea;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;">Geschäftsführerin &amp; Inhaberin</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#fdfd00;opacity:0.6;margin-top:2px;">seit 2022</div>
+        </div>
       </div>
-    </Section>
-  );
-}
-
-function TeamSection() {
-  return (
-    <Section kapitel="TEAM" title="DREI" italicPart="Menschen." blackPart="EIN ZIEL." color={COL.black}>
-      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", color: COL.yellow, maxWidth: 720, marginBottom: 40 }}>
-        Wir sind klein — absichtlich. Jeder kennt jeden Auftrag. Kein Kunde fällt durchs Raster.
-      </p>
-      <div className="team-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 24 }}>
-        {team.map((m, i) => (
-          <div key={i} className="lift" style={{
-            background: m.col, color: COL.black, border: `3px solid ${COL.yellow}`,
-            padding: 0, transform: `rotate(${[-1.5, 1, -0.5][i]||0}deg)`,
-          }}>
-            <div style={{ background: COL.black, padding: "24px 24px 20px", borderBottom: `3px solid ${COL.yellow}`, display: "flex", alignItems: "center", gap: 16 }}>
-              <div style={{ width: 56, height: 56, borderRadius: "50%", background: m.col, border: `3px solid ${COL.yellow}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: fonts.heading, fontSize: 24, fontWeight: 800, color: COL.black, flexShrink: 0 }}>{m.initial}</div>
-              <div>
-                <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 16, textTransform: "uppercase", letterSpacing: "-0.02em", color: COL.yellow, lineHeight: 1.1 }}>{m.name}</div>
-                <div style={{ fontFamily: fonts.mono, fontSize: 10, color: COL.cyan, marginTop: 4, textTransform: "uppercase", letterSpacing: ".05em" }}>{m.rolle}</div>
-                <div style={{ fontFamily: fonts.mono, fontSize: 10, color: COL.yellow, opacity: 0.6, marginTop: 2 }}>{m.seit}</div>
-              </div>
-            </div>
-            <div style={{ padding: 20 }}>
-              <blockquote style={{ fontFamily: fonts.serif, fontSize: 17, fontStyle: "italic", lineHeight: 1.4, margin: "0 0 16px 0", borderLeft: `3px solid ${COL.black}`, paddingLeft: 12 }}>"{m.quote}"</blockquote>
-              <p style={{ fontFamily: fonts.mono, fontSize: 12, lineHeight: 1.6, margin: 0, textTransform: "uppercase", letterSpacing: ".02em" }}>{m.detail}</p>
-            </div>
-          </div>
-        ))}
+      <div style="background:#fdfd00;padding:20px;">
+        <blockquote style="font-family:'Instrument Serif',serif;font-size:17px;font-style:italic;line-height:1.4;margin:0 0 16px 0;border-left:3px solid #0a0a0a;padding-left:12px;">"Ich verkaufe nur, was ich auch meiner Mutter aufs Dach setzen würde."</blockquote>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;margin:0;text-transform:uppercase;letter-spacing:0.02em;">Gründerin der Pilsner Vertriebs GmbH. Kaufmännische Ausbildung, 12 Jahre Erfahrung in erneuerbaren Energien. Persönlich für jedes Projekt verantwortlich.</p>
       </div>
-    </Section>
-  );
-}
-
-function WerteSection() {
-  return (
-    <Section kapitel="WERTE" title="WAS UNS" italicPart="antreibt." blackPart="" color={COL.yellow}>
-      <div className="werte-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginTop: 40 }}>
-        {werte.map((w, i) => (
-          <div key={i} className="lift" style={{
-            background: w.c, border: `3px solid ${COL.black}`, padding: 24,
-            transform: `rotate(${[1,-1,2,-2][i]||0}deg)`,
-          }}>
-            <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 36, textTransform: "uppercase", letterSpacing: "-0.04em", lineHeight: 0.9, marginBottom: 12 }}>{w.k}</div>
-            <p style={{ fontFamily: fonts.mono, fontSize: 12, margin: 0, lineHeight: 1.6, textTransform: "uppercase", letterSpacing: ".02em" }}>{w.v}</p>
-          </div>
-        ))}
+    </div>
+    <!-- Thomas -->
+    <div style="border:3px solid #fdfd00;overflow:hidden;transform:rotate(1deg);">
+      <div style="background:#0a0a0a;color:#ffffff;padding:24px 24px 20px;border-bottom:3px solid #fdfd00;display:flex;align-items:center;gap:16px;">
+        <div style="width:56px;height:56px;border-radius:50%;background:#00ffea;border:3px solid #fdfd00;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0a0a0a;flex-shrink:0;">T</div>
+        <div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;color:#fdfd00;line-height:1.1;">Thomas Egger</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00ffea;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;">Projektkoordination &amp; Technik</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#fdfd00;opacity:0.6;margin-top:2px;">seit 2018</div>
+        </div>
       </div>
-    </Section>
-  );
-}
-
-function PartnerSection() {
-  return (
-    <Section kapitel="PARTNERNETZWERK" title="NICHT WIR" italicPart="bauen." blackPart="FACHLEUTE BAUEN." color={COL.black}>
-      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", color: COL.yellow, maxWidth: 720, marginBottom: 40 }}>
-        Solar Energie Partner ist Vermittler und Koordinator — kein Installateur. Wir arbeiten mit einem festen Netzwerk geprüfter, zertifizierter Fachbetriebe zusammen. Jeder Betrieb beschäftigt eigenes, ausgebildetes Festpersonal.
-      </p>
-      <div className="partner-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 16, marginBottom: 40 }}>
-        {partnerData.map((p, i) => (
-          <div key={i} className="lift" style={{
-            background: [COL.cyan, COL.pink, COL.orange, COL.yellow][i],
-            border: `3px solid ${COL.yellow}`, padding: 24,
-            transform: `rotate(${[0.5,-0.5,1,-1][i]||0}deg)`,
-          }}>
-            <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 42, textTransform: "uppercase", letterSpacing: "-0.05em", lineHeight: 0.9, marginBottom: 8, color: COL.black }}>{p.k}</div>
-            <p style={{ fontFamily: fonts.mono, fontSize: 11, margin: 0, lineHeight: 1.6, textTransform: "uppercase", letterSpacing: ".03em", color: COL.black }}>{p.v}</p>
-          </div>
-        ))}
+      <div style="background:#00ffea;padding:20px;">
+        <blockquote style="font-family:'Instrument Serif',serif;font-size:17px;font-style:italic;line-height:1.4;margin:0 0 16px 0;border-left:3px solid #0a0a0a;padding-left:12px;">"Ein sauber geplantes Projekt hat hinterher keine Überraschungen."</blockquote>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;margin:0;text-transform:uppercase;letter-spacing:0.02em;">Elektrotechniker, spezialisiert auf Wechselrichter-Konfiguration und Netzeinspeiseprojekte. Koordiniert alle technischen Abläufe von Anmeldung bis Abnahme.</p>
       </div>
-      <div style={{ border: `3px solid ${COL.yellow}`, padding: 0 }}>
-        {[
-          ["Warum Vermittler?", "Weil wir so für jeden Projekttyp den richtigen Betrieb einsetzen können — kein Unternehmen ist in allem gleich gut."],
-          ["Was prüfen wir?", "Zertifizierungen, Versicherungen, Referenzprojekte, VDE-Normen, Personalstruktur. Kein Einzelunternehmer, kein Subunternehmer-Wirrwarr."],
-          ["Wer haftet?", "Wir. Solar Energie Partner koordiniert das Gesamtprojekt und steht als Ansprechpartner gerade — auch wenn ein Fachbetrieb mal wechselt."],
-          ["Vorteil für Kunden?", "Mehr Auswahl, mehr Spezialisierung, gleiche Verlässlichkeit. Und du sprichst immer mit uns — nicht mit 5 verschiedenen Leuten."],
-        ].map(([k, v], i) => (
-          <div key={i} style={{ display: "grid", gridTemplateColumns: "220px 1fr", borderTop: i ? `2px solid ${COL.yellow}` : "none", padding: "14px 20px", fontFamily: fonts.mono, fontSize: 12, alignItems: "center", gap: 20 }}>
-            <span style={{ fontWeight: 700, textTransform: "uppercase", letterSpacing: ".05em", color: COL.cyan }}>► {k}</span>
-            <span style={{ opacity: 0.85, lineHeight: 1.6 }}>{v}</span>
-          </div>
-        ))}
+    </div>
+    <!-- Katharina -->
+    <div style="border:3px solid #fdfd00;overflow:hidden;transform:rotate(-0.5deg);">
+      <div style="background:#0a0a0a;color:#ffffff;padding:24px 24px 20px;border-bottom:3px solid #fdfd00;display:flex;align-items:center;gap:16px;">
+        <div style="width:56px;height:56px;border-radius:50%;background:#ff00aa;border:3px solid #fdfd00;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:24px;color:#0a0a0a;flex-shrink:0;">K</div>
+        <div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;color:#fdfd00;line-height:1.1;">Katharina Reiter</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00ffea;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;">Kundenbetreuung &amp; Förderung</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#fdfd00;opacity:0.6;margin-top:2px;">seit 2021</div>
+        </div>
       </div>
-    </Section>
-  );
-}
-
-function GebietSection() {
-  const gebiete = [
-    { name: "DEGGENDORF", note: "Hauptsitz", col: COL.yellow },
-    { name: "STRAUBING", note: "Kerngebiet", col: COL.cyan },
-    { name: "PASSAU", note: "Kerngebiet", col: COL.cyan },
-    { name: "LANDSHUT", note: "Kerngebiet", col: COL.cyan },
-    { name: "REGENSBURG", note: "Kerngebiet", col: COL.cyan },
-    { name: "AUGSBURG", note: "Bayern", col: COL.pink },
-    { name: "MÜNCHEN", note: "Bayern", col: COL.pink },
-    { name: "INGOLSTADT", note: "Bayern", col: COL.pink },
-    { name: "NÜRNBERG", note: "Bayern", col: COL.pink },
-    { name: "STUTTGART", note: "BW", col: COL.orange },
-    { name: "MANNHEIM", note: "BW", col: COL.orange },
-    { name: "BUNDESWEIT", note: "Auf Anfrage", col: COL.white },
-  ];
-  return (
-    <Section kapitel="EINSATZGEBIET" title="VON DEGGENDORF" italicPart="aus" blackPart="DEUTSCHLAND." color={COL.yellow}>
-      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", maxWidth: 720, marginBottom: 32 }}>
-        Unser Schwerpunkt liegt in Niederbayern und der Oberpfalz — aber unsere Fachbetriebe sind in ganz Bayern und Baden-Württemberg aktiv.
-      </p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-        {gebiete.map((g, i) => (
-          <div key={i} className="lift" style={{
-            background: g.col, border: `3px solid ${COL.black}`, padding: "10px 16px",
-            transform: `rotate(${(i % 3 === 0 ? 1 : i % 3 === 1 ? -0.5 : 0.7)}deg)`,
-          }}>
-            <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 16, textTransform: "uppercase", letterSpacing: "-0.02em" }}>{g.name}</div>
-            <div style={{ fontFamily: fonts.mono, fontSize: 10, opacity: 0.7, textTransform: "uppercase" }}>{g.note}</div>
-          </div>
-        ))}
+      <div style="background:#ff00aa;padding:20px;">
+        <blockquote style="font-family:'Instrument Serif',serif;font-size:17px;font-style:italic;line-height:1.4;margin:0 0 16px 0;border-left:3px solid #0a0a0a;padding-left:12px;">"Förderung beantragen ist nicht kompliziert — wenn man weiß, wo man schauen muss."</blockquote>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;margin:0;text-transform:uppercase;letter-spacing:0.02em;">Kaufmännische Fachwirtin. Zuständig für Kundenanfragen, Fördermittelbeantragung (KfW, BAFA, Landes­programme) und laufende Projektbegleitung.</p>
       </div>
-    </Section>
-  );
-}
+    </div>
+  </div>
+</section>
 
-function App() {
-  return (
-    <Page active="ueber-uns">
-      <Hero />
-      <Marquee items={["SEIT 2014", "DEGGENDORF", "INHABERGEFÜHRT", "3 MITARBEITER", "10+ FACHBETRIEBE", "250+ ANLAGEN", "GANZ BAYERN", "EHRLICH."]} />
-      <StatGrid items={[
-        { l: "Gründungsjahr", v: "2014" },
-        { l: "Installierte Anlagen", v: "250+" },
-        { l: "Partnerbetriebe", v: "10+" },
-        { l: "Erfahrung PV", v: "12 J." },
-      ]} />
-      <WerteSection />
-      <TeamSection />
-      <Timeline />
-      <PartnerSection />
-      <GebietSection />
-      <BigQuote
-        quote="Ich verkaufe nur, was ich auch meiner Mutter aufs Dach setzen würde. Punkt."
-        by="Doris Pilsner-Albrecht"
-        role="Inhaberin · Pilsner Vertriebs GmbH"
-      />
-      <Cta
-        kicker="KONTAKT"
-        big="PERSÖNLICHES GESPRÄCH?"
-        sub="Kein Formular, kein Funnel. Ruf an oder schreib uns — Doris oder Thomas melden sich persönlich."
-        href="index.html#kontakt"
-        btn="JETZT KONTAKT AUFNEHMEN"
-      />
-    </Page>
-  );
-}
+<!-- TIMELINE SECTION -->
+<section style="background:#fdfd00;border-bottom:3px solid #0a0a0a;padding:clamp(48px,7vw,80px) clamp(16px,4vw,48px);">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.5;margin-bottom:12px;">GESCHICHTE</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,6vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;margin:0;">
+    WIE WIR <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;">dahin kamen.</em>
+  </h2>
+  <div class="timeline-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;">
+    <!-- 2014 — even index: black bg -->
+    <div style="background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px;transform:rotate(0.5deg);position:relative;">
+      <div style="position:absolute;top:-12px;right:12px;background:#00ffea;color:#0a0a0a;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;">2022</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:40px;font-weight:700;line-height:1;margin-bottom:4px;color:#00ffea;opacity:0.3;">2022</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.1;">Gründung</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;opacity:0.9;">Pilsner Vertriebs GmbH gegründet. Erste PV-Koordinationen in Deggendorf und Umgebung. Doris installiert als erstes ihr eigenes Dach.</p>
+    </div>
+    <!-- 2016 — odd index: white bg -->
+    <div style="background:#ffffff;color:#0a0a0a;border:3px solid #0a0a0a;padding:28px;transform:rotate(-0.5deg);position:relative;">
+      <div style="position:absolute;top:-12px;right:12px;background:#0a0a0a;color:#fdfd00;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;">2016</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:40px;font-weight:700;line-height:1;margin-bottom:4px;color:#0a0a0a;opacity:0.3;">2016</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.1;">Netzwerk wächst</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;opacity:0.9;">Drei feste Fachbetriebe im Partnernetzwerk. Erste Gewerbeanlage mit 40 kWp in Plattling. Speicher kommen ins Portfolio.</p>
+    </div>
+    <!-- 2019 — even index: black bg -->
+    <div style="background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px;transform:rotate(1deg);position:relative;">
+      <div style="position:absolute;top:-12px;right:12px;background:#00ffea;color:#0a0a0a;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;">2019</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:40px;font-weight:700;line-height:1;margin-bottom:4px;color:#00ffea;opacity:0.3;">2019</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.1;">PPA-Modell eingeführt</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;opacity:0.9;">Solar Energie Partner wird einer der ersten Vermittler in Niederbayern mit echtem PPA-Angebot für Gewerbetreibende.</p>
+    </div>
+    <!-- 2021 — odd index: white bg -->
+    <div style="background:#ffffff;color:#0a0a0a;border:3px solid #0a0a0a;padding:28px;transform:rotate(-1deg);position:relative;">
+      <div style="position:absolute;top:-12px;right:12px;background:#0a0a0a;color:#fdfd00;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;">2021</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:40px;font-weight:700;line-height:1;margin-bottom:4px;color:#0a0a0a;opacity:0.3;">2021</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.1;">Expansion Bayern &amp; BW</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;opacity:0.9;">Partnernetzwerk wächst auf 8 zertifizierte Fachbetriebe. Projekte in ganz Bayern und Baden-Württemberg.</p>
+    </div>
+    <!-- 2024 — even index: black bg -->
+    <div style="background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px;transform:rotate(0.8deg);position:relative;">
+      <div style="position:absolute;top:-12px;right:12px;background:#00ffea;color:#0a0a0a;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;">2024</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:40px;font-weight:700;line-height:1;margin-bottom:4px;color:#00ffea;opacity:0.3;">2024</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.1;">Marke Solar Energie Partner</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;opacity:0.9;">Neuer Markenauftritt. Online-Rechner. Monitoring für alle Bestandsanlagen. Über 200 installierte Anlagen.</p>
+    </div>
+    <!-- 2026 — odd index: white bg -->
+    <div style="background:#ffffff;color:#0a0a0a;border:3px solid #0a0a0a;padding:28px;transform:rotate(-0.8deg);position:relative;">
+      <div style="position:absolute;top:-12px;right:12px;background:#0a0a0a;color:#fdfd00;padding:3px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;">2026</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:40px;font-weight:700;line-height:1;margin-bottom:4px;color:#0a0a0a;opacity:0.3;">2026</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;margin-bottom:10px;line-height:1.1;">Heute</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;opacity:0.9;">250+ Anlagen. 3 Mitarbeiter intern. 10+ Partnerbetriebe. Fokus: Gewerbe-PPA, Repowering und Eigenheim mit Wärmepumpe.</p>
+    </div>
+  </div>
+</section>
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+<!-- PARTNERNETZWERK SECTION -->
+<section style="background:#0a0a0a;color:#ffffff;border-bottom:3px solid #0a0a0a;padding:clamp(48px,7vw,80px) clamp(16px,4vw,48px);">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#fdfd00;opacity:0.7;margin-bottom:12px;">PARTNERNETZWERK</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,6vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;margin:0;color:#ffffff;">
+    NICHT WIR <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;">bauen.</em> FACHLEUTE BAUEN.
+  </h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:20px;font-style:italic;color:#fdfd00;max-width:720px;margin:24px 0 40px;">
+    Solar Energie Partner ist Vermittler und Koordinator — kein Installateur. Wir arbeiten mit einem festen Netzwerk geprüfter, zertifizierter Fachbetriebe zusammen. Jeder Betrieb beschäftigt eigenes, ausgebildetes Festpersonal.
+  </p>
+  <div class="partner-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:40px;">
+    <div style="background:#00ffea;border:3px solid #fdfd00;padding:24px;transform:rotate(0.5deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:42px;text-transform:uppercase;letter-spacing:-0.05em;line-height:0.9;margin-bottom:8px;color:#0a0a0a;">10+</div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;margin:0;line-height:1.6;text-transform:uppercase;letter-spacing:0.03em;color:#0a0a0a;">Zertifizierte Fachbetriebe im Netzwerk</p>
+    </div>
+    <div style="background:#ff00aa;border:3px solid #fdfd00;padding:24px;transform:rotate(-0.5deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:42px;text-transform:uppercase;letter-spacing:-0.05em;line-height:0.9;margin-bottom:8px;color:#0a0a0a;">100%</div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;margin:0;line-height:1.6;text-transform:uppercase;letter-spacing:0.03em;color:#0a0a0a;">Betriebe mit eigenem Festpersonal — keine Solo-Selbständigen</p>
+    </div>
+    <div style="background:#ff7a00;border:3px solid #fdfd00;padding:24px;transform:rotate(1deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:42px;text-transform:uppercase;letter-spacing:-0.05em;line-height:0.9;margin-bottom:8px;color:#0a0a0a;">VDE</div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;margin:0;line-height:1.6;text-transform:uppercase;letter-spacing:0.03em;color:#0a0a0a;">Alle Betriebe geprüft nach VDE-Normen</p>
+    </div>
+    <div style="background:#fdfd00;border:3px solid #fdfd00;padding:24px;transform:rotate(-1deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:42px;text-transform:uppercase;letter-spacing:-0.05em;line-height:0.9;margin-bottom:8px;color:#0a0a0a;">25 J.</div>
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;margin:0;line-height:1.6;text-transform:uppercase;letter-spacing:0.03em;color:#0a0a0a;">Produktgarantie auf alle eingesetzten Module</p>
+    </div>
+  </div>
+  <div style="border:3px solid #fdfd00;padding:0;">
+    <div style="display:grid;grid-template-columns:220px 1fr;padding:14px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center;gap:20px;">
+      <span style="font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#00ffea;">► Warum Vermittler?</span>
+      <span style="opacity:0.85;line-height:1.6;">Weil wir so für jeden Projekttyp den richtigen Betrieb einsetzen können — kein Unternehmen ist in allem gleich gut.</span>
+    </div>
+    <div style="display:grid;grid-template-columns:220px 1fr;border-top:2px solid #fdfd00;padding:14px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center;gap:20px;">
+      <span style="font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#00ffea;">► Was prüfen wir?</span>
+      <span style="opacity:0.85;line-height:1.6;">Zertifizierungen, Versicherungen, Referenzprojekte, VDE-Normen, Personalstruktur. Kein Einzelunternehmer, kein Subunternehmer-Wirrwarr.</span>
+    </div>
+    <div style="display:grid;grid-template-columns:220px 1fr;border-top:2px solid #fdfd00;padding:14px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center;gap:20px;">
+      <span style="font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#00ffea;">► Wer haftet?</span>
+      <span style="opacity:0.85;line-height:1.6;">Wir. Solar Energie Partner koordiniert das Gesamtprojekt und steht als Ansprechpartner gerade — auch wenn ein Fachbetrieb mal wechselt.</span>
+    </div>
+    <div style="display:grid;grid-template-columns:220px 1fr;border-top:2px solid #fdfd00;padding:14px 20px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center;gap:20px;">
+      <span style="font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#00ffea;">► Vorteil für Kunden?</span>
+      <span style="opacity:0.85;line-height:1.6;">Mehr Auswahl, mehr Spezialisierung, gleiche Verlässlichkeit. Und du sprichst immer mit uns — nicht mit 5 verschiedenen Leuten.</span>
+    </div>
+  </div>
+</section>
+
+<!-- EINSATZGEBIET SECTION -->
+<section style="background:#fdfd00;border-bottom:3px solid #0a0a0a;padding:clamp(48px,7vw,80px) clamp(16px,4vw,48px);">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.5;margin-bottom:12px;">EINSATZGEBIET</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,6vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;margin:0;">
+    VON DEGGENDORF <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;">aus</em> DEUTSCHLAND.
+  </h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:20px;font-style:italic;max-width:720px;margin:24px 0 32px;">
+    Unser Schwerpunkt liegt in Niederbayern und der Oberpfalz — aber unsere Fachbetriebe sind in ganz Bayern und Baden-Württemberg aktiv.
+  </p>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;">
+    <div style="background:#fdfd00;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(1deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">DEGGENDORF</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">Hauptsitz</div>
+    </div>
+    <div style="background:#00ffea;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(-0.5deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">STRAUBING</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">Kerngebiet</div>
+    </div>
+    <div style="background:#00ffea;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(0.7deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">PASSAU</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">Kerngebiet</div>
+    </div>
+    <div style="background:#00ffea;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(1deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">LANDSHUT</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">Kerngebiet</div>
+    </div>
+    <div style="background:#00ffea;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(-0.5deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">REGENSBURG</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">Kerngebiet</div>
+    </div>
+    <div style="background:#ff00aa;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(0.7deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">AUGSBURG</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">Bayern</div>
+    </div>
+    <div style="background:#ff00aa;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(1deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">MÜNCHEN</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">Bayern</div>
+    </div>
+    <div style="background:#ff00aa;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(-0.5deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">INGOLSTADT</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">Bayern</div>
+    </div>
+    <div style="background:#ff00aa;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(0.7deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">NÜRNBERG</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">Bayern</div>
+    </div>
+    <div style="background:#ff7a00;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(1deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">STUTTGART</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">BW</div>
+    </div>
+    <div style="background:#ff7a00;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(-0.5deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">MANNHEIM</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">BW</div>
+    </div>
+    <div style="background:#ffffff;border:3px solid #0a0a0a;padding:10px 16px;transform:rotate(0.7deg);">
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.02em;">BUNDESWEIT</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.7;text-transform:uppercase;">Auf Anfrage</div>
+    </div>
+  </div>
+</section>
+
+<!-- BIG QUOTE -->
+<section style="background:#0a0a0a;color:#ffffff;border-bottom:3px solid #0a0a0a;padding:clamp(48px,8vw,96px) clamp(16px,4vw,48px);text-align:center;">
+  <blockquote style="font-family:'Instrument Serif',serif;font-size:clamp(24px,4vw,48px);font-style:italic;line-height:1.2;max-width:900px;margin:0 auto 24px;color:#ffffff;">
+    "Ich verkaufe nur, was ich auch meiner Mutter aufs Dach setzen würde. Punkt."
+  </blockquote>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#fdfd00;">Doris Pilsner-Albrecht</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#ffffff;opacity:0.5;margin-top:4px;">Inhaberin · Pilsner Vertriebs GmbH</div>
+</section>
+
+<!-- CTA SECTION -->
+<section style="background:#fdfd00;border-bottom:3px solid #0a0a0a;padding:clamp(48px,8vw,96px) clamp(16px,4vw,48px);text-align:center;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.5;margin-bottom:16px;">KONTAKT</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,7vw,88px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 24px;">PERSÖNLICHES GESPRÄCH?</h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:clamp(17px,2vw,22px);font-style:italic;line-height:1.55;max-width:600px;margin:0 auto 40px;">
+    Kein Formular, kein Funnel. Ruf an oder schreib uns — Doris oder Thomas melden sich persönlich.
+  </p>
+  <a href="kontakt.html" style="display:inline-block;background:#0a0a0a;color:#fdfd00;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;padding:18px 40px;border:3px solid #0a0a0a;">JETZT KONTAKT AUFNEHMEN →</a>
+</section>
+
+<footer style="background:#0a0a0a;color:#ffffff;padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px) 0;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px 32px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.15);">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;">SOLAR // RADIKAL</span>
+      </div>
+      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;line-height:1.6;opacity:0.7;margin:0;">Photovoltaik für Bayern und Baden-Württemberg. Inhabergeführt seit 2022.</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">LEISTUNGEN</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="eigenheim.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Eigenheim</a>
+        <a href="gewerbe.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Gewerbe</a>
+        <a href="speicher.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Speicher</a>
+        <a href="ppa.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">PPA</a>
+        <a href="repowering.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Repowering</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">INFOS</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="foerderung.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Förderung</a>
+        <a href="ueber-uns.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Über uns</a>
+        <a href="referenzen.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Referenzen</a>
+        <a href="kontakt.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Kontakt</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">REGIONEN</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="deggendorf.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Deggendorf</a>
+        <a href="straubing.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Straubing</a>
+        <a href="passau.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Passau</a>
+        <a href="regensburg.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Regensburg</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">KONTAKT</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;opacity:0.8;">
+        <a href="tel:+4999140227560" style="color:#ffffff;text-decoration:none;">09991 40227560</a>
+        <a href="mailto:info@pilsner-vertrieb.de" style="color:#ffffff;text-decoration:none;">info@pilsner-vertrieb.de</a>
+        <span>Detterstraße 38<br>94469 Deggendorf</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding:16px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.4;">
+    <span>© 2026 Pilsner Vertriebs GmbH</span>
+    <div style="display:flex;gap:16px;">
+      <a href="impressum.html" style="color:#ffffff;text-decoration:none;">Impressum</a>
+      <a href="datenschutz.html" style="color:#ffffff;text-decoration:none;">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/491753560019" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:999;background:#25d366;color:#ffffff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+(function(){
+  function clk(){var e=document.getElementById('clk');if(e)e.textContent=new Date().toLocaleTimeString('de-DE');}
+  clk();setInterval(clk,1000);
+  document.querySelectorAll('[id^="sun"]').forEach(function(s){
+    for(var i=0;i<36;i++){
+      var a=i*Math.PI*2/36;
+      var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('x1',100+Math.cos(a)*60);l.setAttribute('y1',100+Math.sin(a)*60);
+      l.setAttribute('x2',100+Math.cos(a)*92);l.setAttribute('y2',100+Math.sin(a)*92);
+      l.setAttribute('stroke','#00ffea');l.setAttribute('stroke-width','1.5');
+      s.insertBefore(l,s.firstChild);
+    }
+  });
+})();
 </script>
 </body>
 </html>

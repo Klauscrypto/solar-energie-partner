@@ -17,128 +17,296 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Was ist ein PPA-Stromvertrag?","acceptedAnswer":{"@type":"Answer","text":"Bei einem PPA (Power Purchase Agreement) finanzieren und bauen wir die PV-Anlage auf Ihrem Dach. Sie zahlen ausschließlich den Strom, den Sie tatsächlich verbrauchen, zu einem vertraglich festgelegten Tarif unter Marktniveau. Die Anlage gehört uns, nach Vertragsende können Sie sie zum Restwert übernehmen."}},{"@type":"Question","name":"Für wen lohnt sich ein PPA?","acceptedAnswer":{"@type":"Answer","text":"PPA ist ideal für Gewerbebetriebe und Industrie mit hohem Tagesverbrauch und verfügbarer Dachfläche, die keine Liquidität in eine PV-Anlage investieren möchten. Ab ca. 50 kWp Anlagengröße rechnet sich ein PPA in der Regel."}},{"@type":"Question","name":"Wie lange läuft ein PPA-Vertrag?","acceptedAnswer":{"@type":"Answer","text":"Standard-Laufzeiten sind 15 oder 20 Jahre. Nach Vertragsende haben Sie das Recht, die Anlage zum kalkulierten Restwert zu übernehmen oder den Vertrag zu verlängern."}},{"@type":"Question","name":"Was passiert bei einem Defekt der PPA-Anlage?","acceptedAnswer":{"@type":"Answer","text":"Alle Wartungs- und Reparaturkosten tragen wir als Anlageneigentümer vollständig. Sie zahlen nur für tatsächlich gelieferten Strom — bei Ausfall zahlen Sie nichts."}}]}</script>
 <link rel="stylesheet" href="fonts/fonts.css" />
 <link rel="stylesheet" href="radikal-base.css" />
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+input[type=range]{width:100%;accent-color:#ff00aa;height:24px;cursor:pointer;}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-track{overflow:hidden;border-top:3px solid #0a0a0a;border-bottom:3px solid #0a0a0a;background:#0a0a0a;color:#fdfd00;padding:14px 0;}
+.mq-inner{display:flex;gap:0;animation:mq 18s linear infinite;white-space:nowrap;}
+.mq-item{padding:0 32px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
+details summary::-webkit-details-marker{display:none;}
+details[open] summary .faq-plus{transform:rotate(45deg);}
+.faq-plus{display:inline-block;transition:transform 0.2s;}
+</style>
 </head>
 <body>
-<div id="root"></div>
-<script src="vendor/react.min.js"></script>
-<script src="vendor/react-dom.min.js"></script>
-<script src="vendor/babel.min.js"></script>
-<script src="data.js"></script>
-<script type="text/babel" src="subpage-shell.jsx"></script>
-<script type="text/babel">
-const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
-const { useState } = React;
 
-function PPACalc() {
-  const [k, setK] = useState(120000);
-  const yearly = Math.round(k * 0.14);
-  return (
-    <Section kapitel="RECHNER" title="DEINE" italicPart="ersparnis," blackPart="LIVE." color={COL.cyan}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, alignItems: "stretch" }}>
-        <div style={{ background: COL.white, border: `3px solid ${COL.black}`, padding: 28 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8, fontFamily: fonts.mono, fontSize: 12, textTransform: "uppercase" }}>
-            <span>JAHRESVERBRAUCH</span>
-            <span style={{ fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>{k.toLocaleString("de-DE")} kWh</span>
-          </div>
-          <input type="range" min="20000" max="800000" step="5000" value={k} onChange={e => setK(+e.target.value)} style={{ width: "100%", accentColor: COL.pink, height: 24 }}/>
-          <div style={{ display: "flex", justifyContent: "space-between", fontFamily: fonts.mono, fontSize: 10, opacity: 0.5 }}>
-            <span>20k</span><span>800k</span>
-          </div>
-        </div>
-        <div style={{ background: COL.black, color: COL.yellow, border: `3px solid ${COL.black}`, padding: 28 }}>
-          <div style={{ fontFamily: fonts.mono, fontSize: 11, textTransform: "uppercase", opacity: 0.6 }}>► ERSPARNIS / JAHR</div>
-          <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: "clamp(72px,9vw,140px)", lineHeight: 0.85, letterSpacing: "-0.04em", color: COL.cyan, fontVariantNumeric: "tabular-nums" }}>{yearly.toLocaleString("de-DE")}<span style={{ fontSize: ".4em", color: COL.pink }}>€</span></div>
-          <div style={{ fontFamily: fonts.mono, fontSize: 12, marginTop: 10, opacity: 0.7 }}>~ {(yearly*20).toLocaleString("de-DE")} € über 20 Jahre</div>
-        </div>
+<header style="position:sticky;top:0;z-index:100;background:#0a0a0a;border-bottom:3px solid #0a0a0a;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);min-height:56px;gap:16px;">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#ffffff;flex-shrink:0;">
+    <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;letter-spacing:-0.01em;">SOLAR // RADIKAL</span>
+  </a>
+  <nav style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;">
+    <a href="eigenheim.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">EIGENHEIM</a>
+    <a href="gewerbe.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">GEWERBE</a>
+    <a href="speicher.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">SPEICHER</a>
+    <a href="ppa.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#0a0a0a;text-decoration:none;padding:4px 8px;background:#fdfd00;">PPA</a>
+    <a href="repowering.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">REPOWERING</a>
+    <a href="foerderung.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">FÖRDERUNG</a>
+    <a href="ueber-uns.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">ÜBER UNS</a>
+    <a href="referenzen.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">REFERENZEN</a>
+  </nav>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#fdfd00;flex-shrink:0;display:flex;align-items:center;gap:16px;">
+    <span id="clk"></span>
+    <a href="tel:+4999140227560" style="color:#fdfd00;text-decoration:none;">09991 40227560</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section style="background:#ff00aa;border-bottom:3px solid #0a0a0a;padding:clamp(48px,8vw,96px) clamp(16px,4vw,48px);position:relative;overflow:hidden;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:24px;">LEISTUNG_04</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.8;margin-bottom:8px;background:#0a0a0a;color:#ff00aa;display:inline-block;padding:4px 12px;">PPA-VERTRAG</div>
+  <h1 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(64px,12vw,180px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 8px;">STROM <em style="font-style:italic;font-weight:400;">ohne</em></h1>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(64px,12vw,180px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 32px;">INVESTITION.</h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:clamp(17px,2.5vw,22px);font-style:italic;max-width:680px;line-height:1.5;margin:0 0 40px;">PPA = Power Purchase Agreement. Wir investieren, bauen, betreiben — du bezahlst nur den Strom, den du tatsächlich verbrauchst. 20 Jahre Festpreis. Cashflow ab Tag 1 positiv.</p>
+  <div style="position:absolute;top:12%;right:5%;transform:rotate(5deg);background:#00ffea;border:3px solid #0a0a0a;padding:8px 16px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;">ZERO INVEST</div>
+  <div style="position:absolute;top:78%;left:3%;transform:rotate(-4deg);background:#fdfd00;border:3px solid #0a0a0a;padding:8px 16px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;">20 J. FESTPREIS</div>
+  <svg id="sun0" viewBox="0 0 200 200" width="200" height="200" style="position:absolute;right:-40px;bottom:-40px;opacity:0.12;pointer-events:none;">
+    <circle cx="100" cy="100" r="52" fill="#0a0a0a"/>
+  </svg>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-track">
+  <div class="mq-inner">
+    <span class="mq-item">ZERO INVESTMENT</span>
+    <span class="mq-item">FESTPREIS 20 J.</span>
+    <span class="mq-item">WARTUNG INKL.</span>
+    <span class="mq-item">BILANZ-OPTIMIERT</span>
+    <span class="mq-item">ESG-DOKUMENTIERT</span>
+    <span class="mq-item">AB 100 kWp</span>
+    <span class="mq-item">ZERO INVESTMENT</span>
+    <span class="mq-item">FESTPREIS 20 J.</span>
+    <span class="mq-item">WARTUNG INKL.</span>
+    <span class="mq-item">BILANZ-OPTIMIERT</span>
+    <span class="mq-item">ESG-DOKUMENTIERT</span>
+    <span class="mq-item">AB 100 kWp</span>
+  </div>
+</div>
+
+<!-- WIE GEHT DAS -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#fdfd00;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:8px;">WIE_GEHT_DAS</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 40px;">IN 5 <em style="font-style:italic;font-weight:400;">schritten</em> FERTIG.</h2>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);border:3px solid #0a0a0a;margin-top:40px;">
+    <div style="background:#ffffff;padding:28px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">01. WIR INVESTIEREN</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">0 € für dich</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Wir tragen die komplette Investition für die Anlage. Du musst keinen Cent vorfinanzieren.</p>
+    </div>
+    <div style="background:#00ffea;padding:28px;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">02. DEIN DACH, UNSERE ANLAGE</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">Pacht für 20 J.</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Die Anlage steht auf deinem Dach, gehört aber uns. Wir pachten die Dachfläche zum Symbol-Preis.</p>
+    </div>
+    <div style="background:#ff00aa;padding:28px;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">03. DU VERBRAUCHST</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">Direkt-Strom</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Strom fließt direkt in deinen Verbrauch. Du zahlst nur was du nutzt — zum festen PPA-Tarif.</p>
+    </div>
+    <div style="background:#ff7a00;padding:28px;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">04. WIR KÜMMERN UNS</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">Wartung inkl.</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Wartung, Reparatur, Versicherung — alles bei uns. Du musst dich um nichts kümmern.</p>
+    </div>
+    <div style="background:#ffffff;padding:28px;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">05. NACH 20 J.</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">Übernahme oder neu</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Du übernimmst die Anlage zum Restwert oder verlängerst den Vertrag. Deine Wahl.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PPA RECHNER -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#00ffea;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:8px;">RECHNER</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 40px;">DEINE <em style="font-style:italic;font-weight:400;">ersparnis,</em> LIVE.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;">
+    <div style="background:#ffffff;border:3px solid #0a0a0a;padding:28px;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;">
+        <span>JAHRESVERBRAUCH</span>
+        <span id="ppa-kwh-display" style="font-weight:700;">120.000 kWh</span>
       </div>
-    </Section>
-  );
+      <input type="range" id="ppa-slider" min="20000" max="800000" step="5000" value="120000" style="width:100%;accent-color:#ff00aa;height:24px;" oninput="ppaCalc(this.value)">
+      <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.5;margin-top:4px;">
+        <span>20k</span><span>800k</span>
+      </div>
+    </div>
+    <div style="background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;opacity:0.6;margin-bottom:8px;">► ERSPARNIS / JAHR</div>
+      <div id="ppa-result" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(72px,9vw,140px);line-height:0.85;letter-spacing:-0.04em;color:#00ffea;font-variant-numeric:tabular-nums;">16.800<span style="font-size:.4em;color:#ff00aa;">€</span></div>
+      <div id="ppa-result-20y" style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:10px;opacity:0.7;">~ 336.000 € über 20 Jahre</div>
+    </div>
+  </div>
+</section>
+<script>
+function ppaCalc(v){
+  var k=parseInt(v);
+  var yearly=Math.round(k*0.14);
+  document.getElementById('ppa-kwh-display').textContent=k.toLocaleString('de-DE')+' kWh';
+  document.getElementById('ppa-result').innerHTML=yearly.toLocaleString('de-DE')+'<span style="font-size:.4em;color:#ff00aa;">€</span>';
+  document.getElementById('ppa-result-20y').textContent='~ '+(yearly*20).toLocaleString('de-DE')+' € über 20 Jahre';
 }
+</script>
 
-const how = [
-  { no: "01", tag: "WIR INVESTIEREN", title: "0 € für dich", body: "Wir tragen die komplette Investition für die Anlage. Du musst keinen Cent vorfinanzieren." },
-  { no: "02", tag: "DEIN DACH, UNSERE ANLAGE", title: "Pacht für 20 J.", body: "Die Anlage steht auf deinem Dach, gehört aber uns. Wir pachten die Dachfläche zum Symbol-Preis." },
-  { no: "03", tag: "DU VERBRAUCHST", title: "Direkt-Strom", body: "Strom fließt direkt in deinen Verbrauch. Du zahlst nur was du nutzt — zum festen PPA-Tarif." },
-  { no: "04", tag: "WIR KÜMMERN UNS", title: "Wartung inkl.", body: "Wartung, Reparatur, Versicherung — alles bei uns. Du musst dich um nichts kümmern." },
-  { no: "05", tag: "NACH 20 J.", title: "Übernahme oder neu", body: "Du übernimmst die Anlage zum Restwert oder verlängerst den Vertrag. Deine Wahl." },
-];
+<!-- WANN PASSTS -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:8px;color:#ffffff;">WANN_PASSTS</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 40px;color:#ff00aa;">FÜR <em style="font-style:italic;font-weight:400;">wen</em> LOHNTS?</h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;max-width:720px;margin-bottom:32px;color:#fdfd00;">PPA ist nicht für jeden. Wir sagen ehrlich, wann's nicht passt.</p>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);border:3px solid #0a0a0a;margin-top:40px;">
+    <div style="background:#00ffea;padding:28px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">PASST</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">GEWERBE 50–500k kWh</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Höchste Ersparnis. Tarif konkurrenzlos. Bilanz-Vorteil als Operating-Lease.</p>
+    </div>
+    <div style="background:#ff00aa;padding:28px;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">PASST</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">INDUSTRIE 500k+ kWh</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Großanlagen ab 100 kWp. Bundesweit. Tarif weiter verhandelbar.</p>
+    </div>
+    <div style="background:#fdfd00;padding:28px;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">PASST</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">KOMMUNEN</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Schulen, Bauhöfe, Kläranlagen — keine Investition aus dem Haushalt nötig.</p>
+    </div>
+    <div style="background:#ff7a00;padding:28px;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">PASST NICHT</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">PRIVAT &lt; 5000 kWh</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Bei kleinen Verbräuchen lohnt sich der Vertrags-Aufwand nicht. Da empfehlen wir Kauf.</p>
+    </div>
+  </div>
+</section>
 
-const wer = [
-  { tag: "PASST", title: "GEWERBE 50–500k kWh", body: "Höchste Ersparnis. Tarif konkurrenzlos. Bilanz-Vorteil als Operating-Lease.", color: COL.cyan },
-  { tag: "PASST", title: "INDUSTRIE 500k+ kWh", body: "Großanlagen ab 100 kWp. Bundesweit. Tarif weiter verhandelbar.", color: COL.pink },
-  { tag: "PASST", title: "KOMMUNEN", body: "Schulen, Bauhöfe, Kläranlagen — keine Investition aus dem Haushalt nötig.", color: COL.yellow },
-  { tag: "PASST NICHT", title: "PRIVAT < 5000 kWh", body: "Bei kleinen Verbräuchen lohnt sich der Vertrags-Aufwand nicht. Da empfehlen wir Kauf.", color: COL.orange },
-];
+<!-- VS KAUF -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#00ffea;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:8px;">VS_KAUF</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 40px;">KAUF <em style="font-style:italic;font-weight:400;">vs.</em> PPA.</h2>
+  <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;border:3px solid #0a0a0a;background:#ffffff;font-family:'JetBrains Mono',monospace;font-size:13px;">
+    <div style="background:#0a0a0a;color:#fdfd00;padding:16px 20px;font-weight:700;text-transform:uppercase;">► KRITERIUM</div>
+    <div style="background:#ff00aa;padding:16px 20px;font-weight:700;text-transform:uppercase;border-left:3px solid #0a0a0a;">KAUF</div>
+    <div style="background:#00ffea;padding:16px 20px;font-weight:700;text-transform:uppercase;border-left:3px solid #0a0a0a;">PPA</div>
+    <!-- row 1 -->
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;">Kapital</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;">8.000 € – keine Grenzen</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700;">0 €</div>
+    <!-- row 2 -->
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;">Wartung</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;">Eigentümer</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700;background:rgba(0,255,234,0.15);">wir</div>
+    <!-- row 3 -->
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;">Cashflow J.1</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;">negativ</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700;">positiv</div>
+    <!-- row 4 -->
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;">Bilanz</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;">Aktivierung</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700;background:rgba(0,255,234,0.15);">Operating-Lease</div>
+    <!-- row 5 -->
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;">Risiko</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;">Eigentümer</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700;">wir</div>
+    <!-- row 6 -->
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;">Vertrag</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;">lebenslang</div>
+    <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700;background:rgba(0,255,234,0.15);">20 J. + Option</div>
+  </div>
+</section>
 
-function App() {
-  return (
-    <Page active="ppa">
-      <PageHero
-        kapitel="LEISTUNG_04"
-        kicker="PPA-VERTRAG"
-        title="STROM"
-        italicPart="ohne"
-        blackHeadlinePart="INVESTITION."
-        sub="PPA = Power Purchase Agreement. Wir investieren, bauen, betreiben — du bezahlst nur den Strom, den du tatsächlich verbrauchst. 20 Jahre Festpreis. Cashflow ab Tag 1 positiv."
-        color={COL.pink}
-        accentColor={COL.cyan}
-        stickers={[
-          { text: "ZERO INVEST", top: "12%", right: "5%", rot: 5, bg: COL.cyan },
-          { text: "20 J. FESTPREIS", top: "78%", left: "3%", rot: -4, bg: COL.yellow },
-        ]}
-      />
+<!-- BIG QUOTE -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#ff7a00;">
+  <blockquote style="margin:0;">
+    <p style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(28px,5vw,72px);line-height:1;letter-spacing:-0.03em;text-transform:uppercase;margin:0 0 24px;">"PPA ist Solaranlage als Service. Wie Strom aus der Steckdose, nur billiger und ohne Vertrieb."</p>
+    <footer style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;opacity:0.7;">— Pilsner Vertriebs Team</footer>
+  </blockquote>
+</section>
 
-      <Marquee items={["ZERO INVESTMENT", "FESTPREIS 20 J.", "WARTUNG INKL.", "BILANZ-OPTIMIERT", "ESG-DOKUMENTIERT", "AB 100 kWp"]} />
+<!-- CTA -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#0a0a0a;color:#ffffff;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.5;margin-bottom:8px;">JETZT_PPA</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 32px;">PPA-CHECK.<br><span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;">30 minuten —</span> <span style="background:#ff00aa;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:skew(-4deg);">FERTIG.</span></h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:20px;font-style:italic;opacity:0.8;max-width:640px;margin:0 0 32px;">Wir prüfen kostenlos, ob sich PPA für dich rechnet. Mit Tarif-Indikation und Vertragsentwurf.</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <a href="ppa-rechner.html" style="display:inline-block;background:#fdfd00;color:#0a0a0a;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;text-decoration:none;padding:16px 32px;border:3px solid #fdfd00;">[⚡] PPA RECHNER STARTEN →</a>
+    <a href="kontakt.html" style="display:inline-block;background:transparent;color:#ffffff;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;text-decoration:none;padding:16px 32px;border:3px solid rgba(255,255,255,0.3);">JETZT ANFRAGEN</a>
+    <a href="tel:+4999140227560" style="display:inline-block;background:transparent;color:#ffffff;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;text-decoration:none;padding:16px 32px;border:3px solid rgba(255,255,255,0.3);">09991 40227560</a>
+  </div>
+</section>
 
-      <Section kapitel="WIE_GEHT_DAS" title="IN 5" italicPart="schritten" blackPart="FERTIG." color={COL.yellow}>
-        <FeatureGrid cols={5} palette={[COL.white, COL.cyan, COL.pink, COL.orange, COL.white]} items={how}/>
-      </Section>
+<footer style="background:#0a0a0a;color:#ffffff;padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px) 0;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px 32px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.15);">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;">SOLAR // RADIKAL</span>
+      </div>
+      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;line-height:1.6;opacity:0.7;margin:0;">Photovoltaik für Bayern und Baden-Württemberg. Inhabergeführt seit 2022.</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">LEISTUNGEN</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="eigenheim.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Eigenheim</a>
+        <a href="gewerbe.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Gewerbe</a>
+        <a href="speicher.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Speicher</a>
+        <a href="ppa.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">PPA</a>
+        <a href="repowering.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Repowering</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">INFOS</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="foerderung.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Förderung</a>
+        <a href="ueber-uns.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Über uns</a>
+        <a href="referenzen.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Referenzen</a>
+        <a href="kontakt.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Kontakt</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">REGIONEN</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="deggendorf.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Deggendorf</a>
+        <a href="straubing.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Straubing</a>
+        <a href="passau.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Passau</a>
+        <a href="regensburg.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Regensburg</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">KONTAKT</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;opacity:0.8;">
+        <a href="tel:+4999140227560" style="color:#ffffff;text-decoration:none;">09991 40227560</a>
+        <a href="mailto:info@pilsner-vertrieb.de" style="color:#ffffff;text-decoration:none;">info@pilsner-vertrieb.de</a>
+        <span>Detterstraße 38<br>94469 Deggendorf</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding:16px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.4;">
+    <span>© 2026 Pilsner Vertriebs GmbH</span>
+    <div style="display:flex;gap:16px;">
+      <a href="impressum.html" style="color:#ffffff;text-decoration:none;">Impressum</a>
+      <a href="datenschutz.html" style="color:#ffffff;text-decoration:none;">Datenschutz</a>
+    </div>
+  </div>
+</footer>
 
-      <PPACalc />
+<a href="https://wa.me/491753560019" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:999;background:#25d366;color:#ffffff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-      <Section kapitel="WANN_PASSTS" title="FÜR" italicPart="wen" blackPart="LOHNTS?" color={COL.black} blackHeadlineColor={COL.pink}>
-        <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 32, color: COL.yellow }}>
-          PPA ist nicht für jeden. Wir sagen ehrlich, wann's nicht passt.
-        </p>
-        <FeatureGrid cols={4} palette={wer.map(w => w.color)} items={wer}/>
-      </Section>
-
-      <Section kapitel="VS_KAUF" title="KAUF" italicPart="vs." blackPart="PPA." color={COL.cyan}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.5fr 1fr 1fr", border: `3px solid ${COL.black}`, background: COL.white, fontFamily: fonts.mono, fontSize: 13 }}>
-          <div style={{ background: COL.black, color: COL.yellow, padding: "16px 20px", fontWeight: 700, textTransform: "uppercase" }}>► KRITERIUM</div>
-          <div style={{ background: COL.pink, padding: "16px 20px", fontWeight: 700, textTransform: "uppercase", borderLeft: `3px solid ${COL.black}` }}>KAUF</div>
-          <div style={{ background: COL.cyan, padding: "16px 20px", fontWeight: 700, textTransform: "uppercase", borderLeft: `3px solid ${COL.black}` }}>PPA</div>
-          {[
-            ["Kapital", "8.000 € – keine Grenzen", "0 €"],
-            ["Wartung", "Eigentümer", "wir"],
-            ["Cashflow J.1", "negativ", "positiv"],
-            ["Bilanz", "Aktivierung", "Operating-Lease"],
-            ["Risiko", "Eigentümer", "wir"],
-            ["Vertrag", "lebenslang", "20 J. + Option"],
-          ].map(([c,k,p], i) => <React.Fragment key={i}>
-            <div style={{ padding: "14px 20px", borderTop: `1px solid ${COL.black}`, fontWeight: 700, textTransform: "uppercase" }}>{c}</div>
-            <div style={{ padding: "14px 20px", borderTop: `1px solid ${COL.black}`, borderLeft: `3px solid ${COL.black}`, fontFamily: fonts.serif, fontStyle: "italic", fontSize: 15 }}>{k}</div>
-            <div style={{ padding: "14px 20px", borderTop: `1px solid ${COL.black}`, borderLeft: `3px solid ${COL.black}`, fontFamily: fonts.serif, fontStyle: "italic", fontSize: 15, fontWeight: 700, background: i%2 ? "rgba(0,255,234,0.15)" : "transparent" }}>{p}</div>
-          </React.Fragment>)}
-        </div>
-      </Section>
-
-      <BigQuote
-        quote="PPA ist Solaranlage als Service. Wie Strom aus der Steckdose, nur billiger und ohne Vertrieb."
-        by="Pilsner Vertriebs Team"
-        color={COL.orange}
-      />
-
-      <Cta
-        kicker="JETZT_PPA"
-        big={<>PPA-CHECK.<br/><span style={{ fontFamily: fonts.serif, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>30 minuten —</span> <span style={{ background: COL.pink, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>FERTIG.</span></>}
-        sub="Wir prüfen kostenlos, ob sich PPA für dich rechnet. Mit Tarif-Indikation und Vertragsentwurf."
-      />
-    </Page>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+<script>
+(function(){
+  function clk(){var e=document.getElementById('clk');if(e)e.textContent=new Date().toLocaleTimeString('de-DE');}
+  clk();setInterval(clk,1000);
+  document.querySelectorAll('[id^="sun"]').forEach(function(s){
+    for(var i=0;i<36;i++){
+      var a=i*Math.PI*2/36;
+      var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('x1',100+Math.cos(a)*60);l.setAttribute('y1',100+Math.sin(a)*60);
+      l.setAttribute('x2',100+Math.cos(a)*92);l.setAttribute('y2',100+Math.sin(a)*92);
+      l.setAttribute('stroke','#0a0a0a');l.setAttribute('stroke-width','1.5');
+      s.insertBefore(l,s.firstChild);
+    }
+  });
+})();
 </script>
 </body>
 </html>

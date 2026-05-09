@@ -29,221 +29,428 @@
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Lohnt sich PV bei Norddach oder Flachdach?", "acceptedAnswer": {"@type": "Answer", "text": "Ja — auch Nord-Ost oder Flachdach rechnet sich. Entscheidend ist die Gesamtfläche und der Eigenverbrauch. Wir haben Anlagen auf schwierigen Dächern gebaut die sich in unter 7 Jahren amortisiert haben."}}, {"@type": "Question", "name": "Brauche ich einen Speicher?", "acceptedAnswer": {"@type": "Answer", "text": "Kommt auf deinen Verbrauchsrhythmus an. Tagsüber viel Verbrauch (Homeoffice, Wärmepumpe) → Speicher bringt weniger. Viel Verbrauch abends → Speicher lohnt sich stark. Wir rechnen beides durch."}}, {"@type": "Question", "name": "Was kostet eine PV-Anlage fürs Eigenheim?", "acceptedAnswer": {"@type": "Answer", "text": "Eine 8 kWp Anlage kostet ca. 15.000 €, eine 12 kWp Anlage mit Speicher ca. 23.000 €. Für Privatpersonen fällt 0% MwSt. an (bis 30 kWp). Die Amortisation liegt je nach Anlage zwischen 5 und 8 Jahren."}}, {"@type": "Question", "name": "Gibt es noch Förderung 2026?", "acceptedAnswer": {"@type": "Answer", "text": "Ja: 0% MwSt. auf Kauf und Installation bis 30 kWp gilt weiter. Dazu KfW 270 Kredit für Speicher und in manchen Gemeinden lokale Zuschüsse. Wir beantragen das mit."}}]}</script>
 </head>
-<body>
-<div id="root"></div>
-<script src="vendor/react.min.js"></script>
-<script src="vendor/react-dom.min.js"></script>
-<script src="vendor/babel.min.js"></script>
-<script src="data.js"></script>
-<script type="text/babel" src="subpage-shell.jsx"></script>
-<script type="text/babel">
-const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
-const D = window.SITE_DATA;
+<body style="margin:0;padding:0;background:#0a0a0a;">
 
-const systems = [
-  {
-    size: "KLEIN",
-    kwp: "8 kWp",
-    for: "Für 2–3 Personen · ~3.500 kWh/J. Verbrauch",
-    modules: "16 Module",
-    speicher: "Ohne Speicher",
-    price: "ca. 15.000 €",
-    saving: "~1.850 €/J.",
-    amort: "~8,1 J.",
-    col: COL.cyan,
-  },
-  {
-    size: "MITTEL",
-    kwp: "12 kWp",
-    for: "Für 3–4 Personen · ~5.000 kWh/J. Verbrauch",
-    modules: "24 Module + 10 kWh Speicher",
-    speicher: "Mit Speicher",
-    price: "ca. 23.000 €",
-    saving: "~4.300 €/J.",
-    amort: "~5,3 J.",
-    col: COL.yellow,
-    highlight: true,
-  },
-  {
-    size: "GROSS",
-    kwp: "18 kWp",
-    for: "Für 4–5 Personen + Wallbox · ~7.500 kWh/J.",
-    modules: "36 Module + 18 kWh Speicher + Wallbox",
-    speicher: "Komplett-Paket",
-    price: "ca. 38.000 €",
-    saving: "~6.800 €/J.",
-    amort: "~5,6 J.",
-    col: COL.pink,
-  },
-];
+<!-- HEADER -->
+<header style="position:sticky;top:0;z-index:50;background:#0a0a0a;color:#fdfd00;border-bottom:4px solid #fdfd00;padding:10px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;">
+  <a href="index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;color:#fdfd00;">
+    <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+    <span style="font-weight:700;">SOLAR // RADIKAL</span>
+  </a>
+  <nav style="display:flex;gap:18px;flex-wrap:wrap;">
+    <a href="eigenheim.html" style="color:#0a0a0a;background:#fdfd00;padding:2px 8px;text-decoration:none;font-weight:700;">→ Eigenheim</a>
+    <a href="gewerbe.html" style="color:#fdfd00;text-decoration:none;">→ Gewerbe</a>
+    <a href="speicher.html" style="color:#fdfd00;text-decoration:none;">→ Speicher</a>
+    <a href="ppa.html" style="color:#fdfd00;text-decoration:none;">→ PPA</a>
+    <a href="repowering.html" style="color:#fdfd00;text-decoration:none;">→ Repowering</a>
+    <a href="referenzen.html" style="color:#fdfd00;text-decoration:none;">→ Referenzen</a>
+  </nav>
+  <div style="display:flex;gap:14px;align-items:center;">
+    <span style="color:#00ffea;">● LIVE</span>
+    <span id="clk"></span>
+    <a href="kontakt.html" style="padding:8px 14px;background:#fdfd00;color:#0a0a0a;text-decoration:none;font-weight:700;">RUF_AN</a>
+  </div>
+</header>
 
-const includes = [
-  { no: "01", tag: "PLANUNG", title: "Dachanalyse & Ertragsgutachten", body: "Wir schauen uns dein Dach an — Ausrichtung, Verschattung, Statik. Du bekommst eine ehrliche Zahl, keine Traumrechnung." },
-  { no: "02", tag: "TECHNIK", title: "Modulauswahl & Wechselrichter", body: "Nur Markenmodule mit 25–30 Jahren Garantie. Wir empfehlen was passt, nicht was Marge bringt." },
-  { no: "03", tag: "GENEHMIGUNG", title: "Anmeldung & Netzeinspeisepapiere", body: "Netzbetreiber, Marktstammdatenregister, Förderantrag — wir koordinieren das mit unseren Partnern." },
-  { no: "04", tag: "INSTALLATION", title: "Koordination der Montage", body: "Unsere zertifizierten Fachbetriebe mit eigenem Festpersonal. Kein Wechsel, kein Subunternehmer-Chaos." },
-  { no: "05", tag: "INBETRIEBNAHME", title: "Abnahme & Monitoring-Setup", body: "Anlage läuft, App zeigt Ertrag, du weißt was rauskommt. Wir sind erst fertig wenn du zufrieden bist." },
-  { no: "06", tag: "SERVICE", title: "Wartung & 24h Notfall", body: "Direkter Draht zu uns — nicht zu einem Callcenter. Bei Störung bist du binnen 24h versorgt." },
-];
+<!-- HERO -->
+<section style="background:#fdfd00;padding:80px 24px 60px;position:relative;overflow:hidden;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#0a0a0a;opacity:0.6;margin-bottom:8px;">EIGENHEIM / PHOTOVOLTAIK_FUER_DEIN_HAUS</div>
+      <h1 class="mq" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,96px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 24px;">
+        <span style="display:block;color:#0a0a0a;">DEIN DACH.</span>
+        <span style="display:block;font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;letter-spacing:-0.02em;color:#0a0a0a;">deine</span>
+        <span style="display:inline-block;background:#0a0a0a;color:#fdfd00;padding:0 .1em;">ENERGIE.</span>
+      </h1>
+      <p style="font-family:'Instrument Serif',serif;font-size:20px;line-height:1.5;color:#0a0a0a;max-width:600px;margin:0;">Photovoltaik für Einfamilienhäuser in Bayern — ehrlich kalkuliert, sauber koordiniert, schnell fertig. Ab 8 kWp, Amortisation unter 8 Jahren.</p>
+    </div>
+    <div style="flex-shrink:0;">
+      <svg id="sun0" width="200" height="200" viewBox="0 0 200 200">
+        <circle cx="100" cy="100" r="55" fill="#fdfd00" stroke="#0a0a0a" stroke-width="3"/>
+        <circle cx="100" cy="100" r="32" fill="#ff00aa"/>
+      </svg>
+    </div>
+  </div>
+</section>
 
-const process = [
-  { n: "01", title: "Kostenloses Erstgespräch", body: "Telefon oder vor Ort. 30 Minuten. Du sagst was du brauchst, wir sagen was möglich ist — ehrlich." },
-  { n: "02", title: "Angebot & Wirtschaftlichkeit", body: "Individuelles Angebot mit Ertragsberechnung, Amortisation und realen Strompreis-Szenarien. Keine versteckten Kosten." },
-  { n: "03", title: "Koordination & Montage", body: "Wir stimmen alle Gewerke ab: Dachdecker, Elektriker, Netzbetreiber. Du musst dich um nichts kümmern." },
-  { n: "04", title: "Inbetriebnahme & Übergabe", body: "Alles läuft, alles ist erklärt, alle Papiere sind da. Anlage in der Regel in 1–3 Tagen montiert." },
-];
+<!-- MARQUEE -->
+<div style="background:#0a0a0a;border-top:3px solid #fdfd00;border-bottom:3px solid #fdfd00;overflow:hidden;padding:12px 0;">
+  <div style="display:flex;gap:0;white-space:nowrap;animation:marquee 28s linear infinite;">
+    <span style="display:inline-flex;gap:48px;padding-right:48px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fdfd00;">
+      <span>AB 8 KWP</span><span style="color:#00ffea;">◆</span>
+      <span>SPEICHER OPTIONAL</span><span style="color:#00ffea;">◆</span>
+      <span>WALLBOX MÖGLICH</span><span style="color:#00ffea;">◆</span>
+      <span>AMORTISATION AB 5 J.</span><span style="color:#00ffea;">◆</span>
+      <span>250+ ANLAGEN</span><span style="color:#00ffea;">◆</span>
+      <span>BAYERN + BW</span><span style="color:#00ffea;">◆</span>
+      <span>FÖRDERUNG INKLUSIVE</span><span style="color:#00ffea;">◆</span>
+    </span>
+    <span style="display:inline-flex;gap:48px;padding-right:48px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fdfd00;">
+      <span>AB 8 KWP</span><span style="color:#00ffea;">◆</span>
+      <span>SPEICHER OPTIONAL</span><span style="color:#00ffea;">◆</span>
+      <span>WALLBOX MÖGLICH</span><span style="color:#00ffea;">◆</span>
+      <span>AMORTISATION AB 5 J.</span><span style="color:#00ffea;">◆</span>
+      <span>250+ ANLAGEN</span><span style="color:#00ffea;">◆</span>
+      <span>BAYERN + BW</span><span style="color:#00ffea;">◆</span>
+      <span>FÖRDERUNG INKLUSIVE</span><span style="color:#00ffea;">◆</span>
+    </span>
+  </div>
+</div>
+<style>
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
 
-const faqs = [
-  {
-    q: "Lohnt sich PV bei Norddach oder Flachdach?",
-    a: "Ja — auch Nord-Ost oder Flachdach rechnet sich. Entscheidend ist die Gesamtfläche und der Eigenverbrauch. Wir haben Anlagen auf schwierigen Dächern gebaut die sich in unter 7 Jahren amortisiert haben.",
-  },
-  {
-    q: "Brauche ich einen Speicher?",
-    a: "Kommt auf deinen Verbrauchsrhythmus an. Tagsüber viel Verbrauch (Homeoffice, Wärmepumpe) → Speicher bringt weniger. Viel Verbrauch abends → Speicher lohnt sich stark. Wir rechnen beides durch.",
-  },
-  {
-    q: "Was kostet eine Genehmigung und wer macht das?",
-    a: "Die Anmeldung beim Netzbetreiber und das Marktstammdatenregister sind kostenlos. Wir koordinieren das mit. Der einzige Zeitaufwand für dich: einmal Unterschrift.",
-  },
-  {
-    q: "Gibt es noch Förderung 2026?",
-    a: "Ja: 0% MwSt. auf Kauf und Installation bis 30 kWp gilt weiter. Dazu KfW 270 Kredit für Speicher und in manchen Gemeinden lokale Zuschüsse. Wir beantragen das mit.",
-  },
-];
+<!-- WAS DU SPARST — STAT GRID -->
+<section style="background:#ff00aa;padding:60px 24px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="margin-bottom:40px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#0a0a0a;opacity:0.6;margin-bottom:12px;">► ZAHLEN</div>
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0;color:#0a0a0a;">
+        WAS du <span style="background:#0a0a0a;color:#ff00aa;padding:0 .1em;display:inline-block;">SPARST.</span>
+      </h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:3px solid #0a0a0a;">
+      <div style="padding:32px 24px;border-right:3px solid #0a0a0a;background:#ff00aa;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#00ffea;margin-bottom:8px;">Typische Ersparnis</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:64px;line-height:0.85;letter-spacing:-0.04em;color:#fdfd00;">70<span style="font-size:40px;">%</span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#0a0a0a;opacity:.7;margin-top:8px;text-transform:uppercase;">Eigenverbrauchsquote mit Speicher</div>
+      </div>
+      <div style="padding:32px 24px;border-right:3px solid #0a0a0a;background:#ff00aa;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#fdfd00;margin-bottom:8px;">Stromkosten runter</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:64px;line-height:0.85;letter-spacing:-0.04em;color:#00ffea;">−60<span style="font-size:40px;">%</span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#0a0a0a;opacity:.7;margin-top:8px;text-transform:uppercase;">im Vergleich zum reinen Netzbezug</div>
+      </div>
+      <div style="padding:32px 24px;border-right:3px solid #0a0a0a;background:#ff00aa;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#00ffea;margin-bottom:8px;">Ø Amortisation</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:64px;line-height:0.85;letter-spacing:-0.04em;color:#fdfd00;">5–8</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#0a0a0a;opacity:.7;margin-top:8px;text-transform:uppercase;">Jahre — je nach Anlage und Verbrauch</div>
+      </div>
+      <div style="padding:32px 24px;background:#ff00aa;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#fdfd00;margin-bottom:8px;">Modulgarantie</div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:64px;line-height:0.85;letter-spacing:-0.04em;color:#00ffea;">30 <span style="font-size:32px;">J.</span></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#0a0a0a;opacity:.7;margin-top:8px;text-transform:uppercase;">Leistungsgarantie auf alle Module</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-function Systems() {
-  return (
-    <Section kapitel="PREISE" title="DREI" italicPart="typische" blackPart="ANLAGEN." color={COL.black}>
-      <p style={{ fontFamily: fonts.serif, fontSize: 20, fontStyle: "italic", color: COL.yellow, maxWidth: 720, marginBottom: 32 }}>
-        Richtwerte — jede Anlage ist anders. Dein Angebot bekommst du nach dem ersten Gespräch. Für Privatpersonen: 0% MwSt. auf PV-Anlagen bis 30 kWp (§ 12 Abs. 3 UStG). Für Gewerbe zzgl. gesetzl. MwSt.
-      </p>
-      <div className="systems-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
-        {systems.map((s, i) => (
-          <div key={i} className="lift" style={{
-            background: s.col, border: `3px solid ${s.highlight ? COL.yellow : COL.black}`,
-            padding: 0, position: "relative",
-            transform: `rotate(${i % 2 === 0 ? -0.5 : 0.5}deg)`,
-            boxShadow: s.highlight ? `0 0 0 4px ${COL.yellow}` : "none",
-          }}>
-            {s.highlight && (
-              <div style={{ position: "absolute", top: -18, left: "50%", transform: "translateX(-50%) rotate(-2deg)", background: COL.yellow, color: COL.black, padding: "4px 16px", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, border: `2px solid ${COL.black}`, whiteSpace: "nowrap" }}>
-                ★ BELIEBTESTE WAHL
-              </div>
-            )}
-            <div style={{ background: COL.black, color: s.col, padding: "16px 20px", borderBottom: `3px solid ${COL.black}` }}>
-              <div style={{ fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, opacity: 0.7, marginBottom: 4 }}>{s.size}</div>
-              <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 40, lineHeight: 0.9, letterSpacing: "-0.04em" }}>{s.kwp}</div>
+<!-- WAS WIR KOORDINIEREN — FEATURE GRID -->
+<section style="background:#fdfd00;padding:80px 24px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="margin-bottom:48px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#0a0a0a;opacity:0.6;margin-bottom:12px;">► LEISTUNG</div>
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0;color:#0a0a0a;">
+        WAS wir <span style="background:#0a0a0a;color:#fdfd00;padding:0 .1em;display:inline-block;">KOORDINIEREN.</span>
+      </h2>
+    </div>
+    <div class="include-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:3px solid #0a0a0a;">
+
+      <div style="padding:32px 28px;border-right:3px solid #0a0a0a;border-bottom:3px solid #0a0a0a;background:#ff00aa;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">01</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0a0a0a;margin-bottom:8px;">PLANUNG</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;color:#0a0a0a;">Dachanalyse &amp; Ertragsgutachten</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;color:#0a0a0a;">Wir schauen uns dein Dach an — Ausrichtung, Verschattung, Statik. Du bekommst eine ehrliche Zahl, keine Traumrechnung.</p>
+      </div>
+
+      <div style="padding:32px 28px;border-right:3px solid #0a0a0a;border-bottom:3px solid #0a0a0a;background:#00ffea;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">02</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0a0a0a;margin-bottom:8px;">TECHNIK</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;color:#0a0a0a;">Modulauswahl &amp; Wechselrichter</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;color:#0a0a0a;">Nur Markenmodule mit 25–30 Jahren Garantie. Wir empfehlen was passt, nicht was Marge bringt.</p>
+      </div>
+
+      <div style="padding:32px 28px;border-bottom:3px solid #0a0a0a;background:#ff7a00;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">03</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0a0a0a;margin-bottom:8px;">GENEHMIGUNG</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;color:#0a0a0a;">Anmeldung &amp; Netzeinspeisepapiere</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;color:#0a0a0a;">Netzbetreiber, Marktstammdatenregister, Förderantrag — wir koordinieren das mit unseren Partnern.</p>
+      </div>
+
+      <div style="padding:32px 28px;border-right:3px solid #0a0a0a;background:#fdfd00;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">04</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0a0a0a;margin-bottom:8px;">INSTALLATION</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;color:#0a0a0a;">Koordination der Montage</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;color:#0a0a0a;">Unsere zertifizierten Fachbetriebe mit eigenem Festpersonal. Kein Wechsel, kein Subunternehmer-Chaos.</p>
+      </div>
+
+      <div style="padding:32px 28px;border-right:3px solid #0a0a0a;background:#ff00aa;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">05</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0a0a0a;margin-bottom:8px;">INBETRIEBNAHME</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;color:#0a0a0a;">Abnahme &amp; Monitoring-Setup</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;color:#0a0a0a;">Anlage läuft, App zeigt Ertrag, du weißt was rauskommt. Wir sind erst fertig wenn du zufrieden bist.</p>
+      </div>
+
+      <div style="padding:32px 28px;background:#00ffea;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">06</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0a0a0a;margin-bottom:8px;">SERVICE</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;color:#0a0a0a;">Wartung &amp; 24h Notfall</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;color:#0a0a0a;">Direkter Draht zu uns — nicht zu einem Callcenter. Bei Störung bist du binnen 24h versorgt.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DREI TYPISCHE ANLAGEN -->
+<section style="background:#0a0a0a;padding:80px 24px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="margin-bottom:48px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#fdfd00;opacity:0.6;margin-bottom:12px;">► PREISE</div>
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 20px;color:#fdfd00;">
+        DREI typische <span style="background:#fdfd00;color:#0a0a0a;padding:0 .1em;display:inline-block;">ANLAGEN.</span>
+      </h2>
+      <p style="font-family:'Instrument Serif',serif;font-size:18px;line-height:1.5;font-style:italic;color:#fdfd00;max-width:680px;">Richtwerte — jede Anlage ist anders. Dein Angebot bekommst du nach dem ersten Gespräch. Für Privatpersonen: 0% MwSt. auf PV-Anlagen bis 30 kWp (§ 12 Abs. 3 UStG). Für Gewerbe zzgl. gesetzl. MwSt.</p>
+    </div>
+    <div class="systems-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;">
+
+      <!-- KLEIN -->
+      <div class="lift" style="background:#00ffea;border:3px solid #0a0a0a;padding:0;position:relative;transform:rotate(-0.5deg);">
+        <div style="background:#0a0a0a;color:#00ffea;padding:16px 20px;border-bottom:3px solid #0a0a0a;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;opacity:0.7;margin-bottom:4px;text-transform:uppercase;">KLEIN</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:40px;line-height:0.9;letter-spacing:-0.04em;">8 kWp</div>
+        </div>
+        <div style="padding:20px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:16px;opacity:0.8;color:#0a0a0a;">Für 2–3 Personen · ~3.500 kWh/J. Verbrauch</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-bottom:20px;font-weight:700;color:#0a0a0a;">16 Module</div>
+          <div style="border-top:2px solid #0a0a0a;padding-top:16px;">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;letter-spacing:-0.03em;color:#0a0a0a;">ca. 15.000 €</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:#0a0a0a;">
+              <span style="font-weight:700;">~1.850 €/J.</span> Ersparnis/J.<br/>
+              <span style="opacity:0.7;">Amortisation ~8,1 J.</span>
             </div>
-            <div style={{ padding: 20 }}>
-              <div style={{ fontFamily: fonts.mono, fontSize: 11, marginBottom: 16, opacity: 0.8 }}>{s.for}</div>
-              <div style={{ fontFamily: fonts.mono, fontSize: 12, marginBottom: 20, fontWeight: 700 }}>{s.modules}</div>
-              <div style={{ borderTop: `2px solid ${COL.black}`, paddingTop: 16 }}>
-                <div style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 32, letterSpacing: "-0.03em" }}>{s.price}</div>
-                <div style={{ fontFamily: fonts.mono, fontSize: 12, marginTop: 8 }}>
-                  <span style={{ fontWeight: 700 }}>{s.saving}</span> Ersparnis/J.<br/>
-                  <span style={{ opacity: 0.7 }}>Amortisation {s.amort}</span>
-                </div>
-              </div>
-              <a href="#kontakt" style={{ display: "block", marginTop: 20, background: COL.black, color: s.col, padding: "12px 16px", fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase", textDecoration: "none", border: `2px solid ${COL.black}`, textAlign: "center" }}>
-                → ANGEBOT ANFRAGEN
-              </a>
+          </div>
+          <a href="kontakt.html" style="display:block;margin-top:20px;background:#0a0a0a;color:#00ffea;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;text-decoration:none;border:2px solid #0a0a0a;text-align:center;">→ ANGEBOT ANFRAGEN</a>
+        </div>
+      </div>
+
+      <!-- MITTEL (highlight) -->
+      <div class="lift" style="background:#fdfd00;border:3px solid #fdfd00;padding:0;position:relative;transform:rotate(0.5deg);box-shadow:0 0 0 4px #fdfd00;">
+        <div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%) rotate(-2deg);background:#fdfd00;color:#0a0a0a;padding:4px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;border:2px solid #0a0a0a;white-space:nowrap;z-index:2;">★ BELIEBTESTE WAHL</div>
+        <div style="background:#0a0a0a;color:#fdfd00;padding:16px 20px;border-bottom:3px solid #0a0a0a;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;opacity:0.7;margin-bottom:4px;text-transform:uppercase;">MITTEL</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:40px;line-height:0.9;letter-spacing:-0.04em;">12 kWp</div>
+        </div>
+        <div style="padding:20px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:16px;opacity:0.8;color:#0a0a0a;">Für 3–4 Personen · ~5.000 kWh/J. Verbrauch</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-bottom:20px;font-weight:700;color:#0a0a0a;">24 Module + 10 kWh Speicher</div>
+          <div style="border-top:2px solid #0a0a0a;padding-top:16px;">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;letter-spacing:-0.03em;color:#0a0a0a;">ca. 23.000 €</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:#0a0a0a;">
+              <span style="font-weight:700;">~4.300 €/J.</span> Ersparnis/J.<br/>
+              <span style="opacity:0.7;">Amortisation ~5,3 J.</span>
             </div>
           </div>
-        ))}
+          <a href="kontakt.html" style="display:block;margin-top:20px;background:#0a0a0a;color:#fdfd00;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;text-decoration:none;border:2px solid #0a0a0a;text-align:center;">→ ANGEBOT ANFRAGEN</a>
+        </div>
       </div>
-    </Section>
-  );
-}
 
-function Process() {
-  return (
-    <Section kapitel="ABLAUF" title="SO" italicPart="läuft" blackPart="ES_AB." color={COL.cyan}>
-      <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 0, border: `3px solid ${COL.black}` }}>
-        {process.map((p, i) => (
-          <div key={i} style={{
-            padding: 28, borderRight: i < process.length - 1 ? `2px solid ${COL.black}` : "none",
-            background: i % 2 === 0 ? COL.cyan : COL.yellow,
-          }}>
-            <div style={{ fontFamily: fonts.mono, fontSize: 32, fontWeight: 700, lineHeight: 1, marginBottom: 12, color: COL.black, opacity: 0.25 }}>{p.n}</div>
-            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 20, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 10px", lineHeight: 1 }}>{p.title}</h3>
-            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>{p.body}</p>
+      <!-- GROSS -->
+      <div class="lift" style="background:#ff00aa;border:3px solid #0a0a0a;padding:0;position:relative;transform:rotate(-0.5deg);">
+        <div style="background:#0a0a0a;color:#ff00aa;padding:16px 20px;border-bottom:3px solid #0a0a0a;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;opacity:0.7;margin-bottom:4px;text-transform:uppercase;">GROSS</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:40px;line-height:0.9;letter-spacing:-0.04em;">18 kWp</div>
+        </div>
+        <div style="padding:20px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:16px;opacity:0.8;color:#0a0a0a;">Für 4–5 Personen + Wallbox · ~7.500 kWh/J.</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-bottom:20px;font-weight:700;color:#0a0a0a;">36 Module + 18 kWh Speicher + Wallbox</div>
+          <div style="border-top:2px solid #0a0a0a;padding-top:16px;">
+            <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:32px;letter-spacing:-0.03em;color:#0a0a0a;">ca. 38.000 €</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:8px;color:#0a0a0a;">
+              <span style="font-weight:700;">~6.800 €/J.</span> Ersparnis/J.<br/>
+              <span style="opacity:0.7;">Amortisation ~5,6 J.</span>
+            </div>
           </div>
-        ))}
+          <a href="kontakt.html" style="display:block;margin-top:20px;background:#0a0a0a;color:#ff00aa;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;text-decoration:none;border:2px solid #0a0a0a;text-align:center;">→ ANGEBOT ANFRAGEN</a>
+        </div>
       </div>
-    </Section>
-  );
-}
 
-function Faq() {
-  return (
-    <Section kapitel="FAQ" title="ECHTE" italicPart="fragen," blackPart="EHRLICHE_ANTWORTEN." color={COL.yellow}>
-      <div className="faq-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
-        {faqs.map((f, i) => (
-          <div key={i} style={{ background: i % 2 === 0 ? COL.black : COL.pink, color: i % 2 === 0 ? COL.yellow : COL.black, border: `3px solid ${COL.black}`, padding: 28 }}>
-            <div style={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase", marginBottom: 12, color: i % 2 === 0 ? COL.cyan : COL.black, opacity: 0.8 }}>► FRAGE</div>
-            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 22, lineHeight: 1, letterSpacing: "-0.02em", textTransform: "uppercase", margin: "0 0 14px" }}>{f.q}</h3>
-            <p style={{ fontFamily: fonts.serif, fontSize: 16, lineHeight: 1.55, margin: 0, fontStyle: "italic" }}>{f.a}</p>
-          </div>
-        ))}
+    </div>
+  </div>
+</section>
+
+<!-- SO LÄUFT ES AB -->
+<section style="background:#00ffea;padding:80px 24px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="margin-bottom:48px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#0a0a0a;opacity:0.6;margin-bottom:12px;">► ABLAUF</div>
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0;color:#0a0a0a;">
+        SO läuft <span style="background:#0a0a0a;color:#00ffea;padding:0 .1em;display:inline-block;">ES_AB.</span>
+      </h2>
+    </div>
+    <div class="process-grid" style="display:grid;grid-template-columns:repeat(4,1fr);border:3px solid #0a0a0a;">
+      <div style="padding:28px;border-right:2px solid #0a0a0a;background:#00ffea;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">01</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;color:#0a0a0a;">Kostenloses Erstgespräch</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;color:#0a0a0a;">Telefon oder vor Ort. 30 Minuten. Du sagst was du brauchst, wir sagen was möglich ist — ehrlich.</p>
       </div>
-    </Section>
-  );
-}
+      <div style="padding:28px;border-right:2px solid #0a0a0a;background:#fdfd00;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">02</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;color:#0a0a0a;">Angebot &amp; Wirtschaftlichkeit</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;color:#0a0a0a;">Individuelles Angebot mit Ertragsberechnung, Amortisation und realen Strompreis-Szenarien. Keine versteckten Kosten.</p>
+      </div>
+      <div style="padding:28px;border-right:2px solid #0a0a0a;background:#00ffea;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">03</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;color:#0a0a0a;">Koordination &amp; Montage</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;color:#0a0a0a;">Wir stimmen alle Gewerke ab: Dachdecker, Elektriker, Netzbetreiber. Du musst dich um nichts kümmern.</p>
+      </div>
+      <div style="padding:28px;background:#fdfd00;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;color:#0a0a0a;opacity:0.25;">04</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1;color:#0a0a0a;">Inbetriebnahme &amp; Übergabe</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;margin:0;font-style:italic;color:#0a0a0a;">Alles läuft, alles ist erklärt, alle Papiere sind da. Anlage in der Regel in 1–3 Tagen montiert.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-function App() {
-  return (
-    <Page active="eigenheim">
-      <PageHero
-        kapitel="EIGENHEIM"
-        kicker="PHOTOVOLTAIK_FUER_DEIN_HAUS"
-        title="DEIN DACH."
-        italicPart="deine"
-        blackHeadlinePart="ENERGIE."
-        sub="Photovoltaik für Einfamilienhäuser in Bayern — ehrlich kalkuliert, sauber koordiniert, schnell fertig. Ab 8 kWp, Amortisation unter 8 Jahren."
-        color={COL.yellow}
-        accentColor={COL.pink}
-      />
+<!-- BIGQUOTE -->
+<section style="background:#ff7a00;padding:80px 24px;">
+  <div style="max-width:900px;margin:0 auto;text-align:center;">
+    <div style="font-family:'Instrument Serif',serif;font-size:clamp(24px,4vw,40px);line-height:1.25;font-style:italic;color:#0a0a0a;margin-bottom:32px;">"Das Dach schaut jetzt nach Süden und Norden. Doris hat uns erklärt warum das trotzdem funktioniert — und sie hatte recht. 82% Autarkie laut App."</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#0a0a0a;">Familie Berger, Deggendorf</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:#0a0a0a;opacity:.7;margin-top:4px;">12 kWp + 18 kWh Speicher</div>
+  </div>
+</section>
 
-      <Marquee items={["AB 8 KWP", "SPEICHER OPTIONAL", "WALLBOX MÖGLICH", "AMORTISATION AB 5 J.", "250+ ANLAGEN", "BAYERN + BW", "FÖRDERUNG INKLUSIVE"]} />
+<!-- FAQ -->
+<section style="background:#fdfd00;padding:80px 24px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <div style="margin-bottom:48px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#0a0a0a;opacity:0.6;margin-bottom:12px;">► FAQ</div>
+      <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0;color:#0a0a0a;">
+        ECHTE <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:none;">fragen,</span> <span style="background:#0a0a0a;color:#fdfd00;padding:0 .1em;display:inline-block;">EHRLICHE_ANTWORTEN.</span>
+      </h2>
+    </div>
+    <div class="faq-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:3px solid #0a0a0a;">
 
-      <Section kapitel="ZAHLEN" title="WAS" italicPart="du" blackPart="SPARST." color={COL.pink}>
-        <StatGrid items={[
-          { l: "Typische Ersparnis", v: "70", u: "%", s: "Eigenverbrauchsquote mit Speicher" },
-          { l: "Stromkosten runter", v: "−60", u: "%", s: "im Vergleich zum reinen Netzbezug" },
-          { l: "Ø Amortisation", v: "5–8", s: "Jahre — je nach Anlage und Verbrauch" },
-          { l: "Modulgarantie", v: "30", u: " J.", s: "Leistungsgarantie auf alle Module" },
-        ]} color={COL.cyan} alt={COL.yellow} />
-      </Section>
+      <div style="background:#0a0a0a;color:#fdfd00;border-right:3px solid #0a0a0a;border-bottom:3px solid #0a0a0a;padding:28px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;margin-bottom:12px;color:#00ffea;opacity:0.8;">► FRAGE</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 14px;color:#fdfd00;">Lohnt sich PV bei Norddach oder Flachdach?</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.55;margin:0;font-style:italic;color:#fdfd00;">Ja — auch Nord-Ost oder Flachdach rechnet sich. Entscheidend ist die Gesamtfläche und der Eigenverbrauch. Wir haben Anlagen auf schwierigen Dächern gebaut die sich in unter 7 Jahren amortisiert haben.</p>
+      </div>
 
-      <Section kapitel="LEISTUNG" title="WAS" italicPart="wir" blackPart="KOORDINIEREN." color={COL.yellow}>
-        <FeatureGrid items={includes} cols={3} />
-      </Section>
+      <div style="background:#ff00aa;color:#0a0a0a;border-bottom:3px solid #0a0a0a;padding:28px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;margin-bottom:12px;color:#0a0a0a;opacity:0.8;">► FRAGE</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 14px;color:#0a0a0a;">Brauche ich einen Speicher?</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.55;margin:0;font-style:italic;color:#0a0a0a;">Kommt auf deinen Verbrauchsrhythmus an. Tagsüber viel Verbrauch (Homeoffice, Wärmepumpe) → Speicher bringt weniger. Viel Verbrauch abends → Speicher lohnt sich stark. Wir rechnen beides durch.</p>
+      </div>
 
-      <Systems />
+      <div style="background:#0a0a0a;color:#fdfd00;border-right:3px solid #0a0a0a;padding:28px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;margin-bottom:12px;color:#00ffea;opacity:0.8;">► FRAGE</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 14px;color:#fdfd00;">Was kostet eine Genehmigung und wer macht das?</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.55;margin:0;font-style:italic;color:#fdfd00;">Die Anmeldung beim Netzbetreiber und das Marktstammdatenregister sind kostenlos. Wir koordinieren das mit. Der einzige Zeitaufwand für dich: einmal Unterschrift.</p>
+      </div>
 
-      <Process />
+      <div style="background:#ff00aa;color:#0a0a0a;padding:28px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;margin-bottom:12px;color:#0a0a0a;opacity:0.8;">► FRAGE</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:22px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 14px;color:#0a0a0a;">Gibt es noch Förderung 2026?</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.55;margin:0;font-style:italic;color:#0a0a0a;">Ja: 0% MwSt. auf Kauf und Installation bis 30 kWp gilt weiter. Dazu KfW 270 Kredit für Speicher und in manchen Gemeinden lokale Zuschüsse. Wir beantragen das mit.</p>
+      </div>
 
-      <BigQuote
-        quote="Das Dach schaut jetzt nach Süden und Norden. Doris hat uns erklärt warum das trotzdem funktioniert — und sie hatte recht. 82% Autarkie laut App."
-        by="Familie Berger, Deggendorf"
-        role="12 kWp + 18 kWh Speicher"
-        color={COL.orange}
-      />
+    </div>
+  </div>
+</section>
 
-      <Faq />
+<!-- CTA -->
+<section style="background:#0a0a0a;padding:80px 24px;border-top:4px solid #fdfd00;">
+  <div style="max-width:900px;margin:0 auto;text-align:center;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#00ffea;margin-bottom:16px;">► DEIN_ANGEBOT</div>
+    <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,7vw,80px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 24px;color:#fdfd00;">KOSTENLOS<br/><span style="background:#ff00aa;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:skew(-4deg);">ANFRAGEN.</span></h2>
+    <p style="font-family:'Instrument Serif',serif;font-size:20px;line-height:1.5;font-style:italic;color:#ffffff;max-width:600px;margin:0 auto 40px;">Kein Verkäufergespräch. Wir schauen uns dein Dach an, rechnen ehrlich durch und sagen dir ob es sich lohnt — auch wenn das Ergebnis Nein ist.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="kontakt.html" style="display:inline-block;padding:16px 32px;background:#fdfd00;color:#0a0a0a;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border:3px solid #fdfd00;">BERATUNGSTERMIN</a>
+      <a href="tel:+4999140227560" style="display:inline-block;padding:16px 32px;background:transparent;color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border:3px solid #fdfd00;">[☎] +49 991 40227560</a>
+    </div>
+  </div>
+</section>
 
-      <Cta
-        kicker="DEIN_ANGEBOT"
-        big={<>KOSTENLOS<br/><span style={{ background: COL.pink, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>ANFRAGEN.</span></>}
-        sub="Kein Verkäufergespräch. Wir schauen uns dein Dach an, rechnen ehrlich durch und sagen dir ob es sich lohnt — auch wenn das Ergebnis Nein ist."
-        btn="BERATUNGSTERMIN"
-      />
-    </Page>
-  );
-}
+<!-- FOOTER -->
+<footer style="background:#0a0a0a;color:#fdfd00;border-top:4px solid #fdfd00;">
+  <div style="padding:60px 24px;border-bottom:2px solid #fdfd00;">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:32px;">
+      <div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:56px;line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;">SOLAR<br/><span style="background:#fdfd00;color:#0a0a0a;padding:0 .1em;display:inline-block;">RADIKAL.</span></div>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;font-style:italic;max-width:320px;margin-top:16px;opacity:0.85;">Photovoltaik. Speicher. PPA. Aus Deggendorf für Bayern, Baden-Württemberg und bundesweit auf Anfrage.</p>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► LEISTUNG</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="eigenheim.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Eigenheim</a></li>
+          <li><a href="gewerbe.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Gewerbe</a></li>
+          <li><a href="speicher.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Speicher</a></li>
+          <li><a href="ppa.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">PPA-Vertrag</a></li>
+          <li><a href="repowering.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Repowering</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► WISSEN</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="foerderung.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Förderung 2026</a></li>
+          <li><a href="blog/" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Blog &amp; Ratgeber</a></li>
+          <li><a href="index.html#faq" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">FAQ</a></li>
+          <li><a href="referenzen.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Referenzen</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► FIRMA</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="ueber-uns.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Über uns</a></li>
+          <li><a href="kontakt.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Kontakt</a></li>
+          <li><a href="referenzen.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Referenzen</a></li>
+          <li><a href="impressum.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Impressum</a></li>
+          <li><a href="datenschutz.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Datenschutz</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:#00ffea;margin-bottom:12px;letter-spacing:.05em;">► KONTAKT</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="tel:+4999140227560" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">+49 991 40227560</a></li>
+          <li><a href="mailto:info@solar-energie-partner.de" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">info@solar-energie-partner.de</a></li>
+          <li><span style="color:#fdfd00;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">Detterstraße 38</span></li>
+          <li><span style="color:#fdfd00;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.03em;">94469 Deggendorf</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div style="padding:16px 24px;border-bottom:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#00ffea;text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-right:8px;">► EINSATZGEBIET:</span>
+    <a href="deggendorf.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Deggendorf</a>
+    <a href="straubing.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Straubing</a>
+    <a href="passau.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.03em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Passau</a>
+    <a href="landshut.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Landshut</a>
+    <a href="regensburg.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Regensburg</a>
+    <a href="muenchen.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">München</a>
+    <a href="augsburg.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Augsburg</a>
+    <a href="ingolstadt.html" style="color:#fdfd00;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border:1px solid rgba(255,253,0,0.3);">Ingolstadt</a>
+  </div>
+  <div style="padding:20px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;">
+    <span>© 2026 SOLAR_ENERGIE_PARTNER ░ PILSNER_VERTRIEBS_GMBH ░ DEGGENDORF</span>
+    <span style="display:flex;gap:20px;">
+      <a href="impressum.html" style="color:#fdfd00;text-decoration:none;">IMPRESSUM</a>
+      <a href="datenschutz.html" style="color:#fdfd00;text-decoration:none;">DATENSCHUTZ</a>
+    </span>
+  </div>
+</footer>
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+<!-- WhatsApp floating button -->
+<a href="https://wa.me/491753560019?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20PV-Anlage." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Kontakt" style="position:fixed;bottom:24px;right:24px;z-index:999;width:60px;height:60px;border-radius:50%;background:#25D366;border:3px solid #0a0a0a;display:flex;align-items:center;justify-content:center;box-shadow:4px 4px 0 #0a0a0a;text-decoration:none;">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+(function(){
+  function clk(){var e=document.getElementById('clk');if(e)e.textContent=new Date().toLocaleTimeString('de-DE');}
+  clk();setInterval(clk,1000);
+  document.querySelectorAll('[id^="sun"]').forEach(function(s){
+    for(var i=0;i<36;i++){
+      var a=i*Math.PI*2/36;
+      var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('x1',100+Math.cos(a)*60);l.setAttribute('y1',100+Math.sin(a)*60);
+      l.setAttribute('x2',100+Math.cos(a)*92);l.setAttribute('y2',100+Math.sin(a)*92);
+      l.setAttribute('stroke','#0a0a0a');l.setAttribute('stroke-width','1.5');
+      s.insertBefore(l,s.firstChild);
+    }
+  });
+})();
 </script>
 </body>
 </html>

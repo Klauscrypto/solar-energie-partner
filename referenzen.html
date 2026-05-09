@@ -5,140 +5,361 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>REFERENZEN // SOLAR RADIKAL</title>
 <meta name="description" content="250+ installierte Anlagen — Photovoltaik, Speicher, PPA. Eigenheim, Gewerbe, Industrie. Aus Deggendorf für Bayern und Baden-Württemberg." />
+<meta property="og:image" content="https://solar-energie-partner.de/pv-gewerbe-halle.jpg" />
+<link rel="canonical" href="https://solar-energie-partner.de/referenzen.html" />
 <link rel="stylesheet" href="fonts/fonts.css" />
 <link rel="stylesheet" href="radikal-base.css" />
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-track{overflow:hidden;border-top:3px solid #0a0a0a;border-bottom:3px solid #0a0a0a;background:#0a0a0a;color:#fdfd00;padding:14px 0;}
+.mq-inner{display:flex;gap:0;animation:mq 18s linear infinite;white-space:nowrap;}
+.mq-item{padding:0 32px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
+@media(max-width:768px){
+  header nav{display:none !important}
+  .proj-grid{grid-template-columns:1fr !important}
+  .stat-grid{grid-template-columns:1fr 1fr !important}
+}
+</style>
 </head>
-<body>
-<div id="root"></div>
-<script src="vendor/react.min.js"></script>
-<script src="vendor/react-dom.min.js"></script>
-<script src="vendor/babel.min.js"></script>
-<script src="data.js"></script>
-<script type="text/babel" src="subpage-shell.jsx"></script>
-<script type="text/babel">
-const { Page, PageHero, Section, BigQuote, StatGrid, Cta, Marquee, COL, fonts } = window.RadShell;
-const { useState } = React;
+<body style="margin:0;background:#ffffff;font-family:system-ui,sans-serif;">
 
-const D = window.SITE_DATA;
+<header style="position:sticky;top:0;z-index:100;background:#0a0a0a;border-bottom:3px solid #0a0a0a;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);min-height:56px;gap:16px;">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#ffffff;flex-shrink:0;">
+    <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;letter-spacing:-0.01em;">SOLAR // RADIKAL</span>
+  </a>
+  <nav style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;">
+    <a href="eigenheim.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">EIGENHEIM</a>
+    <a href="gewerbe.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">GEWERBE</a>
+    <a href="speicher.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">SPEICHER</a>
+    <a href="ppa.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">PPA</a>
+    <a href="repowering.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">REPOWERING</a>
+    <a href="foerderung.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">FÖRDERUNG</a>
+    <a href="ueber-uns.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">ÜBER UNS</a>
+    <a href="referenzen.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#0a0a0a;text-decoration:none;padding:4px 8px;background:#fdfd00;">REFERENZEN</a>
+  </nav>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#fdfd00;flex-shrink:0;display:flex;align-items:center;gap:16px;">
+    <span id="clk"></span>
+    <a href="tel:+4999140227560" style="color:#fdfd00;text-decoration:none;">09991 40227560</a>
+  </div>
+</header>
 
-// 12 example projects across categories
-const allProjects = [
-  { id: "01", title: "Logistik Straubing", spec: "PPA · 380 kWp", body: "Hallendach, dreischichtig. Eigenstromquote 78%.", tag: "PPA", typ: "Gewerbe", region: "Bayern", color: COL.pink },
-  { id: "02", title: "EFH Plattling", spec: "PV · 14 kWp", body: "Familienhaus mit Speicher und Wallbox. Komplett-Paket.", tag: "EIGENHEIM", typ: "Eigenheim", region: "Bayern", color: COL.cyan },
-  { id: "03", title: "Bauernhof Cham", spec: "PV · 96 kWp", body: "Stalldach, mit eigenem Verbrauch für Melkmaschine und Kühlung.", tag: "AGRAR", typ: "Agrar", region: "Bayern", color: COL.orange },
-  { id: "04", title: "Möbel Augsburg", spec: "PPA · 220 kWp", body: "Verkaufshalle. Klimatisierung läuft jetzt mit Sonne.", tag: "PPA", typ: "Gewerbe", region: "Bayern", color: COL.yellow },
-  { id: "05", title: "EFH Stuttgart", spec: "PV · 9 kWp", body: "Reihenhaus, schwieriges Dach mit 3 Flächen — wir habens hingekriegt.", tag: "EIGENHEIM", typ: "Eigenheim", region: "BW", color: COL.cyan },
-  { id: "06", title: "Schreinerei Passau", spec: "PV+SP · 45 kWp", body: "Werkstatt mit großem Speicher. Maschinen laufen tagsüber komplett solar.", tag: "GEWERBE", typ: "Gewerbe", region: "Bayern", color: COL.pink },
-  { id: "07", title: "Karlsruhe Industrie", spec: "PPA · 750 kWp", body: "Zulieferer Automotive. Maximale Anlage auf der Halle.", tag: "PPA", typ: "Industrie", region: "BW", color: COL.orange },
-  { id: "08", title: "MFH Regensburg", spec: "PV · 28 kWp", body: "6-Parteien-Haus mit Mieterstrom-Modell.", tag: "MFH", typ: "MFH", region: "Bayern", color: COL.yellow },
-  { id: "09", title: "Bäckerei Mannheim", spec: "PV · 35 kWp", body: "Backofen läuft tagsüber mit Sonnenstrom — Bäcker happy.", tag: "GEWERBE", typ: "Gewerbe", region: "BW", color: COL.cyan },
-  { id: "10", title: "EFH Deggendorf", spec: "PV · 11 kWp", body: "Haus der Inhaberin selbst. Doris hat eigene Anlage seit 2016.", tag: "INTERN", typ: "Eigenheim", region: "Bayern", color: COL.pink },
-  { id: "11", title: "Schule Landshut", spec: "PPA · 95 kWp", body: "Realschule. Stadt spart, Schüler lernen über Anlage.", tag: "ÖFFENTLICH", typ: "Öffentlich", region: "Bayern", color: COL.orange },
-  { id: "12", title: "EFH Heilbronn", spec: "PV+WP · 13 kWp", body: "Komplett-Sanierung. PV + Wärmepumpe + Speicher in einem Paket.", tag: "EIGENHEIM", typ: "Eigenheim", region: "BW", color: COL.yellow },
-];
+<!-- HERO -->
+<section style="background:#00ffea;color:#0a0a0a;border-bottom:3px solid #0a0a0a;padding:clamp(48px,8vw,96px) clamp(16px,4vw,48px);position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-60px;right:-60px;opacity:0.15;pointer-events:none;">
+    <svg id="sun1" width="200" height="200" viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="48" fill="#ff00aa"/>
+    </svg>
+  </div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#ff00aa;margin-bottom:16px;">WERK</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#0a0a0a;opacity:0.5;margin-bottom:24px;">REFERENZEN</div>
+  <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(48px,8vw,96px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 24px;color:#0a0a0a;">
+    250+ <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;">installierte</em> ANLAGEN.
+  </h1>
+  <p style="font-family:'Instrument Serif',serif;font-size:clamp(17px,2vw,22px);font-style:italic;line-height:1.55;max-width:680px;margin:0;color:#0a0a0a;opacity:0.85;">
+    Vom Reihenhaus in Plattling bis zur 750-kWp-Halle in Karlsruhe. Eine Auswahl unserer Projekte — geordnet nach Typ und Region.
+  </p>
+</section>
 
-function Filter({ projects }) {
-  const [typFilter, setTyp] = useState("ALLE");
-  const [regFilter, setReg] = useState("ALLE");
-  const typs = ["ALLE", ...new Set(projects.map(p => p.typ))];
-  const regs = ["ALLE", "Bayern", "BW"];
-  const filtered = projects.filter(p =>
-    (typFilter === "ALLE" || p.typ === typFilter) &&
-    (regFilter === "ALLE" || p.region === regFilter)
-  );
-  return (
-    <Section kapitel="ALLE_250PLUS" title="UNSERE" italicPart="anlagen —" blackPart="GEFILTERT." color={COL.yellow}>
-      <p style={{ fontFamily: fonts.serif, fontSize: 22, fontStyle: "italic", maxWidth: 720, marginBottom: 24 }}>
-        Eine Auswahl. Wir haben über 250+ Anlagen installiert. Bei Bedarf Referenz-Telefonnummern auf Anfrage.
-      </p>
+<!-- MARQUEE -->
+<div class="mq-track">
+  <div class="mq-inner">
+    <span class="mq-item">250+ ANLAGEN</span><span class="mq-item">✦</span>
+    <span class="mq-item">BAYERN + BW</span><span class="mq-item">✦</span>
+    <span class="mq-item">EIGENHEIM ★ GEWERBE ★ INDUSTRIE</span><span class="mq-item">✦</span>
+    <span class="mq-item">PPA bis 750 kWp</span><span class="mq-item">✦</span>
+    <span class="mq-item">SEIT 2022</span><span class="mq-item">✦</span>
+    <!-- duplicate for seamless loop -->
+    <span class="mq-item">250+ ANLAGEN</span><span class="mq-item">✦</span>
+    <span class="mq-item">BAYERN + BW</span><span class="mq-item">✦</span>
+    <span class="mq-item">EIGENHEIM ★ GEWERBE ★ INDUSTRIE</span><span class="mq-item">✦</span>
+    <span class="mq-item">PPA bis 750 kWp</span><span class="mq-item">✦</span>
+    <span class="mq-item">SEIT 2022</span><span class="mq-item">✦</span>
+  </div>
+</div>
 
-      <div style={{ display: "flex", gap: 24, flexWrap: "wrap", marginBottom: 32, fontFamily: fonts.mono, fontSize: 12, textTransform: "uppercase" }}>
-        <div>
-          <span style={{ marginRight: 8, fontWeight: 700 }}>► TYP:</span>
-          {typs.map(t => (
-            <button key={t} onClick={() => setTyp(t)} style={{
-              background: typFilter === t ? COL.black : "transparent",
-              color: typFilter === t ? COL.yellow : COL.black,
-              border: `2px solid ${COL.black}`, padding: "4px 10px", marginRight: 6, marginBottom: 4,
-              cursor: "crosshair", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase",
-            }}>{t}</button>
-          ))}
-        </div>
-        <div>
-          <span style={{ marginRight: 8, fontWeight: 700 }}>► REGION:</span>
-          {regs.map(r => (
-            <button key={r} onClick={() => setReg(r)} style={{
-              background: regFilter === r ? COL.pink : "transparent",
-              color: COL.black, border: `2px solid ${COL.black}`, padding: "4px 10px", marginRight: 6, marginBottom: 4,
-              cursor: "crosshair", fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase",
-            }}>{r}</button>
-          ))}
-        </div>
-        <div style={{ marginLeft: "auto", fontWeight: 700 }}>► {filtered.length} ANLAGEN</div>
+<!-- STAT GRID -->
+<section style="border-bottom:3px solid #0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#ff00aa;opacity:0.7;padding:clamp(32px,5vw,56px) clamp(16px,4vw,48px) 0;">ZAHLEN</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(32px,5vw,60px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;margin:12px 0 0;padding:0 clamp(16px,4vw,48px) clamp(32px,5vw,48px);">
+    UNSER <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;">track</em> RECORD.
+  </h2>
+  <div class="stat-grid" style="display:grid;grid-template-columns:repeat(4,1fr);">
+    <div style="background:#00ffea;border-top:3px solid #0a0a0a;border-right:3px solid #0a0a0a;padding:clamp(24px,4vw,48px) clamp(16px,3vw,36px);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.6;margin-bottom:8px;">ANLAGEN</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;">250+</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.5;margin-top:6px;">seit 2022</div>
+    </div>
+    <div style="background:#fdfd00;border-top:3px solid #0a0a0a;border-right:3px solid #0a0a0a;padding:clamp(24px,4vw,48px) clamp(16px,3vw,36px);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.6;margin-bottom:8px;">INSTALL. LEISTUNG</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;">12 <span style="font-size:0.5em;">MWp</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.5;margin-top:6px;">kumuliert</div>
+    </div>
+    <div style="background:#00ffea;border-top:3px solid #0a0a0a;border-right:3px solid #0a0a0a;padding:clamp(24px,4vw,48px) clamp(16px,3vw,36px);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.6;margin-bottom:8px;">EIGENVERBRAUCH ⌀</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;">68%</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.5;margin-top:6px;">über alle PV-Speicher-Kombis</div>
+    </div>
+    <div style="background:#fdfd00;border-top:3px solid #0a0a0a;padding:clamp(24px,4vw,48px) clamp(16px,3vw,36px);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;opacity:0.6;margin-bottom:8px;">RATING</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:0.9;letter-spacing:-0.04em;">4.9 <span style="font-size:0.5em;">★</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.5;margin-top:6px;">127 Bewertungen</div>
+    </div>
+  </div>
+</section>
+
+<!-- ALL PROJECTS GRID -->
+<section style="background:#fdfd00;border-bottom:3px solid #0a0a0a;padding:clamp(48px,7vw,80px) clamp(16px,4vw,48px);">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.5;margin-bottom:12px;">ALLE 250+</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(36px,6vw,72px);line-height:0.9;letter-spacing:-0.03em;text-transform:uppercase;margin:0 0 24px;">
+    UNSERE <em style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;">anlagen —</em> EINE AUSWAHL.
+  </h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;max-width:720px;margin:0 0 40px;">
+    Eine Auswahl. Wir haben über 250+ Anlagen installiert. Bei Bedarf Referenz-Telefonnummern auf Anfrage.
+  </p>
+  <div class="proj-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+
+    <!-- 01 Logistik Straubing — pink -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#ff00aa;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PPA — 380 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Logistik Straubing</h3>
       </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 20 }}>
-        {filtered.map((p, i) => (
-          <div key={p.id} className="lift" style={{ background: p.color, border: `3px solid ${COL.black}`, padding: 0, color: COL.black, transform: `rotate(${i%2 ? 0.5 : -0.5}deg)` }}>
-            <div style={{ aspectRatio: "4/3", background: `repeating-linear-gradient(45deg, ${COL.black}, ${COL.black} 6px, transparent 6px, transparent 14px), ${p.color}`, borderBottom: `3px solid ${COL.black}`, position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ fontFamily: fonts.mono, fontSize: 11, color: COL.black, background: COL.white, padding: "6px 12px", border: `2px solid ${COL.black}`, fontWeight: 700 }}>FOTO_{p.id}.JPG</span>
-              <div style={{ position: "absolute", top: 12, right: 12, background: COL.black, color: COL.yellow, padding: "4px 8px", fontFamily: fonts.mono, fontSize: 10, fontWeight: 700, textTransform: "uppercase" }}>{p.tag}</div>
-            </div>
-            <div style={{ padding: 20 }}>
-              <div style={{ fontFamily: fonts.mono, fontSize: 11, marginBottom: 6, fontWeight: 700, textTransform: "uppercase" }}>► {p.spec}</div>
-              <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 22, margin: "0 0 8px", textTransform: "uppercase", letterSpacing: "-0.02em", lineHeight: 0.95 }}>{p.title}</h3>
-              <p style={{ fontFamily: fonts.serif, fontSize: 14, lineHeight: 1.4, margin: 0, fontStyle: "italic" }}>{p.body}</p>
-            </div>
-          </div>
-        ))}
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Hallendach, dreischichtig. Eigenstromquote 78%.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">GEWERBE · BAYERN</div>
       </div>
-    </Section>
-  );
-}
+    </div>
 
-function App() {
-  return (
-    <Page active="referenzen">
-      <PageHero
-        kapitel="WERK"
-        kicker="REFERENZEN"
-        title="250+"
-        italicPart="installierte"
-        blackHeadlinePart="ANLAGEN."
-        sub="Vom Reihenhaus in Plattling bis zur 750-kWp-Halle in Karlsruhe. Eine Auswahl unserer Projekte — geordnet nach Typ und Region."
-        color={COL.cyan}
-        accentColor={COL.pink}
-      />
+    <!-- 02 EFH Plattling — cyan -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#00ffea;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PV — 14 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">EFH Plattling</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Familienhaus mit Speicher und Wallbox. Komplett-Paket.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">EIGENHEIM · BAYERN</div>
+      </div>
+    </div>
 
-      <Marquee items={["250+ ANLAGEN", "BAYERN + BW", "EIGENHEIM ★ GEWERBE ★ INDUSTRIE", "PPA bis 750 kWp", "SEIT 2014"]} />
+    <!-- 03 Bauernhof Cham — orange -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#ff7a00;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PV — 96 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Bauernhof Cham</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Stalldach, mit eigenem Verbrauch für Melkmaschine und Kühlung.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">AGRAR · BAYERN</div>
+      </div>
+    </div>
 
-      <Section kapitel="ZAHLEN" title="UNSER" italicPart="track" blackPart="RECORD." color={COL.pink}>
-        <StatGrid items={[
-          { l: "ANLAGEN", v: "250+", s: "seit 2014" },
-          { l: "INSTALL. LEISTUNG", v: "12", u: " MWp", s: "kumuliert" },
-          { l: "EIGENVERBRAUCH ⌀", v: "68%", s: "über alle PV-Speicher-Kombis" },
-          { l: "RATING", v: "4.9", u: "★", s: "127 Bewertungen" },
-        ]} color={COL.cyan} alt={COL.yellow} />
-      </Section>
+    <!-- 04 Möbel Augsburg — yellow -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#fdfd00;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PPA — 220 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Möbel Augsburg</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Verkaufshalle. Klimatisierung läuft jetzt mit Sonne.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">GEWERBE · BAYERN</div>
+      </div>
+    </div>
 
-      <Filter projects={allProjects} />
+    <!-- 05 EFH Stuttgart — cyan -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#00ffea;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PV — 9 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">EFH Stuttgart</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Reihenhaus, schwieriges Dach mit 3 Flächen — wir habens hingekriegt.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">EIGENHEIM · BW</div>
+      </div>
+    </div>
 
-      <BigQuote
-        quote="Jede Anlage ist anders. Aber das Prinzip ist immer dasselbe: Dach gucken, Verbrauch verstehen, ehrlich kalkulieren, sauber bauen, fertig."
-        by="Pilsner Vertriebs Team"
-        color={COL.orange}
-      />
+    <!-- 06 Schreinerei Passau — pink -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#ff00aa;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PV+SP — 45 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Schreinerei Passau</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Werkstatt mit großem Speicher. Maschinen laufen tagsüber komplett solar.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">GEWERBE · BAYERN</div>
+      </div>
+    </div>
 
-      <Cta
-        kicker="DEINE_ANLAGE"
-        big={<>NÄCHSTE<br/><span style={{ background: COL.pink, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>313.</span></>}
-        sub="Wir würden uns freuen, deine als Nummer 313 in der Liste zu führen."
-      />
-    </Page>
-  );
-}
+    <!-- 07 Karlsruhe Industrie — orange -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#ff7a00;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PPA — 750 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Karlsruhe Industrie</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Zulieferer Automotive. Maximale Anlage auf der Halle.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">INDUSTRIE · BW</div>
+      </div>
+    </div>
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+    <!-- 08 MFH Regensburg — yellow -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#fdfd00;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PV — 28 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">MFH Regensburg</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">6-Parteien-Haus mit Mieterstrom-Modell.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">MFH · BAYERN</div>
+      </div>
+    </div>
+
+    <!-- 09 Bäckerei Mannheim — cyan -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#00ffea;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PV — 35 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Bäckerei Mannheim</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Backofen läuft tagsüber mit Sonnenstrom — Bäcker happy.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">GEWERBE · BW</div>
+      </div>
+    </div>
+
+    <!-- 10 EFH Deggendorf — pink -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#ff00aa;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PV — 11 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">EFH Deggendorf</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Haus der Inhaberin selbst. Doris hat eigene Anlage seit 2016.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">EIGENHEIM · BAYERN</div>
+      </div>
+    </div>
+
+    <!-- 11 Schule Landshut — orange -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#ff7a00;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PPA — 95 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">Schule Landshut</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Realschule. Stadt spart, Schüler lernen über Anlage.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">ÖFFENTLICH · BAYERN</div>
+      </div>
+    </div>
+
+    <!-- 12 EFH Heilbronn — yellow -->
+    <div style="border:3px solid #0a0a0a;overflow:hidden;">
+      <div style="background:#fdfd00;padding:20px 24px;border-bottom:3px solid #0a0a0a;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:6px;">PV+WP — 13 kWp</div>
+        <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0;">EFH Heilbronn</h3>
+      </div>
+      <div style="padding:20px 24px;background:#ffffff;">
+        <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Komplett-Sanierung. PV + Wärmepumpe + Speicher in einem Paket.</p>
+        <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;opacity:0.6;">EIGENHEIM · BW</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BIG QUOTE -->
+<section style="background:#ff7a00;color:#0a0a0a;border-bottom:3px solid #0a0a0a;padding:clamp(48px,8vw,96px) clamp(16px,4vw,48px);text-align:center;">
+  <blockquote style="font-family:'Instrument Serif',serif;font-size:clamp(22px,3.5vw,42px);font-style:italic;line-height:1.2;max-width:900px;margin:0 auto 24px;color:#0a0a0a;">
+    "Jede Anlage ist anders. Aber das Prinzip ist immer dasselbe: Dach gucken, Verbrauch verstehen, ehrlich kalkulieren, sauber bauen, fertig."
+  </blockquote>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#0a0a0a;">Pilsner Vertriebs Team</div>
+</section>
+
+<!-- CTA SECTION -->
+<section style="background:#00ffea;border-bottom:3px solid #0a0a0a;padding:clamp(48px,8vw,96px) clamp(16px,4vw,48px);text-align:center;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.5;margin-bottom:16px;">DEINE ANLAGE</div>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,7vw,88px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 24px;color:#0a0a0a;">
+    NÄCHSTE<br><span style="background:#ff00aa;color:#0a0a0a;padding:0 0.1em;display:inline-block;transform:skew(-4deg);">313.</span>
+  </h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:clamp(17px,2vw,22px);font-style:italic;line-height:1.55;max-width:600px;margin:0 auto 40px;color:#0a0a0a;">
+    Wir würden uns freuen, deine als Nummer 313 in der Liste zu führen.
+  </p>
+  <a href="kontakt.html" style="display:inline-block;background:#0a0a0a;color:#fdfd00;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;padding:18px 40px;border:3px solid #0a0a0a;">JETZT KONTAKT AUFNEHMEN →</a>
+</section>
+
+<footer style="background:#0a0a0a;color:#ffffff;padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px) 0;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px 32px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.15);">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;">SOLAR // RADIKAL</span>
+      </div>
+      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;line-height:1.6;opacity:0.7;margin:0;">Photovoltaik für Bayern und Baden-Württemberg. Inhabergeführt seit 2022.</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">LEISTUNGEN</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="eigenheim.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Eigenheim</a>
+        <a href="gewerbe.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Gewerbe</a>
+        <a href="speicher.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Speicher</a>
+        <a href="ppa.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">PPA</a>
+        <a href="repowering.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Repowering</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">INFOS</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="foerderung.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Förderung</a>
+        <a href="ueber-uns.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Über uns</a>
+        <a href="referenzen.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Referenzen</a>
+        <a href="kontakt.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Kontakt</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">REGIONEN</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="deggendorf.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Deggendorf</a>
+        <a href="straubing.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Straubing</a>
+        <a href="passau.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Passau</a>
+        <a href="regensburg.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Regensburg</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">KONTAKT</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;opacity:0.8;">
+        <a href="tel:+4999140227560" style="color:#ffffff;text-decoration:none;">09991 40227560</a>
+        <a href="mailto:info@pilsner-vertrieb.de" style="color:#ffffff;text-decoration:none;">info@pilsner-vertrieb.de</a>
+        <span>Detterstraße 38<br>94469 Deggendorf</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding:16px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.4;">
+    <span>© 2026 Pilsner Vertriebs GmbH</span>
+    <div style="display:flex;gap:16px;">
+      <a href="impressum.html" style="color:#ffffff;text-decoration:none;">Impressum</a>
+      <a href="datenschutz.html" style="color:#ffffff;text-decoration:none;">Datenschutz</a>
+    </div>
+  </div>
+</footer>
+<a href="https://wa.me/491753560019" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:999;background:#25d366;color:#ffffff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+(function(){
+  function clk(){var e=document.getElementById('clk');if(e)e.textContent=new Date().toLocaleTimeString('de-DE');}
+  clk();setInterval(clk,1000);
+  document.querySelectorAll('[id^="sun"]').forEach(function(s){
+    for(var i=0;i<36;i++){
+      var a=i*Math.PI*2/36;
+      var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('x1',100+Math.cos(a)*60);l.setAttribute('y1',100+Math.sin(a)*60);
+      l.setAttribute('x2',100+Math.cos(a)*92);l.setAttribute('y2',100+Math.sin(a)*92);
+      l.setAttribute('stroke','#0a0a0a');l.setAttribute('stroke-width','1.5');
+      s.insertBefore(l,s.firstChild);
+    }
+  });
+})();
 </script>
 </body>
 </html>

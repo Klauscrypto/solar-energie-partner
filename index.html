@@ -4,9 +4,9 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Solar Energie Partner Deggendorf — Photovoltaik für Eigenheim & Gewerbe in Bayern</title>
-<meta name="description" content="Photovoltaik in Bayern: Solar Energie Partner aus Deggendorf vermittelt und koordiniert PV-Anlagen für Eigenheim und Gewerbe. Seit 2014. Ehrlich. Ohne Druck." />
+<meta name="description" content="Photovoltaik in Bayern: Solar Energie Partner aus Deggendorf vermittelt und koordiniert PV-Anlagen für Eigenheim und Gewerbe. Seit 2022. Ehrlich. Ohne Druck." />
 <meta property="og:title" content="Solar Energie Partner — Photovoltaik aus Deggendorf" />
-<meta property="og:description" content="PV-Anlagen für Eigenheim und Gewerbe in Bayern. Inhabergeführt seit 2014. Kein Callcenter, keine Hochdruckverkäufer." />
+<meta property="og:description" content="PV-Anlagen für Eigenheim und Gewerbe in Bayern. Inhabergeführt seit 2022. Kein Callcenter, keine Hochdruckverkäufer." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://solar-energie-partner.de/" />
 <meta property="og:image" content="https://solar-energie-partner.de/pv-eigenheim-klein.jpg" />
@@ -22,7 +22,7 @@
       "@id": "https://solar-energie-partner.de/#business",
       "name": "Solar Energie Partner",
       "legalName": "Pilsner Vertriebs GmbH",
-      "description": "Vermittlung und Koordination von Photovoltaik-Anlagen für Eigenheim und Gewerbe in Bayern. Inhabergeführt seit 2014.",
+      "description": "Vermittlung und Koordination von Photovoltaik-Anlagen für Eigenheim und Gewerbe in Bayern. Inhabergeführt seit 2022.",
       "url": "https://solar-energie-partner.de",
       "telephone": "+4999140227560",
       "email": "info@solar-energie-partner.de",
@@ -34,193 +34,90 @@
         "addressRegion": "Bayern",
         "addressCountry": "DE"
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 48.8327,
-        "longitude": 12.9612
-      },
-      "openingHoursSpecification": [
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" }
-      ],
-      "areaServed": [
-        { "@type": "State", "name": "Bayern" },
-        { "@type": "State", "name": "Baden-Württemberg" }
-      ],
-      "foundingDate": "2014",
-      "numberOfEmployees": { "@type": "QuantitativeValue", "value": 3 },
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Photovoltaik-Leistungen",
-        "itemListElement": [
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Photovoltaik Eigenheim" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Photovoltaik Gewerbe" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Batteriespeicher" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PPA Power Purchase Agreement" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Repowering und Modulentsorgung" } }
-        ]
-      }
+      "geo": {"@type": "GeoCoordinates","latitude": 48.8327,"longitude": 12.9612},
+      "openingHoursSpecification": [{"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens": "08:00","closes": "18:00"}],
+      "areaServed": [{"@type": "State","name": "Bayern"},{"@type": "State","name": "Baden-Württemberg"}],
+      "foundingDate": "2022",
+      "numberOfEmployees": {"@type": "QuantitativeValue","value": 3}
     },
     {
       "@type": "Organization",
       "@id": "https://solar-energie-partner.de/#org",
       "name": "Pilsner Vertriebs GmbH",
       "url": "https://solar-energie-partner.de",
-      "logo": { "@type": "ImageObject", "url": "https://solar-energie-partner.de/logo.png" },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+4999140227560",
-        "contactType": "customer service",
-        "availableLanguage": "German"
-      }
+      "logo": {"@type": "ImageObject","url": "https://solar-energie-partner.de/logo.png"},
+      "contactPoint": {"@type": "ContactPoint","telephone": "+4999140227560","contactType": "customer service","availableLanguage": "German"}
     }
   ]
 }</script>
 <link rel="stylesheet" href="fonts/fonts.css" />
 <style>
   *,*::before,*::after{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--bg,#fdfd00);color:#0a0a0a;overflow-x:hidden;cursor:crosshair}
-  body.no-noise::before{display:none}
+  html,body{margin:0;padding:0;background:#fdfd00;color:#0a0a0a;overflow-x:hidden;cursor:crosshair}
   body{font-family:"Bricolage Grotesque",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
   ::selection{background:#0a0a0a;color:#fdfd00}
   html{scroll-behavior:smooth}
   button,input,textarea{font-family:inherit}
-
-  /* Noise overlay */
-  body::before{
-    content:"";position:fixed;inset:0;pointer-events:none;z-index:100;
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    opacity:0.5;mix-blend-mode:multiply;
-  }
-
-  /* Glitch text */
-  @keyframes glitch1{
-    0%,100%{transform:translate(0)}
-    20%{transform:translate(-2px,1px)}
-    40%{transform:translate(-1px,-1px)}
-    60%{transform:translate(1px,1px)}
-    80%{transform:translate(2px,-1px)}
-  }
-  @keyframes glitch2{
-    0%,100%{clip-path:inset(0 0 0 0)}
-    25%{clip-path:inset(20% 0 60% 0)}
-    50%{clip-path:inset(50% 0 30% 0)}
-    75%{clip-path:inset(70% 0 5% 0)}
-  }
+    opacity:0.5;mix-blend-mode:multiply}
+  @keyframes glitch1{0%,100%{transform:translate(0)}20%{transform:translate(-2px,1px)}40%{transform:translate(-1px,-1px)}60%{transform:translate(1px,1px)}80%{transform:translate(2px,-1px)}}
+  @keyframes glitch2{0%,100%{clip-path:inset(0 0 0 0)}25%{clip-path:inset(20% 0 60% 0)}50%{clip-path:inset(50% 0 30% 0)}75%{clip-path:inset(70% 0 5% 0)}}
   .glitch{position:relative;display:inline-block}
-  .glitch::before,.glitch::after{
-    content:attr(data-text);position:absolute;top:0;left:0;width:100%;opacity:0;transition:opacity .2s;
-  }
+  .glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;opacity:0;transition:opacity .2s}
   .glitch::before{color:#ff00ff;mix-blend-mode:screen;z-index:-1;left:2px;top:1px}
   .glitch::after{color:#00ffff;mix-blend-mode:screen;z-index:-1;left:-2px;top:-1px}
   .glitch:hover::before{opacity:1;animation:glitch1 0.3s infinite}
   .glitch:hover::after{opacity:1;animation:glitch1 0.3s infinite reverse}
   .glitch:hover{animation:glitch1 0.3s infinite}
-  /* Auto-glitch occasionally on big hero text */
   @keyframes autoGlitch{0%,92%,100%{opacity:0}93%,99%{opacity:1}}
   .glitch-auto::before{animation:autoGlitch 6s infinite,glitch1 0.2s infinite;opacity:0}
   .glitch-auto::after{animation:autoGlitch 6s infinite 0.1s,glitch1 0.2s infinite reverse;opacity:0}
-
-  /* Marquee */
   @keyframes m-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   .mq{display:flex;width:max-content;animation:m-x 25s linear infinite;will-change:transform}
   .mq-rev{animation-direction:reverse}
-  .mq-fast{animation-duration:12s}
-
-  /* Skew/spin */
   @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
   @keyframes wob{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
-
-  /* Scroll reveal harsh */
   .rv{opacity:0;transform:translateY(80px) rotate(-1deg)}
   .rv.in{opacity:1;transform:translateY(0) rotate(0);transition:opacity .6s steps(8),transform .6s steps(8)}
-
-  /* Hover */
   .lift:hover{transform:translate(-4px,-4px) rotate(1deg);box-shadow:8px 8px 0 #0a0a0a}
   .lift{transition:transform .15s cubic-bezier(.5,1.5,.5,1),box-shadow .15s}
-
-  /* 3D Tilt */
-  .tilt{transform-style:preserve-3d;transition:transform .12s ease-out;will-change:transform}
-  .tilt-inner{transform:translateZ(20px)}
-
-  /* Confetti */
+  .tilt-wrap{transform-style:preserve-3d;will-change:transform;transition:transform .4s ease-out}
   .conf{position:fixed;width:10px;height:14px;pointer-events:none;z-index:200;will-change:transform,opacity}
-
-  /* Stickers */
   .sticker{position:absolute;border:2px solid #0a0a0a;padding:6px 12px;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;background:#fdfd00;z-index:5;pointer-events:none}
-  .sticker.pink{background:#ff00aa;color:#0a0a0a}
-  .sticker.cyan{background:#00ffea;color:#0a0a0a}
-  .sticker.orange{background:#ff7a00;color:#0a0a0a}
-  .sticker.black{background:#0a0a0a;color:#fdfd00}
-
-  /* Cursor follower */
   #cur{position:fixed;width:24px;height:24px;border:2px solid #0a0a0a;border-radius:999px;pointer-events:none;z-index:99;mix-blend-mode:difference;transition:transform .1s;transform:translate(-50%,-50%)}
-
-  /* Marquee strip outline text */
-  .ot{
-    -webkit-text-stroke:2px #0a0a0a;color:transparent;
-  }
-
-  /* Strikethrough flicker */
+  .ot{-webkit-text-stroke:2px #0a0a0a;color:transparent}
   @keyframes flick{0%,100%{opacity:1}50%{opacity:0.6}}
-
-  /* Chaos & Compact tweaks */
   :root{--chaos:1}
-  body.compact section{padding-top:48px !important;padding-bottom:48px !important}
-  body.compact h1,body.compact h2{font-size:clamp(48px,7vw,96px) !important;line-height:0.9 !important}
-  body.compact .mq{animation-duration:35s}
-
+  /* FAQ */
+  details{border:3px solid #0a0a0a;margin-bottom:12px;background:#fff}
+  details[open]{background:#00ffea}
+  details>summary{padding:20px;cursor:crosshair;display:flex;justify-content:space-between;align-items:center;list-style:none;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:-0.02em;color:#0a0a0a}
+  details>summary::-webkit-details-marker{display:none}
+  details>summary::after{content:"+";font-family:"JetBrains Mono",monospace;font-size:24px;font-weight:700;transition:transform .2s;flex-shrink:0;margin-left:24px}
+  details[open]>summary::after{transform:rotate(45deg)}
+  details>p{padding:0 20px 20px;margin:0;font-family:"Instrument Serif",serif;font-size:15px;line-height:1.5}
+  /* Map pulse */
+  @keyframes pulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.15)}}
+  /* WA hover */
+  .wa-btn:hover{transform:translate(-3px,-3px) !important}
   /* ── MOBILE ── */
   @media(max-width:768px){
-    /* Nav ausblenden, nur Logo + CTA */
     header nav{display:none !important}
     header > div:last-child > span:first-child{display:none !important}
-
-    /* Alle 2-Spalten-Grids → 1 Spalte */
-    section > div[style*="grid-template-columns"]{
-      grid-template-columns:1fr !important;
-    }
-    /* Sticker ausblenden */
-    #cur,div[style*="position:fixed"][style*="sticker"]{display:none !important}
-
-    /* PPA-Abschnitt */
+    section > div[style*="grid-template-columns"]{grid-template-columns:1fr !important}
+    #cur{display:none !important}
     #ppa > div > div[style*="55%"]{grid-template-columns:1fr !important}
-
-    /* Kontakt */
-    section#kontakt > div > div[style*="grid-template-columns"]{
-      grid-template-columns:1fr !important;
-    }
-
-    /* Stats 4-spaltig → 2-spaltig */
+    section#kontakt > div > div[style*="grid-template-columns"]{grid-template-columns:1fr !important}
     div[style*="repeat(4, 1fr)"]{grid-template-columns:repeat(2,1fr) !important}
-
-    /* Rechner 3-spaltig → 1-spaltig */
     div[style*="1.1fr 1fr 0.8fr"]{grid-template-columns:1fr !important}
-
-    /* Preiskarten 3-spaltig → 1-spaltig */
     div[style*="repeat(3, 1fr)"]{grid-template-columns:1fr !important}
-
-    /* Kauf-Section grid */
     div[style*="55% 1fr"]{grid-template-columns:1fr !important}
-
-    /* Floating card ausblenden */
-    div[style*="position:\"absolute\""][style*="left:-32px"]{display:none !important}
-
-    /* Mehr Padding auf kleinen Schirmen */
     section{padding-left:16px !important;padding-right:16px !important}
-
-    /* Footer */
     footer{flex-direction:column !important;gap:12px !important}
-
-    /* Sonne verkleinern */
     .hero-sun{width:300px !important;height:300px !important;top:-120px !important;right:-120px !important}
-
-    /* Hero Sub-Row: 3 Spalten → 1 Spalte */
     .hero-subrow{grid-template-columns:1fr !important}
-
-    /* Marquee Font auf Mobile verkleinern */
     .mq span{font-size:32px !important;padding:0 16px !important}
-
-    /* Vergleichstabelle scrollbar statt kollabiert */
     .kauf-vs-ppa-table{overflow-x:auto !important;-webkit-overflow-scrolling:touch}
     .kauf-vs-ppa-table > div{min-width:480px !important;grid-template-columns:1.5fr 1fr 1fr !important}
   }
@@ -228,857 +125,1009 @@
 </head>
 <body>
 <div id="cur"></div>
-<div id="root"></div>
-<script src="vendor/react.min.js"></script>
-<script src="vendor/react-dom.min.js"></script>
-<script src="vendor/babel.min.js"></script>
-<script src="data.js"></script>
-<script type="text/babel" src="radikal-extras.jsx"></script>
-<script type="text/babel">
-const D = window.SITE_DATA;
-const { useState, useEffect, useRef } = React;
 
-const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-  "bg": "#fdfd00",
-  "accent1": "#ff00aa",
-  "accent2": "#00ffea",
-  "accent3": "#ff7a00",
-  "noise": true,
-  "customCursor": true,
-  "glitch": true,
-  "tilt": true,
-  "confetti": true,
-  "intensity": 1.5,
-  "chaos": 1,
-  "compact": false,
-  "headline": "SONNE",
-  "subline": "kostet bei uns",
-  "price": "\u003c 19 CT"
-}/*EDITMODE-END*/;
+<!-- ══ HEADER ══ -->
+<header style="position:sticky;top:0;z-index:50;background:#0a0a0a;color:#fdfd00;border-bottom:4px solid #fdfd00;padding:10px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.05em">
+  <div style="display:flex;align-items:center;gap:14px">
+    <a href="#top"><img src="logo.png" alt="Solar Energie Partner" style="height:72px;width:auto;display:block;filter:brightness(0) invert(1)"></a>
+  </div>
+  <nav style="display:flex;gap:24px">
+    <a href="#leistungen" style="color:#fdfd00;text-decoration:none">→ Leistungen</a>
+    <a href="#ppa" style="color:#fdfd00;text-decoration:none">→ PPA-Stromvertrag</a>
+    <a href="#prozess" style="color:#fdfd00;text-decoration:none">→ Vorgehen</a>
+    <a href="#referenzen" style="color:#fdfd00;text-decoration:none">→ Projekte</a>
+    <a href="#ueberuns" style="color:#fdfd00;text-decoration:none">→ Über uns</a>
+    <a href="#kontakt" style="color:#fdfd00;text-decoration:none">→ Kontakt</a>
+  </nav>
+  <div style="display:flex;gap:16px;align-items:center">
+    <span style="color:#00ffea">● LIVE</span>
+    <span id="clock">--:--:--</span>
+    <a href="#kontakt" style="padding:8px 14px;background:#fdfd00;color:#0a0a0a;text-decoration:none;font-weight:700;border:2px solid #fdfd00">JETZT_ANRUFEN</a>
+  </div>
+</header>
 
-// 3D Tilt wrapper
-function Tilt({ children, max = 8, style, className = "", ...rest }) {
-  const t = useTweak();
-  const ref = useRef(null);
-  const [tt, setT] = useState({ rx: 0, ry: 0, s: 1 });
-  const enabled = t.tilt !== false;
-  const onMove = e => {
-    if (!enabled) return;
-    const r = ref.current.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width - 0.5;
-    const py = (e.clientY - r.top) / r.height - 0.5;
-    setT({ rx: -py * max * (t.intensity || 1), ry: px * max * (t.intensity || 1), s: 1.02 });
-  };
-  const onLeave = () => setT({ rx: 0, ry: 0, s: 1 });
-  return (
-    <div ref={ref} className={`tilt ${className}`} onMouseMove={onMove} onMouseLeave={onLeave}
-      style={{ ...style, transform: enabled
-        ? `perspective(800px) rotateX(${tt.rx}deg) rotateY(${tt.ry}deg) scale(${tt.s})`
-        : "none" }}
-      {...rest}>
-      {children}
+<!-- ══ HERO ══ -->
+<section id="top" style="position:relative;padding:60px 0 80px;overflow:hidden;background:#fdfd00">
+  <div class="hero-sun" style="position:absolute;top:-250px;right:-250px;width:700px;height:700px;animation:spin 60s linear infinite;pointer-events:none">
+    <svg id="hero-sun" viewBox="0 0 200 200" style="width:100%;height:100%"></svg>
+  </div>
+  <div style="padding:0 24px;position:relative;z-index:2">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.1em;line-height:1.3">
+        ░░░ DOSSIER № 24-08 ░░░<br>
+        DATUM: 04.05.2026 — DEGGENDORF, BAYERN<br>
+        STATUS: <span style="background:#0a0a0a;color:#fdfd00;padding:2px 6px">VERFÜGBAR</span>
+      </div>
+      <div style="background:#0a0a0a;color:#fdfd00;padding:6px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;transform:rotate(3deg);letter-spacing:0.05em">
+        ⚠ 250+ ANLAGEN INSTALLIERT
+      </div>
     </div>
-  );
-}
-
-// Confetti spawner — fired on demand
-function fireConfetti(x, y, count = 80) {
-  const colors = ["#fdfd00", "#ff00aa", "#00ffea", "#ff7a00", "#ff3a1f", "#0a0a0a", "#ffffff"];
-  for (let i = 0; i < count; i++) {
-    const el = document.createElement("div");
-    el.className = "conf";
-    el.style.left = x + "px";
-    el.style.top = y + "px";
-    el.style.background = colors[Math.floor(Math.random() * colors.length)];
-    el.style.border = "2px solid #0a0a0a";
-    document.body.appendChild(el);
-    const angle = Math.random() * Math.PI * 2;
-    const velocity = 200 + Math.random() * 500;
-    const vx = Math.cos(angle) * velocity;
-    const vy = Math.sin(angle) * velocity - 200;
-    const rotStart = Math.random() * 360;
-    const rotEnd = rotStart + (Math.random() - 0.5) * 720;
-    const dur = 1200 + Math.random() * 800;
-    const t0 = performance.now();
-    const tick = (now) => {
-      const p = (now - t0) / dur;
-      if (p >= 1) { el.remove(); return; }
-      const dx = vx * p;
-      const dy = vy * p + 600 * p * p;
-      const r = rotStart + (rotEnd - rotStart) * p;
-      el.style.transform = `translate(${dx}px, ${dy}px) rotate(${r}deg)`;
-      el.style.opacity = String(1 - p * p);
-      requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-  }
-}
-
-// Random sticker layer — subtle, page-wide chaos
-function StickerLayer() {
-  const stickers = [
-    { text: "100% EHRLICH", cls: "pink", top: "6%", left: "3%", rot: -8 },
-    { text: "NO BS", cls: "black", top: "22%", right: "4%", rot: 12 },
-    { text: "SEIT 2014", cls: "cyan", top: "38%", left: "2%", rot: 6 },
-    { text: "EHRLICH ✓", cls: "orange", top: "55%", right: "3%", rot: -10 },
-    { text: "DEGGENDORF", cls: "pink", top: "72%", left: "4%", rot: 4 },
-    { text: "GEPRÜFT ✓", cls: "black", top: "85%", right: "5%", rot: -6 },
-  ];
-  return (
-    <>
-      {stickers.map((s, i) => (
-        <div key={i} className={`sticker ${s.cls}`} style={{
-          top: s.top, left: s.left, right: s.right,
-          transform: `rotate(${s.rot}deg)`, position: "fixed",
-        }}>{s.text}</div>
-      ))}
-    </>
-  );
-}
-
-// Cursor follower
-function CursorFollower() {
-  const t = useTweak();
-  useEffect(() => {
-    const c = document.getElementById("cur");
-    if (!c) return;
-    if (!t.customCursor) { c.style.display = "none"; document.body.style.cursor = ""; return; }
-    c.style.display = "";
-    document.body.style.cursor = "crosshair";
-    const onM = e => { c.style.left = e.clientX + "px"; c.style.top = e.clientY + "px"; };
-    const onD = () => c.style.transform = "translate(-50%,-50%) scale(2)";
-    const onU = () => c.style.transform = "translate(-50%,-50%) scale(1)";
-    window.addEventListener("mousemove", onM);
-    window.addEventListener("mousedown", onD);
-    window.addEventListener("mouseup", onU);
-    return () => {
-      window.removeEventListener("mousemove", onM);
-      window.removeEventListener("mousedown", onD);
-      window.removeEventListener("mouseup", onU);
-    };
-  }, [t.customCursor]);
-  return null;
-}
-
-function useReveal() {
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add("in"); obs.disconnect(); } }, { threshold: 0.2 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return ref;
-}
-
-function Counter({ to, suffix = "" }) {
-  const [v, setV] = useState(0);
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) {
-        const t0 = performance.now();
-        const target = parseFloat(String(to).replace(/[^0-9.−-]/g,"").replace("−","-")) || 0;
-        const tick = (now) => {
-          const p = Math.min(1, (now - t0) / 1500);
-          setV(target * (1 - Math.pow(1 - p, 3)));
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-        obs.disconnect();
-      }
-    }, { threshold: 0.4 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [to]);
-  const isFloat = String(to).includes(".");
-  return <span ref={ref} style={{ fontVariantNumeric: "tabular-nums" }}>{isFloat ? v.toFixed(1) : Math.round(v)}{suffix}</span>;
-}
-
-const COL = {
-  yellow: "#fdfd00",
-  black: "#0a0a0a",
-  pink: "#ff00aa",
-  cyan: "#00ffea",
-  red: "#ff3a1f",
-  orange: "#ff7a00",
-  white: "#ffffff",
-};
-
-// Tweak context — lets any component read live tweak values
-const TweakCtx = React.createContext(TWEAK_DEFAULTS);
-const useTweak = () => React.useContext(TweakCtx);
-
-const headingFont = `"Bricolage Grotesque",system-ui,sans-serif`;
-const monoFont = `"JetBrains Mono",monospace`;
-const serifFont = `"Instrument Serif",serif`;
-
-// Expose shared bindings to extras script
-window.__RAD_COL = COL;
-window.__RAD_useTweak = useTweak;
-window.__RAD_useReveal = useReveal;
-window.__RAD_fonts = { heading: headingFont, mono: monoFont, serif: serifFont };
-
-// ─── HEADER ───
-function Header() {
-  const [t, setT] = useState(new Date());
-  useEffect(() => {
-    const id = setInterval(() => setT(new Date()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  return (
-    <header style={{
-      position: "sticky", top: 0, zIndex: 50, background: COL.black, color: COL.yellow,
-      borderBottom: `4px solid ${COL.yellow}`, padding: "10px 24px",
-      display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16,
-      fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.05em",
-    }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-        <img src="logo.png" alt="Solar Energie Partner" style={{ height: 36, width: "auto", display: "block", filter: "brightness(0) invert(1)" }} />
-      </div>
-      <nav style={{ display: "flex", gap: 24 }}>
-        {D.nav.map(n => <a key={n.id} href={`#${n.id}`} style={{ color: COL.yellow, textDecoration: "none" }}>→ {n.label}</a>)}
-      </nav>
-      <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-        <span style={{ color: COL.cyan }}>● LIVE</span>
-        <span>{t.toLocaleTimeString("de-DE")}</span>
-        <a href="#kontakt" style={{
-          padding: "8px 14px", background: COL.yellow, color: COL.black,
-          textDecoration: "none", fontWeight: 700, border: `2px solid ${COL.yellow}`,
-        }}>JETZT_ANRUFEN</a>
-      </div>
-    </header>
-  );
-}
-
-// ─── HERO — anarchic ───
-function Hero() {
-  const t = useTweak();
-  const [m, setM] = useState({x:0,y:0});
-  useEffect(() => {
-    const onM = e => setM({x:(e.clientX/innerWidth-0.5),y:(e.clientY/innerHeight-0.5)});
-    window.addEventListener("mousemove", onM);
-    return () => window.removeEventListener("mousemove", onM);
-  }, []);
-  return (
-    <section id="top" style={{ position: "relative", padding: "60px 0 80px", overflow: "hidden" }}>
-      {/* Big rotating sun */}
-      <div className="hero-sun" style={{
-        position: "absolute", top: -250, right: -250, width: 700, height: 700,
-        animation: "spin 60s linear infinite", pointerEvents: "none",
-      }}>
-        <svg viewBox="0 0 200 200" style={{ width: "100%", height: "100%" }}>
-          {[...Array(48)].map((_,i)=>{const a=(i*Math.PI*2)/48;return <line key={i} x1={100+Math.cos(a)*60} y1={100+Math.sin(a)*60} x2={100+Math.cos(a)*95} y2={100+Math.sin(a)*95} stroke={COL.black} strokeWidth="1.5"/>})}
-          <circle cx="100" cy="100" r="50" fill={COL.black} />
-          <circle cx="100" cy="100" r="35" fill={COL.pink} />
-        </svg>
-      </div>
-
-      <div style={{ padding: "0 24px", position: "relative", zIndex: 2 }}>
-        {/* Top tag with crooked */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 24 }}>
-          <div style={{ fontFamily: monoFont, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.1em", lineHeight: 1.3 }}>
-            ░░░ DOSSIER № 24-08 ░░░<br/>
-            DATUM: 04.05.2026 — DEGGENDORF, BAYERN<br/>
-            STATUS: <span style={{ background: COL.black, color: COL.yellow, padding: "2px 6px" }}>VERFÜGBAR</span>
-          </div>
-          <div style={{ background: COL.black, color: COL.yellow, padding: "6px 12px", fontFamily: monoFont, fontSize: 11, transform: "rotate(3deg)", letterSpacing: "0.05em" }}>
-            ⚠ 250+ ANLAGEN INSTALLIERT
-          </div>
-        </div>
-
-        {/* Massive headline */}
-        <h1 style={{
-          fontFamily: headingFont, fontWeight: 800,
-          fontSize: "clamp(80px,18vw,320px)", lineHeight: 0.78,
-          letterSpacing: "-0.05em", margin: "0", textTransform: "uppercase",
-          color: COL.black, fontVariationSettings: "'opsz' 96",
-        }}>
-          <span className={t.glitch ? "glitch glitch-auto" : ""} data-text={t.headline}>{t.headline}</span><br/>
-          <span style={{ fontFamily: serifFont, fontWeight: 400, fontStyle: "italic", textTransform: "lowercase", letterSpacing: "-0.02em", display: "inline-block", transform: `translateX(${m.x*20}px)` }}>
-            {t.subline}
-          </span><br/>
-          <span style={{ background: COL.black, color: COL.yellow, padding: "0 0.1em", display: "inline-block", transform: "skew(-4deg)" }}>{t.price}</span>
-          <span style={{ fontFamily: serifFont, fontWeight: 400, fontStyle: "italic", textTransform: "lowercase" }}>/kWh.</span>
-        </h1>
-
-        {/* Sub-row */}
-        <div className="hero-subrow" style={{ marginTop: 40, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 24 }}>
-          <div>
-            <p style={{ fontFamily: serifFont, fontSize: 22, lineHeight: 1.3, margin: 0, fontStyle: "italic" }}>
-              Photovoltaik-Anlagen, Speicher und PPA-Stromverträge — ohne Investment, ohne Bullshit.
-            </p>
-          </div>
-          <div style={{ fontFamily: monoFont, fontSize: 12, lineHeight: 1.6, textTransform: "uppercase" }}>
-            <strong>WAS</strong> = PV+Speicher+PPA<br/>
-            <strong>WO</strong> = Bayern + bundesweit<br/>
-            <strong>SEIT</strong> = 2014<br/>
-            <strong>SUPER</strong> = ehrlich, schnell, fertig
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, alignItems: "stretch" }}>
-            <a href="#kontakt" className="lift" style={{
-              background: COL.black, color: COL.yellow, padding: "20px 24px",
-              fontFamily: monoFont, fontSize: 14, fontWeight: 700, textTransform: "uppercase",
-              border: `3px solid ${COL.black}`, textDecoration: "none", textAlign: "left",
-              letterSpacing: "0.05em",
-            }}>
-              [→] BERATUNGSTERMIN<br/><span style={{ fontSize: 10, opacity: 0.6 }}>kostenlos // unverbindlich // eh klar</span>
-            </a>
-            <a href="#ppa" className="lift" style={{
-              background: COL.pink, color: COL.black, padding: "20px 24px",
-              fontFamily: monoFont, fontSize: 14, fontWeight: 700, textTransform: "uppercase",
-              border: `3px solid ${COL.black}`, textDecoration: "none", textAlign: "left",
-              letterSpacing: "0.05em",
-            }}>
-              [⚡] PPA RECHNER<br/><span style={{ fontSize: 10, opacity: 0.7 }}>14 CT/kWh sparen, jährlich</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Big marquee */}
-      <div style={{ marginTop: 60, background: COL.black, color: COL.yellow, padding: "20px 0", overflow: "hidden", borderTop: `4px solid ${COL.black}`, borderBottom: `4px solid ${COL.black}` }}>
-        <div className="mq">
-          {[...Array(2)].flatMap((_,k) => ["★ EHRLICHE BERATUNG", "★ ZERTIFIZIERTE PARTNER", "★ EHRLICHER VERTRIEB", "★ FESTPREIS-GARANTIE", "★ FACHBETRIEBE", "★ SEIT 2014", "★ 250+ ANLAGEN"].map((s,i) => (
-            <span key={`${k}-${i}`} style={{ fontFamily: headingFont, fontSize: 56, fontWeight: 800, padding: "0 32px", whiteSpace: "nowrap", textTransform: "uppercase", letterSpacing: "-0.03em" }}>
-              {s}
-            </span>
-          )))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── STATS ─── chunky
-function Stats() {
-  return (
-    <section style={{ background: COL.cyan, padding: "80px 24px", borderTop: `4px solid ${COL.black}`, borderBottom: `4px solid ${COL.black}` }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0 }}>
-        {D.bigStats.map((s, i) => (
-          <div key={i} ref={useReveal()} className="rv" style={{
-            padding: "24px", borderRight: i < 3 ? `2px solid ${COL.black}` : "none",
-            background: i % 2 === 0 ? COL.cyan : COL.yellow,
-          }}>
-            <div style={{ fontFamily: monoFont, fontSize: 11, textTransform: "uppercase", marginBottom: 12, letterSpacing: "0.05em" }}>► {s.s}</div>
-            <div style={{ fontFamily: headingFont, fontSize: "clamp(72px, 9vw, 140px)", fontWeight: 800, lineHeight: 0.85, letterSpacing: "-0.05em", color: COL.black }}>
-              <Counter to={s.n} suffix={s.u || ""} />
-            </div>
-            <div style={{ fontFamily: serifFont, fontSize: 22, fontStyle: "italic", marginTop: 8 }}>{s.l}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ─── SERVICES — chaotic grid ───
-function Services() {
-  const colors = [COL.yellow, COL.pink, COL.cyan, COL.orange, COL.yellow, COL.pink];
-  const skews = [-1, 1, -2, 2, -1, 1];
-  return (
-    <section id="leistungen" style={{ padding: "80px 24px", background: COL.yellow, position: "relative" }}>
-      <div ref={useReveal()} className="rv" style={{ marginBottom: 48, position: "relative" }}>
-        <div style={{ fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>
-          ░░░ KAPITEL_01 ░░░ &nbsp; LEISTUNGEN &nbsp; ░░░
-        </div>
-        <h2 style={{
-          fontFamily: headingFont, fontWeight: 800, fontSize: "clamp(56px, 10vw, 160px)",
-          lineHeight: 0.85, letterSpacing: "-0.04em", margin: 0, textTransform: "uppercase",
-        }}>
-          Was wir<br/>
-          <span style={{ background: COL.black, color: COL.yellow, padding: "0 0.15em", display: "inline-block", transform: "rotate(-1deg)" }}>tatsächlich</span>{" "}
-          <span style={{ fontFamily: serifFont, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>können.</span>
-        </h2>
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginTop: 32 }}>
-        {D.services.map((s, i) => (
-          <Tilt key={i} max={10}>
-          <a href={s.href || "#kontakt"} ref={useReveal()} className="rv lift" style={{
-            background: colors[i % colors.length], border: `3px solid ${COL.black}`,
-            padding: "24px 20px",
-            display: "flex", flexDirection: "column", minHeight: 280, position: "relative",
-            textDecoration: "none", color: COL.black,
-          }}>
-            <div style={{ position: "absolute", top: -14, right: -14, background: COL.black, color: COL.yellow, padding: "4px 10px", fontFamily: monoFont, fontSize: 12, fontWeight: 700 }}>
-              {s.no}
-            </div>
-            <div style={{ fontFamily: monoFont, fontSize: 11, textTransform: "uppercase", marginBottom: 12, letterSpacing: "0.05em" }}>┌── {s.cat} ──┐</div>
-            <h3 className="glitch" data-text={s.title} style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 32, lineHeight: 0.95, margin: "0 0 12px", letterSpacing: "-0.03em", textTransform: "uppercase" }}>{s.title}</h3>
-            <p style={{ fontFamily: serifFont, fontSize: 16, lineHeight: 1.4, margin: 0, flex: 1 }}>{s.body}</p>
-            <div style={{ marginTop: 16, fontFamily: monoFont, fontSize: 12, fontWeight: 700 }}>→ MEHR_INFO</div>
-          </a>
-          </Tilt>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ─── KAUF ─── eigene Anlage
-function Kauf() {
-  const examples = [
-    { tag: "EIGENHEIM KLEIN", title: "8 kWp + 7 kWh Speicher", desc: "Reihenhaus · 4-köpfige Familie · 4.500 kWh/J.", price: "ca. 15.000 €", saving: "~1.850 €/J.", amort: "~7,4 J.", col: COL.cyan, img: "pv-eigenheim-klein.jpg" },
-    { tag: "EIGENHEIM GROSS", title: "12 kWp + 12 kWh + Wallbox", desc: "Einfamilienhaus · Deggendorf · Eigenverbrauch optimiert", price: "ca. 23.000 €", saving: "~4.300 €/J.", amort: "~5,3 J.", col: COL.pink, img: "eigenheim-deggendorf.jpg", imgFilter: "contrast(1.12) saturate(1.25) brightness(1.05)" },
-    { tag: "GEWERBE", title: "50 kWp Halle", desc: "Werkstatt · 60.000 kWh/J. · PPA-Option möglich", price: "ca. 47.000 €", saving: "~9.000 €/J.", amort: "~5,9 J.", col: COL.yellow, img: "pv-gewerbe-halle.jpg" },
-  ];
-  return (
-    <section id="kauf" style={{ background: COL.white, color: COL.black, padding: "80px 24px", borderTop: `4px solid ${COL.black}` }}>
-      <div ref={useReveal()} className="rv" style={{ fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>
-        ░░░ KAPITEL_02 ░░░ EIGENE_ANLAGE ░░░ KAUFEN ░░░
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "55% 1fr", gap: 64, alignItems: "start", marginBottom: 64 }}>
-        <h2 style={{ fontFamily: headingFont, fontWeight: 800, fontSize: "clamp(56px, 11vw, 180px)", lineHeight: 0.78, letterSpacing: "-0.05em", margin: 0, textTransform: "uppercase" }}>
-          IHR DACH.<br/>
-          <span style={{ background: COL.black, color: COL.yellow, padding: "0 0.1em", display: "inline-block", transform: "skew(-3deg)" }}>IHR STROM.</span><br/>
-          <span style={{ fontFamily: serifFont, fontWeight: 400, fontStyle: "italic", textTransform: "lowercase", letterSpacing: "-0.02em" }}>ihr eigentum.</span>
-        </h2>
-        <div style={{ paddingTop: 8 }}>
-          <p style={{ fontFamily: serifFont, fontSize: "clamp(17px, 1.5vw, 22px)", lineHeight: 1.55, fontStyle: "italic", margin: "0 0 32px" }}>
-            {D.audiences.privat.lead}
-          </p>
-          <div>
-            {D.audiences.privat.bullets.map(([h, b], i) => (
-              <div key={i} style={{ borderTop: `2px solid ${COL.black}`, paddingTop: 16, paddingBottom: 16 }}>
-                <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 15, textTransform: "uppercase", letterSpacing: "-0.01em", marginBottom: 5 }}>► {h}</div>
-                <div style={{ fontFamily: serifFont, fontSize: 14, lineHeight: 1.5, opacity: 0.7 }}>{b}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Preisbeispiele */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
-        {examples.map((e, i) => (
-          <Tilt key={i} max={8}>
-          <div ref={useReveal()} className="rv" style={{ background: e.col, border: `3px solid ${COL.black}`, position: "relative", overflow: "hidden" }}>
-            <div style={{ position: "absolute", top: 12, left: 16, zIndex: 2, background: COL.black, color: COL.yellow, padding: "2px 12px", fontFamily: monoFont, fontSize: 11, fontWeight: 700 }}>{e.tag}</div>
-            <img src={e.img} alt={e.title} style={{ width: "100%", height: 200, objectFit: "cover", display: "block", borderBottom: `3px solid ${COL.black}`, filter: e.imgFilter || "none" }} />
-            <div style={{ padding: 24 }}>
-            <h3 style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 22, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 10px" }}>{e.title}</h3>
-            <p style={{ fontFamily: monoFont, fontSize: 11, opacity: 0.6, margin: "0 0 20px", textTransform: "uppercase" }}>{e.desc}</p>
-            <div style={{ borderTop: `2px dashed ${COL.black}`, paddingTop: 16, display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 12 }}>
-              <div>
-                <div style={{ fontFamily: monoFont, fontSize: 10, textTransform: "uppercase", opacity: 0.6, marginBottom: 4 }}>PREIS</div>
-                <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 18, letterSpacing: "-0.02em" }}>{e.price}</div>
-              </div>
-              <div>
-                <div style={{ fontFamily: monoFont, fontSize: 10, textTransform: "uppercase", opacity: 0.6, marginBottom: 4 }}>ERSPARNIS/J.</div>
-                <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 18, letterSpacing: "-0.02em", color: COL.black }}>{e.saving}</div>
-              </div>
-              <div>
-                <div style={{ fontFamily: monoFont, fontSize: 10, textTransform: "uppercase", opacity: 0.6, marginBottom: 4 }}>AMORTIS.</div>
-                <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 18, letterSpacing: "-0.02em" }}>{e.amort}</div>
-              </div>
-            </div>
-            </div>
-          </div>
-          </Tilt>
-        ))}
-      </div>
-
-      <div style={{ marginTop: 40, display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
-        <a href="#kontakt" className="lift" style={{
-          background: COL.black, color: COL.yellow, padding: "20px 40px",
-          fontFamily: monoFont, fontSize: 14, fontWeight: 700, textTransform: "uppercase",
-          border: `3px solid ${COL.black}`, textDecoration: "none", letterSpacing: "0.05em",
-        }}>[→] JETZT BERATUNG ANFORDERN</a>
-        <span style={{ fontFamily: monoFont, fontSize: 12, opacity: 0.5, textTransform: "uppercase" }}>kostenlos · unverbindlich · innerhalb 24h Rückmeldung</span>
-      </div>
-    </section>
-  );
-}
-
-// ─── PPA ─── neon big
-function PPA() {
-  return (
-    <section id="ppa" style={{ background: COL.black, color: COL.yellow, padding: "80px 0", overflow: "hidden", position: "relative", borderTop: `4px solid ${COL.black}` }}>
-      <div style={{ padding: "0 24px" }}>
-        <div ref={useReveal()} className="rv" style={{ fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16, color: COL.cyan }}>
-          ░░░ KAPITEL_02 ░░░ PPA-VERTRAG ░░░ ZERO_INVEST ░░░
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "55% 1fr", gap: 64, alignItems: "start" }}>
-          <h2 style={{
-            fontFamily: headingFont, fontWeight: 800, fontSize: "clamp(64px, 11vw, 200px)",
-            lineHeight: 0.76, letterSpacing: "-0.05em", margin: 0, textTransform: "uppercase",
-          }}>
-            <span className="ot">SOLARSTROM</span><br/>
-            als <span style={{ background: COL.pink, color: COL.black, padding: "0 0.1em", display: "inline-block", transform: "skew(-4deg)" }}>SERVICE.</span><br/>
-            <span style={{ color: COL.cyan, fontFamily: serifFont, fontWeight: 400, fontStyle: "italic", textTransform: "lowercase", letterSpacing: "-0.02em" }}>kein investment.</span>
-          </h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: 36, paddingTop: 12 }}>
-            <p style={{ fontFamily: serifFont, fontSize: "clamp(18px, 1.6vw, 26px)", lineHeight: 1.5, fontStyle: "italic", margin: 0, opacity: 0.9 }}>
-              {D.ppa.body}
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
-              {D.audiences.gewerbe.bullets.slice(0,3).map(([h, b], i) => (
-                <div key={i} style={{ borderTop: `1px solid rgba(255,255,100,0.2)`, paddingTop: 16, paddingBottom: 16 }}>
-                  <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 16, textTransform: "uppercase", letterSpacing: "-0.01em", color: COL.yellow, marginBottom: 4 }}>► {h}</div>
-                  <div style={{ fontFamily: serifFont, fontSize: 14, lineHeight: 1.5, opacity: 0.7 }}>{b}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Big stats row */}
-      <div style={{ marginTop: 60, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", borderTop: `4px solid ${COL.yellow}`, borderBottom: `4px solid ${COL.yellow}` }}>
-        {D.ppa.stats.map((s, i) => (
-          <div key={i} style={{ padding: "32px 24px", borderRight: i < 3 ? `1px solid ${COL.yellow}` : "none", background: [COL.black, COL.pink, COL.black, COL.cyan][i], color: i % 2 === 1 ? COL.black : COL.yellow }}>
-            <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 64, lineHeight: 1, letterSpacing: "-0.04em" }}>
-              <Counter to={s.v} suffix={s.u} />
-            </div>
-            <div style={{ fontFamily: monoFont, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em", marginTop: 8 }}>► {s.l}</div>
-          </div>
-        ))}
-      </div>
-
-      {/* Tape outlined-text marquee */}
-      <div className="mq mq-rev" style={{ marginTop: 40, fontFamily: headingFont, fontSize: 100, fontWeight: 800, letterSpacing: "-0.04em", textTransform: "uppercase", whiteSpace: "nowrap" }}>
-        {[...Array(4)].map((_,i) => (
-          <span key={i} className="ot" style={{ padding: "0 32px", color: "transparent", WebkitTextStroke: `2px ${COL.yellow}` }}>
-            ZERO_INVESTMENT &nbsp; ◆ &nbsp; FESTPREIS &nbsp; ◆ &nbsp;
-          </span>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ─── PROCESS — kassenbon style ───
-function Process() {
-  return (
-    <section id="prozess" style={{ background: COL.yellow, padding: "80px 24px", borderTop: `4px solid ${COL.black}` }}>
-      <div ref={useReveal()} className="rv" style={{ marginBottom: 48 }}>
-        <div style={{ fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>
-          ░░░ KAPITEL_03 ░░░ VORGEHEN ░░░
-        </div>
-        <h2 style={{ fontFamily: headingFont, fontWeight: 800, fontSize: "clamp(56px, 10vw, 160px)", lineHeight: 0.85, letterSpacing: "-0.04em", margin: 0, textTransform: "uppercase" }}>
-          4 Schritte.<br/>
-          <span style={{ fontFamily: serifFont, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>kein</span>{" "}
-          <span style={{ background: COL.black, color: COL.yellow, padding: "0 0.1em", display: "inline-block", transform: "skew(-4deg)" }}>BLABLA.</span>
-        </h2>
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }}>
-        {D.process.map((p, i) => (
-          <Tilt key={i} max={12}>
-          <div ref={useReveal()} className="rv" style={{
-            background: COL.white, border: `3px solid ${COL.black}`, padding: 24, position: "relative",
-          }}>
-            <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 96, lineHeight: 0.85, letterSpacing: "-0.06em", color: COL.pink, marginBottom: 12 }}>{p.no}</div>
-            <h3 style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 22, textTransform: "uppercase", margin: "0 0 10px", letterSpacing: "-0.02em" }}>{p.title}</h3>
-            <p style={{ fontFamily: serifFont, fontSize: 14, lineHeight: 1.45, margin: 0 }}>{p.body}</p>
-            <div style={{ position: "absolute", bottom: -10, right: -10, background: COL.cyan, border: `2px solid ${COL.black}`, padding: "2px 8px", fontFamily: monoFont, fontSize: 10, fontWeight: 700 }}>
-              STEP_{p.no}/04
-            </div>
-          </div>
-          </Tilt>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ─── PROJECTS — hand-drawn tickets ───
-function Projects() {
-  const colors = [COL.pink, COL.cyan, COL.orange, COL.yellow, COL.pink, COL.cyan];
-  return (
-    <section id="referenzen" style={{ background: COL.pink, color: COL.black, padding: "80px 24px", borderTop: `4px solid ${COL.black}` }}>
-      <div ref={useReveal()} className="rv" style={{ marginBottom: 48 }}>
-        <div style={{ fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>
-          ░░░ KAPITEL_04 ░░░ FELDFOTOS / DOSSIER ░░░
-        </div>
-        <h2 style={{ fontFamily: headingFont, fontWeight: 800, fontSize: "clamp(56px, 10vw, 160px)", lineHeight: 0.85, letterSpacing: "-0.04em", margin: 0, textTransform: "uppercase" }}>
-          250+<br/>
-          <span style={{ fontFamily: serifFont, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>installierte</span><br/>
-          <span style={{ background: COL.black, color: COL.yellow, padding: "0 0.1em", display: "inline-block" }}>ANLAGEN.</span>
-        </h2>
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24 }}>
-        {D.projects.map((p, i) => (
-          <Tilt key={i} max={10}>
-          <article ref={useReveal()} className="rv" style={{
-            background: colors[i % colors.length], border: `3px solid ${COL.black}`,
-            padding: 0,
-          }}>
-            <div style={{ aspectRatio: "4/3", position: "relative", borderBottom: `3px solid ${COL.black}`, overflow: "hidden" }}>
-              {p.img
-                ? <img src={p.img} alt={p.title} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: p.imgFilter || "none" }} />
-                : <div style={{ width: "100%", height: "100%", background: `repeating-linear-gradient(45deg, ${COL.black}, ${COL.black} 6px, transparent 6px, transparent 14px), ${colors[i % colors.length]}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <span style={{ fontFamily: monoFont, fontSize: 11, color: COL.black, background: COL.white, padding: "6px 12px", border: `2px solid ${COL.black}`, fontWeight: 700 }}>FOTO_{String(i+1).padStart(2,"0")}.JPG</span>
-                  </div>
-              }
-              <div style={{ position: "absolute", top: 12, right: 12, background: COL.black, color: COL.yellow, padding: "4px 8px", fontFamily: monoFont, fontSize: 10, fontWeight: 700, textTransform: "uppercase" }}>{p.tag}</div>
-            </div>
-            <div style={{ padding: 20 }}>
-              <div style={{ fontFamily: monoFont, fontSize: 11, marginBottom: 6, fontWeight: 700, textTransform: "uppercase" }}>► {p.spec}</div>
-              <h3 className="glitch" data-text={p.title} style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 24, margin: "0 0 8px", textTransform: "uppercase", letterSpacing: "-0.02em", lineHeight: 0.95 }}>{p.title}</h3>
-              <p style={{ fontFamily: serifFont, fontSize: 14, lineHeight: 1.45, margin: 0 }}>{p.body}</p>
-            </div>
-          </article>
-          </Tilt>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ─── TESTIMONIALS — collage ───
-function Testimonials() {
-  return (
-    <section style={{ background: COL.cyan, padding: "80px 24px", borderTop: `4px solid ${COL.black}` }}>
-      <div ref={useReveal()} className="rv" style={{ marginBottom: 48 }}>
-        <div style={{ fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>
-          ░░░ KAPITEL_05 ░░░ ECHTE STIMMEN ░░░
-        </div>
-        <h2 style={{ fontFamily: headingFont, fontWeight: 800, fontSize: "clamp(56px, 10vw, 160px)", lineHeight: 0.85, letterSpacing: "-0.04em", margin: 0, textTransform: "uppercase" }}>
-          Echte Kundenstimmen.
-        </h2>
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }}>
-        {D.testimonials.map((tm, i) => (
-          <figure key={i} ref={useReveal()} className="rv lift" style={{
-            margin: 0, background: COL.yellow, border: `3px solid ${COL.black}`, padding: 24,
-            transform: `rotate(${[-2, 2, -1.5][i] || 0}deg)`, position: "relative",
-          }}>
-            <div style={{ position: "absolute", top: -12, left: -12, width: 32, height: 32, background: COL.pink, border: `3px solid ${COL.black}`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: headingFont, fontSize: 24, fontWeight: 800 }}>"</div>
-            <div style={{ color: COL.red, fontSize: 16, marginBottom: 12, letterSpacing: "0.1em", fontWeight: 700 }}>★★★★★</div>
-            <blockquote style={{ margin: 0, fontFamily: serifFont, fontSize: 18, lineHeight: 1.4, fontStyle: "italic" }}>"{tm.quote}"</blockquote>
-            <figcaption style={{ marginTop: 20, paddingTop: 16, borderTop: `2px dashed ${COL.black}` }}>
-              <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 16, textTransform: "uppercase" }}>— {tm.name}</div>
-              <div style={{ fontFamily: monoFont, fontSize: 11, marginTop: 4 }}>{tm.role}</div>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ─── REGIONEN ───
-function Regionen() {
-  const staedte = [
-    { name: "Deggendorf", note: "Unser Hauptsitz", href: "deggendorf.html", col: COL.yellow },
-    { name: "Straubing", note: "35 km", href: "straubing.html", col: COL.cyan },
-    { name: "Passau", note: "55 km", href: "passau.html", col: COL.pink },
-    { name: "Landshut", note: "75 km", href: "landshut.html", col: COL.cyan },
-    { name: "Regensburg", note: "85 km", href: "regensburg.html", col: COL.orange },
-    { name: "München", note: "120 km", href: "muenchen.html", col: COL.pink },
-    { name: "Augsburg", note: "170 km", href: "augsburg.html", col: COL.cyan },
-    { name: "Ingolstadt", note: "155 km", href: "ingolstadt.html", col: COL.yellow },
-  ];
-  return (
-    <section style={{ background: COL.black, color: COL.yellow, padding: "80px 24px", borderTop: `4px solid ${COL.black}` }}>
-      <div style={{ fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16, color: COL.cyan }}>
-        ░░░ EINSATZGEBIET ░░░ GANZ BAYERN ░░░
-      </div>
-      <h2 style={{ fontFamily: headingFont, fontWeight: 800, fontSize: "clamp(48px,8vw,120px)", lineHeight: 0.85, letterSpacing: "-0.04em", margin: "0 0 48px", textTransform: "uppercase" }}>
-        VON DEGGENDORF<br/>
-        <span style={{ fontFamily: serifFont, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>aus überall.</span>
-      </h2>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 12 }}>
-        {staedte.map((s, i) => (
-          <a key={i} href={s.href} className="lift" style={{
-            background: s.col, color: COL.black, border: `3px solid ${s.col}`,
-            padding: "16px 20px", textDecoration: "none",
-            transform: `rotate(${[1,-1,0.5,-0.5,1.5,-1.5,0.8,-0.8][i]||0}deg)`,
-            display: "block",
-          }}>
-            <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 22, textTransform: "uppercase", letterSpacing: "-0.03em", lineHeight: 1 }}>{s.name}</div>
-            <div style={{ fontFamily: monoFont, fontSize: 10, marginTop: 4, opacity: 0.7, textTransform: "uppercase" }}>{s.note}</div>
-          </a>
-        ))}
-      </div>
-      <p style={{ fontFamily: serifFont, fontSize: 18, fontStyle: "italic", marginTop: 40, opacity: 0.7, maxWidth: 600 }}>
-        Alle Städte haben eigene Infoseiten — lokale Netzbetreiber, Förderung und typische Anforderungen erklärt.
-      </p>
-    </section>
-  );
-}
-
-// ─── FAQ ───
-function FAQ() {
-  const [open, setOpen] = useState(0);
-  return (
-    <section style={{ background: COL.yellow, padding: "80px 24px", borderTop: `4px solid ${COL.black}` }}>
-      <div style={{ display: "grid", gridTemplateColumns: "5fr 7fr", gap: 60 }}>
-        <div>
-          <div style={{ fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16 }}>░░░ KAPITEL_06 ░░░ FAQ ░░░</div>
-          <h2 style={{ fontFamily: headingFont, fontWeight: 800, fontSize: "clamp(48px, 7vw, 96px)", lineHeight: 0.85, letterSpacing: "-0.04em", margin: 0, textTransform: "uppercase" }}>
-            FRAGEN.<br/>
-            <span style={{ fontFamily: serifFont, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>antworten.</span><br/>
-            <span style={{ background: COL.black, color: COL.yellow, padding: "0 0.1em", display: "inline-block", transform: "rotate(-2deg)" }}>FERTIG.</span>
-          </h2>
-        </div>
-        <div>
-          {D.faq.map(([q, a], i) => (
-            <div key={i} style={{ border: `3px solid ${COL.black}`, marginBottom: 12, background: open === i ? COL.cyan : COL.white }}>
-              <button onClick={() => setOpen(open === i ? -1 : i)} style={{
-                width: "100%", padding: "20px", border: "none", background: "transparent",
-                display: "flex", justifyContent: "space-between", alignItems: "center",
-                cursor: "crosshair", textAlign: "left", color: COL.black, fontFamily: headingFont,
-              }}>
-                <span style={{ fontWeight: 800, fontSize: 18, paddingRight: 24, textTransform: "uppercase", letterSpacing: "-0.02em" }}>► {q}</span>
-                <span style={{ fontFamily: monoFont, fontSize: 24, fontWeight: 700, transform: open === i ? "rotate(45deg)" : "none", transition: "transform 0.2s" }}>+</span>
-              </button>
-              <div style={{ maxHeight: open === i ? 400 : 0, overflow: "hidden", transition: "max-height 0.4s" }}>
-                <p style={{ padding: "0 20px 20px", margin: 0, fontFamily: serifFont, fontSize: 15, lineHeight: 1.5 }}>{a}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ─── CONTACT ───
-function Contact() {
-  const t = useTweak();
-  const [form, setForm] = useState({ name: "", email: "", tel: "", msg: "" });
-  const [status, setStatus] = useState("idle"); // idle | sending | ok | error
-
-  const submit = async (e) => {
-    e.preventDefault();
-    setStatus("sending");
-    try {
-      const res = await fetch("https://formspree.io/f/mwvybprv", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify({ name: form.name, email: form.email, tel: form.tel, message: form.msg }),
-      });
-      setStatus(res.ok ? "ok" : "error");
-    } catch { setStatus("error"); }
-  };
-
-  return (
-    <section id="kontakt" style={{ background: COL.black, color: COL.yellow, padding: "80px 24px", borderTop: `4px solid ${COL.black}` }}>
-      <div ref={useReveal()} className="rv" style={{ marginBottom: 48 }}>
-        <div style={{ fontFamily: monoFont, fontSize: 12, textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 16, color: COL.cyan }}>░░░ ENDE ░░░ JETZT_KONTAKT ░░░</div>
-        <h2 style={{ fontFamily: headingFont, fontWeight: 800, fontSize: "clamp(64px, 12vw, 200px)", lineHeight: 0.82, letterSpacing: "-0.05em", margin: 0, textTransform: "uppercase" }}>
-          <span className="ot" style={{ color: "transparent", WebkitTextStroke: `2px ${COL.yellow}` }}>RUF</span>{" "}
-          <span style={{ background: COL.pink, color: COL.black, padding: "0 0.1em", display: "inline-block", transform: "skew(-4deg)" }}>UNS</span><br/>
-          <span style={{ fontFamily: serifFont, fontStyle: "italic", fontWeight: 400, textTransform: "lowercase" }}>einfach</span>{" "}
-          <span style={{ color: COL.cyan }}>AN.</span>
-        </h2>
-      </div>
-
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40 }}>
-        <div>
-          {[["TEL", D.brand.phone, `tel:${D.brand.phone}`, COL.pink], ["MOBIL", "0175 3560019", "tel:01753560019", COL.yellow], ["EMAIL", D.brand.email, `mailto:${D.brand.email}`, COL.cyan], ["ADR", D.brand.address, "#", COL.orange]].map(([l, v, h, c]) => (
-            <a key={l} href={h} className="lift" style={{
-              display: "block", padding: 24, background: c, color: COL.black,
-              border: `3px solid ${COL.yellow}`, marginBottom: 16, textDecoration: "none",
-              transform: `rotate(${Math.random()*2-1}deg)`,
-            }}>
-              <div style={{ fontFamily: monoFont, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 8, fontWeight: 700 }}>► {l}</div>
-              <div style={{ fontFamily: headingFont, fontWeight: 800, fontSize: 26, letterSpacing: "-0.02em" }}>{v}</div>
-            </a>
-          ))}
-        </div>
-        <form onSubmit={submit} style={{ background: COL.yellow, color: COL.black, padding: 28, border: `3px solid ${COL.yellow}` }}>
-          <div style={{ fontFamily: monoFont, fontSize: 11, textTransform: "uppercase", marginBottom: 20, fontWeight: 700 }}>► FORMULAR_v01.exe</div>
-          {status === "ok" ? (
-            <div style={{ padding: 24, background: COL.cyan, border: `3px solid ${COL.black}`, fontFamily: headingFont, fontSize: 24, fontWeight: 800, textTransform: "uppercase" }}>
-              ✓ NACHRICHT GESENDET — wir melden uns innerhalb 24h!
-            </div>
-          ) : (<>
-            <input required type="text" placeholder="NAME" value={form.name} onChange={e => setForm({...form, name: e.target.value})} style={{ width: "100%", padding: "14px 16px", marginBottom: 12, background: COL.white, border: `3px solid ${COL.black}`, color: COL.black, fontFamily: monoFont, fontSize: 14, outline: "none", fontWeight: 700, textTransform: "uppercase", boxSizing: "border-box" }} />
-            <input required type="email" placeholder="EMAIL" value={form.email} onChange={e => setForm({...form, email: e.target.value})} style={{ width: "100%", padding: "14px 16px", marginBottom: 12, background: COL.white, border: `3px solid ${COL.black}`, color: COL.black, fontFamily: monoFont, fontSize: 14, outline: "none", fontWeight: 700, textTransform: "uppercase", boxSizing: "border-box" }} />
-            <input type="tel" placeholder="TEL" value={form.tel} onChange={e => setForm({...form, tel: e.target.value})} style={{ width: "100%", padding: "14px 16px", marginBottom: 12, background: COL.white, border: `3px solid ${COL.black}`, color: COL.black, fontFamily: monoFont, fontSize: 14, outline: "none", fontWeight: 700, textTransform: "uppercase", boxSizing: "border-box" }} />
-            <textarea required placeholder="WORUM_GEHTS" value={form.msg} onChange={e => setForm({...form, msg: e.target.value})} style={{ width: "100%", padding: "14px 16px", minHeight: 100, background: COL.white, border: `3px solid ${COL.black}`, color: COL.black, fontFamily: monoFont, fontSize: 14, outline: "none", resize: "vertical", fontWeight: 700, textTransform: "uppercase", boxSizing: "border-box" }} />
-            {status === "error" && <div style={{ padding: "8px 12px", background: COL.red || "#e00", color: COL.white, fontFamily: monoFont, fontSize: 12, marginBottom: 8 }}>⚠ Fehler — bitte direkt anrufen: {D.brand.phone}</div>}
-            <button type="submit" disabled={status === "sending"} className="lift" style={{ width: "100%", marginTop: 12, padding: "20px", background: COL.black, color: COL.yellow, border: `3px solid ${COL.black}`, fontFamily: headingFont, fontSize: 18, fontWeight: 800, cursor: "crosshair", textTransform: "uppercase", letterSpacing: "-0.01em", opacity: status === "sending" ? 0.6 : 1 }}>
-              {status === "sending" ? "SENDE..." : "[→] ABSENDEN_JETZT"}
-            </button>
-          </>)}
-        </form>
-      </div>
-    </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer style={{ background: COL.black, color: COL.yellow, padding: "32px 24px", borderTop: `4px solid ${COL.yellow}`, fontFamily: monoFont, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.05em", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 16 }}>
-      <span>© 2026 SOLAR_ENERGIE_PARTNER ░ PILSNER_VERTRIEBS_GMBH ░ DEGGENDORF</span>
-      <span style={{ display: "flex", gap: 16, flexWrap: "wrap", alignItems: "center" }}>
-        <a href="ueber-uns.html" style={{ color: COL.yellow, textDecoration: "none" }}>ÜBER UNS</a>
-        <a href="kontakt.html" style={{ color: COL.yellow, textDecoration: "none" }}>KONTAKT</a>
-        <a href="foerderung.html" style={{ color: COL.yellow, textDecoration: "none" }}>FÖRDERUNG</a>
-        <a href="blog/" style={{ color: COL.yellow, textDecoration: "none" }}>BLOG</a>
-        <span style={{ opacity: 0.3 }}>|</span>
-        <a href="deggendorf.html" style={{ color: COL.cyan, textDecoration: "none" }}>DEGGENDORF</a>
-        <a href="straubing.html" style={{ color: COL.cyan, textDecoration: "none" }}>STRAUBING</a>
-        <a href="passau.html" style={{ color: COL.cyan, textDecoration: "none" }}>PASSAU</a>
-        <a href="muenchen.html" style={{ color: COL.cyan, textDecoration: "none" }}>MÜNCHEN</a>
-        <span style={{ opacity: 0.3 }}>|</span>
-        <a href="impressum.html" style={{ color: COL.yellow, textDecoration: "none" }}>IMPRESSUM</a>
-        <a href="datenschutz.html" style={{ color: COL.yellow, textDecoration: "none" }}>DATENSCHUTZ</a>
-      </span>
-    </footer>
-  );
-}
-
-function App() {
-  const t = TWEAK_DEFAULTS;
-
-  useEffect(() => {
-    document.documentElement.style.setProperty("--bg", t.bg);
-    document.documentElement.style.setProperty("--chaos", String(t.chaos ?? 1));
-  }, []);
-
-  return (
-    <TweakCtx.Provider value={t}>
+    <h1 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(80px,18vw,320px);line-height:0.78;letter-spacing:-0.05em;margin:0;text-transform:uppercase;color:#0a0a0a">
+      <span class="glitch glitch-auto" data-text="SONNE">SONNE</span><br>
+      <span id="hero-subline" style="font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;text-transform:lowercase;letter-spacing:-0.02em;display:inline-block">kostet bei uns</span><br>
+      <span style="background:#0a0a0a;color:#fdfd00;padding:0 0.1em;display:inline-block;transform:skew(-4deg)">&lt; 19 CT</span><span style="font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;text-transform:lowercase">/kWh.</span>
+    </h1>
+    <div class="hero-subrow" style="margin-top:40px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
       <div>
-        <CursorFollower />
-        <Header />
-        <Hero />
-        <Stats />
-        <Services />
-        <Kauf />
-        <PPA />
-        <window.RadExtras.PPACalc />
-        <window.RadExtras.KaufVsPPA />
-        <Process />
-        <Projects />
-        <window.RadExtras.AboutDoris />
-        <window.RadExtras.GebietsKarte />
-        <window.RadExtras.Foerderung />
-        <Testimonials />
-        <Regionen />
-        <FAQ />
-        <Contact />
-        <Footer />
-
-        {/* WhatsApp floating button */}
-        <a href="https://wa.me/491753560019?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20PV-Anlage." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Kontakt" style={{
-          position: "fixed", bottom: 24, right: 24, zIndex: 999,
-          width: 60, height: 60, borderRadius: "50%",
-          background: "#25D366", border: "3px solid #0a0a0a",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          boxShadow: "4px 4px 0 #0a0a0a", textDecoration: "none",
-          transition: "transform .15s cubic-bezier(.5,1.5,.5,1)",
-        }} onMouseEnter={e=>e.currentTarget.style.transform="translate(-3px,-3px)"} onMouseLeave={e=>e.currentTarget.style.transform=""}>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-        </a>
-
+        <p style="font-family:'Instrument Serif',serif;font-size:22px;line-height:1.3;margin:0;font-style:italic">
+          Photovoltaik-Anlagen, Speicher und PPA-Stromverträge — ohne Investment, ohne Bullshit.
+        </p>
       </div>
-    </TweakCtx.Provider>
-  );
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.6;text-transform:uppercase">
+        <strong>WAS</strong> = PV+Speicher+PPA<br>
+        <strong>WO</strong> = Bayern + bundesweit<br>
+        <strong>SEIT</strong> = 2022<br>
+        <strong>SUPER</strong> = ehrlich, schnell, fertig
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:stretch">
+        <a href="#kontakt" class="lift" style="background:#0a0a0a;color:#fdfd00;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;border:3px solid #0a0a0a;text-decoration:none;text-align:left;letter-spacing:0.05em">
+          [→] BERATUNGSTERMIN<br><span style="font-size:10px;opacity:0.6">kostenlos // unverbindlich // eh klar</span>
+        </a>
+        <a href="#rechner" class="lift" style="background:#ff00aa;color:#0a0a0a;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;border:3px solid #0a0a0a;text-decoration:none;text-align:left;letter-spacing:0.05em">
+          [⚡] PPA RECHNER<br><span style="font-size:10px;opacity:0.7">14 CT/kWh sparen, jährlich</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:60px;background:#0a0a0a;color:#fdfd00;padding:20px 0;overflow:hidden;border-top:4px solid #0a0a0a;border-bottom:4px solid #0a0a0a">
+    <div class="mq">
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ EHRLICHE BERATUNG</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ ZERTIFIZIERTE PARTNER</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ EHRLICHER VERTRIEB</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ FESTPREIS-GARANTIE</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ FACHBETRIEBE</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ SEIT 2022</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ 250+ ANLAGEN</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ EHRLICHE BERATUNG</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ ZERTIFIZIERTE PARTNER</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ EHRLICHER VERTRIEB</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ FESTPREIS-GARANTIE</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ FACHBETRIEBE</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ SEIT 2022</span>
+      <span style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:56px;font-weight:800;padding:0 32px;white-space:nowrap;text-transform:uppercase;letter-spacing:-0.03em">★ 250+ ANLAGEN</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<section style="background:#00ffea;padding:80px 24px;border-top:4px solid #0a0a0a;border-bottom:4px solid #0a0a0a">
+  <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:0">
+    <div class="rv" style="padding:24px;border-right:2px solid #0a0a0a;background:#00ffea">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:12px;letter-spacing:0.05em">► Privat &amp; Gewerbe, bundesweit</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(72px,9vw,140px);font-weight:800;line-height:0.85;letter-spacing:-0.05em;color:#0a0a0a">
+        <span class="counter" data-target="250" data-suffix="+">250+</span>
+      </div>
+      <div style="font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;margin-top:8px">Realisierte Anlagen</div>
+    </div>
+    <div class="rv" style="padding:24px;border-right:2px solid #0a0a0a;background:#fdfd00">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:12px;letter-spacing:0.05em">► Planung, Bau &amp; Betrieb</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(72px,9vw,140px);font-weight:800;line-height:0.85;letter-spacing:-0.05em;color:#0a0a0a">
+        <span class="counter" data-target="4" data-suffix=" Jahre">4 Jahre</span>
+      </div>
+      <div style="font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;margin-top:8px">Erfahrung im Markt</div>
+    </div>
+    <div class="rv" style="padding:24px;border-right:2px solid #0a0a0a;background:#00ffea">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:12px;letter-spacing:0.05em">► im PPA-Modell möglich</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(72px,9vw,140px);font-weight:800;line-height:0.85;letter-spacing:-0.05em;color:#0a0a0a">
+        <span class="counter" data-target="-50" data-suffix="%">−50%</span>
+      </div>
+      <div style="font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;margin-top:8px">Weniger Stromkosten</div>
+    </div>
+    <div class="rv" style="padding:24px;background:#fdfd00">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:12px;letter-spacing:0.05em">► Langlebig &amp; geprüft</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(72px,9vw,140px);font-weight:800;line-height:0.85;letter-spacing:-0.05em;color:#0a0a0a">
+        <span class="counter" data-target="30" data-suffix=" Jahre">30 Jahre</span>
+      </div>
+      <div style="font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;margin-top:8px">Modulgarantie</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ══ -->
+<section id="leistungen" style="padding:80px 24px;background:#fdfd00;position:relative">
+  <div class="rv" style="margin-bottom:48px;position:relative">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">░░░ KAPITEL_01 ░░░ &nbsp; LEISTUNGEN &nbsp; ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,10vw,160px);line-height:0.85;letter-spacing:-0.04em;margin:0;text-transform:uppercase">
+      Was wir<br>
+      <span style="background:#0a0a0a;color:#fdfd00;padding:0 0.15em;display:inline-block;transform:rotate(-1deg)">tatsächlich</span>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase"> können.</span>
+    </h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:16px;margin-top:32px">
+    <div class="tilt-wrap" data-max="10">
+      <a href="eigenheim.html" class="rv lift" style="background:#fdfd00;border:3px solid #0a0a0a;padding:24px 20px;display:flex;flex-direction:column;min-height:280px;position:relative;text-decoration:none;color:#0a0a0a">
+        <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">01</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:12px;letter-spacing:0.05em">┌── Eigenheim ──┐</div>
+        <h3 class="glitch" data-text="PV EIGENHEIM" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;line-height:0.95;margin:0 0 12px;letter-spacing:-0.03em;text-transform:uppercase">PV EIGENHEIM</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.4;margin:0;flex:1">Auslegung nach Verbrauch, nicht nach Dachfläche. Lieber 2 kWp weniger und dafür die richtige Dimensionierung — das macht über 25 Jahre den Unterschied.</p>
+        <div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">→ MEHR_INFO</div>
+      </a>
+    </div>
+    <div class="tilt-wrap" data-max="10">
+      <a href="gewerbe.html" class="rv lift" style="background:#ff00aa;border:3px solid #0a0a0a;padding:24px 20px;display:flex;flex-direction:column;min-height:280px;position:relative;text-decoration:none;color:#0a0a0a">
+        <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">02</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:12px;letter-spacing:0.05em">┌── Gewerbe &amp; Industrie ──┐</div>
+        <h3 class="glitch" data-text="PV GEWERBE" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;line-height:0.95;margin:0 0 12px;letter-spacing:-0.03em;text-transform:uppercase">PV GEWERBE</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.4;margin:0;flex:1">Hallendächer, Logistik, Produktion — 50 bis 750+ kWp. Kauf oder PPA ohne Kapitaleinsatz. Ehrliche Wirtschaftlichkeitsrechnung, ein Ansprechpartner.</p>
+        <div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">→ MEHR_INFO</div>
+      </a>
+    </div>
+    <div class="tilt-wrap" data-max="10">
+      <a href="ppa.html" class="rv lift" style="background:#00ffea;border:3px solid #0a0a0a;padding:24px 20px;display:flex;flex-direction:column;min-height:280px;position:relative;text-decoration:none;color:#0a0a0a">
+        <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">03</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:12px;letter-spacing:0.05em">┌── Stromvertrag ──┐</div>
+        <h3 class="glitch" data-text="PPA-LÖSUNGEN" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;line-height:0.95;margin:0 0 12px;letter-spacing:-0.03em;text-transform:uppercase">PPA-LÖSUNGEN</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.4;margin:0;flex:1">Kein Kapitaleinsatz, kein Reparaturärger. Wir koordinieren die Anlage auf deinem Dach — du kaufst den Strom zu einem Preis der garantiert unter dem Netztarif liegt.</p>
+        <div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">→ MEHR_INFO</div>
+      </a>
+    </div>
+    <div class="tilt-wrap" data-max="10">
+      <a href="speicher.html" class="rv lift" style="background:#ff7a00;border:3px solid #0a0a0a;padding:24px 20px;display:flex;flex-direction:column;min-height:280px;position:relative;text-decoration:none;color:#0a0a0a">
+        <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">04</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:12px;letter-spacing:0.05em">┌── Speichertechnik ──┐</div>
+        <h3 class="glitch" data-text="BATTERIESPEICHER" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;line-height:0.95;margin:0 0 12px;letter-spacing:-0.03em;text-transform:uppercase">BATTERIESPEICHER</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.4;margin:0;flex:1">Lithium-Eisenphosphat als Standard — langlebig, sicher. Eigenverbrauch von 30% auf 70–85% steigern. Für neue und bestehende Anlagen nachrüstbar.</p>
+        <div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">→ MEHR_INFO</div>
+      </a>
+    </div>
+    <div class="tilt-wrap" data-max="10">
+      <a href="repowering.html" class="rv lift" style="background:#fdfd00;border:3px solid #0a0a0a;padding:24px 20px;display:flex;flex-direction:column;min-height:280px;position:relative;text-decoration:none;color:#0a0a0a">
+        <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">05</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:12px;letter-spacing:0.05em">┌── Altanlagen ──┐</div>
+        <h3 class="glitch" data-text="REPOWERING" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;line-height:0.95;margin:0 0 12px;letter-spacing:-0.03em;text-transform:uppercase">REPOWERING</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.4;margin:0;flex:1">EEG läuft aus, Wechselrichter kaputt, Dachsanierung geplant? Wir analysieren, sanieren oder ersetzen — und sorgen für rechtssichere Modulentsorgung.</p>
+        <div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">→ MEHR_INFO</div>
+      </a>
+    </div>
+    <div class="tilt-wrap" data-max="10">
+      <a href="#kontakt" class="rv lift" style="background:#ff00aa;border:3px solid #0a0a0a;padding:24px 20px;display:flex;flex-direction:column;min-height:280px;position:relative;text-decoration:none;color:#0a0a0a">
+        <div style="position:absolute;top:-14px;right:-14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">06</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:12px;letter-spacing:0.05em">┌── E-Mobilität &amp; Wärme ──┐</div>
+        <h3 class="glitch" data-text="WALLBOX & WÄRMEPUMPE" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;line-height:0.95;margin:0 0 12px;letter-spacing:-0.03em;text-transform:uppercase">WALLBOX &amp; WÄRMEPUMPE</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.4;margin:0;flex:1">Solar-Überschuss-Ladung fürs E-Auto, Wärmepumpen-Integration. Sektorkopplung — damit dein Solarstrom nirgends verschwendet wird.</p>
+        <div style="margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">→ MEHR_INFO</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KAUF ══ -->
+<section id="kauf" style="background:#fff;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a">
+  <div class="rv" style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">░░░ KAPITEL_02 ░░░ EIGENE_ANLAGE ░░░ KAUFEN ░░░</div>
+  <div style="display:grid;grid-template-columns:55% 1fr;gap:64px;align-items:start;margin-bottom:64px">
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,11vw,180px);line-height:0.78;letter-spacing:-0.05em;margin:0;text-transform:uppercase">
+      IHR DACH.<br>
+      <span style="background:#0a0a0a;color:#fdfd00;padding:0 0.1em;display:inline-block;transform:skew(-3deg)">IHR STROM.</span><br>
+      <span style="font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;text-transform:lowercase;letter-spacing:-0.02em">ihr eigentum.</span>
+    </h2>
+    <div style="padding-top:8px">
+      <p style="font-family:'Instrument Serif',serif;font-size:clamp(17px,1.5vw,22px);line-height:1.55;font-style:italic;margin:0 0 32px">
+        Eine Solaranlage ist eine Investition für Jahrzehnte – deshalb beraten wir gründlich, statt schnell zu verkaufen. Wir analysieren Ihren Stromverbrauch, prüfen die Dachsubstanz und zeigen Ihnen ehrlich, was sich rechnet und was nicht.
+      </p>
+      <div>
+        <div style="border-top:2px solid #0a0a0a;padding-top:16px;padding-bottom:16px">
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:5px">► Solarmodule für jedes Dach</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;opacity:0.7">Schräg, flach, denkmalgeschützt oder ungewöhnlich geschnitten – wir finden die Lösung.</div>
+        </div>
+        <div style="border-top:2px solid #0a0a0a;padding-top:16px;padding-bottom:16px">
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:5px">► Speicher mit echter Reserve</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;opacity:0.7">Wir wählen die Speichergröße passend zu Ihrem Profil – nicht zur Provisionstabelle.</div>
+        </div>
+        <div style="border-top:2px solid #0a0a0a;padding-top:16px;padding-bottom:16px">
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:5px">► Smarte Lade-Steuerung</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;opacity:0.7">Wallbox plus Energiemanagement: Auto laden, wenn die Sonne scheint – automatisch.</div>
+        </div>
+        <div style="border-top:2px solid #0a0a0a;padding-top:16px;padding-bottom:16px">
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:5px">► Wärme aus Sonnenstrom</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;opacity:0.7">Wärmepumpe richtig integriert – mit dem Eigenstrom heizen, statt teuer einzukaufen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:16px">
+    <div class="tilt-wrap" data-max="8">
+      <div class="rv" style="background:#00ffea;border:3px solid #0a0a0a;position:relative;overflow:hidden">
+        <div style="position:absolute;top:12px;left:16px;z-index:2;background:#0a0a0a;color:#fdfd00;padding:2px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700">EIGENHEIM KLEIN</div>
+        <img src="pv-eigenheim-klein.jpg" alt="8 kWp Anlage" style="width:100%;height:200px;object-fit:cover;display:block;border-bottom:3px solid #0a0a0a">
+        <div style="padding:24px">
+          <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px">8 kWp + 7 kWh Speicher</h3>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.6;margin:0 0 20px;text-transform:uppercase">Reihenhaus · 4-köpfige Familie · 4.500 kWh/J.</p>
+          <div style="border-top:2px dashed #0a0a0a;padding-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">PREIS</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em">ca. 15.000 €</div></div>
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">ERSPARNIS/J.</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em">~1.850 €/J.</div></div>
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">AMORTIS.</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em">~7,4 J.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tilt-wrap" data-max="8">
+      <div class="rv" style="background:#ff00aa;border:3px solid #0a0a0a;position:relative;overflow:hidden">
+        <div style="position:absolute;top:12px;left:16px;z-index:2;background:#0a0a0a;color:#fdfd00;padding:2px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700">EIGENHEIM GROSS</div>
+        <img src="eigenheim-deggendorf.jpg" alt="12 kWp Anlage" style="width:100%;height:200px;object-fit:cover;display:block;border-bottom:3px solid #0a0a0a;filter:contrast(1.12) saturate(1.25) brightness(1.05)">
+        <div style="padding:24px">
+          <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px">12 kWp + 12 kWh + Wallbox</h3>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.6;margin:0 0 20px;text-transform:uppercase">Einfamilienhaus · Deggendorf · Eigenverbrauch optimiert</p>
+          <div style="border-top:2px dashed #0a0a0a;padding-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">PREIS</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em">ca. 23.000 €</div></div>
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">ERSPARNIS/J.</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em">~4.300 €/J.</div></div>
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">AMORTIS.</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em">~5,3 J.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tilt-wrap" data-max="8">
+      <div class="rv" style="background:#fdfd00;border:3px solid #0a0a0a;position:relative;overflow:hidden">
+        <div style="position:absolute;top:12px;left:16px;z-index:2;background:#0a0a0a;color:#fdfd00;padding:2px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700">GEWERBE</div>
+        <img src="pv-gewerbe-halle.jpg" alt="50 kWp Halle" style="width:100%;height:200px;object-fit:cover;display:block;border-bottom:3px solid #0a0a0a">
+        <div style="padding:24px">
+          <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px">50 kWp Halle</h3>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.6;margin:0 0 20px;text-transform:uppercase">Werkstatt · 60.000 kWh/J. · PPA-Option möglich</p>
+          <div style="border-top:2px dashed #0a0a0a;padding-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">PREIS</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em">ca. 47.000 €</div></div>
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">ERSPARNIS/J.</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em">~9.000 €/J.</div></div>
+            <div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">AMORTIS.</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em">~5,9 J.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:40px;display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <a href="#kontakt" class="lift" style="background:#0a0a0a;color:#fdfd00;padding:20px 40px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;border:3px solid #0a0a0a;text-decoration:none;letter-spacing:0.05em">[→] JETZT BERATUNG ANFORDERN</a>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:12px;opacity:0.5;text-transform:uppercase">kostenlos · unverbindlich · innerhalb 24h Rückmeldung</span>
+  </div>
+</section>
+
+<!-- ══ PPA ══ -->
+<section id="ppa" style="background:#0a0a0a;color:#fdfd00;padding:80px 0;overflow:hidden;position:relative;border-top:4px solid #0a0a0a">
+  <div style="padding:0 24px">
+    <div class="rv" style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;color:#00ffea">░░░ KAPITEL_02 ░░░ PPA-VERTRAG ░░░ ZERO_INVEST ░░░</div>
+    <div style="display:grid;grid-template-columns:55% 1fr;gap:64px;align-items:start">
+      <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(64px,11vw,200px);line-height:0.76;letter-spacing:-0.05em;margin:0;text-transform:uppercase">
+        <span class="ot">SOLARSTROM</span><br>
+        als <span style="background:#ff00aa;color:#0a0a0a;padding:0 0.1em;display:inline-block;transform:skew(-4deg)">SERVICE.</span><br>
+        <span style="color:#00ffea;font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;text-transform:lowercase;letter-spacing:-0.02em">kein investment.</span>
+      </h2>
+      <div style="display:flex;flex-direction:column;gap:36px;padding-top:12px">
+        <p style="font-family:'Instrument Serif',serif;font-size:clamp(18px,1.6vw,26px);line-height:1.5;font-style:italic;margin:0;opacity:0.9">
+          Sie haben ein Dach – wir haben das Kapital. Wir errichten die komplette Anlage auf eigene Kosten und liefern Ihnen den produzierten Strom zu einem festen, klar reduzierten Preis. Wartung, Versicherung, Reparaturen: unser Bereich. Strom verbrauchen und sparen: Ihrer.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:0">
+          <div style="border-top:1px solid rgba(255,255,100,0.2);padding-top:16px;padding-bottom:16px">
+            <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.01em;color:#fdfd00;margin-bottom:4px">► Stromvertrag statt Investition</div>
+            <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;opacity:0.7">Wir bauen, finanzieren, betreiben – Sie bezahlen nur den Strom, den Sie tatsächlich nutzen.</div>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,100,0.2);padding-top:16px;padding-bottom:16px">
+            <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.01em;color:#fdfd00;margin-bottom:4px">► Bilanz- und ESG-konform</div>
+            <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;opacity:0.7">Operating-Lease-Struktur, sauber buchbar, mit positivem Effekt auf Ihr Nachhaltigkeitsreporting.</div>
+          </div>
+          <div style="border-top:1px solid rgba(255,255,100,0.2);padding-top:16px;padding-bottom:16px">
+            <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:16px;text-transform:uppercase;letter-spacing:-0.01em;color:#fdfd00;margin-bottom:4px">► Vom Konzept bis zur Übergabe</div>
+            <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;opacity:0.7">Statik, Brandschutz, Anschlussgesuch, Inbetriebnahme – wir koordinieren jeden Schritt.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:60px;display:grid;grid-template-columns:repeat(4, 1fr);border-top:4px solid #fdfd00;border-bottom:4px solid #fdfd00">
+    <div style="padding:32px 24px;border-right:1px solid #fdfd00;background:#0a0a0a;color:#fdfd00">
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:64px;line-height:1;letter-spacing:-0.04em"><span class="counter" data-target="17" data-suffix="ct">17ct</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;margin-top:8px">► PPA-Tarif je kWh</div>
+    </div>
+    <div style="padding:32px 24px;border-right:1px solid #fdfd00;background:#ff00aa;color:#0a0a0a">
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:64px;line-height:1;letter-spacing:-0.04em"><span class="counter" data-target="-50" data-suffix="%">−50%</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;margin-top:8px">► Weniger Stromkosten</div>
+    </div>
+    <div style="padding:32px 24px;border-right:1px solid #fdfd00;background:#0a0a0a;color:#fdfd00">
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:64px;line-height:1;letter-spacing:-0.04em"><span class="counter" data-target="0" data-suffix="€">0€</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;margin-top:8px">► Anfangskosten</div>
+    </div>
+    <div style="padding:32px 24px;background:#00ffea;color:#0a0a0a">
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:64px;line-height:1;letter-spacing:-0.04em"><span class="counter" data-target="20" data-suffix=" J.">20 J.</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;margin-top:8px">► Vertragslaufzeit</div>
+    </div>
+  </div>
+  <div class="mq mq-rev" style="margin-top:40px;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:100px;font-weight:800;letter-spacing:-0.04em;text-transform:uppercase;white-space:nowrap;overflow:hidden">
+    <span style="padding:0 32px;color:transparent;-webkit-text-stroke:2px #fdfd00">ZERO_INVESTMENT &nbsp; ◆ &nbsp; FESTPREIS &nbsp; ◆ &nbsp;</span>
+    <span style="padding:0 32px;color:transparent;-webkit-text-stroke:2px #fdfd00">ZERO_INVESTMENT &nbsp; ◆ &nbsp; FESTPREIS &nbsp; ◆ &nbsp;</span>
+    <span style="padding:0 32px;color:transparent;-webkit-text-stroke:2px #fdfd00">ZERO_INVESTMENT &nbsp; ◆ &nbsp; FESTPREIS &nbsp; ◆ &nbsp;</span>
+    <span style="padding:0 32px;color:transparent;-webkit-text-stroke:2px #fdfd00">ZERO_INVESTMENT &nbsp; ◆ &nbsp; FESTPREIS &nbsp; ◆ &nbsp;</span>
+  </div>
+</section>
+
+<!-- ══ PPA-RECHNER ══ -->
+<section id="rechner" style="background:#00ffea;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;position:relative;overflow:hidden">
+  <div class="rv" style="margin-bottom:40px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">░░░ RECHNER_v2.4 ░░░ LIVE ░░░ KEINE_ANMELDUNG ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,11vw,180px);line-height:0.85;letter-spacing:-0.05em;margin:0;text-transform:uppercase">
+      <span style="background:#0a0a0a;color:#00ffea;padding:0 .1em;display:inline-block;transform:rotate(-1deg)">WAS</span> sparst du?<br>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">schieb den</span>
+      <span style="background:#ff00aa;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:skew(-4deg)">REGLER.</span>
+    </h2>
+  </div>
+  <div style="display:inline-flex;border:3px solid #0a0a0a;margin-bottom:24px;background:#fff">
+    <button class="profile-btn" data-profile="eigenheim" onclick="setProfile('eigenheim')" style="padding:12px 24px;border:none;cursor:crosshair;background:transparent;color:#0a0a0a;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">■ EIGENHEIM</button>
+    <button class="profile-btn" data-profile="gewerbe" onclick="setProfile('gewerbe')" style="padding:12px 24px;border:none;cursor:crosshair;background:#0a0a0a;color:#fdfd00;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">■ GEWERBE</button>
+  </div>
+  <div style="display:grid;grid-template-columns:1.1fr 1fr 0.8fr;gap:32px;align-items:stretch">
+    <div style="background:#fff;border:3px solid #0a0a0a;padding:28px;position:relative">
+      <div style="position:absolute;top:-14px;left:16px;background:#0a0a0a;color:#00ffea;padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase">► EINGABE</div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase">
+        <span>JAHRESVERBRAUCH</span><span id="kwh-display" style="font-weight:700">80.000 kWh</span>
+      </div>
+      <input type="range" id="kwh-slider" min="20000" max="2000000" step="10000" value="80000" oninput="updateCalc()" style="width:100%;accent-color:#ff00aa;height:24px;cursor:crosshair">
+      <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.5;margin-top:4px"><span>20.000</span><span>2.000.000</span></div>
+      <div style="margin-top:20px;padding-top:20px;border-top:2px dashed #0a0a0a">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase">
+          <span>PPA-PREIS</span><span id="ppa-display" style="font-weight:700;color:#0a0a0a">17,0 ct/kWh</span>
+        </div>
+        <input type="range" id="ppa-slider" min="0.08" max="0.26" step="0.005" value="0.17" oninput="updateCalc()" style="width:100%;accent-color:#0a0a0a;height:24px;cursor:crosshair">
+        <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.5;margin-top:4px"><span>8 ct</span><span>26 ct</span></div>
+      </div>
+      <div style="margin-top:20px;border-top:2px dashed #0a0a0a;padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6">NETZ-PREIS</div>
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:40px;font-weight:800;line-height:1;color:#ff3a1f"><span id="netz-price">31</span><span style="font-size:16px">ct</span></div>
+          <div id="netz-yearly" style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.6">24.800 €/J.</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6">PPA-PREIS</div>
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:40px;font-weight:800;line-height:1;color:#0a0a0a">17<span style="font-size:16px">ct</span></div>
+          <div id="ppa-yearly" style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.6">13.600 €/J.</div>
+        </div>
+      </div>
+    </div>
+    <div style="background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px;display:flex;flex-direction:column;justify-content:space-between;position:relative">
+      <div style="position:absolute;top:-14px;right:16px;background:#ff00aa;color:#0a0a0a;padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase">► ERGEBNIS</div>
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">ERSPARNIS / JAHR</div>
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(80px,9vw,140px);line-height:0.85;letter-spacing:-0.04em;color:#00ffea;font-variant-numeric:tabular-nums">
+          <span id="yearly-out">11.200</span><span style="font-size:.4em;color:#ff00aa">€</span>
+        </div>
+        <div id="diff-display" style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.5;margin-top:8px">14,0 ct/kWh Differenz</div>
+      </div>
+      <div style="border-top:1px solid #fdfd00;margin-top:20px;padding-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.6;text-transform:uppercase">20 JAHRE</div>
+          <div id="twenty-out" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;color:#ff00aa;font-variant-numeric:tabular-nums">224.000 €</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.6;text-transform:uppercase">CO₂ / JAHR</div>
+          <div id="co2-out" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;color:#00ffea;font-variant-numeric:tabular-nums">32.000 kg</div>
+        </div>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;opacity:0.5;margin-top:14px;line-height:1.4;text-transform:uppercase">⚠ ESTIMATE. exakte rechnung in beratung. preise indikativ. keine zusicherung.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0;justify-content:center">
+      <div style="padding-bottom:24px">
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:8px">► Optimal für Logistik, Industrie &amp; Landwirtschaft</div>
+        <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.55;opacity:0.75">Spezialisiert auf Hallendächer mit hohem Eigenverbrauch – dort rechnet sich PPA am stärksten.</div>
+      </div>
+      <div style="border-top:2px dashed rgba(0,0,0,0.15);padding-top:24px;padding-bottom:24px">
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:8px">► 24/7 Notfall-Hotline</div>
+        <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.55;opacity:0.75">Direkter Draht zu unserem Serviceteam – nicht zur Warteschleife.</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:32px;display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <a href="ppa-rechner.html" class="lift" style="background:#0a0a0a;color:#fdfd00;padding:16px 28px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;border:3px solid #0a0a0a;text-decoration:none;letter-spacing:0.05em">[⚡] VOLLSTÄNDIGER PPA-RECHNER →</a>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.6;text-transform:uppercase">inkl. ROI · Preisschere · Angebot</span>
+  </div>
+</section>
+
+<!-- ══ KAUF vs PPA ══ -->
+<section style="background:#fdfd00;padding:80px 24px;border-top:4px solid #0a0a0a">
+  <div class="rv" style="margin-bottom:40px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px">░░░ DUELL ░░░ KAUF vs. PPA ░░░ KEINE_VERSCHWIEGENHEIT ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,10vw,160px);line-height:0.85;letter-spacing:-0.05em;margin:0;text-transform:uppercase">
+      <span style="background:#0a0a0a;color:#fdfd00;padding:0 .1em;display:inline-block;transform:rotate(-1deg)">KAUF</span>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase"> oder </span>
+      <span style="background:#ff00aa;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:skew(-4deg)">PPA?</span>
+    </h2>
+    <p style="font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;max-width:640px;margin-top:16px">Es gibt keinen Sieger. Es gibt nur die Frage: <strong>Was passt zu deinem Cashflow?</strong></p>
+  </div>
+  <div class="kauf-vs-ppa-table" style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+    <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;border:3px solid #0a0a0a;background:#fff;font-family:'JetBrains Mono',monospace;font-size:13px">
+      <div style="background:#0a0a0a;color:#fdfd00;padding:16px 20px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">► KRITERIUM</div>
+      <div style="background:#ff00aa;color:#0a0a0a;padding:16px 20px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-left:3px solid #0a0a0a">KAUF</div>
+      <div style="background:#00ffea;color:#0a0a0a;padding:16px 20px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-left:3px solid #0a0a0a">PPA</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;letter-spacing:.03em">Kapitaleinsatz</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px">8.000 € – keine Grenzen</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700">0 €</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;letter-spacing:.03em">Wartung &amp; Reparatur</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;background:rgba(0,255,234,0.15)">Eigentümer-Sache</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700;background:rgba(0,255,234,0.15)">im Vertrag enthalten</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;letter-spacing:.03em">Versicherung</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px">extra abzuschließen</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700">wir kümmern uns</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;letter-spacing:.03em">Bilanz / GuV</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;background:rgba(0,255,234,0.15)">Aktivierung als AV</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700;background:rgba(0,255,234,0.15)">Operating-Lease</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;letter-spacing:.03em">Cashflow Jahr 1</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px">negativ</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700">sofort positiv</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;font-weight:700;text-transform:uppercase;letter-spacing:.03em">Reparatur-Risiko</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;background:rgba(0,255,234,0.15)">100 % beim Eigentümer</div>
+      <div style="padding:14px 20px;border-top:1px solid #0a0a0a;border-left:3px solid #0a0a0a;font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;font-weight:700;background:rgba(0,255,234,0.15)">100 % bei uns</div>
+    </div>
+  </div>
+  <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+    <div style="background:#ff00aa;border:3px solid #0a0a0a;padding:24px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px">► WANN KAUF?</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:17px;line-height:1.4;font-style:italic;margin:0">Wenn dir <strong>Eigentum</strong> wichtiger ist als Cashflow. Wenn du <strong>Kapital frei</strong> hast und es lange binden willst.</p>
+    </div>
+    <div style="background:#00ffea;border:3px solid #0a0a0a;padding:24px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:8px">► WANN PPA?</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:17px;line-height:1.4;font-style:italic;margin:0">Wenn du <strong>kein Geld bindest</strong>. Wenn dein <strong>Stromverbrauch hoch</strong> ist. Wenn du <strong>keinen Bock auf Wartung</strong> hast.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESS ══ -->
+<section id="prozess" style="background:#fdfd00;padding:80px 24px;border-top:4px solid #0a0a0a">
+  <div class="rv" style="margin-bottom:48px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">░░░ KAPITEL_03 ░░░ VORGEHEN ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,10vw,160px);line-height:0.85;letter-spacing:-0.04em;margin:0;text-transform:uppercase">
+      4 Schritte.<br>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">kein</span>
+      <span style="background:#0a0a0a;color:#fdfd00;padding:0 0.1em;display:inline-block;transform:skew(-4deg)">BLABLA.</span>
+    </h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4, 1fr);gap:16px">
+    <div class="tilt-wrap" data-max="12"><div class="rv" style="background:#fff;border:3px solid #0a0a0a;padding:24px;position:relative">
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:96px;line-height:0.85;letter-spacing:-0.06em;color:#ff00aa;margin-bottom:12px">01</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;margin:0 0 10px;letter-spacing:-0.02em">Erstgespräch</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.45;margin:0">Wir hören zu, fragen genau und schauen uns Ihr Verbrauchsprofil an. Ergebnis: ehrliches Ja oder ehrliches Nein.</p>
+      <div style="position:absolute;bottom:-10px;right:-10px;background:#00ffea;border:2px solid #0a0a0a;padding:2px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700">STEP_01/04</div>
+    </div></div>
+    <div class="tilt-wrap" data-max="12"><div class="rv" style="background:#fff;border:3px solid #0a0a0a;padding:24px;position:relative">
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:96px;line-height:0.85;letter-spacing:-0.06em;color:#ff00aa;margin-bottom:12px">02</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;margin:0 0 10px;letter-spacing:-0.02em">Detailplanung</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.45;margin:0">Konkretes Konzept mit nachvollziehbaren Zahlen, geprüfter Förderkulisse und transparentem Festpreisangebot.</p>
+      <div style="position:absolute;bottom:-10px;right:-10px;background:#00ffea;border:2px solid #0a0a0a;padding:2px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700">STEP_02/04</div>
+    </div></div>
+    <div class="tilt-wrap" data-max="12"><div class="rv" style="background:#fff;border:3px solid #0a0a0a;padding:24px;position:relative">
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:96px;line-height:0.85;letter-spacing:-0.06em;color:#ff00aa;margin-bottom:12px">03</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;margin:0 0 10px;letter-spacing:-0.02em">Umsetzung</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.45;margin:0">Eigene Monteure, eigene Elektriker, getakteter Bauablauf. In der Regel zwischen 1 und 5 Tagen abgeschlossen.</p>
+      <div style="position:absolute;bottom:-10px;right:-10px;background:#00ffea;border:2px solid #0a0a0a;padding:2px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700">STEP_03/04</div>
+    </div></div>
+    <div class="tilt-wrap" data-max="12"><div class="rv" style="background:#fff;border:3px solid #0a0a0a;padding:24px;position:relative">
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:96px;line-height:0.85;letter-spacing:-0.06em;color:#ff00aa;margin-bottom:12px">04</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;margin:0 0 10px;letter-spacing:-0.02em">Begleitung</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.45;margin:0">Anmeldung beim Marktstammdatenregister, Netzanschluss, Fernüberwachung – und ein direkter Draht zu uns.</p>
+      <div style="position:absolute;bottom:-10px;right:-10px;background:#00ffea;border:2px solid #0a0a0a;padding:2px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700">STEP_04/04</div>
+    </div></div>
+  </div>
+</section>
+
+<!-- ══ PROJEKTE ══ -->
+<section id="referenzen" style="background:#ff00aa;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a">
+  <div class="rv" style="margin-bottom:48px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">░░░ KAPITEL_04 ░░░ FELDFOTOS / DOSSIER ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,10vw,160px);line-height:0.85;letter-spacing:-0.04em;margin:0;text-transform:uppercase">
+      250+<br>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">installierte</span><br>
+      <span style="background:#0a0a0a;color:#fdfd00;padding:0 0.1em;display:inline-block">ANLAGEN.</span>
+    </h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:24px">
+    <div class="tilt-wrap" data-max="10"><article class="rv" style="background:#ff00aa;border:3px solid #0a0a0a;padding:0">
+      <div style="aspect-ratio:4/3;position:relative;border-bottom:3px solid #0a0a0a;overflow:hidden">
+        <img src="eigenheim-deggendorf.jpg" alt="Familienhaus mit Speicher" style="width:100%;height:100%;object-fit:cover;display:block;filter:contrast(1.12) saturate(1.25) brightness(1.05)">
+        <div style="position:absolute;top:12px;right:12px;background:#0a0a0a;color:#fdfd00;padding:4px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">Privatkunde</div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:6px;font-weight:700;text-transform:uppercase">► 18 kWp · Deggendorf</div>
+        <h3 class="glitch" data-text="FAMILIENHAUS MIT SPEICHER" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:24px;margin:0 0 8px;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95">Familienhaus mit Speicher</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.45;margin:0">Modulausrichtung Süden und Norden, dazu 18 kWh Speicherkapazität. Autarkie laut Monitoring: 82%.</p>
+      </div>
+    </article></div>
+    <div class="tilt-wrap" data-max="10"><article class="rv" style="background:#00ffea;border:3px solid #0a0a0a;padding:0">
+      <div style="aspect-ratio:4/3;position:relative;border-bottom:3px solid #0a0a0a;overflow:hidden">
+        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Speditionsstandort" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div style="position:absolute;top:12px;right:12px;background:#0a0a0a;color:#fdfd00;padding:4px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">Gewerbe</div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:6px;font-weight:700;text-transform:uppercase">► PPA · 380 kWp · Straubing</div>
+        <h3 class="glitch" data-text="SPEDITIONSSTANDORT" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:24px;margin:0 0 8px;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95">Speditionsstandort</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.45;margin:0">Komplettübernahme der Hallenüberdachung. Stromkosten dauerhaft auf Vertragsniveau gebracht.</p>
+      </div>
+    </article></div>
+    <div class="tilt-wrap" data-max="10"><article class="rv" style="background:#ff7a00;border:3px solid #0a0a0a;padding:0">
+      <div style="aspect-ratio:4/3;position:relative;border-bottom:3px solid #0a0a0a;overflow:hidden">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Milchviehbetrieb" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div style="position:absolute;top:12px;right:12px;background:#0a0a0a;color:#fdfd00;padding:4px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">Landwirtschaft</div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:6px;font-weight:700;text-transform:uppercase">► 160 kWp · Plattling</div>
+        <h3 class="glitch" data-text="MILCHVIEHBETRIEB" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:24px;margin:0 0 8px;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95">Milchviehbetrieb</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.45;margin:0">Stalldach plus Maschinenhalle. Eigenverbrauchsoptimierung über Melkstandsteuerung.</p>
+      </div>
+    </article></div>
+    <div class="tilt-wrap" data-max="10"><article class="rv" style="background:#fdfd00;border:3px solid #0a0a0a;padding:0">
+      <div style="aspect-ratio:4/3;position:relative;border-bottom:3px solid #0a0a0a;overflow:hidden">
+        <img src="https://images.unsplash.com/flagged/photo-1566838616631-f2618f74a6a2?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Stadthaus mit Ladelösung" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div style="position:absolute;top:12px;right:12px;background:#0a0a0a;color:#fdfd00;padding:4px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">Privatkunde</div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:6px;font-weight:700;text-transform:uppercase">► 8,4 kWp · Passau</div>
+        <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:24px;margin:0 0 8px;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95">Stadthaus mit Ladelösung</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.45;margin:0">Knappe Dachfläche perfekt ausgenutzt. Wallbox lädt das E-Auto bevorzugt mit Sonnenstrom.</p>
+      </div>
+    </article></div>
+    <div class="tilt-wrap" data-max="10"><article class="rv" style="background:#ff00aa;border:3px solid #0a0a0a;padding:0">
+      <div style="aspect-ratio:4/3;position:relative;border-bottom:3px solid #0a0a0a;overflow:hidden">
+        <img src="https://plus.unsplash.com/premium_photo-1666345066540-545e2d61ca3c?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Metallbau-Unternehmen" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div style="position:absolute;top:12px;right:12px;background:#0a0a0a;color:#fdfd00;padding:4px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">Industrie</div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:6px;font-weight:700;text-transform:uppercase">► PPA · 750 kWp · Regensburg</div>
+        <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:24px;margin:0 0 8px;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95">Metallbau-Unternehmen</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.45;margin:0">Hochenergie-Verbraucher mit Schichtbetrieb. PPA-Modell finanziert komplett aus eingesparten Stromkosten.</p>
+      </div>
+    </article></div>
+    <div class="tilt-wrap" data-max="10"><article class="rv" style="background:#00ffea;border:3px solid #0a0a0a;padding:0">
+      <div style="aspect-ratio:4/3;position:relative;border-bottom:3px solid #0a0a0a;overflow:hidden">
+        <img src="https://plus.unsplash.com/premium_photo-1716190016025-d5bfe468f38a?fm=jpg&q=80&w=800&auto=format&fit=crop" alt="Neubau mit Wärmepumpe" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div style="position:absolute;top:12px;right:12px;background:#0a0a0a;color:#fdfd00;padding:4px 8px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">Privatkunde</div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-bottom:6px;font-weight:700;text-transform:uppercase">► Komplettpaket · Landshut</div>
+        <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:24px;margin:0 0 8px;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95">Neubau mit Wärmepumpe</h3>
+        <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.45;margin:0">14 kWp Anlage, 18 kWh Speicher, Wärmepumpe und Wallbox. Heizung und Warmwasser laufen weitgehend mit eigenem Strom.</p>
+      </div>
+    </article></div>
+  </div>
+</section>
+
+<!-- ══ ÜBER UNS ══ -->
+<section id="ueberuns" style="background:#0a0a0a;color:#fdfd00;padding:80px 24px;border-top:4px solid #0a0a0a">
+  <div class="rv" style="margin-bottom:48px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;color:#00ffea">░░░ KAPITEL_07 ░░░ ÜBER UNS ░░░ DEGGENDORF ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,11vw,180px);line-height:0.85;letter-spacing:-0.05em;margin:0;text-transform:uppercase">
+      HANDWERK<br>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">mit</span>
+      <span style="background:#00ffea;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:rotate(-2deg)">HALTUNG.</span>
+    </h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:40px;align-items:start">
+    <div class="lift" style="background:#fdfd00;color:#0a0a0a;border:3px solid #fdfd00;padding:0;transform:rotate(-1deg);position:relative">
+      <div style="position:relative;border-bottom:3px solid #0a0a0a;overflow:hidden">
+        <img src="doris-warhol.jpg" alt="Doris Pilsner-Albrecht" style="width:100%;display:block">
+        <div style="position:absolute;top:12px;right:12px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;transform:rotate(4deg)">INHABERIN</div>
+      </div>
+      <div style="padding:20px">
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:32px;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;line-height:0.95">DORIS<br>PILSNER-<br>ALBRECHT</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-top:8px;opacity:0.7">► Geschäftsführerin · Pilsner Vertriebs GmbH</div>
+        <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.4;font-style:italic;margin-top:14px;margin-bottom:0">"Ich verkaufe nur, was ich auch meiner Mutter aufs Dach setzen würde. Punkt."</p>
+      </div>
+    </div>
+    <div>
+      <p style="font-family:'Instrument Serif',serif;font-size:22px;line-height:1.4;font-style:italic;margin:0;opacity:0.95">
+        Solar Energie Partner ist eine Marke der Pilsner Vertriebs GmbH – eines inhabergeführten Betriebs aus Deggendorf. Seit 2022 vermitteln und koordinieren wir Photovoltaik-Projekte in Bayern und bundesweit. Wir arbeiten ausschließlich mit geprüften, zertifizierten Installateuren zusammen — und stehen persönlich für jedes Ergebnis gerade.
+      </p>
+      <div style="margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+        <div class="lift" style="background:#ff00aa;color:#0a0a0a;border:3px solid #fdfd00;padding:20px;transform:rotate(1deg)">
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;line-height:0.9;text-transform:uppercase;letter-spacing:-0.03em">EHRLICH</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:8px;font-weight:700;text-transform:uppercase;letter-spacing:.03em">Wenn sich was nicht rechnet, sagen wirs.</div>
+        </div>
+        <div class="lift" style="background:#00ffea;color:#0a0a0a;border:3px solid #fdfd00;padding:20px;transform:rotate(-1deg)">
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;line-height:0.9;text-transform:uppercase;letter-spacing:-0.03em">FACHBETRIEBE</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:8px;font-weight:700;text-transform:uppercase;letter-spacing:.03em">Eigenes Festpersonal. Keine Einzelunternehmer.</div>
+        </div>
+        <div class="lift" style="background:#ff7a00;color:#0a0a0a;border:3px solid #fdfd00;padding:20px;transform:rotate(2deg)">
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;line-height:0.9;text-transform:uppercase;letter-spacing:-0.03em">SCHNELL</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:8px;font-weight:700;text-transform:uppercase;letter-spacing:.03em">Anlagen in 1–5 Tagen fertig.</div>
+        </div>
+        <div class="lift" style="background:#fdfd00;color:#0a0a0a;border:3px solid #fdfd00;padding:20px;transform:rotate(-2deg)">
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;line-height:0.9;text-transform:uppercase;letter-spacing:-0.03em">DA</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:8px;font-weight:700;text-transform:uppercase;letter-spacing:.03em">24/7 Notfall. Echte Menschen.</div>
+        </div>
+      </div>
+      <div style="margin-top:28px;border:3px solid #fdfd00;padding:0">
+        <div style="display:grid;grid-template-columns:200px 1fr;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center">
+          <span style="font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#00ffea">► Inhabergeführt</span><span style="opacity:0.85">Doris Pilsner-Albrecht steht persönlich hinter jedem Projekt</span>
+        </div>
+        <div style="display:grid;grid-template-columns:200px 1fr;border-top:1px solid #fdfd00;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center">
+          <span style="font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#00ffea">► Fachbetriebe</span><span style="opacity:0.85">keine Einzelunternehmer — nur Betriebe mit ausgebildetem Festpersonal</span>
+        </div>
+        <div style="display:grid;grid-template-columns:200px 1fr;border-top:1px solid #fdfd00;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center">
+          <span style="font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#00ffea">► Standort Deggendorf</span><span style="opacity:0.85">Hauptbüro Detterstraße 38, Einsatzgebiet ganz Bayern</span>
+        </div>
+        <div style="display:grid;grid-template-columns:200px 1fr;border-top:1px solid #fdfd00;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center">
+          <span style="font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#00ffea">► 24/7 Notfall-Hotline</span><span style="opacity:0.85">direkter Draht zu unserem Serviceteam, nicht zur Warteschleife</span>
+        </div>
+        <div style="display:grid;grid-template-columns:200px 1fr;border-top:1px solid #fdfd00;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center">
+          <span style="font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#00ffea">► Eingetragener Fachbetrieb</span><span style="opacity:0.85">zertifiziert, versichert, nach VDE geprüft</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GEBIETS-KARTE ══ -->
+<section style="background:#00ffea;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;position:relative;overflow:hidden">
+  <div class="rv" style="margin-bottom:32px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px">░░░ EINSATZGEBIET ░░░ HQ:DEGGENDORF ░░░ BUNDESWEIT ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,10vw,160px);line-height:0.85;letter-spacing:-0.05em;margin:0;text-transform:uppercase">
+      BAYERN<br>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">plus</span>
+      <span style="background:#0a0a0a;color:#00ffea;padding:0 .1em;display:inline-block;transform:skew(-4deg)">RUNDHERUM.</span>
+    </h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:start">
+    <div style="background:#fdfd00;border:3px solid #0a0a0a;position:relative;aspect-ratio:1.2/1;overflow:hidden">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%">
+        <line x1="0" y1="0" x2="100" y2="0" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="0" y1="10" x2="100" y2="10" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="0" y1="20" x2="100" y2="20" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="0" y1="30" x2="100" y2="30" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="0" y1="40" x2="100" y2="40" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="0" y1="50" x2="100" y2="50" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="0" y1="60" x2="100" y2="60" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="0" y1="70" x2="100" y2="70" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="0" y1="80" x2="100" y2="80" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="0" y1="90" x2="100" y2="90" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="0" y1="100" x2="100" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/>
+        <line x1="0" y1="0" x2="0" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="10" y1="0" x2="10" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="20" y1="0" x2="20" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="30" y1="0" x2="30" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="40" y1="0" x2="40" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="50" y1="0" x2="50" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="60" y1="0" x2="60" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="70" y1="0" x2="70" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="80" y1="0" x2="80" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="90" y1="0" x2="90" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/><line x1="100" y1="0" x2="100" y2="100" stroke="#0a0a0a" stroke-width="0.1" opacity="0.3"/>
+        <path d="M15,18 Q10,30 14,50 Q8,65 22,75 Q35,85 50,80 Q72,82 80,68 Q88,55 78,40 Q82,25 65,18 Q45,12 30,15 Q20,14 15,18 Z" fill="#ff00aa" stroke="#0a0a0a" stroke-width="0.6" opacity="0.6"/>
+      </svg>
+      <div id="map-pins" style="position:absolute;inset:0"></div>
+      <div style="position:absolute;bottom:16px;right:16px;background:#0a0a0a;color:#fdfd00;padding:12px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-align:center;border:2px solid #0a0a0a">N<br>↑<br>SÜDOST<br>BAYERN</div>
+      <div style="position:absolute;bottom:16px;left:16px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:#0a0a0a">
+        <div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:60px;height:6px;background:repeating-linear-gradient(90deg,#0a0a0a 0 10px,#fff 10px 20px);border:1px solid #0a0a0a"></span><span>~ 100 KM</span></div>
+      </div>
+    </div>
+    <div>
+      <div style="background:#0a0a0a;color:#fdfd00;padding:24px;border:3px solid #0a0a0a;margin-bottom:16px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;margin-bottom:8px">► HQ</div>
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:36px;font-weight:800;text-transform:uppercase;letter-spacing:-0.03em;line-height:0.95">Deggendorf</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:8px;opacity:0.8">Detterstraße 38, 94469 Deggendorf</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:4px;color:#00ffea">+49 991 40227560</div>
+      </div>
+      <div style="background:#fff;border:3px solid #0a0a0a;padding:0">
+        <div style="background:#0a0a0a;color:#fdfd00;padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">► EINSATZRADIUS</div>
+        <div style="display:grid;grid-template-columns:1.3fr 1fr 0.8fr;border-top:1px solid #0a0a0a;padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center"><span style="font-weight:700;text-transform:uppercase">Bayern</span><span style="font-family:'Instrument Serif',serif;font-style:italic">Standard-Gebiet</span><span style="text-align:right;color:#ff3a1f;font-weight:700">alle Regionen</span></div>
+        <div style="display:grid;grid-template-columns:1.3fr 1fr 0.8fr;border-top:1px solid #0a0a0a;padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center"><span style="font-weight:700;text-transform:uppercase">Baden-Württemberg</span><span style="font-family:'Instrument Serif',serif;font-style:italic">Standard-Gebiet</span><span style="text-align:right;color:#ff3a1f;font-weight:700">alle Regionen</span></div>
+        <div style="display:grid;grid-template-columns:1.3fr 1fr 0.8fr;border-top:1px solid #0a0a0a;padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center"><span style="font-weight:700;text-transform:uppercase">Bundesweit</span><span style="font-family:'Instrument Serif',serif;font-style:italic">auf Anfrage</span><span style="text-align:right;color:#ff3a1f;font-weight:700">ab 100 kWp</span></div>
+        <div style="display:grid;grid-template-columns:1.3fr 1fr 0.8fr;border-top:1px solid #0a0a0a;padding:10px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;align-items:center"><span style="font-weight:700;text-transform:uppercase">Großprojekte</span><span style="font-family:'Instrument Serif',serif;font-style:italic">wir kommen hin</span><span style="text-align:right;color:#ff3a1f;font-weight:700">deutschlandweit</span></div>
+      </div>
+      <div style="margin-top:16px;font-family:'Instrument Serif',serif;font-size:18px;font-style:italic;line-height:1.4">Du bist <strong>weiter weg</strong>? Erstgespräch ist trotzdem <strong>gratis</strong>. Anruf reicht.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FÖRDERUNG ══ -->
+<section style="background:#ff00aa;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a">
+  <div class="rv" style="margin-bottom:40px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px">░░░ KAPITEL_08 ░░░ FÖRDERUNG 2026 ░░░ FREIES_GELD ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,11vw,180px);line-height:0.85;letter-spacing:-0.05em;margin:0;text-transform:uppercase">
+      <span style="background:#0a0a0a;color:#fdfd00;padding:0 .1em;display:inline-block;transform:rotate(-1deg)">FREIES</span><br>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">geld vom</span>
+      <span style="background:#00ffea;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:skew(-4deg)">STAAT.</span>
+    </h2>
+    <p style="font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;max-width:720px;margin-top:16px;line-height:1.4">Wir kennen die Programme. Wir füllen die Anträge. Wir streiten mit der Behörde. Du musst nur unterschreiben.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:16px">
+    <div class="rv lift" style="background:#00ffea;border:3px solid #0a0a0a;padding:20px;position:relative;transform:rotate(1deg)">
+      <div style="position:absolute;top:-14px;left:14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">BUND</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:6px;opacity:0.7">► KfW-270</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:26px;font-weight:800;line-height:0.95;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 12px">Erneuerbare Energien Standard</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;margin:0 0 16px">Zinsgünstiger Kredit für PV, Speicher, Wärmepumpe. Bis 100 % Investitionssumme.</p>
+      <div style="border-top:2px dashed #0a0a0a;padding-top:10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase">MAX: <span style="color:#ff3a1f;font-size:16px">bis 50 Mio €</span></div>
+    </div>
+    <div class="rv lift" style="background:#ff00aa;border:3px solid #0a0a0a;padding:20px;position:relative;transform:rotate(-1deg)">
+      <div style="position:absolute;top:-14px;left:14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">BUND</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:6px;opacity:0.7">► KfW-442</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:26px;font-weight:800;line-height:0.95;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 12px">Solarstrom für Elektroautos</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;margin:0 0 16px">Zuschuss für PV + Speicher + Wallbox als Komplettlösung. Antrag vor Kauf!</p>
+      <div style="border-top:2px dashed #0a0a0a;padding-top:10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase">MAX: <span style="color:#ff3a1f;font-size:16px">bis 10.200 €</span></div>
+    </div>
+    <div class="rv lift" style="background:#ff7a00;border:3px solid #0a0a0a;padding:20px;position:relative;transform:rotate(1.5deg)">
+      <div style="position:absolute;top:-14px;left:14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">BUND</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:6px;opacity:0.7">► BAFA</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:26px;font-weight:800;line-height:0.95;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 12px">Bundesförderung eff. Gebäude</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;margin:0 0 16px">Heizungstausch + Wärmepumpe. Bis zu 70 % der Investitionskosten.</p>
+      <div style="border-top:2px dashed #0a0a0a;padding-top:10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase">MAX: <span style="color:#ff3a1f;font-size:16px">bis 23.500 €</span></div>
+    </div>
+    <div class="rv lift" style="background:#fdfd00;border:3px solid #0a0a0a;padding:20px;position:relative;transform:rotate(-1.5deg)">
+      <div style="position:absolute;top:-14px;left:14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">BAYERN</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:6px;opacity:0.7">► 10000-Häuser</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:26px;font-weight:800;line-height:0.95;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 12px">Bayern: PV-Speicher-Bonus</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;margin:0 0 16px">Landesförderung für Eigenheim-Speicher in Bayern. Ergänzung zur KfW.</p>
+      <div style="border-top:2px dashed #0a0a0a;padding-top:10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase">MAX: <span style="color:#ff3a1f;font-size:16px">bis 3.200 €</span></div>
+    </div>
+    <div class="rv lift" style="background:#00ffea;border:3px solid #0a0a0a;padding:20px;position:relative;transform:rotate(0.5deg)">
+      <div style="position:absolute;top:-14px;left:14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">BUND</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:6px;opacity:0.7">► EEG-2023</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:26px;font-weight:800;line-height:0.95;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 12px">Einspeise-Vergütung</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;margin:0 0 16px">Garantierte Einspeisung über 20 Jahre. Aktueller Tarif richtet sich nach Anlagengröße.</p>
+      <div style="border-top:2px dashed #0a0a0a;padding-top:10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase">MAX: <span style="color:#ff3a1f;font-size:16px">8,11 ct/kWh</span></div>
+    </div>
+    <div class="rv lift" style="background:#ff00aa;border:3px solid #0a0a0a;padding:20px;position:relative;transform:rotate(-0.5deg)">
+      <div style="position:absolute;top:-14px;left:14px;background:#0a0a0a;color:#fdfd00;padding:4px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;text-transform:uppercase">LOKAL</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:6px;opacity:0.7">► Komm.</div>
+      <h3 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:26px;font-weight:800;line-height:0.95;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 12px">Kommunale Programme</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.4;margin:0 0 16px">Viele Städte/Landkreise haben eigene Töpfe. Wir prüfen für dein Projekt — kostenfrei.</p>
+      <div style="border-top:2px dashed #0a0a0a;padding-top:10px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase">MAX: <span style="color:#ff3a1f;font-size:16px">varies</span></div>
+    </div>
+  </div>
+  <div style="margin-top:32px;background:#0a0a0a;color:#fdfd00;padding:24px;border:3px solid #0a0a0a;display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+    <div style="flex:1;min-width:280px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;margin-bottom:6px">► UNSER ANGEBOT</div>
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:32px;font-weight:800;text-transform:uppercase;letter-spacing:-0.02em;line-height:1">FÖRDER-CHECK. KOSTENFREI.</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:16px;font-style:italic;margin-top:10px;margin-bottom:0;opacity:0.9">30 Minuten — wir prüfen Bund, Land und Kommune für dein konkretes Projekt.</p>
+    </div>
+    <a href="#kontakt" class="lift" style="background:#ff00aa;color:#0a0a0a;padding:20px 28px;border:3px solid #fdfd00;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;text-decoration:none;letter-spacing:-0.01em">[→] CHECK STARTEN</a>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section style="background:#00ffea;padding:80px 24px;border-top:4px solid #0a0a0a">
+  <div class="rv" style="margin-bottom:48px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">░░░ KAPITEL_05 ░░░ ECHTE STIMMEN ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,10vw,160px);line-height:0.85;letter-spacing:-0.04em;margin:0;text-transform:uppercase">Echte Kundenstimmen.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:20px">
+    <figure class="rv lift" style="margin:0;background:#fdfd00;border:3px solid #0a0a0a;padding:24px;transform:rotate(-2deg);position:relative">
+      <div style="position:absolute;top:-12px;left:-12px;width:32px;height:32px;background:#ff00aa;border:3px solid #0a0a0a;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:24px;font-weight:800">"</div>
+      <div style="color:#ff3a1f;font-size:16px;margin-bottom:12px;letter-spacing:0.1em;font-weight:700">★★★★★</div>
+      <blockquote style="margin:0;font-family:'Instrument Serif',serif;font-size:18px;line-height:1.4;font-style:italic">"Was mich überzeugt hat: Sie haben mir abgeraten, ein zweites Speichermodul zu kaufen, das ich gar nicht ausnutze. Der Verkaufsdruck, den ich bei drei anderen Anbietern hatte, war hier schlicht nicht da."</blockquote>
+      <figcaption style="margin-top:20px;padding-top:16px;border-top:2px dashed #0a0a0a">
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:16px;text-transform:uppercase">— Thomas R.</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:4px">Eigenheimbesitzer · 9 kWp</div>
+      </figcaption>
+    </figure>
+    <figure class="rv lift" style="margin:0;background:#fdfd00;border:3px solid #0a0a0a;padding:24px;transform:rotate(2deg);position:relative">
+      <div style="position:absolute;top:-12px;left:-12px;width:32px;height:32px;background:#ff00aa;border:3px solid #0a0a0a;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:24px;font-weight:800">"</div>
+      <div style="color:#ff3a1f;font-size:16px;margin-bottom:12px;letter-spacing:0.1em;font-weight:700">★★★★★</div>
+      <blockquote style="margin:0;font-family:'Instrument Serif',serif;font-size:18px;line-height:1.4;font-style:italic">"Wir wollten ursprünglich kaufen. Nach Durchrechnung beider Optionen wurde klar: PPA ist für uns als wachsendes Unternehmen die bessere Wahl. Liquidität bleibt im Geschäft, Strompreis ist trotzdem gedeckelt."</blockquote>
+      <figcaption style="margin-top:20px;padding-top:16px;border-top:2px dashed #0a0a0a">
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:16px;text-transform:uppercase">— Christian K.</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:4px">Geschäftsführer · 420 kWp PPA</div>
+      </figcaption>
+    </figure>
+    <figure class="rv lift" style="margin:0;background:#fdfd00;border:3px solid #0a0a0a;padding:24px;transform:rotate(-1.5deg);position:relative">
+      <div style="position:absolute;top:-12px;left:-12px;width:32px;height:32px;background:#ff00aa;border:3px solid #0a0a0a;display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:24px;font-weight:800">"</div>
+      <div style="color:#ff3a1f;font-size:16px;margin-bottom:12px;letter-spacing:0.1em;font-weight:700">★★★★★</div>
+      <blockquote style="margin:0;font-family:'Instrument Serif',serif;font-size:18px;line-height:1.4;font-style:italic">"Ein Wechselrichter ist im zweiten Jahr ausgefallen – Sonntagabend. Montag früh war jemand im Haus, Mittag lief die Anlage wieder. Solche Reaktionszeiten habe ich von keinem anderen Handwerker erlebt."</blockquote>
+      <figcaption style="margin-top:20px;padding-top:16px;border-top:2px dashed #0a0a0a">
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:16px;text-transform:uppercase">— Sandra E.</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:4px">Privatkundin · 11 kWp + Speicher</div>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ══ REGIONEN ══ -->
+<section style="background:#0a0a0a;color:#fdfd00;padding:80px 24px;border-top:4px solid #0a0a0a">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;color:#00ffea">░░░ EINSATZGEBIET ░░░ GANZ BAYERN ░░░</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,120px);line-height:0.85;letter-spacing:-0.04em;margin:0 0 48px;text-transform:uppercase">
+    VON DEGGENDORF<br>
+    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">aus überall.</span>
+  </h2>
+  <div style="display:flex;flex-wrap:wrap;gap:12px">
+    <a href="deggendorf.html" class="lift" style="background:#fdfd00;color:#0a0a0a;border:3px solid #fdfd00;padding:16px 20px;text-decoration:none;transform:rotate(1deg);display:block"><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.03em;line-height:1">Deggendorf</div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px;opacity:0.7;text-transform:uppercase">Unser Hauptsitz</div></a>
+    <a href="straubing.html" class="lift" style="background:#00ffea;color:#0a0a0a;border:3px solid #00ffea;padding:16px 20px;text-decoration:none;transform:rotate(-1deg);display:block"><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.03em;line-height:1">Straubing</div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px;opacity:0.7;text-transform:uppercase">35 km</div></a>
+    <a href="passau.html" class="lift" style="background:#ff00aa;color:#0a0a0a;border:3px solid #ff00aa;padding:16px 20px;text-decoration:none;transform:rotate(0.5deg);display:block"><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.03em;line-height:1">Passau</div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px;opacity:0.7;text-transform:uppercase">55 km</div></a>
+    <a href="landshut.html" class="lift" style="background:#00ffea;color:#0a0a0a;border:3px solid #00ffea;padding:16px 20px;text-decoration:none;transform:rotate(-0.5deg);display:block"><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.03em;line-height:1">Landshut</div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px;opacity:0.7;text-transform:uppercase">75 km</div></a>
+    <a href="regensburg.html" class="lift" style="background:#ff7a00;color:#0a0a0a;border:3px solid #ff7a00;padding:16px 20px;text-decoration:none;transform:rotate(1.5deg);display:block"><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.03em;line-height:1">Regensburg</div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px;opacity:0.7;text-transform:uppercase">85 km</div></a>
+    <a href="muenchen.html" class="lift" style="background:#ff00aa;color:#0a0a0a;border:3px solid #ff00aa;padding:16px 20px;text-decoration:none;transform:rotate(-1.5deg);display:block"><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.03em;line-height:1">München</div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px;opacity:0.7;text-transform:uppercase">120 km</div></a>
+    <a href="augsburg.html" class="lift" style="background:#00ffea;color:#0a0a0a;border:3px solid #00ffea;padding:16px 20px;text-decoration:none;transform:rotate(0.8deg);display:block"><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.03em;line-height:1">Augsburg</div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px;opacity:0.7;text-transform:uppercase">170 km</div></a>
+    <a href="ingolstadt.html" class="lift" style="background:#fdfd00;color:#0a0a0a;border:3px solid #fdfd00;padding:16px 20px;text-decoration:none;transform:rotate(-0.8deg);display:block"><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:-0.03em;line-height:1">Ingolstadt</div><div style="font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px;opacity:0.7;text-transform:uppercase">155 km</div></a>
+  </div>
+  <p style="font-family:'Instrument Serif',serif;font-size:18px;font-style:italic;margin-top:40px;opacity:0.7;max-width:600px">Alle Städte haben eigene Infoseiten — lokale Netzbetreiber, Förderung und typische Anforderungen erklärt.</p>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section style="background:#fdfd00;padding:80px 24px;border-top:4px solid #0a0a0a">
+  <div style="display:grid;grid-template-columns:5fr 7fr;gap:60px">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">░░░ KAPITEL_06 ░░░ FAQ ░░░</div>
+      <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,7vw,96px);line-height:0.85;letter-spacing:-0.04em;margin:0;text-transform:uppercase">
+        FRAGEN.<br>
+        <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">antworten.</span><br>
+        <span style="background:#0a0a0a;color:#fdfd00;padding:0 0.1em;display:inline-block;transform:rotate(-2deg)">FERTIG.</span>
+      </h2>
+    </div>
+    <div>
+      <details name="faq-group">
+        <summary>► Wie funktioniert ein PPA-Stromvertrag konkret?</summary>
+        <p>Wir tragen die Investition für die Solaranlage komplett – Sie müssen nichts vorfinanzieren. Auf Ihrem Dach entsteht eine Anlage in unserem Eigentum, der Strom fließt direkt in Ihren Verbrauch. Bezahlt wird ausschließlich, was Sie tatsächlich nutzen, zu einem fest vereinbarten Tarif. Nach Vertragsende übernehmen Sie die Anlage entweder zum Restwert oder verlängern den Vertrag.</p>
+      </details>
+      <details name="faq-group">
+        <summary>► Wie schnell ist meine Anlage einsatzbereit?</summary>
+        <p>Bei Eigenheimprojekten sind wir nach Materiallieferung üblicherweise in 1 bis 3 Tagen fertig. Bei größeren Gewerbeanlagen kalkulieren wir je nach Genehmigungslage und Netzanschluss-Situation 2 bis 8 Wochen. Wichtig: Den Hauptanteil der Wartezeit verursacht meist der Netzbetreiber, nicht wir.</p>
+      </details>
+      <details name="faq-group">
+        <summary>► Welche staatlichen Zuschüsse gibt es 2026?</summary>
+        <p>Die Förderlandschaft ist umfangreich, aber unübersichtlich. Aktuell relevant: KfW-270 (Kredit zu vergünstigten Konditionen), KfW-442 (Speicherförderung), Landesmittel je Bundesland und einzelne kommunale Programme. Wir prüfen für jedes Vorhaben individuell, was anwendbar ist – kostenfrei und ohne Verpflichtung.</p>
+      </details>
+      <details name="faq-group">
+        <summary>► Lohnt sich Photovoltaik 2026 finanziell überhaupt noch?</summary>
+        <p>Kürzere Antwort: Ja, deutlich. Längere Antwort: Die Einspeisevergütung ist gefallen, die Modulpreise aber stärker. Entscheidend ist heute der Eigenverbrauch – jede selbst genutzte Kilowattstunde spart 30 ct und mehr ein. Typische Eigenheim-Anlagen amortisieren sich in 9 bis 13 Jahren, Gewerbeanlagen oft in 5 bis 9 Jahren.</p>
+      </details>
+      <details name="faq-group">
+        <summary>► Was geschieht bei einem Defekt?</summary>
+        <p>Bei einem PPA-Vertrag sind Reparaturen vollständig unsere Sache – Sie zahlen nur für tatsächlich gelieferten Strom. Bei Kaufanlagen liegt die Modulgarantie bei 25 bis 30 Jahren, Wechselrichter typischerweise 10 bis 12 Jahre. Unser Monitoring erkennt Probleme oft, bevor Sie sie bemerken.</p>
+      </details>
+      <details name="faq-group">
+        <summary>► Welche Komponenten kommen zum Einsatz?</summary>
+        <p>Wir setzen ausschließlich auf etablierte Tier-1-Hersteller. Module: u.a. Meyer Burger, Q CELLS, Trina, JinkoSolar. Wechselrichter: SMA, Fronius, Kostal, SolarEdge. Speicher: BYD, sonnen, Fronius, Tesla. Welche Komponente in Ihrem Fall die richtige ist, hängt vom Lastprofil ab – das klären wir transparent in der Beratung.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ══ KONTAKT ══ -->
+<section id="kontakt" style="background:#0a0a0a;color:#fdfd00;padding:80px 24px;border-top:4px solid #0a0a0a">
+  <div class="rv" style="margin-bottom:48px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;color:#00ffea">░░░ ENDE ░░░ JETZT_KONTAKT ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(64px,12vw,200px);line-height:0.82;letter-spacing:-0.05em;margin:0;text-transform:uppercase">
+      <span style="color:transparent;-webkit-text-stroke:2px #fdfd00">RUF</span>
+      <span style="background:#ff00aa;color:#0a0a0a;padding:0 0.1em;display:inline-block;transform:skew(-4deg)">UNS</span><br>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">einfach</span>
+      <span style="color:#00ffea">AN.</span>
+    </h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+    <div>
+      <a href="tel:+4999140227560" class="lift" style="display:block;padding:24px;background:#ff00aa;color:#0a0a0a;border:3px solid #fdfd00;margin-bottom:16px;text-decoration:none;transform:rotate(-0.8deg)">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;font-weight:700">► TEL</div>
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.02em">+49 991 40227560</div>
+      </a>
+      <a href="tel:01753560019" class="lift" style="display:block;padding:24px;background:#fdfd00;color:#0a0a0a;border:3px solid #fdfd00;margin-bottom:16px;text-decoration:none;transform:rotate(0.5deg)">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;font-weight:700">► MOBIL</div>
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.02em">0175 3560019</div>
+      </a>
+      <a href="mailto:info@solar-energie-partner.de" class="lift" style="display:block;padding:24px;background:#00ffea;color:#0a0a0a;border:3px solid #fdfd00;margin-bottom:16px;text-decoration:none;transform:rotate(1.2deg)">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;font-weight:700">► EMAIL</div>
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.02em">info@solar-energie-partner.de</div>
+      </a>
+      <a href="#" class="lift" style="display:block;padding:24px;background:#ff7a00;color:#0a0a0a;border:3px solid #fdfd00;text-decoration:none;transform:rotate(-1.5deg)">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;font-weight:700">► ADR</div>
+        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:26px;letter-spacing:-0.02em">Detterstraße 38, 94469 Deggendorf</div>
+      </a>
+    </div>
+    <div>
+      <div id="cf-ok" style="display:none;padding:24px;background:#00ffea;border:3px solid #0a0a0a;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:24px;font-weight:800;text-transform:uppercase;color:#0a0a0a">✓ NACHRICHT GESENDET — wir melden uns innerhalb 24h!</div>
+      <form id="cf-form" onsubmit="submitForm(event)" style="background:#fdfd00;color:#0a0a0a;padding:28px;border:3px solid #fdfd00">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;margin-bottom:20px;font-weight:700">► FORMULAR_v01.exe</div>
+        <div id="cf-err" style="display:none;padding:8px 12px;background:#ff3a1f;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;margin-bottom:8px">⚠ Fehler — bitte direkt anrufen: +49 991 40227560</div>
+        <input required type="text" id="cf-name" placeholder="NAME" style="width:100%;padding:14px 16px;margin-bottom:12px;background:#fff;border:3px solid #0a0a0a;color:#0a0a0a;font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;font-weight:700;text-transform:uppercase;box-sizing:border-box">
+        <input required type="email" id="cf-email" placeholder="EMAIL" style="width:100%;padding:14px 16px;margin-bottom:12px;background:#fff;border:3px solid #0a0a0a;color:#0a0a0a;font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;font-weight:700;text-transform:uppercase;box-sizing:border-box">
+        <input type="tel" id="cf-tel" placeholder="TEL" style="width:100%;padding:14px 16px;margin-bottom:12px;background:#fff;border:3px solid #0a0a0a;color:#0a0a0a;font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;font-weight:700;text-transform:uppercase;box-sizing:border-box">
+        <textarea required id="cf-msg" placeholder="WORUM_GEHTS" style="width:100%;padding:14px 16px;min-height:100px;background:#fff;border:3px solid #0a0a0a;color:#0a0a0a;font-family:'JetBrains Mono',monospace;font-size:14px;outline:none;resize:vertical;font-weight:700;text-transform:uppercase;box-sizing:border-box"></textarea>
+        <button type="submit" id="submit-btn" class="lift" style="width:100%;margin-top:12px;padding:20px;background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:18px;font-weight:800;cursor:crosshair;text-transform:uppercase;letter-spacing:-0.01em">[→] ABSENDEN_JETZT</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#0a0a0a;color:#fdfd00;padding:32px 24px;border-top:4px solid #fdfd00;font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px">
+  <span>© 2026 SOLAR_ENERGIE_PARTNER ░ PILSNER_VERTRIEBS_GMBH ░ DEGGENDORF</span>
+  <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+    <a href="ueber-uns.html" style="color:#fdfd00;text-decoration:none">ÜBER UNS</a>
+    <a href="kontakt.html" style="color:#fdfd00;text-decoration:none">KONTAKT</a>
+    <a href="foerderung.html" style="color:#fdfd00;text-decoration:none">FÖRDERUNG</a>
+    <a href="blog/" style="color:#fdfd00;text-decoration:none">BLOG</a>
+    <span style="opacity:0.3">|</span>
+    <a href="deggendorf.html" style="color:#00ffea;text-decoration:none">DEGGENDORF</a>
+    <a href="straubing.html" style="color:#00ffea;text-decoration:none">STRAUBING</a>
+    <a href="passau.html" style="color:#00ffea;text-decoration:none">PASSAU</a>
+    <a href="muenchen.html" style="color:#00ffea;text-decoration:none">MÜNCHEN</a>
+    <span style="opacity:0.3">|</span>
+    <a href="impressum.html" style="color:#fdfd00;text-decoration:none">IMPRESSUM</a>
+    <a href="datenschutz.html" style="color:#fdfd00;text-decoration:none">DATENSCHUTZ</a>
+  </span>
+</footer>
+
+<!-- ══ WHATSAPP ══ -->
+<a href="https://wa.me/491753560019?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20eine%20PV-Anlage." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Kontakt" class="wa-btn" style="position:fixed;bottom:24px;right:24px;z-index:999;width:60px;height:60px;border-radius:50%;background:#25D366;border:3px solid #0a0a0a;display:flex;align-items:center;justify-content:center;box-shadow:4px 4px 0 #0a0a0a;text-decoration:none;transition:transform .15s cubic-bezier(.5,1.5,.5,1)">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// ── CLOCK ──
+setInterval(()=>{const e=document.getElementById('clock');if(e)e.textContent=new Date().toLocaleTimeString('de-DE')},1000);
+
+// ── CURSOR ──
+(()=>{const c=document.getElementById('cur');if(!c)return;
+  window.addEventListener('mousemove',e=>{c.style.left=e.clientX+'px';c.style.top=e.clientY+'px'});
+  window.addEventListener('mousedown',()=>c.style.transform='translate(-50%,-50%) scale(2)');
+  window.addEventListener('mouseup',()=>c.style.transform='translate(-50%,-50%) scale(1)');
+})();
+
+// ── HERO PARALLAX ──
+(()=>{const s=document.getElementById('hero-subline');if(!s)return;
+  window.addEventListener('mousemove',e=>s.style.transform=`translateX(${(e.clientX/innerWidth-.5)*20}px)`);
+})();
+
+// ── BUILD SUN ──
+(()=>{const svg=document.getElementById('hero-sun');if(!svg)return;
+  let h='';for(let i=0;i<48;i++){const a=i*Math.PI*2/48;
+    h+=`<line x1="${(100+Math.cos(a)*60).toFixed(2)}" y1="${(100+Math.sin(a)*60).toFixed(2)}" x2="${(100+Math.cos(a)*95).toFixed(2)}" y2="${(100+Math.sin(a)*95).toFixed(2)}" stroke="#0a0a0a" stroke-width="1.5"/>`;
+  }
+  svg.innerHTML=h+'<circle cx="100" cy="100" r="50" fill="#0a0a0a"/><circle cx="100" cy="100" r="35" fill="#ff00aa"/>';
+})();
+
+// ── SCROLL REVEAL ──
+(()=>{const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target)}}),{threshold:.2});
+  document.querySelectorAll('.rv').forEach(el=>o.observe(el));
+})();
+
+// ── COUNTER ──
+(()=>{const o=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;
+  const el=e.target,target=parseFloat(el.dataset.target)||0,suffix=el.dataset.suffix||'',isFloat=el.dataset.float==='1';
+  const t0=performance.now();
+  const tick=now=>{const p=Math.min(1,(now-t0)/1500),v=target*(1-Math.pow(1-p,3));
+    el.textContent=(isFloat?v.toFixed(1):Math.round(v))+suffix;if(p<1)requestAnimationFrame(tick);};
+  requestAnimationFrame(tick);o.unobserve(el);
+}),{threshold:.4});document.querySelectorAll('.counter').forEach(el=>o.observe(el));
+})();
+
+// ── TILT ──
+document.querySelectorAll('.tilt-wrap').forEach(el=>{
+  el.addEventListener('mousemove',e=>{const r=el.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5,max=+(el.dataset.max||8);
+    el.style.transform=`perspective(800px) rotateX(${-py*max}deg) rotateY(${px*max}deg) scale(1.02)`;el.style.transition='transform .12s ease-out';
+  });
+  el.addEventListener('mouseleave',()=>{el.style.transform='';el.style.transition='transform .4s ease-out'});
+});
+
+// ── PPA CALC ──
+const presets={eigenheim:{kwh:4500,min:2000,max:30000,step:500,netz:.34,ppa:.16},gewerbe:{kwh:80000,min:20000,max:2000000,step:10000,netz:.31,ppa:.17}};
+let currentProfile='gewerbe';
+function setProfile(p){currentProfile=p;const pr=presets[p];
+  const ks=document.getElementById('kwh-slider');if(!ks)return;
+  ks.min=pr.min;ks.max=pr.max;ks.step=pr.step;ks.value=pr.kwh;
+  document.getElementById('ppa-slider').value=pr.ppa;
+  document.querySelectorAll('.profile-btn').forEach(b=>{const a=b.dataset.profile===p;b.style.background=a?'#0a0a0a':'transparent';b.style.color=a?'#fdfd00':'#0a0a0a'});
+  updateCalc();
+}
+function updateCalc(){const p=presets[currentProfile];
+  const ks=document.getElementById('kwh-slider');if(!ks)return;
+  const kwh=+ks.value,pp=+document.getElementById('ppa-slider').value;
+  const diff=Math.max(p.netz-pp,0),yearly=Math.round(kwh*diff),twenty=yearly*20,co2=Math.round(kwh*.4);
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
+  set('kwh-display',kwh.toLocaleString('de-DE')+' kWh');
+  set('ppa-display',(pp*100).toFixed(1)+' ct/kWh');
+  set('yearly-out',yearly.toLocaleString('de-DE'));
+  set('twenty-out',twenty.toLocaleString('de-DE')+' €');
+  set('co2-out',co2.toLocaleString('de-DE')+' kg');
+  set('diff-display',(diff*100).toFixed(1)+' ct/kWh Differenz');
+  set('netz-yearly',Math.round(kwh*p.netz).toLocaleString('de-DE')+' €/J.');
+  set('ppa-yearly',Math.round(kwh*pp).toLocaleString('de-DE')+' €/J.');
+  set('netz-price',(p.netz*100).toFixed(0));
+}
+setProfile('gewerbe');
+
+// ── CONTACT FORM ──
+async function submitForm(e){e.preventDefault();
+  const btn=document.getElementById('submit-btn');btn.textContent='SENDE...';btn.disabled=true;
+  try{const r=await fetch('https://formspree.io/f/mwvybprv',{method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({name:document.getElementById('cf-name').value,email:document.getElementById('cf-email').value,tel:document.getElementById('cf-tel').value,message:document.getElementById('cf-msg').value})});
+    if(r.ok){document.getElementById('cf-form').style.display='none';document.getElementById('cf-ok').style.display='block';}
+    else throw 0;
+  }catch{document.getElementById('cf-err').style.display='block';btn.textContent='[→] ABSENDEN_JETZT';btn.disabled=false;}
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+// ── MAP PINS ──
+(()=>{const map=document.getElementById('map-pins');if(!map)return;
+  const cities=[{n:'Deggendorf',x:62,y:55,big:true},{n:'Straubing',x:50,y:50},{n:'Plattling',x:58,y:53},{n:'Passau',x:75,y:65},{n:'Regensburg',x:42,y:45},{n:'Landshut',x:45,y:60},{n:'München',x:38,y:70},{n:'Nürnberg',x:28,y:30},{n:'Würzburg',x:18,y:22},{n:'Augsburg',x:30,y:65},{n:'Ingolstadt',x:38,y:50},{n:'Cham',x:60,y:35}];
+  map.innerHTML=cities.map(c=>`<div style="position:absolute;left:${c.x}%;top:${c.y}%;transform:translate(-50%,-50%);text-align:center;pointer-events:none"><div style="width:${c.big?22:12}px;height:${c.big?22:12}px;background:${c.big?'#0a0a0a':'#fff'};border:2px solid #0a0a0a;border-radius:50%;margin:0 auto${c.big?';box-shadow:0 0 0 4px #00ffea,0 0 0 6px #0a0a0a;animation:pulse 2s ease-in-out infinite':''}"></div><div style="margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:${c.big?11:9}px;font-weight:700;text-transform:uppercase;white-space:nowrap;background:${c.big?'#0a0a0a':'transparent'};color:${c.big?'#fdfd00':'#0a0a0a'};padding:${c.big?'2px 6px':0}">${c.n}</div>${c.big?'<div style="font-family:\'JetBrains Mono\',monospace;font-size:9px;margin-top:2px;color:#0a0a0a">HAUPTQUARTIER</div>':''}</div>`).join('');
+})();
 </script>
 </body>
 </html>

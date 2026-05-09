@@ -14,235 +14,362 @@
 <meta property="og:url" content="https://solar-energie-partner.de/repowering.html" />
 <link rel="canonical" href="https://solar-energie-partner.de/repowering.html" />
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Repowering und Modulentsorgung","provider":{"@type":"LocalBusiness","name":"Solar Energie Partner","address":{"@type":"PostalAddress","streetAddress":"Detterstraße 38","addressLocality":"Deggendorf","postalCode":"94469","addressCountry":"DE"}},"areaServed":"Bayern","description":"Repowering alter Photovoltaik-Anlagen und fachgerechte Modulentsorgung"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Was passiert mit alten Modulen — darf ich die einfach wegwerfen?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. PV-Module sind Elektroaltgeräte nach ElektroG und müssen von zertifizierten Recyclingbetrieben entsorgt werden. Widerrechtliche Entsorgung ist bußgeldbewehrt. Wir koordinieren das korrekt."}}, {"@type": "Question", "name": "Lohnt sich Repowering wirtschaftlich?", "acceptedAnswer": {"@type": "Answer", "text": "Oft ja. Eine 5 kWp-Anlage von 2005 erzielt heute mit derselben Modulfläche 8–10 kWp, weil moderne Module deutlich leistungsfähiger sind. Dazu kommt höherer Eigenverbrauch statt Einspeisung für 2 ct."}}, {"@type": "Question", "name": "Muss ich eine neue EEG-Anmeldung machen?", "acceptedAnswer": {"@type": "Answer", "text": "Bei wesentlicher Änderung der Anlage ja. Wir koordinieren die neue Anmeldung beim Netzbetreiber und im Marktstammdatenregister — das gehört für uns dazu."}}, {"@type": "Question", "name": "Wie läuft Modulabbau vor einer Dachsanierung ab?", "acceptedAnswer": {"@type": "Answer", "text": "Wir koordinieren Abbau durch Fachbetrieb, Zwischenlagerung, Abklärung mit dem Dachdecker und Wiedermontage. Alternativ direkt Repowering auf dem neuen Dach — oft günstiger als zweimal montieren."}}]}</script>
 <link rel="stylesheet" href="fonts/fonts.css" />
 <link rel="stylesheet" href="radikal-base.css" />
 <style>
-  @media(max-width:768px){
-    header nav{display:none !important}
-    .mq span{font-size:32px !important;padding:0 16px !important}
-    .check-grid{grid-template-columns:1fr !important}
-    .leistung-grid{grid-template-columns:repeat(2,1fr) !important}
-    .process-grid{grid-template-columns:1fr !important}
-    .faq-grid{grid-template-columns:1fr !important}
-    footer > div:first-child > div{grid-template-columns:1fr 1fr !important}
-  }
+*,*::before,*::after{box-sizing:border-box;}
+input[type=range]{width:100%;accent-color:#ff00aa;height:24px;cursor:pointer;}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mq-track{overflow:hidden;border-top:3px solid #0a0a0a;border-bottom:3px solid #0a0a0a;background:#0a0a0a;color:#fdfd00;padding:14px 0;}
+.mq-inner{display:flex;gap:0;animation:mq 18s linear infinite;white-space:nowrap;}
+.mq-item{padding:0 32px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
+details summary::-webkit-details-marker{display:none;}
+details[open] summary .faq-plus{transform:rotate(45deg);}
+.faq-plus{display:inline-block;transition:transform 0.2s;}
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Was passiert mit alten Modulen — darf ich die einfach wegwerfen?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. PV-Module sind Elektroaltgeräte nach ElektroG und müssen von zertifizierten Recyclingbetrieben entsorgt werden. Widerrechtliche Entsorgung ist bußgeldbewehrt. Wir koordinieren das korrekt."}}, {"@type": "Question", "name": "Lohnt sich Repowering wirtschaftlich?", "acceptedAnswer": {"@type": "Answer", "text": "Oft ja. Eine 5 kWp-Anlage von 2005 erzielt heute mit derselben Modulfläche 8–10 kWp, weil moderne Module deutlich leistungsfähiger sind. Dazu kommt höherer Eigenverbrauch statt Einspeisung für 2 ct."}}, {"@type": "Question", "name": "Muss ich eine neue EEG-Anmeldung machen?", "acceptedAnswer": {"@type": "Answer", "text": "Bei wesentlicher Änderung der Anlage ja. Wir koordinieren die neue Anmeldung beim Netzbetreiber und im Marktstammdatenregister — das gehört für uns dazu."}}, {"@type": "Question", "name": "Wie läuft Modulabbau vor einer Dachsanierung ab?", "acceptedAnswer": {"@type": "Answer", "text": "Wir koordinieren Abbau durch Fachbetrieb, Zwischenlagerung, Abklärung mit dem Dachdecker und Wiedermontage. Alternativ direkt Repowering auf dem neuen Dach — oft günstiger als zweimal montieren."}}]}</script>
 </head>
 <body>
-<div id="root"></div>
-<script src="vendor/react.min.js"></script>
-<script src="vendor/react-dom.min.js"></script>
-<script src="vendor/babel.min.js"></script>
-<script src="data.js"></script>
-<script type="text/babel" src="subpage-shell.jsx"></script>
-<script type="text/babel">
-const { Page, PageHero, Section, BigQuote, StatGrid, FeatureGrid, Cta, Marquee, COL, fonts } = window.RadShell;
-const D = window.SITE_DATA;
 
-const checks = [
-  {
-    signal: "► EEG-EINSPEISEVERGÜTUNG LÄUFT AUS",
-    title: "20 Jahre vorbei?",
-    body: "Anlagen aus 2004–2006 fallen jetzt aus der EEG-Förderung. Einspeisen für ~2 ct lohnt kaum noch. Jetzt ist der richtige Zeitpunkt für Repowering mit Eigenverbrauch-Fokus.",
-    col: COL.pink,
-  },
-  {
-    signal: "► LEISTUNGSVERLUST SICHTBAR",
-    title: "Weniger Ertrag als früher?",
-    body: "PV-Module verlieren ~0,5% Leistung pro Jahr — nach 20 Jahren also bis zu 10%. Dazu kommen Mikrorisse und Zelldegeneration. Wir messen den tatsächlichen Zustand.",
-    col: COL.yellow,
-  },
-  {
-    signal: "► WECHSELRICHTER DEFEKT ODER ALT",
-    title: "Ersatzteile nicht mehr lieferbar?",
-    body: "Wechselrichter halten 10–15 Jahre. Viele Modelle aus der Frühphase sind nicht mehr reparierbar. Ein Tausch auf moderne Geräte erhöht oft den Ertrag um 5–10%.",
-    col: COL.cyan,
-  },
-  {
-    signal: "► DACHSANIERUNG STEHT AN",
-    title: "Neue Eindeckung geplant?",
-    body: "Bevor der Dachdecker kommt, müssen die Module runter. Wir koordinieren Abbau, sichere Lagerung und Wiedermontage — oder direkt Repowering auf dem neuen Dach.",
-    col: COL.orange,
-  },
-];
+<header style="position:sticky;top:0;z-index:100;background:#0a0a0a;border-bottom:3px solid #0a0a0a;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);min-height:56px;gap:16px;">
+  <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#ffffff;flex-shrink:0;">
+    <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+    <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;letter-spacing:-0.01em;">SOLAR // RADIKAL</span>
+  </a>
+  <nav style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;">
+    <a href="eigenheim.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">EIGENHEIM</a>
+    <a href="gewerbe.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">GEWERBE</a>
+    <a href="speicher.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">SPEICHER</a>
+    <a href="ppa.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">PPA</a>
+    <a href="repowering.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#0a0a0a;text-decoration:none;padding:4px 8px;background:#fdfd00;">REPOWERING</a>
+    <a href="foerderung.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">FÖRDERUNG</a>
+    <a href="ueber-uns.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">ÜBER UNS</a>
+    <a href="referenzen.html" style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#ffffff;text-decoration:none;padding:4px 8px;">REFERENZEN</a>
+  </nav>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#fdfd00;flex-shrink:0;display:flex;align-items:center;gap:16px;">
+    <span id="clk"></span>
+    <a href="tel:+4999140227560" style="color:#fdfd00;text-decoration:none;">09991 40227560</a>
+  </div>
+</header>
 
-const leistungen = [
-  { no: "01", tag: "ANALYSE", title: "Ertragsanalyse & Zustandsbewertung", body: "Wir lesen das Monitoring aus, messen ggf. Modulleistung und geben eine ehrliche Einschätzung: sanieren, ersetzen oder stilllegen?" },
-  { no: "02", tag: "WECHSELRICHTER", title: "Wechselrichtertausch", body: "Moderner Wechselrichter mit Speicher-Interface, besserer Effizienz und neuem Monitoring. Oft schnell amortisiert." },
-  { no: "03", tag: "REPOWERING", title: "Komplettes Repowering", body: "Alte Module raus, neue rein — selbe Fläche, deutlich mehr Leistung. Aus einer 5 kWp-Anlage von 2005 werden heute 8–10 kWp." },
-  { no: "04", tag: "NACHRÜSTUNG", title: "Speicher & Wallbox ergänzen", body: "Bei Repowering direkt Speicher und Wallbox mitplanen — moderner Wechselrichter macht das einfach und günstig." },
-  { no: "05", tag: "ABBAU", title: "Modulabbau bei Dachsanierung", body: "Fachgerechter Abbau, sichere Zwischenlagerung, Wiedermontage nach Dacharbeiten. Alles aus einer Hand koordiniert." },
-  { no: "06", tag: "ENTSORGUNG", title: "Rechtssichere Modulentsorgung", body: "PV-Module sind Elektronikschrott und müssen nach ElektroG entsorgt werden. Wir koordinieren die Abholung durch zertifizierte Recyclingbetriebe." },
-];
+<!-- HERO -->
+<section style="background:#ff7a00;border-bottom:3px solid #0a0a0a;padding:clamp(48px,8vw,96px) clamp(16px,4vw,48px);position:relative;overflow:hidden;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:24px;">LEISTUNG_05</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.8;margin-bottom:8px;background:#0a0a0a;color:#ff7a00;display:inline-block;padding:4px 12px;">ALTE_ANLAGE_NEU_DENKEN</div>
+  <h1 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(64px,12vw,180px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 8px;">ALTE ANLAGE. <em style="font-style:italic;font-weight:400;">neues</em></h1>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(64px,12vw,180px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 32px;">POTENZIAL.</h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:clamp(17px,2.5vw,22px);font-style:italic;max-width:680px;line-height:1.5;margin:0 0 40px;">Repowering, Wechselrichtertausch, Modulabbau bei Dachsanierung und rechtssichere Entsorgung alter Module — alles koordiniert, alles aus einer Hand.</p>
+  <svg id="sun0" viewBox="0 0 200 200" width="200" height="200" style="position:absolute;right:-40px;bottom:-40px;opacity:0.12;pointer-events:none;">
+    <circle cx="100" cy="100" r="52" fill="#0a0a0a"/>
+  </svg>
+</section>
 
-const process = [
-  { n: "01", title: "Unterlagen & Monitoring prüfen", body: "Wir schauen uns Anlagenalter, vorhandene Monitoring-Daten und Wechselrichtertyp an — oft reicht das für eine erste Einschätzung." },
-  { n: "02", title: "Vor-Ort-Termin & Messung", body: "Bei Bedarf kommen wir vorbei: Sichtprüfung, Ertragsvergleich, Wechselrichterstatus. Klares Ergebnis: lohnt sich Repowering?" },
-  { n: "03", title: "Angebot Sanierung oder Neubau", body: "Du bekommst zwei Optionen nebeneinander: Teilsanierung vs. komplettes Repowering — mit Kosten, Mehrertrag und Amortisation." },
-  { n: "04", title: "Koordination & Entsorgung", body: "Unsere Fachbetriebe bauen ab, entsorgen fachgerecht und bauen die neue Anlage auf. Alle Papiere inklusive — Recyclingnachweis, neue EEG-Anmeldung." },
-];
+<!-- MARQUEE -->
+<div class="mq-track">
+  <div class="mq-inner">
+    <span class="mq-item">WECHSELRICHTERTAUSCH</span>
+    <span class="mq-item">KOMPLETTES REPOWERING</span>
+    <span class="mq-item">MODULABBAU</span>
+    <span class="mq-item">RECHTSSICHERE ENTSORGUNG</span>
+    <span class="mq-item">DACHSANIERUNG</span>
+    <span class="mq-item">EEG-AUSLAUF 2004–2006</span>
+    <span class="mq-item">RECYCLINGNACHWEIS</span>
+    <span class="mq-item">WECHSELRICHTERTAUSCH</span>
+    <span class="mq-item">KOMPLETTES REPOWERING</span>
+    <span class="mq-item">MODULABBAU</span>
+    <span class="mq-item">RECHTSSICHERE ENTSORGUNG</span>
+    <span class="mq-item">DACHSANIERUNG</span>
+    <span class="mq-item">EEG-AUSLAUF 2004–2006</span>
+    <span class="mq-item">RECYCLINGNACHWEIS</span>
+  </div>
+</div>
 
-const faqs = [
-  {
-    q: "Was passiert mit alten Modulen — darf ich die einfach wegwerfen?",
-    a: "Nein. PV-Module sind Elektroaltgeräte nach ElektroG und müssen von zertifizierten Recyclingbetrieben entsorgt werden. Widerrechtliche Entsorgung ist bußgeldbewehrt. Wir koordinieren das korrekt.",
-  },
-  {
-    q: "Lohnt sich Repowering wirtschaftlich?",
-    a: "Oft ja. Eine 5 kWp-Anlage von 2005 erzielt heute mit derselben Modulfläche 8–10 kWp, weil moderne Module deutlich leistungsfähiger sind. Dazu kommt höherer Eigenverbrauch statt Einspeisung für 2 ct. Wir rechnen es durch.",
-  },
-  {
-    q: "Muss ich eine neue EEG-Anmeldung machen?",
-    a: "Bei wesentlicher Änderung der Anlage (neue Module, höhere Leistung) ja. Wir koordinieren die neue Anmeldung beim Netzbetreiber und im Marktstammdatenregister — das gehört für uns dazu.",
-  },
-  {
-    q: "Wie läuft Modulabbau vor einer Dachsanierung ab?",
-    a: "Wir koordinieren: Abbau durch Fachbetrieb, Zwischenlagerung, Abklärung mit dem Dachdecker, Wiedermontage danach. Alternativ direkt Repowering auf dem neuen Dach — oft günstiger als zweimal montieren.",
-  },
-];
+<!-- ZAHLEN / STATS -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#ff00aa;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:8px;">ZAHLEN</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 40px;">WAS <em style="font-style:italic;font-weight:400;">heute möglich</em> IST.</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);border:3px solid #0a0a0a;margin-top:40px;">
+    <div style="padding:28px;background:#00ffea;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:8px;">Mehrleistung durch neue Module</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,6vw,80px);line-height:1;letter-spacing:-0.04em;">+40<span style="font-size:0.5em;">%</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.6;margin-top:6px;">selbe Fläche, deutlich mehr kWp</div>
+    </div>
+    <div style="padding:28px;background:#fdfd00;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:8px;">Anlagen aus EEG-Auslauf</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,6vw,80px);line-height:1;letter-spacing:-0.04em;">100.000+</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.6;margin-top:6px;">in DE — viele davon in Bayern</div>
+    </div>
+    <div style="padding:28px;background:#00ffea;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:8px;">Recyclingquote PV-Module</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,6vw,80px);line-height:1;letter-spacing:-0.04em;">95<span style="font-size:0.5em;">%</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.6;margin-top:6px;">Glas, Silber, Alu werden zurückgewonnen</div>
+    </div>
+    <div style="padding:28px;background:#fdfd00;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:8px;">Wechselrichter Lebensdauer</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(40px,6vw,80px);line-height:1;letter-spacing:-0.04em;">10–15<span style="font-size:0.5em;"> J.</span></div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.6;margin-top:6px;">danach oft nicht mehr reparierbar</div>
+    </div>
+  </div>
+</section>
 
-function Checks() {
-  return (
-    <Section kapitel="ANLASS" title="WANN ES" italicPart="Zeit wird" blackPart="ZU_HANDELN." color={COL.yellow}>
-      <div className="check-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
-        {checks.map((c, i) => (
-          <div key={i} className="lift" style={{ background: c.col, border: `3px solid ${COL.black}`, padding: 28, transform: `rotate(${i%2===0?-0.4:0.4}deg)` }}>
-            <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 12, background: COL.black, color: c.col, display: "inline-block", padding: "3px 10px" }}>{c.signal}</div>
-            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 26, lineHeight: 0.95, letterSpacing: "-0.02em", textTransform: "uppercase", margin: "12px 0 12px" }}>{c.title}</h3>
-            <p style={{ fontFamily: fonts.serif, fontSize: 16, lineHeight: 1.55, margin: 0, fontStyle: "italic" }}>{c.body}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
+<!-- CHECKS — WANN ES ZEIT WIRD -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#ffffff;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:8px;">ANLASS</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 40px;">WANN ES <em style="font-style:italic;font-weight:400;">Zeit wird</em> ZU_HANDELN.</h2>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:40px;">
+    <div style="background:#ff00aa;border:3px solid #0a0a0a;padding:28px;transform:rotate(-0.4deg);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:12px;background:#0a0a0a;color:#ff00aa;display:inline-block;padding:3px 10px;">► EEG-EINSPEISEVERGÜTUNG LÄUFT AUS</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:12px 0 12px;">20 Jahre vorbei?</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.55;margin:0;font-style:italic;">Anlagen aus 2004–2006 fallen jetzt aus der EEG-Förderung. Einspeisen für ~2 ct lohnt kaum noch. Jetzt ist der richtige Zeitpunkt für Repowering mit Eigenverbrauch-Fokus.</p>
+    </div>
+    <div style="background:#fdfd00;border:3px solid #0a0a0a;padding:28px;transform:rotate(0.4deg);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:12px;background:#0a0a0a;color:#fdfd00;display:inline-block;padding:3px 10px;">► LEISTUNGSVERLUST SICHTBAR</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:12px 0 12px;">Weniger Ertrag als früher?</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.55;margin:0;font-style:italic;">PV-Module verlieren ~0,5% Leistung pro Jahr — nach 20 Jahren also bis zu 10%. Dazu kommen Mikrorisse und Zelldegeneration. Wir messen den tatsächlichen Zustand.</p>
+    </div>
+    <div style="background:#00ffea;border:3px solid #0a0a0a;padding:28px;transform:rotate(-0.4deg);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:12px;background:#0a0a0a;color:#00ffea;display:inline-block;padding:3px 10px;">► WECHSELRICHTER DEFEKT ODER ALT</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:12px 0 12px;">Ersatzteile nicht mehr lieferbar?</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.55;margin:0;font-style:italic;">Wechselrichter halten 10–15 Jahre. Viele Modelle aus der Frühphase sind nicht mehr reparierbar. Ein Tausch auf moderne Geräte erhöht oft den Ertrag um 5–10%.</p>
+    </div>
+    <div style="background:#ff7a00;border:3px solid #0a0a0a;padding:28px;transform:rotate(0.4deg);">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:12px;background:#0a0a0a;color:#ff7a00;display:inline-block;padding:3px 10px;">► DACHSANIERUNG STEHT AN</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;line-height:0.95;letter-spacing:-0.02em;text-transform:uppercase;margin:12px 0 12px;">Neue Eindeckung geplant?</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:16px;line-height:1.55;margin:0;font-style:italic;">Bevor der Dachdecker kommt, müssen die Module runter. Wir koordinieren Abbau, sichere Lagerung und Wiedermontage — oder direkt Repowering auf dem neuen Dach.</p>
+    </div>
+  </div>
+</section>
 
-function Process() {
-  return (
-    <Section kapitel="ABLAUF" title="SO" italicPart="geht's" blackPart="VOR." color={COL.cyan}>
-      <div className="process-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 0, border: `3px solid ${COL.black}` }}>
-        {process.map((p, i) => (
-          <div key={i} style={{ padding: 28, borderRight: i < process.length - 1 ? `2px solid ${COL.black}` : "none", background: i % 2 === 0 ? COL.cyan : COL.yellow }}>
-            <div style={{ fontFamily: fonts.mono, fontSize: 32, fontWeight: 700, lineHeight: 1, marginBottom: 12, opacity: 0.2 }}>{p.n}</div>
-            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 18, textTransform: "uppercase", letterSpacing: "-0.02em", margin: "0 0 10px", lineHeight: 1.1 }}>{p.title}</h3>
-            <p style={{ fontFamily: fonts.serif, fontSize: 14, lineHeight: 1.5, margin: 0, fontStyle: "italic" }}>{p.body}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
+<!-- LEISTUNGEN -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#fdfd00;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:8px;">LEISTUNGEN</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 40px;">WAS WIR <em style="font-style:italic;font-weight:400;">für dich</em> ÜBERNEHMEN.</h2>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);border:3px solid #0a0a0a;margin-top:40px;">
+    <div style="background:#ffffff;padding:28px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">01. ANALYSE</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">Ertragsanalyse &amp; Zustandsbewertung</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Wir lesen das Monitoring aus, messen ggf. Modulleistung und geben eine ehrliche Einschätzung: sanieren, ersetzen oder stilllegen?</p>
+    </div>
+    <div style="background:#00ffea;padding:28px;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">02. WECHSELRICHTER</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">Wechselrichtertausch</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Moderner Wechselrichter mit Speicher-Interface, besserer Effizienz und neuem Monitoring. Oft schnell amortisiert.</p>
+    </div>
+    <div style="background:#ff00aa;padding:28px;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">03. REPOWERING</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">Komplettes Repowering</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Alte Module raus, neue rein — selbe Fläche, deutlich mehr Leistung. Aus einer 5 kWp-Anlage von 2005 werden heute 8–10 kWp.</p>
+    </div>
+    <div style="background:#ff7a00;padding:28px;border-top:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">04. NACHRÜSTUNG</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">Speicher &amp; Wallbox ergänzen</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Bei Repowering direkt Speicher und Wallbox mitplanen — moderner Wechselrichter macht das einfach und günstig.</p>
+    </div>
+    <div style="background:#fdfd00;padding:28px;border-top:3px solid #0a0a0a;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">05. ABBAU</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">Modulabbau bei Dachsanierung</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">Fachgerechter Abbau, sichere Zwischenlagerung, Wiedermontage nach Dacharbeiten. Alles aus einer Hand koordiniert.</p>
+    </div>
+    <div style="background:#ffffff;padding:28px;border-top:3px solid #0a0a0a;border-left:3px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.7;margin-bottom:12px;">06. ENTSORGUNG</div>
+      <div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(20px,3vw,32px);line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:12px;">Rechtssichere Modulentsorgung</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.5;font-style:italic;margin:0;">PV-Module sind Elektronikschrott und müssen nach ElektroG entsorgt werden. Wir koordinieren die Abholung durch zertifizierte Recyclingbetriebe.</p>
+    </div>
+  </div>
+</section>
 
-function Faq() {
-  return (
-    <Section kapitel="FAQ" title="FRAGEN" italicPart="zur" blackPart="ALTEN_ANLAGE." color={COL.yellow}>
-      <div className="faq-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 20 }}>
-        {faqs.map((f, i) => (
-          <div key={i} style={{ background: i % 2 === 0 ? COL.black : COL.orange, color: i % 2 === 0 ? COL.yellow : COL.black, border: `3px solid ${COL.black}`, padding: 28 }}>
-            <div style={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700, textTransform: "uppercase", marginBottom: 12, color: i % 2 === 0 ? COL.cyan : COL.black, opacity: 0.8 }}>► FRAGE</div>
-            <h3 style={{ fontFamily: fonts.heading, fontWeight: 800, fontSize: 20, lineHeight: 1, letterSpacing: "-0.02em", textTransform: "uppercase", margin: "0 0 14px" }}>{f.q}</h3>
-            <p style={{ fontFamily: fonts.serif, fontSize: 15, lineHeight: 1.55, margin: 0, fontStyle: "italic" }}>{f.a}</p>
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function Entsorgung() {
-  return (
-    <Section kapitel="ENTSORGUNG" title="RECYCLING" italicPart="rechtssicher" blackPart="KOORDINIERT." color={COL.black}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0, border: `3px solid ${COL.yellow}` }}>
-        <div style={{ padding: 40, borderRight: `3px solid ${COL.yellow}` }}>
-          <div style={{ fontFamily: fonts.mono, fontSize: 11, color: COL.cyan, fontWeight: 700, textTransform: "uppercase", marginBottom: 16 }}>► WAS DU WISSEN MUSST</div>
-          <p style={{ fontFamily: fonts.serif, fontSize: 20, lineHeight: 1.55, fontStyle: "italic", color: COL.yellow, margin: "0 0 20px" }}>
-            PV-Module enthalten Schwermetalle wie Blei und Cadmium. Entsorgung über den Restmüll ist illegal. Das ElektroG schreibt Rücknahme und Recycling vor.
-          </p>
-          <ul style={{ fontFamily: fonts.mono, fontSize: 12, color: COL.yellow, paddingLeft: 0, listStyle: "none", lineHeight: 2.2 }}>
-            <li>► Abholung durch zertifizierten Recyclingbetrieb</li>
-            <li>► Entsorgungsnachweis für deine Unterlagen</li>
-            <li>► Silber, Aluminium, Glas werden zurückgewonnen</li>
-            <li>► Gilt für alte wie neue Module gleichermaßen</li>
-          </ul>
+<!-- ENTSORGUNG -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#0a0a0a;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:8px;color:#ffffff;">ENTSORGUNG</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 40px;color:#fdfd00;">RECYCLING <em style="font-style:italic;font-weight:400;">rechtssicher</em> KOORDINIERT.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border:3px solid #fdfd00;">
+    <div style="padding:40px;border-right:3px solid #fdfd00;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#00ffea;font-weight:700;text-transform:uppercase;margin-bottom:16px;">► WAS DU WISSEN MUSST</div>
+      <p style="font-family:'Instrument Serif',serif;font-size:20px;line-height:1.55;font-style:italic;color:#fdfd00;margin:0 0 20px;">PV-Module enthalten Schwermetalle wie Blei und Cadmium. Entsorgung über den Restmüll ist illegal. Das ElektroG schreibt Rücknahme und Recycling vor.</p>
+      <ul style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#fdfd00;padding-left:0;list-style:none;line-height:2.2;margin:0;">
+        <li>► Abholung durch zertifizierten Recyclingbetrieb</li>
+        <li>► Entsorgungsnachweis für deine Unterlagen</li>
+        <li>► Silber, Aluminium, Glas werden zurückgewonnen</li>
+        <li>► Gilt für alte wie neue Module gleichermaßen</li>
+      </ul>
+    </div>
+    <div style="padding:40px;background:#fdfd00;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:16px;">► WAS WIR KOORDINIEREN</div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #0a0a0a;padding-bottom:10px;gap:12px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;">Abholung koordinieren</span>
+          <span style="font-family:'Instrument Serif',serif;font-size:13px;font-style:italic;text-align:right;opacity:0.7;">wir beauftragen den Recyclingbetrieb</span>
         </div>
-        <div style={{ padding: 40, background: COL.yellow }}>
-          <div style={{ fontFamily: fonts.mono, fontSize: 11, fontWeight: 700, textTransform: "uppercase", marginBottom: 16 }}>► WAS WIR KOORDINIEREN</div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            {[
-              ["Abholung koordinieren", "wir beauftragen den Recyclingbetrieb"],
-              ["Entsorgungsnachweis", "für deine Unterlagen und das Finanzamt"],
-              ["Demontage", "durch unsere Fachbetriebe"],
-              ["Wiederverwendung prüfen", "funktionierende Module ggf. für Carport etc."],
-              ["Komplettpaket möglich", "Abbau + Entsorgung + Repowering in einem"],
-            ].map(([l, v], i) => (
-              <div key={i} style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", borderBottom: `1px solid ${COL.black}`, paddingBottom: 10, gap: 12 }}>
-                <span style={{ fontFamily: fonts.mono, fontSize: 12, fontWeight: 700 }}>{l}</span>
-                <span style={{ fontFamily: fonts.serif, fontSize: 13, fontStyle: "italic", textAlign: "right", opacity: 0.7 }}>{v}</span>
-              </div>
-            ))}
-          </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #0a0a0a;padding-bottom:10px;gap:12px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;">Entsorgungsnachweis</span>
+          <span style="font-family:'Instrument Serif',serif;font-size:13px;font-style:italic;text-align:right;opacity:0.7;">für deine Unterlagen und das Finanzamt</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #0a0a0a;padding-bottom:10px;gap:12px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;">Demontage</span>
+          <span style="font-family:'Instrument Serif',serif;font-size:13px;font-style:italic;text-align:right;opacity:0.7;">durch unsere Fachbetriebe</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #0a0a0a;padding-bottom:10px;gap:12px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;">Wiederverwendung prüfen</span>
+          <span style="font-family:'Instrument Serif',serif;font-size:13px;font-style:italic;text-align:right;opacity:0.7;">funktionierende Module ggf. für Carport etc.</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid #0a0a0a;padding-bottom:10px;gap:12px;">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;">Komplettpaket möglich</span>
+          <span style="font-family:'Instrument Serif',serif;font-size:13px;font-style:italic;text-align:right;opacity:0.7;">Abbau + Entsorgung + Repowering in einem</span>
         </div>
       </div>
-    </Section>
-  );
-}
+    </div>
+  </div>
+</section>
 
-function App() {
-  return (
-    <Page active="repowering">
-      <PageHero
-        kapitel="REPOWERING"
-        kicker="ALTE_ANLAGE_NEU_DENKEN"
-        title="ANLAGE"
-        italicPart="aus den"
-        blackHeadlinePart="2000ern?"
-        sub="Repowering, Wechselrichtertausch, Modulabbau bei Dachsanierung und rechtssichere Entsorgung alter Module — alles koordiniert, alles aus einer Hand."
-        color={COL.orange}
-        accentColor={COL.yellow}
-      />
+<!-- PROCESS / ABLAUF -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#00ffea;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:8px;">ABLAUF</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 40px;">SO <em style="font-style:italic;font-weight:400;">geht's</em> VOR.</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:3px solid #0a0a0a;">
+    <div style="padding:28px;background:#00ffea;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;opacity:0.2;">01</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1.1;">Unterlagen &amp; Monitoring prüfen</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;margin:0;font-style:italic;">Wir schauen uns Anlagenalter, vorhandene Monitoring-Daten und Wechselrichtertyp an — oft reicht das für eine erste Einschätzung.</p>
+    </div>
+    <div style="padding:28px;background:#fdfd00;border-left:2px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;opacity:0.2;">02</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1.1;">Vor-Ort-Termin &amp; Messung</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;margin:0;font-style:italic;">Bei Bedarf kommen wir vorbei: Sichtprüfung, Ertragsvergleich, Wechselrichterstatus. Klares Ergebnis: lohnt sich Repowering?</p>
+    </div>
+    <div style="padding:28px;background:#00ffea;border-left:2px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;opacity:0.2;">03</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1.1;">Angebot Sanierung oder Neubau</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;margin:0;font-style:italic;">Du bekommst zwei Optionen nebeneinander: Teilsanierung vs. komplettes Repowering — mit Kosten, Mehrertrag und Amortisation.</p>
+    </div>
+    <div style="padding:28px;background:#fdfd00;border-left:2px solid #0a0a0a;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:32px;font-weight:700;line-height:1;margin-bottom:12px;opacity:0.2;">04</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px;text-transform:uppercase;letter-spacing:-0.02em;margin:0 0 10px;line-height:1.1;">Koordination &amp; Entsorgung</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.5;margin:0;font-style:italic;">Unsere Fachbetriebe bauen ab, entsorgen fachgerecht und bauen die neue Anlage auf. Alle Papiere inklusive — Recyclingnachweis, neue EEG-Anmeldung.</p>
+    </div>
+  </div>
+</section>
 
-      <Marquee items={["WECHSELRICHTERTAUSCH", "KOMPLETTES REPOWERING", "MODULABBAU", "RECHTSSICHERE ENTSORGUNG", "DACHSANIERUNG", "EEG-AUSLAUF 2004–2006", "RECYCLINGNACHWEIS"]} />
+<!-- BIG QUOTE -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#00ffea;">
+  <blockquote style="margin:0;">
+    <p style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(28px,5vw,72px);line-height:1;letter-spacing:-0.03em;text-transform:uppercase;margin:0 0 24px;">"Viele Anlagen aus der Frühzeit laufen noch — aber nicht mehr wirtschaftlich. Wir schauen uns das nüchtern an und sagen dir was sich wirklich lohnt."</p>
+    <footer style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;opacity:0.7;">— Doris Pilsner-Albrecht, Inhaberin Solar Energie Partner</footer>
+  </blockquote>
+</section>
 
-      <Section kapitel="ZAHLEN" title="WAS" italicPart="heute möglich" blackPart="IST." color={COL.pink}>
-        <StatGrid items={[
-          { l: "Mehrleistung durch neue Module", v: "+40", u: "%", s: "selbe Fläche, deutlich mehr kWp" },
-          { l: "Anlagen aus EEG-Auslauf", v: "100.000+", s: "in DE — viele davon in Bayern" },
-          { l: "Recyclingquote PV-Module", v: "95", u: "%", s: "Glas, Silber, Alu werden zurückgewonnen" },
-          { l: "Wechselrichter Lebensdauer", v: "10–15", u: " J.", s: "danach oft nicht mehr reparierbar" },
-        ]} color={COL.cyan} alt={COL.yellow} />
-      </Section>
+<!-- FAQ -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#fdfd00;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.6;margin-bottom:8px;">FAQ</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.88;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 40px;">FRAGEN <em style="font-style:italic;font-weight:400;">zur</em> ALTEN_ANLAGE.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;">
+    <div style="background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;margin-bottom:12px;color:#00ffea;opacity:0.8;">► FRAGE</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 14px;">Was passiert mit alten Modulen — darf ich die einfach wegwerfen?</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.55;margin:0;font-style:italic;">Nein. PV-Module sind Elektroaltgeräte nach ElektroG und müssen von zertifizierten Recyclingbetrieben entsorgt werden. Widerrechtliche Entsorgung ist bußgeldbewehrt. Wir koordinieren das korrekt.</p>
+    </div>
+    <div style="background:#ff7a00;color:#0a0a0a;border:3px solid #0a0a0a;padding:28px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;margin-bottom:12px;color:#0a0a0a;opacity:0.8;">► FRAGE</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 14px;">Lohnt sich Repowering wirtschaftlich?</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.55;margin:0;font-style:italic;">Oft ja. Eine 5 kWp-Anlage von 2005 erzielt heute mit derselben Modulfläche 8–10 kWp, weil moderne Module deutlich leistungsfähiger sind. Dazu kommt höherer Eigenverbrauch statt Einspeisung für 2 ct. Wir rechnen es durch.</p>
+    </div>
+    <div style="background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;margin-bottom:12px;color:#00ffea;opacity:0.8;">► FRAGE</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 14px;">Muss ich eine neue EEG-Anmeldung machen?</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.55;margin:0;font-style:italic;">Bei wesentlicher Änderung der Anlage (neue Module, höhere Leistung) ja. Wir koordinieren die neue Anmeldung beim Netzbetreiber und im Marktstammdatenregister — das gehört für uns dazu.</p>
+    </div>
+    <div style="background:#ff7a00;color:#0a0a0a;border:3px solid #0a0a0a;padding:28px;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;margin-bottom:12px;color:#0a0a0a;opacity:0.8;">► FRAGE</div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;line-height:1;letter-spacing:-0.02em;text-transform:uppercase;margin:0 0 14px;">Wie läuft Modulabbau vor einer Dachsanierung ab?</h3>
+      <p style="font-family:'Instrument Serif',serif;font-size:15px;line-height:1.55;margin:0;font-style:italic;">Wir koordinieren: Abbau durch Fachbetrieb, Zwischenlagerung, Abklärung mit dem Dachdecker, Wiedermontage danach. Alternativ direkt Repowering auf dem neuen Dach — oft günstiger als zweimal montieren.</p>
+    </div>
+  </div>
+</section>
 
-      <Checks />
+<!-- CTA -->
+<section style="padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px);border-bottom:3px solid #0a0a0a;background:#0a0a0a;color:#ffffff;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.5;margin-bottom:8px;">DEINE_ALTE_ANLAGE</div>
+  <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(40px,7vw,96px);line-height:0.9;letter-spacing:-0.04em;text-transform:uppercase;margin:0 0 32px;">JETZT<br><span style="background:#ff7a00;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:skew(-4deg);">ANALYSIEREN.</span></h2>
+  <p style="font-family:'Instrument Serif',serif;font-size:20px;font-style:italic;opacity:0.8;max-width:640px;margin:0 0 32px;">Schick uns Anlagenalter, kWp und ob du noch Monitoring-Daten hast — wir sagen dir in einem Erstgespräch was Sinn macht.</p>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;">
+    <a href="kontakt.html" style="display:inline-block;background:#fdfd00;color:#0a0a0a;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;text-decoration:none;padding:16px 32px;border:3px solid #fdfd00;">KOSTENLOSE ANALYSE</a>
+    <a href="tel:+4999140227560" style="display:inline-block;background:transparent;color:#ffffff;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;text-decoration:none;padding:16px 32px;border:3px solid rgba(255,255,255,0.3);">09991 40227560</a>
+  </div>
+</section>
 
-      <Section kapitel="LEISTUNGEN" title="WAS WIR" italicPart="für dich" blackPart="ÜBERNEHMEN." color={COL.yellow}>
-        <FeatureGrid items={leistungen} cols={3} />
-      </Section>
+<footer style="background:#0a0a0a;color:#ffffff;padding:clamp(40px,6vw,80px) clamp(16px,4vw,48px) 0;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:40px 32px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.15);">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <span style="display:inline-flex;width:18px;height:18px;background:#fdfd00;"></span>
+        <span style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;">SOLAR // RADIKAL</span>
+      </div>
+      <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:15px;line-height:1.6;opacity:0.7;margin:0;">Photovoltaik für Bayern und Baden-Württemberg. Inhabergeführt seit 2022.</p>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">LEISTUNGEN</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="eigenheim.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Eigenheim</a>
+        <a href="gewerbe.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Gewerbe</a>
+        <a href="speicher.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Speicher</a>
+        <a href="ppa.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">PPA</a>
+        <a href="repowering.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Repowering</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">INFOS</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="foerderung.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Förderung</a>
+        <a href="ueber-uns.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Über uns</a>
+        <a href="referenzen.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Referenzen</a>
+        <a href="kontakt.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Kontakt</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">REGIONEN</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <a href="deggendorf.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Deggendorf</a>
+        <a href="straubing.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Straubing</a>
+        <a href="passau.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Passau</a>
+        <a href="regensburg.html" style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#ffffff;text-decoration:none;opacity:0.8;">Regensburg</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;opacity:0.5;margin-bottom:16px;">KONTAKT</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;opacity:0.8;">
+        <a href="tel:+4999140227560" style="color:#ffffff;text-decoration:none;">09991 40227560</a>
+        <a href="mailto:info@pilsner-vertrieb.de" style="color:#ffffff;text-decoration:none;">info@pilsner-vertrieb.de</a>
+        <span>Detterstraße 38<br>94469 Deggendorf</span>
+      </div>
+    </div>
+  </div>
+  <div style="padding:16px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.4;">
+    <span>© 2026 Pilsner Vertriebs GmbH</span>
+    <div style="display:flex;gap:16px;">
+      <a href="impressum.html" style="color:#ffffff;text-decoration:none;">Impressum</a>
+      <a href="datenschutz.html" style="color:#ffffff;text-decoration:none;">Datenschutz</a>
+    </div>
+  </div>
+</footer>
 
-      <Entsorgung />
+<a href="https://wa.me/491753560019" target="_blank" rel="noopener" style="position:fixed;bottom:24px;right:24px;z-index:999;background:#25d366;color:#ffffff;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:28px;text-decoration:none;box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
-      <Process />
-
-      <BigQuote
-        quote="Viele Anlagen aus der Frühzeit laufen noch — aber nicht mehr wirtschaftlich. Wir schauen uns das nüchtern an und sagen dir was sich wirklich lohnt."
-        by="Doris Pilsner-Albrecht"
-        role="Inhaberin Solar Energie Partner"
-        color={COL.cyan}
-      />
-
-      <Faq />
-
-      <Cta
-        kicker="DEINE_ALTE_ANLAGE"
-        big={<>JETZT<br/><span style={{ background: COL.orange, color: COL.black, padding: "0 .1em", display: "inline-block", transform: "skew(-4deg)" }}>ANALYSIEREN.</span></>}
-        sub="Schick uns Anlagenalter, kWp und ob du noch Monitoring-Daten hast — wir sagen dir in einem Erstgespräch was Sinn macht."
-        btn="KOSTENLOSE ANALYSE"
-      />
-    </Page>
-  );
-}
-
-ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+<script>
+(function(){
+  function clk(){var e=document.getElementById('clk');if(e)e.textContent=new Date().toLocaleTimeString('de-DE');}
+  clk();setInterval(clk,1000);
+  document.querySelectorAll('[id^="sun"]').forEach(function(s){
+    for(var i=0;i<36;i++){
+      var a=i*Math.PI*2/36;
+      var l=document.createElementNS('http://www.w3.org/2000/svg','line');
+      l.setAttribute('x1',100+Math.cos(a)*60);l.setAttribute('y1',100+Math.sin(a)*60);
+      l.setAttribute('x2',100+Math.cos(a)*92);l.setAttribute('y2',100+Math.sin(a)*92);
+      l.setAttribute('stroke','#0a0a0a');l.setAttribute('stroke-width','1.5');
+      s.insertBefore(l,s.firstChild);
+    }
+  });
+})();
 </script>
 </body>
 </html>
