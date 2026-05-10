@@ -1,934 +1,1391 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PPA-Rechner — Solar Energie Partner</title>
-<meta name="description" content="PPA-Kalkulator: Berechnen Sie Ihre Stromersparnis mit einem Power Purchase Agreement. Kostenlos, ohne Anmeldung.">
-<meta name="robots" content="noindex">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title id="page-title">Solar Energie Partner — PPA Kalkulator</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 <link rel="stylesheet" href="fonts/fonts.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#fdfd00;color:#0a0a0a;font-family:"Bricolage Grotesque",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:crosshair}
-::selection{background:#0a0a0a;color:#fdfd00}
-button,input,select,textarea{font-family:inherit}
-a{color:inherit}
+:root{--yel:#fdfd00;--blk:#0a0a0a;--cyan:#00ffea;--pink:#ff00aa;--org:#ff7a00;--red:#ff3a1f;--wht:#ffffff;--bg:#f5f5f0;--muted:rgba(10,10,10,0.5)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:15px;scroll-behavior:smooth}
+body{font-family:'JetBrains Mono',monospace;background:var(--bg);color:var(--blk);min-height:100vh;overflow-x:hidden}
 
-/* Noise */
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  opacity:0.4;mix-blend-mode:multiply}
+/* NAV */
+nav{position:sticky;top:0;z-index:300;background:var(--blk);border-bottom:3px solid var(--blk);display:flex;align-items:center;padding:0 1rem;height:52px;gap:.75rem}
+.logo{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:.88rem;display:flex;align-items:center;gap:.5rem;color:var(--wht);flex-shrink:0;text-decoration:none;text-transform:uppercase;letter-spacing:-.02em}
+.logo-icon{width:24px;height:24px;background:var(--yel);display:flex;align-items:center;justify-content:center;font-size:.8rem;flex-shrink:0}
+.logo span{color:var(--yel)}
+.nav-tabs{display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;flex:1;height:100%}
+.nav-tabs::-webkit-scrollbar{display:none}
+.np{padding:0 .9rem;border:none;border-left:2px solid #222;background:transparent;color:rgba(255,255,255,0.55);font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;cursor:pointer;transition:all .13s;white-space:nowrap;flex-shrink:0;text-transform:uppercase;letter-spacing:.05em;height:100%}
+.np:first-child{border-left:none}
+.np:hover{background:#1a1a1a;color:var(--wht)}
+.np.active{background:var(--yel);color:var(--blk)}
 
-/* Nav */
-nav{position:sticky;top:0;z-index:50;background:#0a0a0a;color:#fdfd00;border-bottom:4px solid #fdfd00;
-  padding:0 24px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;
-  font-family:"JetBrains Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fdfd00}
-.nav-logo img{height:52px;width:auto;filter:brightness(0) invert(1)}
-.nav-tabs{display:flex;gap:4px}
-.tab-btn{padding:8px 16px;border:2px solid transparent;background:transparent;color:#fdfd00;
-  font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;text-transform:uppercase;
-  letter-spacing:.05em;cursor:crosshair;transition:all .15s;white-space:nowrap}
-.tab-btn:hover{border-color:#fdfd00}
-.tab-btn.active{background:#fdfd00;color:#0a0a0a;border-color:#fdfd00}
-.tab-btn.admin{color:#ff00aa}
-.tab-btn.admin.active{background:#ff00aa;color:#0a0a0a;border-color:#ff00aa}
-.nav-right{display:flex;gap:12px;align-items:center}
-.nav-back{padding:6px 12px;background:transparent;color:#fdfd00;border:2px solid #fdfd00;
-  text-decoration:none;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
-.nav-back:hover{background:#fdfd00;color:#0a0a0a}
-#admin-gear{padding:6px 10px;background:transparent;color:#ff00aa;border:2px solid #ff00aa;
-  cursor:crosshair;font-size:16px;line-height:1}
-#admin-gear:hover{background:#ff00aa;color:#0a0a0a}
-
-/* Views */
-.view{display:none;min-height:60vh}
+/* VIEWS */
+.view{display:none;position:relative}
 .view.active{display:block}
 
-/* Section headings */
-.sec-label{font-family:"JetBrains Mono",monospace;font-size:12px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:16px;opacity:.7}
-.sec-h{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(48px,8vw,120px);
-  line-height:.85;letter-spacing:-.04em;text-transform:uppercase;margin:0 0 40px}
+/* HERO */
+.hero{text-align:center;padding:1.5rem 1rem 1rem;max-width:600px;margin:0 auto}
+.h-tag{display:inline-flex;align-items:center;gap:.3rem;background:var(--yel);border:2px solid var(--blk);color:var(--blk);font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .7rem;margin-bottom:.65rem}
+.h-title{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(1.45rem,5vw,2.3rem);font-weight:800;line-height:1.1;margin-bottom:.45rem;text-transform:uppercase;letter-spacing:-.03em}
+.h-title .acc{background:var(--yel);padding:0 .08em;color:var(--blk)}
+.h-sub{color:var(--muted);font-size:.79rem;line-height:1.6;margin-bottom:1rem}
+.ai{animation:cardIn .25s ease both}
+@keyframes cardIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-/* Lift hover */
-.lift{transition:transform .15s cubic-bezier(.5,1.5,.5,1),box-shadow .15s}
-.lift:hover{transform:translate(-4px,-4px) rotate(1deg);box-shadow:8px 8px 0 #0a0a0a}
+/* TYPE TOGGLE */
+.type-row{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.2rem}
+.tb{flex:1;max-width:162px;padding:.5rem .85rem;border:2px solid var(--blk);background:var(--wht);color:var(--blk);font-family:'JetBrains Mono',monospace;font-size:.77rem;font-weight:700;cursor:pointer;transition:all .13s;display:flex;align-items:center;justify-content:center;gap:.35rem;text-transform:uppercase}
+.tb:hover{background:var(--blk);color:var(--wht)}
+.tb.active{background:var(--blk);color:var(--yel)}
 
-/* ─── TAB 1: KALKULATOR ─── */
-#view-calc{padding:60px 24px;background:#fdfd00}
-.calc-grid{display:grid;grid-template-columns:1.1fr 1fr .8fr;gap:28px;align-items:stretch}
-.calc-panel{background:#fff;border:3px solid #0a0a0a;padding:28px;position:relative}
-.calc-label{position:absolute;top:-14px;left:16px;padding:0 10px;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;text-transform:uppercase}
-.calc-label.inp{background:#0a0a0a;color:#00ffea}
-.calc-label.res{background:#ff00aa;color:#0a0a0a}
-.calc-result-panel{background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px;position:relative;display:flex;flex-direction:column;justify-content:space-between}
-.calc-right{display:flex;flex-direction:column;gap:0;justify-content:center}
+/* LAYOUT */
+.wrap{max-width:1080px;margin:0 auto;padding:0 1rem 2.5rem;display:grid;grid-template-columns:338px 1fr;gap:1rem;align-items:start}
 
-/* Profile toggle */
-.profile-row{display:inline-flex;border:3px solid #0a0a0a;margin-bottom:24px;background:#fff}
-.profile-btn{padding:10px 22px;border:none;cursor:crosshair;background:transparent;color:#0a0a0a;
-  font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;transition:all .15s}
-.profile-btn.active{background:#0a0a0a;color:#fdfd00}
+/* CARD */
+.card{background:var(--wht);border:2px solid var(--blk);overflow:hidden}
+.c-stripe{height:3px;background:var(--yel)}
+.c-head{padding:.75rem 1.1rem;border-bottom:2px solid var(--blk);display:flex;align-items:center;justify-content:space-between}
+.c-title{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:.84rem;text-transform:uppercase;letter-spacing:-.01em}
+.c-badge{font-size:.61rem;font-weight:800;background:var(--yel);color:var(--blk);padding:.14rem .5rem;border:1.5px solid var(--blk);text-transform:uppercase}
 
-/* Slider */
-.slider-row{margin-bottom:20px}
-.slider-header{display:flex;justify-content:space-between;margin-bottom:6px;font-family:"JetBrains Mono",monospace;font-size:12px;text-transform:uppercase}
-.slider-header .val{font-weight:700}
-input[type=range]{width:100%;height:6px;accent-color:#ff00aa;cursor:crosshair;margin:4px 0}
-.slider-mm{display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:10px;opacity:.5}
-.price-breakdown{margin-top:20px;border-top:2px dashed #0a0a0a;padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.price-label{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;opacity:.6;margin-bottom:2px}
-.price-big{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:40px;font-weight:800;line-height:1}
-.price-sub{font-family:"JetBrains Mono",monospace;font-size:10px;opacity:.6;margin-top:2px}
+/* INPUTS */
+.inputs-card{position:sticky;top:60px}
+.inp-body{padding:.85rem 1.1rem;display:flex;flex-direction:column;gap:.8rem}
+.fld{display:flex;flex-direction:column;gap:.22rem}
+.flbl{font-size:.63rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.fhint{font-size:.61rem;color:var(--muted);font-weight:600;text-transform:none;letter-spacing:0;opacity:.7}
+.inp{background:var(--bg);border:1.5px solid #999;color:var(--blk);font-family:'JetBrains Mono',monospace;font-size:.83rem;font-weight:600;padding:.5rem .8rem;outline:none;transition:all .13s;width:100%}
+.inp:focus{border-color:var(--blk);background:var(--wht);box-shadow:0 0 0 3px rgba(253,253,0,.35)}
+select.inp option{background:var(--wht)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
 
-/* Result */
-.result-label{font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;opacity:.6;margin-bottom:4px}
-.result-big{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(64px,9vw,120px);line-height:.85;letter-spacing:-.04em;color:#00ffea;font-variant-numeric:tabular-nums}
-.result-big .euro{font-size:.4em;color:#ff00aa}
-.result-diff{font-family:"JetBrains Mono",monospace;font-size:11px;opacity:.5;margin-top:8px}
-.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;border-top:1px solid #fdfd00;margin-top:20px;padding-top:20px}
-.result-sub-label{font-family:"JetBrains Mono",monospace;font-size:10px;opacity:.6;text-transform:uppercase}
-.result-sub-val{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:30px;font-variant-numeric:tabular-nums}
-.result-disclaimer{font-family:"JetBrains Mono",monospace;font-size:9px;opacity:.4;margin-top:14px;line-height:1.4;text-transform:uppercase}
-.cta-bar{margin-top:32px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
-.cta-btn{padding:18px 28px;background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;
-  font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;text-transform:uppercase;
-  letter-spacing:.05em;text-decoration:none;cursor:crosshair}
-.cta-btn:hover{background:#ff00aa;color:#0a0a0a;border-color:#ff00aa}
-.calc-bullet{padding-top:24px;padding-bottom:24px;border-top:2px dashed rgba(0,0,0,.15)}
-.calc-bullet:first-child{border-top:none;padding-top:0}
-.calc-bullet-h{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:6px}
-.calc-bullet-b{font-family:"Instrument Serif",serif;font-size:14px;line-height:1.5;opacity:.75}
+/* SLIDER */
+.slw{display:flex;flex-direction:column;gap:.28rem}
+.sl-top{display:flex;justify-content:space-between;align-items:baseline}
+.sl-lbl{font-size:.61rem;color:var(--muted);font-weight:600}
+.sl-val{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.92rem;font-weight:800;color:var(--blk)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:4px;background:linear-gradient(to right,var(--blk) var(--pct,50%),#ccc var(--pct,50%));border:none;padding:0;cursor:pointer;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;background:var(--yel);border:2px solid var(--blk);border-radius:0;cursor:pointer;transition:transform .1s}
+input[type=range]::-webkit-slider-thumb:active{transform:scale(1.15)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;background:var(--yel);border:2px solid var(--blk);border-radius:0;cursor:pointer}
+.sl-mm{display:flex;justify-content:space-between;font-size:.58rem;color:var(--muted);font-weight:600}
+.divider{height:1px;background:rgba(10,10,10,.15);margin:.2rem 0}
+.g-lbl{font-size:.61rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 
-/* ─── TAB 2: CO2 ─── */
-#view-co2{padding:60px 24px;background:#00ffea}
-.co2-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:32px}
-.co2-card{background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px}
-.co2-num{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(56px,8vw,100px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-.co2-unit{font-family:"JetBrains Mono",monospace;font-size:14px;opacity:.7;margin-top:8px;text-transform:uppercase}
-.co2-chart-wrap{background:#fff;border:3px solid #0a0a0a;padding:24px;margin-top:28px}
-.co2-equiv{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.co2-eq-card{background:#fdfd00;border:3px solid #0a0a0a;padding:20px;text-align:center;transform:rotate(-1deg)}
-.co2-eq-icon{font-size:32px;margin-bottom:8px}
-.co2-eq-num{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:28px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
-.co2-eq-label{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;opacity:.7;margin-top:4px}
+/* TYPE BANNERS */
+.t-banner{border:2px solid var(--blk);padding:.6rem .85rem;font-size:.71rem;font-weight:700;display:flex;align-items:flex-start;gap:.45rem;line-height:1.5}
+.t-banner.p{background:#fffde0}
+body.is-gew .t-banner.p{display:none}
+.t-banner.g{display:none;background:#d8fff8}
+body.is-gew .t-banner.g{display:flex}
+.gew-only{display:none}
+body.is-gew .gew-only{display:flex}
 
-/* ─── TAB 3: ANGEBOT ─── */
-#view-angebot{padding:60px 24px;background:#ff00aa}
-.angebot-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:32px}
-.form-card{background:#fff;border:3px solid #0a0a0a;padding:28px}
-.form-label{font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:700;margin-bottom:6px;display:block;opacity:.7}
-.form-input{width:100%;padding:12px 16px;margin-bottom:14px;background:#fdfd00;border:3px solid #0a0a0a;
-  color:#0a0a0a;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;
-  text-transform:uppercase;outline:none;box-sizing:border-box}
-.form-input:focus{background:#fff;box-shadow:4px 4px 0 #0a0a0a}
-.form-input::placeholder{opacity:.5}
-select.form-input{cursor:crosshair}
-.form-submit{width:100%;padding:18px;background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;
-  font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:18px;font-weight:800;
-  text-transform:uppercase;cursor:crosshair;margin-top:8px}
-.form-submit:hover{background:#fdfd00;color:#0a0a0a}
-.angebot-summary{background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px}
-.summary-row{display:flex;justify-content:space-between;border-top:1px solid rgba(253,253,0,.2);padding:10px 0;font-family:"JetBrains Mono",monospace;font-size:12px}
-.summary-row:first-child{border-top:none;padding-top:0}
-.summary-key{opacity:.6;text-transform:uppercase}
-.summary-val{font-weight:700;color:#00ffea}
-.angebot-ok{display:none;background:#00ffea;color:#0a0a0a;border:3px solid #0a0a0a;padding:28px;font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:28px;font-weight:800;text-transform:uppercase}
+/* CHIPS */
+.chips{display:flex;gap:.25rem;flex-wrap:wrap}
+.chip{padding:.2rem .55rem;font-size:.63rem;font-weight:800;cursor:pointer;border:1.5px solid var(--blk);background:var(--wht);color:var(--blk);transition:all .13s;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.chip:hover,.chip.on{background:var(--yel)}
+body.is-gew .chip:hover,body.is-gew .chip.on{background:var(--cyan)}
 
-/* ─── TAB 4: ROI (ADMIN) ─── */
-#view-roi{padding:60px 24px;background:#0a0a0a;color:#fdfd00}
-.roi-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:32px}
-.roi-card{background:#1a1a1a;border:3px solid #fdfd00;padding:24px}
-.roi-num{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:clamp(48px,7vw,80px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:#00ffea}
-.roi-label{font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;opacity:.6;margin-top:8px}
-.roi-chart-wrap{background:#1a1a1a;border:3px solid #fdfd00;padding:24px;margin-top:28px}
-.roi-table{width:100%;border-collapse:collapse;margin-top:16px;font-family:"JetBrains Mono",monospace;font-size:12px}
-.roi-table th{background:#fdfd00;color:#0a0a0a;padding:10px 14px;text-align:left;font-weight:700;text-transform:uppercase}
-.roi-table td{padding:10px 14px;border-top:1px solid rgba(253,253,0,.2);color:#fdfd00}
-.roi-table tr:hover td{background:rgba(253,253,0,.08)}
-.roi-inputs{background:#1a1a1a;border:3px solid #ff00aa;padding:24px;margin-top:28px}
-.roi-input{width:100%;padding:10px 14px;margin-bottom:12px;background:#0a0a0a;border:2px solid #fdfd00;
-  color:#fdfd00;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;outline:none;box-sizing:border-box}
-.roi-input:focus{border-color:#00ffea}
-.roi-input::placeholder{opacity:.4}
-.roi-calc-btn{padding:14px 24px;background:#ff00aa;color:#0a0a0a;border:3px solid #ff00aa;
-  font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;text-transform:uppercase;cursor:crosshair}
-.roi-calc-btn:hover{background:#fdfd00;border-color:#fdfd00}
+/* CALC BTN */
+.calc-btn{width:100%;background:var(--yel);color:var(--blk);border:2px solid var(--blk);padding:.72rem;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.9rem;font-weight:800;cursor:pointer;transition:all .13s;display:flex;align-items:center;justify-content:center;gap:.38rem;text-transform:uppercase}
+.calc-btn:hover{background:var(--blk);color:var(--yel)}
 
-/* ─── TAB 5: ARGUMENTE (ADMIN) ─── */
-#view-args{padding:60px 24px;background:#ff7a00}
-.args-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
-.arg-card{background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:24px}
-.arg-card.yellow{background:#fdfd00;color:#0a0a0a}
-.arg-card.pink{background:#ff00aa;color:#0a0a0a}
-.arg-card.cyan{background:#00ffea;color:#0a0a0a}
-.arg-tag{font-family:"JetBrains Mono",monospace;font-size:10px;text-transform:uppercase;font-weight:700;opacity:.7;margin-bottom:8px}
-.arg-h{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:22px;line-height:.9;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:10px}
-.arg-body{font-family:"Instrument Serif",serif;font-size:14px;line-height:1.45}
-.arg-stat{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:36px;line-height:1;letter-spacing:-.03em;color:#00ffea;margin-top:12px;font-variant-numeric:tabular-nums}
-.arg-card.yellow .arg-stat,.arg-card.pink .arg-stat,.arg-card.cyan .arg-stat{color:#0a0a0a}
-.objections{margin-top:32px;background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px}
-.obj-h{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:28px;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:20px}
-details.obj{border:2px solid rgba(253,253,0,.3);margin-bottom:10px;background:transparent}
-details.obj[open]{background:rgba(253,253,0,.08)}
-details.obj>summary{padding:14px 18px;cursor:crosshair;list-style:none;font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;text-transform:uppercase;color:#fdfd00;display:flex;justify-content:space-between;align-items:center}
-details.obj>summary::-webkit-details-marker{display:none}
-details.obj>summary::after{content:"+";font-size:18px;transition:transform .2s;flex-shrink:0}
-details.obj[open]>summary::after{transform:rotate(45deg)}
-details.obj>p{padding:0 18px 14px;margin:0;font-family:"Instrument Serif",serif;font-size:14px;line-height:1.5;color:#fdfd00;opacity:.85}
+/* GEWERBE */
+body.is-gew .c-stripe{background:var(--cyan)}
+body.is-gew .c-badge{background:var(--cyan)}
+body.is-gew .np.active{background:var(--cyan);color:var(--blk)}
+body.is-gew .total-card{background:var(--cyan)}
+body.is-gew .calc-btn{background:var(--cyan)}
 
-/* ─── ADMIN LOGIN MODAL ─── */
-#login-modal{display:none;position:fixed;inset:0;z-index:999;background:rgba(10,10,10,.92);
-  align-items:center;justify-content:center}
-#login-modal.show{display:flex}
-.modal-box{background:#fdfd00;border:4px solid #0a0a0a;padding:40px;width:100%;max-width:400px;box-shadow:8px 8px 0 #0a0a0a}
-.modal-h{font-family:"Bricolage Grotesque",system-ui,sans-serif;font-weight:800;font-size:32px;text-transform:uppercase;letter-spacing:-.03em;margin-bottom:8px}
-.modal-sub{font-family:"JetBrains Mono",monospace;font-size:11px;opacity:.6;text-transform:uppercase;margin-bottom:24px}
-.modal-input{width:100%;padding:14px 16px;margin-bottom:16px;background:#fff;border:3px solid #0a0a0a;
-  color:#0a0a0a;font-family:"JetBrains Mono",monospace;font-size:14px;font-weight:700;outline:none;box-sizing:border-box}
-.modal-input:focus{box-shadow:4px 4px 0 #0a0a0a}
-.modal-btn{width:100%;padding:16px;background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;
-  font-family:"Bricolage Grotesque",system-ui,sans-serif;font-size:18px;font-weight:800;text-transform:uppercase;cursor:crosshair}
-.modal-btn:hover{background:#ff00aa;color:#0a0a0a;border-color:#ff00aa}
-.modal-err{display:none;padding:8px 12px;background:#ff3a1f;color:#fff;font-family:"JetBrains Mono",monospace;font-size:12px;margin-bottom:12px}
-.modal-cancel{width:100%;padding:10px;background:transparent;color:#0a0a0a;border:none;
-  font-family:"JetBrains Mono",monospace;font-size:11px;cursor:crosshair;margin-top:8px;text-transform:uppercase;opacity:.6}
-.modal-cancel:hover{opacity:1}
+/* RESULTS */
+.res-col{display:flex;flex-direction:column;gap:.85rem}
+.placeholder{background:var(--wht);border:2px solid var(--blk);padding:2.5rem 1.5rem;text-align:center}
+.ph-i{font-size:2rem;opacity:.35;margin-bottom:.55rem}
+.ph-t{color:var(--muted);font-size:.84rem;line-height:1.6}
 
-/* WhatsApp */
-.wa-btn{position:fixed;bottom:24px;right:24px;z-index:200;width:56px;height:56px;border-radius:50%;
-  background:#25D366;border:3px solid #0a0a0a;display:flex;align-items:center;justify-content:center;
-  box-shadow:4px 4px 0 #0a0a0a;text-decoration:none;transition:transform .15s cubic-bezier(.5,1.5,.5,1)}
-.wa-btn:hover{transform:translate(-3px,-3px)}
+/* TOTAL CARD */
+.total-card{background:var(--yel);border:2px solid var(--blk);padding:1.25rem;display:grid;grid-template-columns:1fr auto;gap:.85rem;align-items:center}
+.tc-tag{font-size:.61rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--blk);opacity:.7;margin-bottom:.2rem}
+.tc-amt{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(1.5rem,4vw,2.2rem);font-weight:800;color:var(--blk);line-height:1;margin-bottom:.15rem}
+.tc-sub{font-size:.69rem;color:rgba(10,10,10,.6);font-weight:600}
+.tc-r{text-align:right}
+.tc-at{font-size:.6rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--blk);opacity:.7;margin-bottom:.15rem}
+.tc-av{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.35rem;font-weight:800;color:var(--blk)}
+.tc-as{font-size:.64rem;color:rgba(10,10,10,.6);font-weight:600;margin-top:.1rem}
 
-@media(max-width:768px){
-  .calc-grid,.co2-grid,.angebot-grid,.roi-grid,.args-grid,.co2-equiv{grid-template-columns:1fr !important}
-  nav .nav-tabs{display:none}
-  .mobile-tabs{display:flex;overflow-x:auto;gap:4px;padding:8px 16px;background:#0a0a0a;border-bottom:4px solid #fdfd00}
-  .mobile-tabs .tab-btn{flex-shrink:0}
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.kpi{background:var(--wht);border:2px solid var(--blk);padding:.85rem;transition:transform .13s}
+.kpi:hover{transform:translateY(-1px)}
+.ki{font-size:1.05rem;margin-bottom:.25rem}
+.kl{font-size:.61rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.18rem}
+.kv{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.1rem;font-weight:800;line-height:1}
+.kv.gr{color:#007a60}.kv.su{color:#7a6000}.kv.re{color:var(--red)}.kv.bl{color:var(--pink)}
+.ks{font-size:.64rem;color:var(--muted);margin-top:.18rem;font-weight:600}
+.kpi.ag{background:#d8fff8}
+.kpi.as{background:#fffde0}
+.kpi.ar{background:#fff0ee}
+
+/* COMPARE */
+.cmp-head{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--bg);border-bottom:2px solid var(--blk);padding:.5rem 1rem}
+.chc{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.chc.r{color:var(--red)}.chc.g{color:#007a60}
+.cmp-row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:.55rem 1rem;border-bottom:1px solid rgba(10,10,10,.1)}
+.cmp-row:last-child{border:none}
+.cmp-row:nth-child(even){background:#fafaf8}
+.crc{font-size:.74rem;font-weight:600}
+.crc.lbl{color:var(--muted);font-size:.69rem}
+.crc.r{color:var(--red)}.crc.g{color:#007a60}
+.cr-badge{display:inline-block;background:var(--yel);border:1px solid var(--blk);color:var(--blk);font-size:.57rem;font-weight:800;padding:.03rem .33rem;margin-left:.2rem}
+
+/* CHART */
+.chart-box{padding:.75rem 1.1rem .95rem;height:185px;position:relative}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:.72rem}
+thead th{padding:.5rem .85rem;background:var(--blk);color:var(--yel);border-bottom:2px solid var(--blk);text-align:right;white-space:nowrap;font-size:.61rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-family:'JetBrains Mono',monospace}
+thead th:first-child{text-align:left}
+tbody td{padding:.5rem .85rem;border-bottom:1px solid rgba(10,10,10,.08);text-align:right;font-weight:600}
+tbody td:first-child{text-align:left;color:var(--muted);font-weight:700}
+tbody tr:last-child td{border:none}
+tbody tr:hover td{background:#fafaf8}
+.tg{color:#007a60!important}.ts{color:#7a6000!important}.tr{color:var(--red)!important}
+
+/* CO2 */
+.inner-wrap{max-width:820px;margin:0 auto;padding:0 1rem 2.5rem}
+.co2-hero{background:var(--cyan);border:2px solid var(--blk);padding:1.6rem;margin-bottom:1rem;text-align:center}
+.co2-big{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(2rem,7vw,3.5rem);font-weight:800;color:var(--blk)}
+.co2-sub{font-size:.82rem;color:rgba(10,10,10,.6);margin-top:.28rem;font-weight:600}
+.pbar-bg{background:rgba(10,10,10,.2);height:6px;overflow:hidden;margin-top:.8rem}
+.pbar{height:100%;background:var(--blk);transition:width .8s ease}
+.co2-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.6rem;margin-bottom:1rem}
+.co2-card{background:var(--wht);border:2px solid var(--blk);padding:1rem;text-align:center;transition:transform .13s}
+.co2-card:hover{transform:translateY(-2px)}
+.co2-icon{font-size:1.8rem;margin-bottom:.35rem}
+.co2-num{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.3rem;font-weight:800;color:var(--blk);margin-bottom:.15rem}
+.co2-lbl{font-size:.69rem;color:var(--muted);font-weight:600;line-height:1.4}
+.co2-info{background:var(--yel);border:2px solid var(--blk);padding:.9rem 1.1rem;font-size:.78rem;color:var(--blk);line-height:1.6;font-weight:700}
+
+/* PDF */
+.pdf-wrap{max-width:720px;margin:0 auto;padding:0 1rem 2.5rem}
+.logo-zone{border:2px dashed #999;padding:1rem;text-align:center;cursor:pointer;transition:all .18s;background:var(--bg);margin-bottom:1rem}
+.logo-zone:hover,.logo-zone.drag{border-color:var(--blk);border-style:solid;background:#fffde0}
+.logo-zone-inner{pointer-events:none}
+.logo-pos-row{display:flex;gap:.35rem;align-items:center;margin-bottom:1rem;flex-wrap:wrap}
+.lp-btn{padding:.24rem .64rem;border:1.5px solid var(--blk);background:var(--wht);color:var(--blk);font-size:.67rem;font-weight:700;cursor:pointer;transition:all .13s;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.lp-btn:hover,.lp-btn.on{background:var(--yel)}
+.pdf-form{background:var(--wht);border:2px solid var(--blk);padding:1.25rem;margin-bottom:1rem}
+.pdf-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.pf{display:flex;flex-direction:column;gap:.22rem}
+.pl{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.pi{background:var(--bg);border:1.5px solid #999;color:var(--blk);font-family:'JetBrains Mono',monospace;font-size:.83rem;font-weight:600;padding:.5rem .8rem;outline:none;transition:all .13s;width:100%}
+.pi:focus{border-color:var(--blk);background:var(--wht)}
+.pdf-btn{width:100%;background:var(--yel);color:var(--blk);border:2px solid var(--blk);padding:.75rem;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.88rem;font-weight:800;cursor:pointer;transition:all .13s;display:flex;align-items:center;justify-content:center;gap:.42rem;margin-top:.65rem;text-transform:uppercase}
+.pdf-btn:hover{background:var(--blk);color:var(--yel)}
+.pdf-preview{background:var(--wht);border:2px solid var(--blk);overflow:hidden}
+.pdf-inner{padding:1.6rem;font-size:.82rem}
+
+/* ARGS */
+.args-wrap{max-width:820px;margin:0 auto;padding:0 1rem 2.5rem}
+.ast{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:.92rem;margin-bottom:.85rem;display:flex;align-items:center;gap:.45rem;text-transform:uppercase;letter-spacing:-.01em}
+.args-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.25rem}
+.arg-card{background:var(--wht);border:2px solid var(--blk);padding:.9rem;display:flex;gap:.65rem;transition:transform .13s}
+.arg-card:hover{transform:translateY(-1px)}
+.a-icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.9rem;border:2px solid var(--blk)}
+.a-icon.g{background:var(--cyan)}.a-icon.s{background:var(--yel)}
+.a-tit{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:.82rem;margin-bottom:.14rem;text-transform:uppercase}
+.a-desc{font-size:.72rem;color:var(--muted);line-height:1.5}
+.obj-card{background:var(--bg);border:2px solid var(--blk);padding:1.1rem}
+.obj-tit{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:.88rem;color:var(--blk);margin-bottom:.75rem;display:flex;align-items:center;gap:.38rem;text-transform:uppercase}
+.obj-it{margin-bottom:.72rem}
+.obj-q{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:.79rem;color:var(--blk);margin-bottom:.16rem}
+.obj-a{font-size:.74rem;color:var(--muted);line-height:1.5}
+
+/* UTILS */
+.print-btn{display:flex;align-items:center;gap:.25rem;padding:.28rem .68rem;border:1.5px solid var(--blk);background:var(--wht);color:var(--blk);font-size:.66rem;font-weight:700;cursor:pointer;transition:all .13s;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.print-btn:hover{background:var(--yel)}
+.sec-btn{background:transparent;border:1.5px solid var(--blk);color:var(--blk);padding:.5rem .9rem;font-family:'JetBrains Mono',monospace;font-size:.77rem;font-weight:700;cursor:pointer;transition:all .13s;text-transform:uppercase}
+.sec-btn:hover{background:var(--blk);color:var(--wht)}
+.prim-btn{background:var(--yel);color:var(--blk);border:2px solid var(--blk);padding:.5rem 1.1rem;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.8rem;font-weight:800;cursor:pointer;transition:all .13s;text-transform:uppercase}
+.prim-btn:hover{background:var(--blk);color:var(--yel)}
+.toast{position:fixed;bottom:1.5rem;right:1.5rem;z-index:1000;background:var(--blk);border:2px solid var(--yel);color:var(--yel);padding:.8rem 1.2rem;font-size:.79rem;font-weight:700;display:flex;align-items:center;gap:.4rem;transform:translateY(80px);opacity:0;transition:all .3s cubic-bezier(.34,1.56,.64,1);font-family:'JetBrains Mono',monospace}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal{background:var(--wht);border:2px solid var(--blk);padding:1.5rem;width:90%;max-width:520px;transform:scale(.95);transition:transform .2s;max-height:90vh;overflow-y:auto}
+.modal-ov.open .modal{transform:scale(1)}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.1rem}
+.modal-title{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:1rem;text-transform:uppercase;letter-spacing:-.02em}
+.modal-close{width:28px;height:28px;background:var(--bg);border:2px solid var(--blk);color:var(--blk);cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.mf{display:flex;flex-direction:column;gap:.22rem}
+.mf.full{grid-column:1/-1}
+.ml{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.mi{background:var(--bg);border:1.5px solid #999;color:var(--blk);font-family:'JetBrains Mono',monospace;font-size:.83rem;font-weight:600;padding:.5rem .8rem;outline:none;transition:all .13s;width:100%}
+.mi:focus{border-color:var(--blk)}
+select.mi option{background:var(--wht)}
+.mi-area{min-height:60px;resize:vertical}
+.modal-btns{display:flex;justify-content:flex-end;gap:.5rem;margin-top:1rem;padding-top:1rem;border-top:2px solid rgba(10,10,10,.1)}
+
+/* STATUS BADGES */
+.badge{display:inline-flex;align-items:center;gap:.25rem;padding:.18rem .5rem;font-size:.64rem;font-weight:700;border:1.5px solid var(--blk);background:var(--bg)}
+.badge::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0}
+
+/* TABLE TOGGLE */
+.tbl-toggle{display:flex;gap:.25rem}
+.tbl-tog-btn{padding:.22rem .62rem;border:1.5px solid var(--blk);background:transparent;color:var(--blk);font-size:.66rem;font-weight:700;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:all .13s;text-transform:uppercase}
+.tbl-tog-btn:hover,.tbl-tog-btn.on{background:var(--yel)}
+
+/* ROI pill */
+.roi-pill.active{background:var(--blk)!important;color:var(--yel)!important}
+
+/* PRICE HINT */
+.price-hint{font-size:.65rem;font-weight:700;margin-top:.2rem;display:flex;align-items:center;gap:.3rem}
+
+/* FOOTER */
+footer{background:var(--blk);color:rgba(255,255,255,.6);border-top:2px solid var(--blk);padding:.6rem 1.25rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-family:'JetBrains Mono',monospace;font-size:.68rem}
+footer a{color:rgba(255,255,255,.5);text-decoration:none}
+footer a:hover{color:var(--yel)}
+
+/* PDF highlight grid */
+.pdf-highlight-grid{grid-template-columns:repeat(3,1fr)}
+
+/* PASSWORD MODAL */
+#pw-modal{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:600;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s}
+#pw-modal.open{opacity:1;pointer-events:all}
+#pw-box{background:var(--blk);border:3px solid var(--yel);padding:2rem;width:90%;max-width:380px}
+#pw-box h2{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:1.1rem;text-transform:uppercase;color:var(--yel);margin-bottom:.25rem}
+#pw-box p{font-size:.72rem;color:rgba(255,255,255,.5);margin-bottom:1rem}
+#pw-inp{width:100%;background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.2);color:var(--wht);font-family:'JetBrains Mono',monospace;font-size:.9rem;padding:.65rem .85rem;outline:none;transition:border-color .15s}
+#pw-inp:focus{border-color:var(--yel)}
+#pw-btn{width:100%;margin-top:.75rem;background:var(--yel);color:var(--blk);border:none;padding:.7rem;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.88rem;font-weight:800;cursor:pointer;text-transform:uppercase;transition:opacity .15s}
+#pw-btn:hover{opacity:.85}
+#pw-error{display:none;background:var(--red);color:var(--wht);padding:.4rem .8rem;font-size:.73rem;font-weight:700;margin-top:.6rem}
+#pw-cancel{width:100%;margin-top:.4rem;background:transparent;border:1.5px solid rgba(255,255,255,.2);color:rgba(255,255,255,.5);padding:.5rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;cursor:pointer;text-transform:uppercase;transition:all .13s}
+#pw-cancel:hover{border-color:rgba(255,255,255,.5);color:var(--wht)}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .wrap{grid-template-columns:1fr;padding:0 1rem 2rem}
+  .inputs-card{position:static}
+  .sz-grid,.pdf-grid,.kpi-grid{grid-template-columns:1fr 1fr}
+  .total-card{grid-template-columns:1fr;gap:.55rem}
+  .tc-r{text-align:left}
+  .co2-grid{grid-template-columns:1fr 1fr}
+  #roi-layout{grid-template-columns:1fr!important}
+  #roi-total-box{grid-template-columns:1fr!important;text-align:left!important}
+  #roi-total-box>div{text-align:left!important}
+  #schere-stats{grid-template-columns:1fr!important}
+  #schere-stats>div{border-right:none!important;border-bottom:1px solid rgba(10,10,10,.1)}
+  #roi-summary-grid{grid-template-columns:1fr!important}
+  .args-grid{grid-template-columns:1fr}
+  .sz-crow{font-size:.7rem;padding:.5rem .7rem}
+  #roi-charts-grid{grid-template-columns:1fr!important}
 }
+@media(max-width:480px){
+  .hero{padding:1.2rem .9rem .8rem}
+  .h-title{font-size:1.35rem}
+  .np{padding:0 .6rem;font-size:.66rem}
+  .kpi-grid,.co2-grid,.args-grid{grid-template-columns:1fr 1fr}
+  .frow{grid-template-columns:1fr}
+  .sz-crow{font-size:.63rem;padding:.4rem .55rem}
+  .tb{font-size:.75rem;padding:.46rem .6rem}
+  #schere-stats{grid-template-columns:1fr!important}
+  .pdf-highlight-grid{grid-template-columns:1fr!important}
+  .tc-av{font-size:1.2rem}
+  .tc-amt{font-size:1.4rem}
+}
+@media(max-width:360px){
+  .type-row{flex-direction:column;align-items:center}
+  .tb{max-width:none;width:100%}
+  .kpi-grid{grid-template-columns:1fr}
+  .tc-amt{font-size:1.25rem}
+}
+@media print{
+  nav,.inputs-card,.print-btn,.type-row,.modal-ov,footer,
+  .card.ai:not(.print-keep),.placeholder,#view-co2,#view-pdf,#view-roi,#view-args,#pw-modal{display:none!important}
+  .wrap{display:block!important;padding:0}
+  body{background:white!important;font-size:11pt}
+  .res-col{display:block!important}
+  .total-card{break-inside:avoid}
+  .kpi-grid{display:grid!important;grid-template-columns:1fr 1fr!important;break-inside:avoid}
+  .card{box-shadow:none!important;border:1px solid #ccc!important;break-inside:avoid;margin-bottom:12pt}
+  table{font-size:9pt}
+  .chart-box{height:160px!important}
+  .print-keep{display:block!important}
+  .print-header{display:block!important}
+}
+.print-header{display:none}
 </style>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
-<nav>
-  <a href="index.html" class="nav-logo">
-    <img src="logo.png" alt="Solar Energie Partner">
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.7">PPA-RECHNER</span>
-  </a>
-  <div class="nav-tabs">
-    <button class="tab-btn active" onclick="showTab('calc',this)">⚡ Kalkulator</button>
-    <button class="tab-btn" onclick="showTab('co2',this)">🌱 CO₂</button>
-    <button class="tab-btn" onclick="showTab('angebot',this)">📋 Angebot</button>
-    <button class="tab-btn admin" id="roi-tab-btn" onclick="requireAdmin('roi',this)">🔒 Mein ROI</button>
-    <button class="tab-btn admin" id="args-tab-btn" onclick="requireAdmin('args',this)">🔒 Argumente</button>
+<!-- PASSWORD MODAL -->
+<div id="pw-modal">
+  <div id="pw-box">
+    <h2>🔒 INTERNER BEREICH</h2>
+    <p>Dieser Bereich ist nur für interne Nutzung durch Solar Energie Partner.</p>
+    <input type="password" id="pw-inp" placeholder="Passwort eingeben…" onkeydown="if(event.key==='Enter')checkPW()">
+    <button id="pw-btn" onclick="checkPW()">ENTSPERREN →</button>
+    <div id="pw-error">⚠ Falsches Passwort</div>
+    <button id="pw-cancel" onclick="closePW()">ABBRECHEN</button>
   </div>
-  <div class="nav-right">
-    <a href="index.html" class="nav-back">← Zurück</a>
-    <button id="admin-gear" title="Admin-Bereich" onclick="openLogin()">⚙</button>
+</div>
+
+<!-- PRINT HEADER -->
+<div class="print-header" style="padding:1rem 1.5rem;border-bottom:3px solid #fdfd00;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;background:#0a0a0a;color:#ffffff">
+  <div>
+    <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.2rem;font-weight:800;color:#fdfd00;text-transform:uppercase" id="ph-company">Solar Energie Partner</div>
+    <div style="font-size:.78rem;color:rgba(255,255,255,.5)">PPA Kalkulator — Ausdruck vom <span id="ph-date"></span></div>
+  </div>
+  <div style="text-align:right;font-size:.78rem;color:rgba(255,255,255,.5)" id="ph-advisor-info"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html"><div class="logo-icon">⚡</div>Solar<span>// PPA</span></a>
+  <div class="nav-tabs">
+    <button class="np active" onclick="sv('calc',this)">⚡ Kalkulator</button>
+    <button class="np" onclick="sv('co2',this)">🌱 CO₂</button>
+    <button class="np" onclick="sv('pdf',this)">📄 Angebot</button>
+    <button class="np roi-pill" onclick="sv('roi',this)">🔒 Mein ROI</button>
+    <button class="np" onclick="sv('args',this)">🔒 Argumente</button>
   </div>
 </nav>
 
-<!-- Mobile tabs -->
-<div class="mobile-tabs" style="display:none">
-  <button class="tab-btn active" onclick="showTab('calc',this)">⚡ Kalk.</button>
-  <button class="tab-btn" onclick="showTab('co2',this)">🌱 CO₂</button>
-  <button class="tab-btn" onclick="showTab('angebot',this)">📋 Angebot</button>
-  <button class="tab-btn admin" onclick="requireAdmin('roi',this)">🔒 ROI</button>
-  <button class="tab-btn admin" onclick="requireAdmin('args',this)">🔒 Args</button>
-</div>
-
-<!-- ══════════════════════════════════════════
-     TAB 1 — KALKULATOR
-══════════════════════════════════════════ -->
+<!-- ══════ KALKULATOR ══════ -->
 <div id="view-calc" class="view active">
-  <div class="sec-label">░░░ RECHNER_v3.0 ░░░ LIVE ░░░ KEINE_ANMELDUNG ░░░</div>
-  <div class="sec-h">
-    <span style="background:#0a0a0a;color:#fdfd00;padding:0 .1em;display:inline-block;transform:rotate(-1deg)">WAS</span> sparst du?<br>
-    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;font-size:.7em">schieb den</span>
-    <span style="background:#ff00aa;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:skew(-4deg);font-size:.7em">REGLER.</span>
+  <div class="hero">
+    <div class="h-tag">⚡ PPA — Power Purchase Agreement</div>
+    <h1 class="h-title">Wie viel sparen Sie<br>mit <span class="acc">Solar-PPA?</span></h1>
+    <p class="h-sub" id="hero-sub">Verbrauch eingeben — sofort sehen was Sie gegenüber Netzstrom sparen.</p>
+    <div class="type-row">
+      <button class="tb active" id="btn-p" onclick="setType('p')"><span>🏠</span> Privatkunde</button>
+      <button class="tb" id="btn-g" onclick="setType('g')"><span>🏢</span> Gewerbekunde</button>
+    </div>
   </div>
-
-  <div class="profile-row">
-    <button class="profile-btn" data-profile="eigenheim" onclick="setProfile('eigenheim')">■ EIGENHEIM</button>
-    <button class="profile-btn active" data-profile="gewerbe" onclick="setProfile('gewerbe')">■ GEWERBE</button>
-  </div>
-
-  <div class="calc-grid">
-    <!-- LEFT: Inputs -->
-    <div class="calc-panel">
-      <div class="calc-label inp">► EINGABE</div>
-      <div class="slider-row">
-        <div class="slider-header">
-          <span>JAHRESVERBRAUCH</span>
-          <span class="val" id="kwh-display">80.000 kWh</span>
-        </div>
-        <input type="range" id="kwh-slider" min="20000" max="2000000" step="10000" value="80000" oninput="updateCalc()">
-        <div class="slider-mm"><span id="kwh-min">20.000</span><span id="kwh-max">2.000.000</span></div>
+  <div class="wrap">
+    <!-- INPUTS -->
+    <div class="card inputs-card">
+      <div class="c-stripe"></div>
+      <div class="c-head">
+        <div class="c-title" id="panel-title">🏠 Privatkunde</div>
+        <div class="c-badge" id="type-badge">Privat</div>
       </div>
+      <div class="inp-body">
+        <div class="t-banner p"><span>🏠</span><div><strong>Privatkunde:</strong> 2.000–40.000 kWh/Jahr, 5–30 kWp, Eigenverbrauch ca. 25–40 %.</div></div>
+        <div class="t-banner g"><span>🏢</span><div><strong>Gewerbekunde:</strong> 50.000–2.000.000 kWh/Jahr, 50–2.000 kWp, Eigenverbrauch 60–85 %.</div></div>
 
-      <div class="slider-row" style="border-top:2px dashed #0a0a0a;padding-top:20px">
-        <div class="slider-header">
-          <span>NETZSTROMPREIS</span>
-          <span class="val" id="netz-display">31,0 ct/kWh</span>
+        <div class="fld">
+          <div class="flbl">👤 Für wen rechnen wir?</div>
+          <input class="inp" type="text" id="kunde-name" placeholder="Kundenname eingeben…"
+            oninput="document.getElementById('pdf-name').value=this.value||'Max Mustermann GmbH';renderPDF()"
+            style="border-color:#fdfd00;background:#fffde0;font-weight:700">
         </div>
-        <input type="range" id="netz-slider" min="0.20" max="0.50" step="0.005" value="0.31" oninput="updateCalc()" style="accent-color:#ff3a1f">
-        <div class="slider-mm"><span>20 ct</span><span>50 ct</span></div>
+
+        <div class="fld"><div class="flbl">Schnellauswahl <span class="fhint" id="kwh-hint">kWh/Jahr</span></div><div class="chips" id="sc-chips"></div></div>
+
+        <div class="fld">
+          <div class="flbl">Jahresstromverbrauch
+            <span style="display:flex;gap:.3rem;align-items:center">
+              <button id="mode-kwh" onclick="setInputMode('kwh')" style="font-size:.61rem;font-weight:800;padding:.14rem .48rem;border:1.5px solid #fdfd00;background:#fdfd00;color:#0a0a0a;cursor:pointer;font-family:'JetBrains Mono',monospace">kWh</button>
+              <button id="mode-abschl" onclick="setInputMode('abschl')" style="font-size:.61rem;font-weight:800;padding:.14rem .48rem;border:1.5px solid #999;background:transparent;color:var(--muted);cursor:pointer;font-family:'JetBrains Mono',monospace">€/Monat</button>
+            </span>
+          </div>
+          <div id="mode-kwh-wrap">
+            <div class="slw"><div class="sl-top"><span class="sl-lbl">kWh/Jahr</span><span class="sl-val" id="kwh-d">4.500 kWh</span></div>
+              <input type="range" id="kwh-sl" min="1000" max="40000" value="4500" step="500" oninput="ss(this,'kwh-n','kwh-d',v=>fn(v)+' kWh');upd()">
+              <div class="sl-mm"><span id="kwh-min">1.000</span><span id="kwh-max">40.000</span></div>
+            </div>
+            <input class="inp" type="number" id="kwh-n" value="4500" oninput="ns(this,'kwh-sl','kwh-d',v=>fn(v)+' kWh');upd()">
+          </div>
+          <div id="mode-abschl-wrap" style="display:none">
+            <div style="font-size:.71rem;color:var(--muted);margin-bottom:.3rem">Monatlicher Abschlag → Jahresverbrauch wird berechnet</div>
+            <div style="display:flex;gap:.5rem;align-items:center">
+              <input class="inp" type="number" id="abschl-n" placeholder="z.B. 120" step="5" oninput="calcFromAbschl()" style="flex:1">
+              <span style="font-size:.82rem;font-weight:700;color:var(--muted);white-space:nowrap">€ / Monat</span>
+            </div>
+            <div id="abschl-result" style="font-size:.74rem;color:#007a60;font-weight:700;margin-top:.3rem"></div>
+          </div>
+        </div>
+        <div class="fld">
+          <div class="flbl">Netzstrompreis</div>
+          <div class="slw"><div class="sl-top"><span class="sl-lbl">€/kWh</span><span class="sl-val" id="netz-d">0,32 €/kWh</span></div>
+            <input type="range" id="netz-sl" min="0.15" max="0.60" value="0.32" step="0.01" oninput="ss(this,'netz-n','netz-d',v=>(+v).toFixed(2)+' €/kWh');updPreisHint();upd()">
+            <div class="sl-mm"><span>0,15 €</span><span>0,60 €</span></div>
+          </div>
+          <input class="inp" type="number" id="netz-n" value="0.32" step="0.01" oninput="ns(this,'netz-sl','netz-d',v=>(+v).toFixed(2)+' €/kWh');upd()">
+          <div class="price-hint" id="netz-hint-txt" style="color:#007a60">☑ Ø Deutschland 2025: 29–34 ct/kWh</div>
+        </div>
+        <div class="fld">
+          <div class="flbl">PPA-Preis</div>
+          <div class="slw"><div class="sl-top"><span class="sl-lbl">€/kWh</span><span class="sl-val" id="ppa-d">0,170 €/kWh</span></div>
+            <input type="range" id="ppa-sl" min="0.05" max="0.30" value="0.17" step="0.005" oninput="ss(this,'ppa-n','ppa-d',v=>(+v).toFixed(3)+' €/kWh');upd()">
+            <div class="sl-mm"><span>0,05 €</span><span>0,30 €</span></div>
+          </div>
+          <input class="inp" type="number" id="ppa-n" value="0.17" step="0.005" oninput="ns(this,'ppa-sl','ppa-d',v=>(+v).toFixed(3)+' €/kWh');upd()">
+        </div>
+        <div class="divider"></div>
+        <div class="g-lbl">📐 Anlage &amp; Details</div>
+        <div class="frow">
+          <div class="fld"><div class="flbl">Anlagengröße kWp</div><input class="inp" type="number" id="kwp-n" value="10" step="1" oninput="upd()"></div>
+          <div class="fld"><div class="flbl">Laufzeit</div>
+            <select class="inp" id="lz-sel" onchange="upd()"><option value="10">10 J.</option><option value="15">15 J.</option><option value="20" selected>20 J.</option><option value="25">25 J.</option></select>
+          </div>
+        </div>
+        <div class="fld">
+          <div class="flbl">Eigenverbrauchsquote <span class="fhint" id="ev-hint">~30 %</span></div>
+          <div class="slw"><div class="sl-top"><span class="sl-lbl">%</span><span class="sl-val" id="ev-d">30 %</span></div>
+            <input type="range" id="ev-sl" min="10" max="100" value="30" step="5" oninput="ss(this,'ev-n','ev-d',v=>v+' %');upd()">
+            <div class="sl-mm"><span>10 %</span><span>100 %</span></div>
+          </div>
+          <input class="inp" type="number" id="ev-n" value="30" min="10" max="100" oninput="ns(this,'ev-sl','ev-d',v=>v+' %');upd()">
+        </div>
+        <div class="frow">
+          <div class="fld"><div class="flbl">Netzpreis +% p.a.</div><input class="inp" type="number" id="nst-n" value="4" step="0.5" oninput="upd()"></div>
+          <div class="fld"><div class="flbl">PPA +% p.a.</div><input class="inp" type="number" id="ppast-n" value="1.5" step="0.5" oninput="upd()"></div>
+        </div>
+        <div class="fld gew-only"><div class="flbl">MwSt. abziehbar?</div>
+          <select class="inp" id="mwst-sel" onchange="upd()"><option value="1">Ja — Nettopreise</option><option value="0">Nein — Bruttopreise inkl. 19%</option></select>
+          <div id="mwst-label" style="font-size:.69rem;font-weight:800;color:#007a60;margin-top:.2rem">✅ Nettobasis</div>
+        </div>
+        <button class="calc-btn" onclick="upd()">⚡ ERSPARNIS BERECHNEN</button>
       </div>
-
-      <div class="slider-row" style="border-top:2px dashed #0a0a0a;padding-top:20px">
-        <div class="slider-header">
-          <span>PPA-PREIS</span>
-          <span class="val" id="ppa-display">17,0 ct/kWh</span>
+    </div>
+    <!-- RESULTS -->
+    <div class="res-col">
+      <div class="placeholder card" id="ph"><div class="ph-i">⚡</div><div class="ph-t">Passen Sie die Werte an — Ergebnisse erscheinen sofort.</div></div>
+      <div id="rc" style="display:none;flex-direction:column;gap:.85rem">
+        <div class="total-card ai">
+          <div><div class="tc-tag">🏆 Gesamtersparnis über <span id="lz-l">20</span> Jahre</div><div class="tc-amt" id="tc-a">—</div><div class="tc-sub">gegenüber reinem Netzstrombezug — ohne Investition</div></div>
+          <div class="tc-r">
+            <div class="tc-at">💰 Sofortige Ersparnis</div>
+            <div class="tc-av" id="tc-monat">—</div>
+            <div class="tc-as">pro Monat ab dem 1. Tag</div>
+            <div style="margin-top:.5rem;font-size:.61rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--blk);opacity:.6">📉 Günstiger</div>
+            <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.1rem;font-weight:800;color:var(--blk)" id="tc-pct-big">—</div>
+            <div class="tc-as">als aktueller Netzpreis</div>
+          </div>
         </div>
-        <input type="range" id="ppa-slider" min="0.08" max="0.26" step="0.005" value="0.17" oninput="updateCalc()" style="accent-color:#0a0a0a">
-        <div class="slider-mm"><span>8 ct</span><span>26 ct</span></div>
-      </div>
-
-      <div class="price-breakdown">
-        <div>
-          <div class="price-label">NETZ-KOSTEN / J.</div>
-          <div class="price-big" style="color:#ff3a1f"><span id="netz-cost-big">24.800</span><span style="font-size:16px"> €</span></div>
-          <div class="price-sub" id="netz-price-sub">31 ct/kWh</div>
+        <div class="kpi-grid">
+          <div class="kpi ar"><div class="ki">💸</div><div class="kl">OHNE PPA</div><div class="kv re" id="k-ohne">—</div><div class="ks">Jahr 1</div></div>
+          <div class="kpi ag"><div class="ki">✅</div><div class="kl">MIT PPA</div><div class="kv gr" id="k-mit">—</div><div class="ks">Jahr 1</div></div>
+          <div class="kpi ag"><div class="ki">📉</div><div class="kl">Ersparnis</div><div class="kv gr" id="k-spar">—</div><div class="ks" id="k-pct">—</div></div>
+          <div class="kpi as"><div class="ki">📅</div><div class="kl">Ersparnis / Monat</div><div class="kv su" id="k-monat">—</div><div class="ks">sofort, ohne Invest</div></div>
         </div>
-        <div>
-          <div class="price-label">PPA-KOSTEN / J.</div>
-          <div class="price-big" style="color:#0a0a0a"><span id="ppa-cost-big">13.600</span><span style="font-size:16px"> €</span></div>
-          <div class="price-sub" id="ppa-price-sub">17 ct/kWh</div>
+        <div class="card ai">
+          <div class="c-head">
+            <div>
+              <div class="c-title">📈 Preisschere — Ihr Vorteil wächst jedes Jahr</div>
+              <div style="font-size:.71rem;color:var(--muted);margin-top:.15rem">Netzstrom wird teurer — Ihr PPA-Preis bleibt stabil</div>
+            </div>
+          </div>
+          <div class="chart-box" style="height:210px"><canvas id="c-schere"></canvas></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:2px solid var(--blk)" id="schere-stats">
+            <div style="padding:.75rem 1rem;border-right:1px solid rgba(10,10,10,.15);text-align:center">
+              <div style="font-size:.64rem;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem">Netzpreis Jahr 1</div>
+              <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.95rem;font-weight:800;color:var(--red)" id="sc-netz1">—</div>
+            </div>
+            <div style="padding:.75rem 1rem;border-right:1px solid rgba(10,10,10,.15);text-align:center">
+              <div style="font-size:.64rem;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem">Netzpreis am Ende</div>
+              <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.95rem;font-weight:800;color:var(--red)" id="sc-netzN">—</div>
+            </div>
+            <div style="padding:.75rem 1rem;text-align:center">
+              <div style="font-size:.64rem;font-weight:800;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem">PPA-Preis bleibt bei</div>
+              <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.95rem;font-weight:800;color:#007a60" id="sc-ppa">—</div>
+            </div>
+          </div>
+        </div>
+        <div class="card ai">
+          <div class="c-head"><div class="c-title">📊 Direktvergleich</div></div>
+          <div class="cmp-head"><div class="chc">Zeitraum</div><div class="chc r">🔴 Netzstrom</div><div class="chc g">🟢 Mit PPA</div></div>
+          <div id="cmp-rows"></div>
+        </div>
+        <div class="card ai"><div class="c-head"><div class="c-title">📈 Kumulierte Ersparnis</div></div><div class="chart-box"><canvas id="c-sav"></canvas></div></div>
+        <div class="card ai"><div class="c-head"><div class="c-title">📊 Jahreskosten Vergleich</div></div><div class="chart-box"><canvas id="c-cmp"></canvas></div></div>
+        <div class="card ai print-keep">
+          <div class="c-head">
+            <div class="c-title">📅 Jahresdetails</div>
+            <div style="display:flex;gap:.4rem;align-items:center">
+              <div class="tbl-toggle">
+                <button class="tbl-tog-btn on" id="tbl-alle" onclick="setTableMode('alle',this)">Alle Jahre</button>
+                <button class="tbl-tog-btn" id="tbl-mile" onclick="setTableMode('mile',this)">Meilensteine</button>
+              </div>
+              <button class="print-btn" onclick="window.print()">🖨 Drucken</button>
+            </div>
+          </div>
+          <div class="tbl-wrap"><table><thead><tr><th>Jahr</th><th>Netzpreis</th><th>Kosten Netz</th><th>Kosten PPA</th><th>Ersparnis</th><th>Kum. Ersparnis</th></tr></thead><tbody id="yr-body"></tbody></table></div>
         </div>
       </div>
     </div>
-
-    <!-- MIDDLE: Results -->
-    <div class="calc-result-panel">
-      <div style="position:absolute;top:-14px;right:16px;background:#ff00aa;color:#0a0a0a;padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase">► ERGEBNIS</div>
-      <div>
-        <div class="result-label">ERSPARNIS / JAHR</div>
-        <div class="result-big"><span id="yearly-out">11.200</span><span class="euro">€</span></div>
-        <div class="result-diff" id="diff-display">14,0 ct/kWh Differenz</div>
-      </div>
-      <div class="result-grid">
-        <div>
-          <div class="result-sub-label">20 JAHRE</div>
-          <div class="result-sub-val" style="color:#ff00aa" id="twenty-out">224.000 €</div>
-        </div>
-        <div>
-          <div class="result-sub-label">CO₂ / JAHR</div>
-          <div class="result-sub-val" style="color:#00ffea" id="co2-out">32.000 kg</div>
-        </div>
-        <div>
-          <div class="result-sub-label">PREISSCHERE</div>
-          <div class="result-sub-val" style="color:#fdfd00" id="diff-pct">45 %</div>
-        </div>
-        <div>
-          <div class="result-sub-label">BREAK-EVEN</div>
-          <div class="result-sub-val" style="color:#fdfd00" id="breakeven">sofort</div>
-        </div>
-      </div>
-      <div class="result-disclaimer">⚠ ESTIMATE. exakte rechnung in beratung. preise indikativ.</div>
-    </div>
-
-    <!-- RIGHT: Bullets -->
-    <div class="calc-right">
-      <div class="calc-bullet">
-        <div class="calc-bullet-h">► Keine Investition</div>
-        <div class="calc-bullet-b">Kein Eigenkapital nötig — Cashflow positiv ab Tag 1.</div>
-      </div>
-      <div class="calc-bullet">
-        <div class="calc-bullet-h">► Festpreis 20 Jahre</div>
-        <div class="calc-bullet-b">Ihr Strompreis ist eingefroren, während die Netzpreise steigen.</div>
-      </div>
-      <div class="calc-bullet">
-        <div class="calc-bullet-h">► Wartung inklusive</div>
-        <div class="calc-bullet-b">Reparatur, Versicherung, Monitoring — alles unser Bereich.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Chart: Preisschere -->
-  <div style="margin-top:32px;background:#0a0a0a;border:3px solid #0a0a0a;padding:24px">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;color:#00ffea;margin-bottom:16px">► PREISSCHERE — 20-JAHRES-VERLAUF</div>
-    <canvas id="chart-scissor" height="180"></canvas>
-  </div>
-
-  <div class="cta-bar">
-    <a href="#" onclick="showTab('angebot',document.querySelector('.tab-btn:nth-child(3)'));return false" class="cta-btn lift">[→] ANGEBOT ANFORDERN</a>
-    <a href="#kontakt" class="cta-btn lift" style="background:#ff00aa;border-color:#ff00aa">[☎] DIREKT ANRUFEN</a>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.5;text-transform:uppercase">kostenlos · unverbindlich · innerhalb 24h</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     TAB 2 — CO2
-══════════════════════════════════════════ -->
+<!-- ══════ CO2 ══════ -->
 <div id="view-co2" class="view">
-  <div class="sec-label">░░░ KAPITEL_CO2 ░░░ KLIMABILANZ ░░░</div>
-  <div class="sec-h" style="color:#0a0a0a">
-    <span style="background:#0a0a0a;color:#00ffea;padding:0 .1em;display:inline-block">CO₂</span><br>
-    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">gespart,</span>
-    <span style="background:#ff00aa;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:skew(-4deg)">REAL.</span>
+  <div class="hero" style="padding-bottom:1rem">
+    <div class="h-tag" style="background:var(--cyan)">🌱 Umwelt-Impact</div>
+    <h1 class="h-title">Ihr <span class="acc">CO₂-Beitrag</span></h1>
+    <p class="h-sub">Basierend auf Ihrer PPA-Berechnung — so groß ist Ihr Umwelt-Beitrag.</p>
   </div>
-
-  <div class="co2-grid">
-    <div class="co2-card">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;opacity:.6;margin-bottom:8px">► CO₂-EINSPARUNG / JAHR</div>
-      <div class="co2-num" id="co2-yearly-big">32.000</div>
-      <div class="co2-unit">kg CO₂ pro Jahr</div>
-      <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;margin-top:16px;opacity:.8">
-        Basierend auf dem deutschen Strommix-Faktor: 0,4 kg CO₂/kWh
-      </div>
-    </div>
-    <div class="co2-card" style="background:#ff00aa;border-color:#ff00aa">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;opacity:.7;margin-bottom:8px;color:#0a0a0a">► CO₂-EINSPARUNG / 20 JAHRE</div>
-      <div class="co2-num" style="color:#0a0a0a" id="co2-20-big">640.000</div>
-      <div class="co2-unit" style="color:#0a0a0a">kg CO₂ über 20 Jahre</div>
-      <div style="font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;margin-top:16px;opacity:.8;color:#0a0a0a">
-        = <span id="co2-20-t">640</span> Tonnen CO₂ — das entspricht ca. <span id="co2-cars">140</span> PKW-Jahren
-      </div>
-    </div>
-  </div>
-
-  <div class="co2-chart-wrap" style="margin-top:28px">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;margin-bottom:16px">► KUMULIERTE CO₂-EINSPARUNG ÜBER 20 JAHRE</div>
-    <canvas id="chart-co2" height="200"></canvas>
-  </div>
-
-  <div class="co2-equiv">
-    <div class="co2-eq-card">
-      <div class="co2-eq-icon">🚗</div>
-      <div class="co2-eq-num" id="eq-cars">140</div>
-      <div class="co2-eq-label">PKW-Jahre eingespart</div>
-    </div>
-    <div class="co2-eq-card" style="transform:rotate(1deg);background:#00ffea">
-      <div class="co2-eq-icon">✈️</div>
-      <div class="co2-eq-num" id="eq-flights">1.000</div>
-      <div class="co2-eq-label">Kurzflüge verhindert</div>
-    </div>
-    <div class="co2-eq-card" style="transform:rotate(-0.5deg);background:#ff00aa">
-      <div class="co2-eq-icon">🌳</div>
-      <div class="co2-eq-num" id="eq-trees">29.000</div>
-      <div class="co2-eq-label">Bäume-Jahre gebunden</div>
-    </div>
+  <div class="inner-wrap">
+    <div class="co2-hero"><div class="co2-big" id="co2-tot">—</div><div class="co2-sub">CO₂ eingespart über die gesamte Laufzeit</div><div class="pbar-bg"><div class="pbar" id="co2-bar" style="width:0%"></div></div></div>
+    <div class="co2-grid" id="co2-grid"></div>
+    <div class="co2-info" id="co2-info">⚠ Bitte zuerst im Kalkulator Werte eingeben.</div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     TAB 3 — ANGEBOT
-══════════════════════════════════════════ -->
-<div id="view-angebot" class="view">
-  <div class="sec-label" style="color:#0a0a0a">░░░ KAPITEL_ANGEBOT ░░░ ANFRAGE ░░░</div>
-  <div class="sec-h" style="color:#0a0a0a">
-    ANGEBOT<br>
-    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">in 24h.</span>
+<!-- ══════ PDF ANGEBOT ══════ -->
+<div id="view-pdf" class="view">
+  <div class="hero" style="padding-bottom:1rem">
+    <div class="h-tag">📄 Angebot erstellen</div>
+    <h1 class="h-title">Professionelles <span class="acc">PDF-Angebot</span></h1>
+    <p class="h-sub">Logo hochladen, Kundendaten eingeben — fertiges Angebot zum Drucken.</p>
   </div>
-
-  <div class="angebot-grid">
-    <div>
-      <div id="angebot-ok" class="angebot-ok">✓ ANFRAGE GESENDET!<br><span style="font-size:.6em;font-family:'JetBrains Mono',monospace;font-weight:400">Wir melden uns innerhalb 24h.</span></div>
-      <form id="angebot-form" onsubmit="sendAngebot(event)" class="form-card">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:20px;opacity:.7">► FORMULAR_PPA_v01.exe</div>
-        <label class="form-label">NAME *</label>
-        <input required class="form-input" id="af-name" placeholder="Max Mustermann" type="text">
-        <label class="form-label">UNTERNEHMEN</label>
-        <input class="form-input" id="af-company" placeholder="Mustermann GmbH" type="text">
-        <label class="form-label">E-MAIL *</label>
-        <input required class="form-input" id="af-email" placeholder="max@firma.de" type="email">
-        <label class="form-label">TELEFON</label>
-        <input class="form-input" id="af-tel" placeholder="+49 991 ..." type="tel">
-        <label class="form-label">JAHRESVERBRAUCH (VORGEFÜLLT)</label>
-        <input class="form-input" id="af-kwh" type="text" readonly>
-        <label class="form-label">DACHTYP</label>
-        <select class="form-input" id="af-roof">
-          <option value="">Bitte wählen</option>
-          <option>Flachdach (Gewerbe)</option>
-          <option>Satteldach</option>
-          <option>Pultdach</option>
-          <option>Mansarddach</option>
-          <option>Sonstiges</option>
+  <div class="pdf-wrap">
+    <div class="pdf-form">
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:.88rem;margin-bottom:.75rem;text-transform:uppercase">🖼 Firmenlogo</div>
+      <div class="logo-zone" id="logo-zone" onclick="document.getElementById('logo-file').click()"
+        ondragover="event.preventDefault();this.classList.add('drag')"
+        ondragleave="this.classList.remove('drag')"
+        ondrop="event.preventDefault();this.classList.remove('drag');handleLogo(event.dataTransfer.files[0])">
+        <input type="file" id="logo-file" accept="image/*" style="display:none" onchange="handleLogo(this.files[0])">
+        <div id="logo-ph" class="logo-zone-inner">
+          <div style="font-size:1.5rem;opacity:.3;margin-bottom:.35rem">🖼</div>
+          <div style="font-size:.79rem;font-weight:700;color:var(--muted)">Logo hier ablegen oder klicken</div>
+          <div style="font-size:.67rem;color:var(--muted);opacity:.6;margin-top:.15rem">PNG · JPG · SVG — empfohlen 400×120 px</div>
+        </div>
+        <div id="logo-loaded" style="display:none;align-items:center;gap:.85rem">
+          <img id="logo-img" style="max-height:55px;max-width:180px;object-fit:contain">
+          <div style="flex:1;text-align:left">
+            <div id="logo-fname" style="font-size:.79rem;font-weight:700"></div>
+            <div style="font-size:.67rem;color:#007a60;margin-top:.1rem">✅ Logo geladen</div>
+          </div>
+          <button onclick="event.stopPropagation();removeLogo()" style="background:#fff0ee;border:1.5px solid var(--blk);color:var(--red);font-size:.69rem;font-weight:800;padding:.26rem .62rem;cursor:pointer;font-family:'JetBrains Mono',monospace">✕ Entfernen</button>
+        </div>
+      </div>
+      <div class="logo-pos-row">
+        <span style="font-size:.67rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)">Position:</span>
+        <button class="lp-btn on" id="lp-links" onclick="setLogoPos('links',this)">Links</button>
+        <button class="lp-btn" id="lp-mitte" onclick="setLogoPos('mitte',this)">Mitte</button>
+        <button class="lp-btn" id="lp-rechts" onclick="setLogoPos('rechts',this)">Rechts</button>
+        <span style="font-size:.67rem;color:var(--muted);margin-left:.5rem">Größe:</span>
+        <select id="logo-size" onchange="renderPDF()" style="font-size:.71rem;font-weight:600;border:1.5px solid var(--blk);padding:.22rem .5rem;background:var(--bg);color:var(--blk);font-family:'JetBrains Mono',monospace;outline:none">
+          <option value="45">Klein (45px)</option><option value="60" selected>Mittel (60px)</option><option value="80">Groß (80px)</option>
         </select>
-        <label class="form-label">NACHRICHT</label>
-        <textarea class="form-input" id="af-msg" rows="3" placeholder="Was sollen wir wissen?"></textarea>
-        <div id="af-err" style="display:none;padding:8px;background:#ff3a1f;color:#fff;font-family:'JetBrains Mono',monospace;font-size:12px;margin-bottom:8px">⚠ Fehler — bitte direkt anrufen: +49 991 40227560</div>
-        <button type="submit" id="af-btn" class="form-submit">[→] ANGEBOT ANFORDERN</button>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.5;margin-top:12px;text-transform:uppercase;text-align:center">kostenlos · unverbindlich · DSGVO-konform</div>
-      </form>
+      </div>
     </div>
-    <div>
-      <div class="angebot-summary">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;color:#00ffea;margin-bottom:16px">► IHRE KALKULIERTEN WERTE</div>
-        <div class="summary-row"><span class="summary-key">Profil</span><span class="summary-val" id="sum-profile">Gewerbe</span></div>
-        <div class="summary-row"><span class="summary-key">Jahresverbrauch</span><span class="summary-val" id="sum-kwh">80.000 kWh</span></div>
-        <div class="summary-row"><span class="summary-key">Netzstrompreis</span><span class="summary-val" id="sum-netz">31 ct/kWh</span></div>
-        <div class="summary-row"><span class="summary-key">PPA-Preis (ind.)</span><span class="summary-val" id="sum-ppa">17 ct/kWh</span></div>
-        <div class="summary-row"><span class="summary-key">Ersparnis / Jahr</span><span class="summary-val" id="sum-yearly">11.200 €</span></div>
-        <div class="summary-row"><span class="summary-key">Ersparnis / 20 J.</span><span class="summary-val" id="sum-twenty">224.000 €</span></div>
-        <div class="summary-row"><span class="summary-key">CO₂ / Jahr</span><span class="summary-val" id="sum-co2">32.000 kg</span></div>
+    <div class="pdf-form">
+      <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:.88rem;margin-bottom:.8rem;text-transform:uppercase">👤 Kundendaten</div>
+      <div class="pdf-grid">
+        <div class="pf"><div class="pl">Kundenname / Firma</div><input class="pi" id="pdf-name" value="Max Mustermann GmbH" oninput="renderPDF()"></div>
+        <div class="pf"><div class="pl">Adresse</div><input class="pi" id="pdf-addr" value="Musterstraße 1, 94469 Deggendorf" oninput="renderPDF()"></div>
+        <div class="pf"><div class="pl">Ansprechpartner</div><input class="pi" id="pdf-contact" value="Max Mustermann" oninput="renderPDF()"></div>
+        <div class="pf"><div class="pl">Telefon / E-Mail</div><input class="pi" id="pdf-tel" value="+49 123 456789" oninput="renderPDF()"></div>
+        <div class="pf"><div class="pl">Ihr Unternehmen</div><input class="pi" id="pdf-company" value="Solar Energie Partner" oninput="renderPDF()"></div>
+        <div class="pf"><div class="pl">Berater</div><input class="pi" id="pdf-advisor" value="Doris Pilsner-Albrecht" oninput="renderPDF()"></div>
+        <div class="pf"><div class="pl">Gültig bis</div><input class="pi" type="date" id="pdf-valid" oninput="renderPDF()"></div>
+        <div class="pf"><div class="pl">Angebots-Nr.</div><input class="pi" id="pdf-nr" value="PPA-2026-001" oninput="renderPDF()"></div>
       </div>
-      <div style="margin-top:16px;background:#fdfd00;border:3px solid #0a0a0a;padding:24px">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase;margin-bottom:12px">► DIREKTKONTAKT</div>
-        <a href="tel:+4999140227560" style="display:block;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;letter-spacing:-.02em;text-decoration:none;color:#0a0a0a;margin-bottom:8px">+49 991 40227560</a>
-        <a href="tel:01753560019" style="display:block;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:22px;letter-spacing:-.02em;text-decoration:none;color:#0a0a0a;margin-bottom:8px">0175 3560019</a>
-        <a href="mailto:info@solar-energie-partner.de" style="display:block;font-family:'JetBrains Mono',monospace;font-size:12px;text-decoration:none;color:#0a0a0a;opacity:.7">info@solar-energie-partner.de</a>
-      </div>
+      <button class="pdf-btn" onclick="printOffer()">🖨 ALS PDF DRUCKEN / SPEICHERN</button>
+    </div>
+    <div class="pdf-preview card">
+      <div class="c-head"><div class="c-title">👁 Vorschau</div><span style="font-size:.67rem;color:var(--muted)">Basierend auf Kalkulator-Werten</span></div>
+      <div class="pdf-inner" id="pdf-inner"><div style="text-align:center;padding:2rem;color:var(--muted);font-size:.84rem">⚠ Bitte zuerst im Kalkulator Werte eingeben.</div></div>
     </div>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     TAB 4 — MEIN ROI (ADMIN)
-══════════════════════════════════════════ -->
+<!-- ══════ MEIN ROI (passwortgeschützt) ══════ -->
 <div id="view-roi" class="view">
-  <div class="sec-label" style="color:#00ffea;opacity:1">░░░ ADMIN ░░░ MEIN_ROI ░░░ INTERN ░░░</div>
-  <div class="sec-h">
-    <span style="color:#ff00aa">ROI</span><br>
-    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase;color:#fdfd00">für</span>
-    <span style="background:#00ffea;color:#0a0a0a;padding:0 .1em;display:inline-block">UNS.</span>
+  <div class="hero" style="padding-bottom:1rem">
+    <div class="h-tag" style="background:var(--blk);color:var(--yel)">🔒 Anbieter-Rentabilität</div>
+    <h1 class="h-title">Wie rechnet es sich <span class="acc">für mich?</span></h1>
+    <p class="h-sub">Trag deine Kosten und Einnahmen ein — sieh sofort ob und wann sich das Projekt für dich lohnt.</p>
   </div>
-
-  <!-- ROI Inputs -->
-  <div class="roi-inputs">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;color:#ff00aa;margin-bottom:16px">► INTERNE PARAMETER (ADMIN)</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px">
-      <div>
-        <label style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;color:#fdfd00;opacity:.6;display:block;margin-bottom:4px">ANLAGEKOSTEN (€/kWp)</label>
-        <input class="roi-input" id="roi-cost-kwp" type="number" value="700" min="400" max="1200" oninput="updateROI()">
+  <div style="max-width:1080px;margin:0 auto;padding:0 1rem 2.5rem;display:grid;grid-template-columns:340px 1fr;gap:1rem;align-items:start" id="roi-layout">
+    <div class="card" style="position:sticky;top:60px">
+      <div class="c-stripe" style="background:var(--pink)"></div>
+      <div class="c-head">
+        <div class="c-title">⚙ Meine Projektdaten</div>
+        <div class="c-badge" style="background:var(--pink);color:var(--wht)">Anbieter</div>
       </div>
-      <div>
-        <label style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;color:#fdfd00;opacity:.6;display:block;margin-bottom:4px">ANLAGEN-KWP</label>
-        <input class="roi-input" id="roi-kwp" type="number" value="100" min="10" max="5000" oninput="updateROI()">
-      </div>
-      <div>
-        <label style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;color:#fdfd00;opacity:.6;display:block;margin-bottom:4px">UNSER PPA-TARIF (ct)</label>
-        <input class="roi-input" id="roi-our-ppa" type="number" value="17" min="8" max="26" step="0.5" oninput="updateROI()">
-      </div>
-      <div>
-        <label style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;color:#fdfd00;opacity:.6;display:block;margin-bottom:4px">FINANZIERUNGSZINS (%)</label>
-        <input class="roi-input" id="roi-rate" type="number" value="4.5" min="1" max="10" step="0.1" oninput="updateROI()">
-      </div>
-      <div>
-        <label style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;color:#fdfd00;opacity:.6;display:block;margin-bottom:4px">ERTRAG (kWh/kWp)</label>
-        <input class="roi-input" id="roi-yield" type="number" value="950" min="700" max="1200" oninput="updateROI()">
-      </div>
-      <div>
-        <label style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;color:#fdfd00;opacity:.6;display:block;margin-bottom:4px">MARGE (%)</label>
-        <input class="roi-input" id="roi-margin" type="number" value="12" min="0" max="30" step="0.5" oninput="updateROI()">
+      <div class="inp-body">
+        <div class="g-lbl">📍 Standort &amp; Sonnenstunden</div>
+        <div class="fld">
+          <div class="flbl">Standort / PLZ <span class="fhint">für Sonnenertrag</span></div>
+          <div style="display:flex;gap:.5rem">
+            <input class="inp" type="text" id="roi-standort" placeholder="z.B. München oder 80331" style="flex:1" oninput="clearGeoResult()">
+            <button onclick="fetchSunhours()" style="background:var(--yel);color:var(--blk);border:2px solid var(--blk);padding:.5rem .85rem;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.78rem;font-weight:800;cursor:pointer;white-space:nowrap;flex-shrink:0;text-transform:uppercase" id="geo-btn">☀ Abrufen</button>
+          </div>
+          <div id="geo-result" style="display:none;margin-top:.4rem;padding:.6rem .85rem;font-size:.76rem;font-weight:700"></div>
+        </div>
+        <div class="divider"></div>
+        <div class="g-lbl">🏗 Investition &amp; Kosten</div>
+        <div class="fld">
+          <div class="flbl">Anlagenpreis (Invest) <span class="fhint">€ netto</span></div>
+          <input class="inp" type="number" id="roi-invest" value="120000" step="1000" oninput="roiCalc()" style="font-size:.95rem;font-weight:800;border-color:var(--pink)">
+        </div>
+        <div class="frow">
+          <div class="fld"><div class="flbl">Förderung / Zuschuss €</div><input class="inp" type="number" id="roi-foerder" value="0" step="500" oninput="roiCalc()"></div>
+          <div class="fld"><div class="flbl">Kredit-Zinssatz % p.a. <span class="fhint">0 = kein Kredit</span></div><input class="inp" type="number" id="roi-finanz" value="0" step="0.1" min="0" max="20" placeholder="z.B. 3.5" oninput="roiCalc()"></div>
+        </div>
+        <div class="fld" id="roi-laufzeit-kredit-wrap" style="display:none">
+          <div class="flbl">Kreditlaufzeit Jahre <span class="fhint">Tilgungszeitraum</span></div>
+          <select class="inp" id="roi-kredit-lz" onchange="roiCalc()">
+            <option value="5">5 Jahre</option><option value="10" selected>10 Jahre</option><option value="15">15 Jahre</option><option value="20">20 Jahre</option>
+          </select>
+          <div id="roi-annuitat-info" style="font-size:.69rem;color:var(--pink);font-weight:700;margin-top:.25rem"></div>
+        </div>
+        <div class="fld"><div class="flbl">Wartung &amp; Versicherung €/Jahr</div><input class="inp" type="number" id="roi-wartung" value="1200" step="100" oninput="roiCalc()"></div>
+        <div class="fld"><div class="flbl">Sonstige Kosten €/Jahr</div><input class="inp" type="number" id="roi-sonstkosten" value="200" step="100" oninput="roiCalc()"></div>
+        <div class="divider"></div>
+        <div class="g-lbl">💰 Meine Einnahmen</div>
+        <div class="fld"><div class="flbl">PPA-Preis den Kunde zahlt <span class="fhint">€/kWh</span></div><input class="inp" type="number" id="roi-ppa-preis" value="0.17" step="0.005" oninput="roiCalc()" style="font-size:.95rem;font-weight:800;border-color:var(--pink)"></div>
+        <div class="fld"><div class="flbl">Anlagengröße <span class="fhint">kWp</span></div><input class="inp" type="number" id="roi-kwp" value="10" step="1" oninput="roiCalc()"></div>
+        <div class="fld"><div class="flbl">Spez. Jahresertrag <span class="fhint">kWh/kWp — vom Standort</span></div><input class="inp" type="number" id="roi-ertrag" value="950" step="10" oninput="roiCalc()"></div>
+        <div class="fld"><div class="flbl">Eigenverbrauchsquote Kunde <span class="fhint">%</span></div><input class="inp" type="number" id="roi-ev" value="75" min="0" max="100" oninput="roiCalc()"></div>
+        <div class="fld"><div class="flbl">Einspeisevergütung (für mich) <span class="fhint">€/kWh</span></div><input class="inp" type="number" id="roi-einsp" value="0.082" step="0.001" oninput="roiCalc()"></div>
+        <div class="divider"></div>
+        <div class="g-lbl">📅 Laufzeit &amp; Entwicklung</div>
+        <div class="frow">
+          <div class="fld"><div class="flbl">PPA Laufzeit</div>
+            <select class="inp" id="roi-lz" onchange="roiCalc()">
+              <option value="10">10 Jahre</option><option value="15">15 Jahre</option><option value="20" selected>20 Jahre</option><option value="25">25 Jahre</option>
+            </select>
+          </div>
+          <div class="fld"><div class="flbl">PPA Steigerung % p.a.</div><input class="inp" type="number" id="roi-ppa-steig" value="1.5" step="0.5" oninput="roiCalc()"></div>
+        </div>
+        <div class="fld"><div class="flbl">Degradation Anlage % p.a.</div><input class="inp" type="number" id="roi-degrad" value="0.5" step="0.1" oninput="roiCalc()"></div>
+        <button class="calc-btn" onclick="roiCalc()" style="background:var(--pink);color:var(--wht);border-color:var(--blk)">💼 ROI BERECHNEN</button>
       </div>
     </div>
-    <button class="roi-calc-btn" onclick="updateROI()">[↻] NEU BERECHNEN</button>
-  </div>
-
-  <!-- ROI Cards -->
-  <div class="roi-grid" style="margin-top:28px">
-    <div class="roi-card">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.6;text-transform:uppercase;margin-bottom:8px">► INVESTITIONSKOSTEN GESAMT</div>
-      <div class="roi-num" id="roi-invest">70.000 €</div>
-      <div class="roi-label">Anlagekosten + Finanzierung</div>
+    <!-- ROI RESULTS -->
+    <div id="roi-res" style="display:flex;flex-direction:column;gap:.85rem">
+      <div id="roi-total-box" class="ai" style="background:var(--pink);border:2px solid var(--blk);padding:1.25rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:.85rem;align-items:center">
+        <div>
+          <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--wht);opacity:.7;margin-bottom:.2rem">🏆 Mein Gesamtgewinn</div>
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--wht);line-height:1" id="roi-gewinn">—</div>
+          <div style="font-size:.69rem;color:rgba(255,255,255,.7);margin-top:.15rem;font-weight:600">nach Abzug aller Kosten</div>
+        </div>
+        <div style="text-align:center">
+          <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--yel);margin-bottom:.2rem">⏱ Break-Even</div>
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.6rem;font-weight:800;color:var(--yel)" id="roi-breakeven">—</div>
+          <div style="font-size:.67rem;color:rgba(255,255,255,.6);margin-top:.1rem;font-weight:600">dann reiner Gewinn</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--wht);opacity:.7;margin-bottom:.2rem">📊 Ø Rendite p.a.</div>
+          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.6rem;font-weight:800;color:var(--wht)" id="roi-rendite">—</div>
+          <div style="font-size:.67rem;color:rgba(255,255,255,.6);margin-top:.1rem;font-weight:600">auf investiertes Kapital</div>
+        </div>
+      </div>
+      <div class="kpi-grid">
+        <div class="kpi" style="border-color:var(--blk);background:#fff0f8"><div class="ki">💰</div><div class="kl">PPA-Einnahmen Jahr 1</div><div class="kv" style="color:var(--pink)" id="roi-k-einnahmen">—</div><div class="ks">vom Kunden</div></div>
+        <div class="kpi" style="border-color:var(--blk);background:#fff0f8"><div class="ki">⚡</div><div class="kl">Einspeise-Erlös Jahr 1</div><div class="kv" style="color:var(--pink)" id="roi-k-einsp">—</div><div class="ks">Überschuss ins Netz</div></div>
+        <div class="kpi ar"><div class="ki">📉</div><div class="kl">Gesamtkosten Jahr 1</div><div class="kv re" id="roi-k-kosten">—</div><div class="ks">Wartung + Kapitalkosten</div></div>
+        <div class="kpi ag"><div class="ki">✅</div><div class="kl">Cash-Flow Jahr 1</div><div class="kv gr" id="roi-k-cf">—</div><div class="ks">Einnahmen minus Kosten</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem" id="roi-charts-grid">
+        <div class="card ai"><div class="c-head"><div class="c-title">📊 Einnahmen vs. Kosten</div></div><div class="chart-box" style="height:195px"><canvas id="roi-c-bar"></canvas></div></div>
+        <div class="card ai"><div class="c-head"><div class="c-title">📈 Kumulierter Cash-Flow</div></div><div class="chart-box" style="height:195px"><canvas id="roi-c-cum"></canvas></div></div>
+      </div>
+      <div class="card ai">
+        <div class="c-head"><div class="c-title">📅 Meine Jahresrechnung</div><button class="print-btn" onclick="window.print()">🖨 Drucken</button></div>
+        <div class="tbl-wrap">
+          <table><thead><tr><th style="text-align:left">Jahr</th><th>PPA-Einnahmen</th><th>Einspeisung</th><th>Gesamteinnahmen</th><th>Kosten</th><th>Cash-Flow</th><th>Kum. Cash-Flow</th></tr></thead>
+          <tbody id="roi-tbody"></tbody></table>
+        </div>
+      </div>
+      <div class="card ai">
+        <div class="c-head"><div class="c-title">🔢 Investitions-Zusammenfassung</div></div>
+        <div style="padding:1rem 1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:.6rem" id="roi-summary-grid"></div>
+      </div>
     </div>
-    <div class="roi-card">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.6;text-transform:uppercase;margin-bottom:8px">► PPA-EINNAHMEN / JAHR</div>
-      <div class="roi-num" style="color:#ff00aa" id="roi-revenue">161.500 €</div>
-      <div class="roi-label">Produktionsmenge × unser PPA-Tarif</div>
-    </div>
-    <div class="roi-card">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.6;text-transform:uppercase;margin-bottom:8px">► REINGEWINN / JAHR</div>
-      <div class="roi-num" style="color:#fdfd00" id="roi-profit">17.895 €</div>
-      <div class="roi-label">nach Kapitalkosten (Marge)</div>
-    </div>
-    <div class="roi-card">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.6;text-transform:uppercase;margin-bottom:8px">► AMORTISATION</div>
-      <div class="roi-num" id="roi-amort">~7,4 J.</div>
-      <div class="roi-label">Break-even der Investition</div>
-    </div>
-  </div>
-
-  <div class="roi-chart-wrap">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;color:#fdfd00;margin-bottom:16px">► JAHRESKOSTEN-VERGLEICH — NETZ vs. PPA vs. UNSER ROI</div>
-    <canvas id="chart-roi" height="220"></canvas>
-  </div>
-
-  <!-- ROI Table -->
-  <div style="margin-top:28px;overflow-x:auto">
-    <table class="roi-table" id="roi-table">
-      <thead><tr>
-        <th>Jahr</th>
-        <th>Kumulierte PPA-Einnahmen</th>
-        <th>Kumulierte Kosten</th>
-        <th>Gewinn kumuliert</th>
-        <th>Status</th>
-      </tr></thead>
-      <tbody id="roi-tbody"></tbody>
-    </table>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════
-     TAB 5 — ARGUMENTE (ADMIN)
-══════════════════════════════════════════ -->
+<!-- ══════ ARGUMENTE (passwortgeschützt) ══════ -->
 <div id="view-args" class="view">
-  <div class="sec-label" style="color:#0a0a0a">░░░ ADMIN ░░░ VERTRIEBSARGUMENTE ░░░</div>
-  <div class="sec-h" style="color:#0a0a0a">
-    ARGUMENTE.<br>
-    <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">für jede</span>
-    <span style="background:#0a0a0a;color:#fdfd00;padding:0 .1em;display:inline-block">SITUATION.</span>
+  <div class="hero" style="padding-bottom:1.25rem">
+    <div class="h-tag" style="background:var(--blk);color:var(--yel)">🔒 Verkaufsargumente</div>
+    <h1 class="h-title">Das <span class="acc">überzeugt</span> Ihre Kunden</h1>
+    <p class="h-sub">Stärkste Argumente für Privat- &amp; Gewerbekunden — inkl. Einwandbehandlung.</p>
   </div>
-
-  <div class="args-grid">
-    <div class="arg-card pink">
-      <div class="arg-tag">► CASHFLOW-ARGUMENT</div>
-      <div class="arg-h">Sofort positiv</div>
-      <div class="arg-body">PPA kostet von Tag 1 weniger als der Netzstrom. Kein Eigenkapital, keine Kreditbelastung — der Cashflow ist sofort positiv.</div>
-      <div class="arg-stat" id="arg-yearly-save">11.200 € / J.</div>
+  <div class="args-wrap">
+    <div class="ast" style="color:var(--org)">🏠 Privatkunden</div>
+    <div class="args-grid">
+      <div class="arg-card"><div class="a-icon s">💰</div><div><div class="a-tit">Sofort sparen</div><div class="a-desc">Bereits im ersten Monat weniger zahlen — ohne Investition.</div></div></div>
+      <div class="arg-card"><div class="a-icon s">🔒</div><div><div class="a-tit">Preissicherheit</div><div class="a-desc">Stabiler PPA-Preis während Netzstrom jährlich steigt.</div></div></div>
+      <div class="arg-card"><div class="a-icon g">🌱</div><div><div class="a-tit">Grünes Gewissen</div><div class="a-desc">100 % Solarstrom — CO₂-Fußabdruck senken ohne Aufwand.</div></div></div>
+      <div class="arg-card"><div class="a-icon g">🔧</div><div><div class="a-tit">Null Aufwand</div><div class="a-desc">Anlage, Wartung, Versicherung inklusive.</div></div></div>
+      <div class="arg-card"><div class="a-icon s">📈</div><div><div class="a-tit">Immobilienwert</div><div class="a-desc">Solaranlage steigert nachweislich den Immobilienwert.</div></div></div>
+      <div class="arg-card"><div class="a-icon g">⚡</div><div><div class="a-tit">Unabhängigkeit</div><div class="a-desc">Weniger abhängig von Energieversorgern und Preisentwicklungen.</div></div></div>
     </div>
-    <div class="arg-card cyan">
-      <div class="arg-tag">► BILANZ-ARGUMENT</div>
-      <div class="arg-h">Operating Lease</div>
-      <div class="arg-body">PPA ist keine Investition — kein Aktivposten in der Bilanz. Eigenkapitalquote bleibt unverändert. Ideal für kreditfinanzierte Unternehmen.</div>
-      <div class="arg-stat">0 € Aktivierung</div>
+    <div style="height:2px;background:var(--blk);margin:1rem 0;opacity:.15"></div>
+    <div class="ast" style="color:var(--cyan)">🏢 Gewerbekunden</div>
+    <div class="args-grid">
+      <div class="arg-card"><div class="a-icon g">📊</div><div><div class="a-tit">ROI ab Tag 1</div><div class="a-desc">Kein Invest — sofortige Kostensenkung verbessert die GuV.</div></div></div>
+      <div class="arg-card"><div class="a-icon g">📉</div><div><div class="a-tit">Kosten senken</div><div class="a-desc">30–70 % günstiger als Netzbezug — direkter Wettbewerbsvorteil.</div></div></div>
+      <div class="arg-card"><div class="a-icon s">🏛</div><div><div class="a-tit">Bilanzierungsvorteil</div><div class="a-desc">PPA als Operating Lease — kein Einfluss auf Eigenkapital.</div></div></div>
+      <div class="arg-card"><div class="a-icon g">🌍</div><div><div class="a-tit">ESG &amp; Reporting</div><div class="a-desc">Grüner Strom verbessert ESG-Rating und CSR-Bericht.</div></div></div>
+      <div class="arg-card"><div class="a-icon s">📋</div><div><div class="a-tit">Planungssicherheit</div><div class="a-desc">20-jähriger Festpreis — unabhängig von der Marktvolatilität.</div></div></div>
+      <div class="arg-card"><div class="a-icon g">🤝</div><div><div class="a-tit">Null Risiko</div><div class="a-desc">Wartung und Ertragsschwankungen sind Sache des Betreibers.</div></div></div>
     </div>
-    <div class="arg-card" style="background:#0a0a0a;color:#fdfd00">
-      <div class="arg-tag" style="color:#00ffea">► RISIKO-ARGUMENT</div>
-      <div class="arg-h">Kein Risiko</div>
-      <div class="arg-body">Wartung, Reparatur, Versicherung, Monitoring — alles bei uns. Der Kunde zahlt nur den Strom, den er tatsächlich nutzt.</div>
-      <div class="arg-stat">100 % unser Risiko</div>
+    <div class="obj-card">
+      <div class="obj-tit">💡 Einwandbehandlung</div>
+      <div class="obj-it"><div class="obj-q">„Ich muss erst nachdenken…"</div><div class="obj-a">Jeden Monat ohne PPA kostet bares Geld. Schauen wir kurz auf Ihre aktuelle Stromrechnung.</div></div>
+      <div class="obj-it"><div class="obj-q">„Was wenn die Anlage nicht funktioniert?"</div><div class="obj-a">Das ist unser Risiko — Sie zahlen nur für tatsächlich gelieferten Solarstrom.</div></div>
+      <div class="obj-it"><div class="obj-q">„20 Jahre sind zu lang."</div><div class="obj-a">Kürzere Laufzeiten möglich. Ihr Netzstromvertrag läuft auch — nur ohne Preisgarantie.</div></div>
+      <div class="obj-it" style="margin-bottom:0"><div class="obj-q">„Ich bin Mieter."</div><div class="obj-a">Wir holen das Okay des Vermieters — oft profitiert auch dieser von der Anlage.</div></div>
     </div>
-    <div class="arg-card yellow">
-      <div class="arg-tag">► ESG-ARGUMENT</div>
-      <div class="arg-h">Grüner Strom</div>
-      <div class="arg-body">Grüner Strom vom eigenen Dach — dokumentiert, zertifiziert. Direkt ins Nachhaltigkeitsreporting. Scope-2-Emissionen sinken sofort.</div>
-      <div class="arg-stat" id="arg-co2">32.000 kg CO₂</div>
+    <div style="margin-top:1rem;display:flex;gap:.5rem">
+      <button class="print-btn" onclick="window.print()">🖨 Drucken</button>
     </div>
-    <div class="arg-card pink">
-      <div class="arg-tag">► PREIS-ARGUMENT</div>
-      <div class="arg-h">Preisschutz</div>
-      <div class="arg-body">Strompreis ist für 20 Jahre eingefroren. Netzpreise steigen historisch 3–5 % pro Jahr — die Einsparung wächst mit jedem Jahr.</div>
-      <div class="arg-stat" id="arg-20-save">224.000 € / 20 J.</div>
-    </div>
-    <div class="arg-card cyan">
-      <div class="arg-tag">► SCHNELLIGKEITS-ARGUMENT</div>
-      <div class="arg-h">Kein Aufwand</div>
-      <div class="arg-body">Planung, Genehmigung, Bau, Anmeldung, Betrieb — alles wir. Der Kunde unterschreibt einmal und spart danach.</div>
-      <div class="arg-stat">1 Unterschrift</div>
-    </div>
-  </div>
-
-  <!-- Einwände -->
-  <div class="objections">
-    <div class="obj-h">► TYPISCHE EINWÄNDE &amp; ANTWORTEN</div>
-    <details class="obj">
-      <summary>„Wir wollen die Anlage besitzen."</summary>
-      <p>Verständlich — Eigentum ist ein starkes Argument. Aber: Beim PPA sind Wartung, Versicherung und Reparaturen unser Problem. Wer besitzt, trägt das Risiko. Rechnen wir gemeinsam durch, was Eigentum über 20 Jahre wirklich kostet — inklusive Kapitalkosten, Ausfallzeiten und Ersatzteilen.</p>
-    </details>
-    <details class="obj">
-      <summary>„Das ist doch teurer als Kauf."</summary>
-      <p>Im Vergleich ohne Kapitalbindung und Risiko: nein. Wer heute kauft, bindet Eigenkapital zu 4–6 % Opportunitätskosten. Das PPA ist ab Monat 1 günstiger als Netzstrom — der Kaufpreis amortisiert sich erst nach 7–12 Jahren.</p>
-    </details>
-    <details class="obj">
-      <summary>„20 Jahre sind zu lang."</summary>
-      <p>Vertragsausstieg nach 10 Jahren zu marktüblichen Konditionen möglich. Zudem: Wer heute Netzstrom kauft, hat auch keinen Ausstieg — und zahlt steigende Preise. Der PPA-Preis bleibt fix.</p>
-    </details>
-    <details class="obj">
-      <summary>„Wir haben nicht genug Dachfläche."</summary>
-      <p>Für PPA reichen oft 200–300 m² — das entspricht 30–40 kWp. Selbst kleine Anlagen bringen 15–25 % Eigenverbrauchsanteil. Wir analysieren die Dachfläche kostenfrei.</p>
-    </details>
-    <details class="obj">
-      <summary>„Was ist wenn ihr Firma macht zu?"</summary>
-      <p>Die Anlage ist im Grundbuch gesichert (falls erforderlich) und läuft weiter. Im Insolvenzfall übernimmt der Insolvenzverwalter oder der Kunde die Anlage zum Restwert. Das Risiko ist rechtlich abgesichert.</p>
-    </details>
-  </div>
-
-  <!-- Druckversion -->
-  <div style="margin-top:24px;text-align:right">
-    <button onclick="window.print()" class="roi-calc-btn">[🖨] SEITE DRUCKEN / PDF</button>
   </div>
 </div>
 
-<!-- ══ ADMIN LOGIN MODAL ══ -->
-<div id="login-modal">
-  <div class="modal-box">
-    <div class="modal-h">ADMIN</div>
-    <div class="modal-sub">► Intern — nur für Solar Energie Partner</div>
-    <div id="modal-err" class="modal-err">⚠ Falsches Passwort — nochmal versuchen.</div>
-    <input type="password" class="modal-input" id="admin-pw" placeholder="Passwort eingeben" onkeydown="if(event.key==='Enter')checkAdmin()">
-    <button class="modal-btn" onclick="checkAdmin()">[→] EINLOGGEN</button>
-    <button class="modal-cancel" onclick="closeLogin()">Abbrechen</button>
+<!-- TOAST -->
+<div class="toast" id="toast"><span id="toast-txt">OK</span></div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+    <span id="footer-company-display">Solar Energie Partner</span>
+    <button onclick="document.getElementById('impressum-modal').classList.add('open')" style="font-size:.67rem;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;font-family:'JetBrains Mono',monospace;text-decoration:underline">Impressum</button>
+    <button onclick="document.getElementById('impressum-modal').classList.add('open')" style="font-size:.67rem;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;font-family:'JetBrains Mono',monospace;text-decoration:underline">Datenschutz</button>
+  </div>
+  <button onclick="document.getElementById('settings-modal').classList.add('open')" style="font-size:.67rem;font-weight:700;color:var(--blk);background:var(--yel);border:none;padding:.2rem .7rem;cursor:pointer;font-family:'JetBrains Mono',monospace;text-transform:uppercase">⚙ Konfigurieren</button>
+</footer>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-ov" id="settings-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">⚙ Tool konfigurieren</div>
+      <button class="modal-close" onclick="document.getElementById('settings-modal').classList.remove('open')">✕</button>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.85rem">
+      <div class="mf"><div class="ml">Ihr Unternehmensname</div><input class="mi" id="cfg-company" placeholder="Solar Energie Partner" oninput="applySettings()"></div>
+      <div class="mf"><div class="ml">Berater Name</div><input class="mi" id="cfg-advisor" placeholder="Doris Pilsner-Albrecht" oninput="applySettings()"></div>
+      <div class="mf"><div class="ml">Telefon / E-Mail</div><input class="mi" id="cfg-tel" placeholder="09991 40227560 | info@solar-energie-partner.de" oninput="applySettings()"></div>
+      <div class="mf"><div class="ml">Impressum URL</div><input class="mi" id="cfg-impressum" placeholder="https://solar-energie-partner.de/impressum.html" oninput="applySettings()"></div>
+      <div class="mf"><div class="ml">Standard PPA-Preis (€/kWh)</div><input class="mi" type="number" id="cfg-ppa" value="0.17" step="0.005" oninput="applySettings()"></div>
+      <div style="padding:.75rem;background:#fffde0;border:2px solid var(--blk);font-size:.77rem;color:var(--blk);font-weight:600">
+        ✅ Einstellungen werden automatisch gespeichert und beim nächsten Start geladen.
+      </div>
+    </div>
+    <div class="modal-btns">
+      <button class="sec-btn" onclick="document.getElementById('settings-modal').classList.remove('open')">Abbrechen</button>
+      <button class="prim-btn" onclick="saveSettings();document.getElementById('settings-modal').classList.remove('open')">💾 Speichern</button>
+    </div>
   </div>
 </div>
 
-<!-- ══ WHATSAPP ══ -->
-<a href="https://wa.me/491753560019" target="_blank" rel="noopener" aria-label="WhatsApp" class="wa-btn">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
+<!-- IMPRESSUM MODAL -->
+<div class="modal-ov" id="impressum-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-title">📋 Impressum &amp; Datenschutz</div>
+      <button class="modal-close" onclick="document.getElementById('impressum-modal').classList.remove('open')">✕</button>
+    </div>
+    <div style="font-size:.82rem;color:var(--muted);line-height:1.7" id="impressum-content">
+      <p style="margin-bottom:.5rem"><strong style="color:var(--blk)" id="imp-company">Solar Energie Partner</strong></p>
+      <p id="imp-tel">09991 40227560 | info@solar-energie-partner.de</p>
+      <p style="margin-top:.75rem;font-size:.75rem">Dieses Tool dient ausschließlich zur internen Vertriebsunterstützung. Alle Berechnungen sind unverbindliche Schätzungen.</p>
+      <p style="margin-top:.5rem;font-size:.75rem">Datenschutz: Alle eingegebenen Daten werden ausschließlich lokal im Browser gespeichert und nicht übertragen.</p>
+      <p id="imp-url" style="margin-top:.5rem;font-size:.75rem"></p>
+    </div>
+    <div class="modal-btns">
+      <button class="prim-btn" onclick="document.getElementById('impressum-modal').classList.remove('open')">Schließen</button>
+    </div>
+  </div>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-/* ── STATE ── */
-const presets={
-  eigenheim:{kwh:4500,min:2000,max:30000,step:500,netz:.34,ppa:.16,label:'Eigenheim'},
-  gewerbe:{kwh:80000,min:20000,max:2000000,step:10000,netz:.31,ppa:.17,label:'Gewerbe'},
+Chart.defaults.font.family="'JetBrains Mono',monospace";
+let chSav=null,chCmp=null,chSchere=null;
+let G={kwh:4500,netz:.32,ppa:.17,ev:.30,nst:.04,ppast:.015,kwp:10,lz:20,einsp:.082,ertrag:9500,eigenV:2850,rows:[],spar1:0,kumSpar:0,type:'p'};
+let logoDataURL=null,logoPos='links';
+
+/* ── SHA-256 PASSWORT-GATE ── */
+const PW_HASH='6fd045573d3fb825a183706af835568dd9618b911c85636b2fee17a34f64eb1d';
+let unlocked=sessionStorage.getItem('sep_unlocked')==='1';
+let pendingView=null;
+
+async function hashStr(s){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+async function checkPW(){
+  const inp=document.getElementById('pw-inp').value;
+  const h=await hashStr(inp);
+  if(h===PW_HASH){
+    unlocked=true;sessionStorage.setItem('sep_unlocked','1');
+    document.getElementById('pw-modal').classList.remove('open');
+    document.getElementById('pw-inp').value='';
+    document.getElementById('pw-error').style.display='none';
+    if(pendingView){sv(pendingView,null,true);pendingView=null;}
+  } else {
+    document.getElementById('pw-error').style.display='block';
+    document.getElementById('pw-inp').select();
+  }
+}
+function closePW(){
+  document.getElementById('pw-modal').classList.remove('open');
+  document.getElementById('pw-inp').value='';
+  document.getElementById('pw-error').style.display='none';
+  pendingView=null;
+}
+
+/* ── SCENARIOS ── */
+const SC={
+  p:[{l:'🏠 Klein',k:3000,p:7,e:28},{l:'🏠 Familie',k:4500,p:10,e:32},{l:'🏡 Groß',k:8000,p:18,e:38},{l:'🏘 Villa',k:14000,p:28,e:40}],
+  g:[{l:'🏪 Büro',k:30000,p:40,e:60},{l:'🏭 Mittel',k:120000,p:150,e:75},{l:'🏗 Groß',k:400000,p:500,e:82},{l:'⚡ 2 MW',k:1800000,p:2000,e:85}]
 };
-let currentProfile='gewerbe';
-let adminUnlocked=false;
-let pendingTab=null;
-/* SHA-256 hash of admin password */
-const ADMIN_HASH='6fd045573d3fb825a183706af835568dd9618b911c85636b2fee17a34f64eb1d';
-
-/* ── TABS ── */
-function showTab(id,btn){
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('view-'+id).classList.add('active');
-  if(btn){btn.classList.add('active')}
-  if(id==='co2')renderCO2Chart();
-  if(id==='roi')renderROIChart();
-  if(id==='angebot')fillSummary();
+function renderChips(t){
+  document.getElementById('sc-chips').innerHTML=SC[t].map(s=>`<button class="chip" onclick="loadSc(${s.k},${s.p},${s.e},this)">${s.l}</button>`).join('');
+}
+function loadSc(k,p,e,btn){
+  sv2('kwh-n','kwh-sl',k);sd('kwh-d',fn(k)+' kWh');
+  sv2('ev-n','ev-sl',e);sd('ev-d',e+' %');
+  document.getElementById('kwp-n').value=p;
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));btn.classList.add('on');
+  document.querySelectorAll('input[type=range]').forEach(ub);upd();
 }
 
-function requireAdmin(id,btn){
-  if(adminUnlocked){showTab(id,btn);return;}
-  pendingTab={id,btn};
-  openLogin();
-}
-
-/* ── ADMIN LOGIN ── */
-function openLogin(){document.getElementById('login-modal').classList.add('show');setTimeout(()=>document.getElementById('admin-pw').focus(),100);}
-function closeLogin(){document.getElementById('login-modal').classList.remove('show');document.getElementById('admin-pw').value='';document.getElementById('modal-err').style.display='none';}
-
-async function checkAdmin(){
-  const pw=document.getElementById('admin-pw').value;
-  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(pw));
-  const hash=Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-  if(hash===ADMIN_HASH){
-    adminUnlocked=true;
-    closeLogin();
-    document.querySelectorAll('.tab-btn.admin').forEach(b=>b.title='Admin freigeschaltet ✓');
-    if(pendingTab){showTab(pendingTab.id,pendingTab.btn);pendingTab=null;}
+/* ── TYPE ── */
+let ctype='p';
+function setType(t){
+  ctype=t;
+  ['p','g'].forEach(x=>document.getElementById('btn-'+x).classList.toggle('active',x===t));
+  document.body.classList.toggle('is-gew',t==='g');
+  const isG=t==='g';
+  if(!isG){
+    const sl=document.getElementById('kwh-sl');sl.min=1000;sl.max=40000;sl.step=500;
+    document.getElementById('kwh-min').textContent='1.000';document.getElementById('kwh-max').textContent='40.000';
+    sv2('kwh-n','kwh-sl',4500);sd('kwh-d','4.500 kWh');
+    sv2('ev-n','ev-sl',30);sd('ev-d','30 %');
+    sv2('netz-n','netz-sl',0.32);sd('netz-d','0,32 €/kWh');
+    sv2('ppa-n','ppa-sl',0.17);sd('ppa-d','0,170 €/kWh');
+    document.getElementById('kwp-n').value=10;
+    document.getElementById('lz-sel').value=20;
+    document.getElementById('nst-n').value=4;
+    document.getElementById('ppast-n').value=1.5;
+    document.getElementById('ev-hint').textContent='Privat: ~30 %';
+    document.getElementById('kwh-hint').textContent='2.000–40.000 kWh';
+    document.getElementById('panel-title').textContent='🏠 Privatkunde';
+    document.getElementById('type-badge').textContent='Privat';
+    document.getElementById('hero-sub').textContent='Für Eigenheim-Besitzer — Solarstrom sparen ohne Investition.';
   } else {
-    document.getElementById('modal-err').style.display='block';
-    document.getElementById('admin-pw').value='';
+    const sl=document.getElementById('kwh-sl');sl.min=10000;sl.max=2000000;sl.step=5000;
+    document.getElementById('kwh-min').textContent='10.000';document.getElementById('kwh-max').textContent='2.000.000';
+    sv2('kwh-n','kwh-sl',85000);sd('kwh-d','85.000 kWh');
+    sv2('ev-n','ev-sl',75);sd('ev-d','75 %');
+    sv2('netz-n','netz-sl',0.30);sd('netz-d','0,30 €/kWh');
+    sv2('ppa-n','ppa-sl',0.14);sd('ppa-d','0,140 €/kWh');
+    document.getElementById('kwp-n').value=120;
+    document.getElementById('lz-sel').value=20;
+    document.getElementById('nst-n').value=3.5;
+    document.getElementById('ppast-n').value=1.5;
+    document.getElementById('ev-hint').textContent='Gewerbe: ~75 %';
+    document.getElementById('kwh-hint').textContent='50.000–2.000.000 kWh';
+    document.getElementById('panel-title').textContent='🏢 Gewerbekunde';
+    document.getElementById('type-badge').textContent='Gewerbe';
+    document.getElementById('hero-sub').textContent='Für Unternehmen — Energiekosten senken, GuV verbessern, kein Invest.';
   }
+  document.querySelectorAll('input[type=range]').forEach(ub);
+  tableMode='alle';
+  document.querySelectorAll('.tbl-tog-btn').forEach(b=>b.classList.remove('on'));
+  const allBtn=document.getElementById('tbl-alle');if(allBtn)allBtn.classList.add('on');
+  renderChips(t);upd();
 }
 
-/* ── PROFILE ── */
-function setProfile(p){
-  currentProfile=p;
-  const pr=presets[p];
-  const ks=document.getElementById('kwh-slider');
-  ks.min=pr.min;ks.max=pr.max;ks.step=pr.step;ks.value=pr.kwh;
-  document.getElementById('netz-slider').value=pr.netz;
-  document.getElementById('ppa-slider').value=pr.ppa;
-  document.querySelectorAll('.profile-btn').forEach(b=>{
-    const a=b.dataset.profile===p;
-    b.classList.toggle('active',a);
+/* ── UTILS ── */
+function sv2(ni,si,v){document.getElementById(ni).value=v;if(si)document.getElementById(si).value=v}
+function sd(id,t){document.getElementById(id).textContent=t}
+function fn(n,d=0){return(+n).toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d})}
+function eu(n,d=0){return fn(n,d)+' €'}
+function ub(sl){const p=(sl.value-sl.min)/(sl.max-sl.min)*100;sl.style.setProperty('--pct',p+'%')}
+function ss(sl,ni,di,fmt){document.getElementById(ni).value=sl.value;document.getElementById(di).textContent=fmt(sl.value);ub(sl)}
+function ns(num,si,di,fmt){const sl=document.getElementById(si);sl.value=Math.min(Math.max(num.value,sl.min),sl.max);document.getElementById(di).textContent=fmt(num.value);ub(sl)}
+
+/* ── MAIN CALC ── */
+function upd(){
+  const kwh=+document.getElementById('kwh-n').value||4500;
+  const netz=+document.getElementById('netz-n').value||0.32;
+  const ppa=+document.getElementById('ppa-n').value||0.17;
+  const ev=(+document.getElementById('ev-n').value||30)/100;
+  const nst=(+document.getElementById('nst-n').value||4)/100;
+  const ppast=(+document.getElementById('ppast-n').value||1.5)/100;
+  const kwp=+document.getElementById('kwp-n').value||10;
+  const lz=+document.getElementById('lz-sel').value||20;
+  const einsp=0.082;
+  const mwstVal=+document.getElementById('mwst-sel').value;
+  const mwstF=mwstVal===0?1.19:1.0;
+  updMwstLabel();
+  const ertrag=kwp*950;const eigenV=Math.min(ertrag*ev,kwh);
+  let rows=[],kumSpar=0;
+  for(let yr=1;yr<=lz;yr++){
+    const np=netz*Math.pow(1+nst,yr-1);const pp=ppa*Math.pow(1+ppast,yr-1);
+    const ert=ertrag*Math.pow(0.995,yr-1);const ev2=Math.min(ert*ev,kwh);
+    const kN=kwh*np*mwstF;const kP=(ev2*pp+(kwh-ev2)*np)*mwstF;
+    const spar=kN-kP;kumSpar+=spar;
+    rows.push({yr,np,pp,kN,kP,spar,kumSpar,einsp:(ert-ev2)*einsp});
+  }
+  saveState();
+  const j1=rows[0];
+  Object.assign(G,{kwh,netz,ppa,ev,nst,ppast,kwp,lz,einsp,ertrag,eigenV,rows,spar1:j1.spar,kumSpar,type:ctype});
+  document.getElementById('ph').style.display='none';
+  document.getElementById('rc').style.display='flex';
+  document.getElementById('lz-l').textContent=lz;
+  document.getElementById('tc-a').textContent=eu(kumSpar);
+  document.getElementById('tc-monat').textContent=eu(j1.spar/12);
+  document.getElementById('tc-pct-big').textContent=fn(j1.spar/j1.kN*100,1)+' % günstiger';
+  document.getElementById('k-ohne').textContent=eu(j1.kN);
+  document.getElementById('k-mit').textContent=eu(j1.kP);
+  document.getElementById('k-spar').textContent=eu(j1.spar);
+  document.getElementById('k-pct').textContent=fn(j1.spar/j1.kN*100,1)+' % günstiger';
+  document.getElementById('k-monat').textContent=eu(j1.spar/12);
+  const ms=[...new Set([1,5,10,lz])];
+  document.getElementById('cmp-rows').innerHTML=ms.map(yr=>{
+    const d=rows[yr-1];const p=(d.spar/d.kN*100).toFixed(0);
+    return`<div class="cmp-row"><div class="crc lbl">Jahr ${yr}</div><div class="crc r">${eu(d.kN)}</div><div class="crc g">${eu(d.kP)}<span class="cr-badge">−${p}%</span></div></div>`;
+  }).join('');
+  const netzPreise=rows.map(r=>+(r.np.toFixed(4)));
+  const ppaPreise=rows.map(r=>+(r.pp.toFixed(4)));
+  const lbls=rows.map(r=>'J'+r.yr);
+  const lastNetz=rows[rows.length-1].np;
+  document.getElementById('sc-netz1').textContent=(netz*100).toFixed(1)+' ct/kWh';
+  document.getElementById('sc-netzN').textContent=(lastNetz*100).toFixed(1)+' ct/kWh';
+  document.getElementById('sc-ppa').textContent=(ppa*100).toFixed(1)+' ct/kWh ±';
+  if(chSchere)chSchere.destroy();
+  chSchere=new Chart(document.getElementById('c-schere'),{
+    type:'line',
+    data:{labels:lbls,datasets:[
+      {label:'Netzstrompreis (ct/kWh)',data:netzPreise.map(v=>+(v*100).toFixed(3)),borderColor:'#ff3a1f',backgroundColor:'rgba(255,58,31,0.06)',borderWidth:2.5,fill:true,tension:.4,pointRadius:0},
+      {label:'Ihr PPA-Preis (ct/kWh)',data:ppaPreise.map(v=>+(v*100).toFixed(3)),borderColor:'#00aa80',backgroundColor:'rgba(0,170,128,0.08)',borderWidth:2.5,fill:true,tension:.1,pointRadius:0},
+    ]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'rgba(10,10,10,.5)',font:{size:11,weight:'700'}}},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)} ct/kWh`}}},scales:{x:{ticks:{color:'rgba(10,10,10,.4)',font:{size:9,weight:'600'}},grid:{color:'rgba(10,10,10,.06)'}},y:{ticks:{color:'rgba(10,10,10,.4)',font:{size:10},callback:v=>v.toFixed(1)+' ct'},grid:{color:'rgba(10,10,10,.06)'}}}}
   });
-  updateCalc();
+  if(chSav)chSav.destroy();
+  chSav=new Chart(document.getElementById('c-sav'),{type:'line',data:{labels:lbls,datasets:[{label:'Kumulierte Ersparnis (€)',data:rows.map(r=>+r.kumSpar.toFixed(0)),borderColor:'#00aa80',backgroundColor:'rgba(0,170,128,0.1)',borderWidth:2.5,fill:true,tension:.4,pointRadius:2}]},options:cOpts()});
+  if(chCmp)chCmp.destroy();
+  chCmp=new Chart(document.getElementById('c-cmp'),{type:'bar',data:{labels:lbls,datasets:[{label:'Netzstrom',data:rows.map(r=>+r.kN.toFixed(0)),backgroundColor:'rgba(255,58,31,0.65)',borderRadius:0,borderSkipped:false},{label:'Mit PPA',data:rows.map(r=>+r.kP.toFixed(0)),backgroundColor:'rgba(0,170,128,0.7)',borderRadius:0,borderSkipped:false}]},options:cOpts()});
+  renderYearTable();updPreisHint();updTitle();updPrintHeader();updCO2();renderPDF();
 }
 
-/* ── CALC ── */
-function set(id,v){const e=document.getElementById(id);if(e)e.textContent=v;}
-function fmt(n){return Math.round(n).toLocaleString('de-DE');}
-function fmtPct(n){return (n*100).toFixed(1);}
-
-function updateCalc(){
-  const p=presets[currentProfile];
-  const kwh=+document.getElementById('kwh-slider').value;
-  const netz=+document.getElementById('netz-slider').value;
-  const ppa=+document.getElementById('ppa-slider').value;
-  const diff=Math.max(netz-ppa,0);
-  const yearly=Math.round(kwh*diff);
-  const twenty=yearly*20;
-  const co2=Math.round(kwh*.4);
-  const pct=netz>0?Math.round(diff/netz*100):0;
-
-  set('kwh-display',kwh.toLocaleString('de-DE')+' kWh');
-  set('netz-display',fmtPct(netz)+' ct/kWh');
-  set('ppa-display',fmtPct(ppa)+' ct/kWh');
-  set('yearly-out',fmt(yearly));
-  set('twenty-out',fmt(twenty)+' €');
-  set('co2-out',fmt(co2)+' kg');
-  set('diff-display',fmtPct(diff)+' ct/kWh Differenz');
-  set('diff-pct',pct+' %');
-  set('breakeven',diff>0?'sofort':'—');
-  set('netz-cost-big',fmt(kwh*netz));
-  set('ppa-cost-big',fmt(kwh*ppa));
-  set('netz-price-sub',fmtPct(netz)+' ct/kWh');
-  set('ppa-price-sub',fmtPct(ppa)+' ct/kWh');
-  document.getElementById('kwh-min').textContent=p.min.toLocaleString('de-DE');
-  document.getElementById('kwh-max').textContent=p.max.toLocaleString('de-DE');
-
-  // CO2 tab
-  set('co2-yearly-big',fmt(co2));
-  set('co2-20-big',fmt(co2*20));
-  set('co2-20-t',Math.round(co2*20/1000));
-  const cars=Math.round(co2*20/4600);
-  set('co2-cars',cars);
-  set('eq-cars',cars);
-  set('eq-flights',Math.round(co2*20/640));
-  set('eq-trees',Math.round(co2*20/22));
-
-  // Arg tab
-  set('arg-yearly-save',fmt(yearly)+' € / J.');
-  set('arg-co2',fmt(co2)+' kg CO₂');
-  set('arg-20-save',fmt(twenty)+' € / 20 J.');
-
-  // Pre-fill angebot
-  document.getElementById('af-kwh').value=kwh.toLocaleString('de-DE')+' kWh';
-  fillSummary();
-
-  // Preisschere chart
-  if(scissorChart)updateScissorChart(kwh,netz,ppa);
-  else initScissorChart(kwh,netz,ppa);
+function cOpts(){
+  return{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'rgba(10,10,10,.5)',font:{size:11,weight:'700'}}}},scales:{x:{ticks:{color:'rgba(10,10,10,.4)',font:{size:9,weight:'600'}},grid:{color:'rgba(10,10,10,.06)'}},y:{ticks:{color:'rgba(10,10,10,.4)',font:{size:10},callback:v=>'€ '+v.toLocaleString('de')},grid:{color:'rgba(10,10,10,.06)'}}}};
 }
 
-/* ── CHARTS ── */
-let scissorChart=null,co2Chart=null,roiChart=null;
-
-function initScissorChart(kwh,netz,ppa){
-  const ctx=document.getElementById('chart-scissor');if(!ctx)return;
-  const labels=[...Array(21)].map((_,i)=>i===0?'Heute':'Jahr '+i);
-  const netzData=labels.map((_,i)=>Math.round(kwh*netz*Math.pow(1.04,i)));
-  const ppaData=labels.map((_,i)=>Math.round(kwh*ppa));
-  scissorChart=new Chart(ctx,{type:'line',data:{labels,datasets:[
-    {label:'Netzstrom (mit 4% Preissteigerung)',data:netzData,borderColor:'#ff3a1f',backgroundColor:'rgba(255,58,31,.1)',borderWidth:3,tension:.3,fill:false},
-    {label:'PPA-Preis (fest)',data:ppaData,borderColor:'#0a0a0a',backgroundColor:'rgba(0,255,234,.15)',borderWidth:3,tension:0,fill:false},
-  ]},options:{responsive:true,plugins:{legend:{labels:{font:{family:'JetBrains Mono',size:11},color:'#0a0a0a'}}},scales:{y:{ticks:{callback:v=>fmt(v)+' €',color:'#0a0a0a',font:{family:'JetBrains Mono',size:10}},grid:{color:'rgba(0,0,0,.1)'}},x:{ticks:{color:'#0a0a0a',font:{family:'JetBrains Mono',size:10},maxTicksLimit:10},grid:{color:'rgba(0,0,0,.1)'}}}}});
+/* ── CO2 ── */
+function updCO2(){
+  const{ertrag,lz,kwp,eigenV}=G;if(!ertrag)return;
+  const co2=.380;const an=ertrag*co2;const tot=an*lz;
+  document.getElementById('co2-tot').textContent=tot>=1000?fn(tot/1000,1)+' t':fn(tot)+' kg';
+  document.getElementById('co2-bar').style.width=Math.min(100,(tot/50000)*100)+'%';
+  const facts=[
+    {i:'🌳',n:Math.round(tot/22),l:'Bäume die dasselbe binden'},
+    {i:'🚗',n:fn(Math.round(tot/120))+' Tsd.',l:'Auto-Kilometer eingespart'},
+    {i:'✈',n:Math.round(tot/255),l:'Transatlantik-Flüge vermieden'},
+    {i:'🏠',n:Math.round(tot/2500),l:'Haushalts-Jahresverbräuche'},
+    {i:'⚡',n:fn(ertrag*lz),l:'kWh Solarstrom erzeugt'},
+    {i:'🌍',n:fn(an/1000,1)+' t',l:'CO₂ pro Jahr eingespart'},
+  ];
+  document.getElementById('co2-grid').innerHTML=facts.map(f=>`<div class="co2-card"><div class="co2-icon">${f.i}</div><div class="co2-num">${f.n}</div><div class="co2-lbl">${f.l}</div></div>`).join('');
+  document.getElementById('co2-info').innerHTML=`🌍 <strong>Ihr Beitrag:</strong> Mit ${kwp} kWp sparen Sie jährlich <strong>${fn(an/1000,2)} t CO₂</strong>. Über ${lz} Jahre: <strong>${fn(tot/1000,1)} t</strong> — entspricht <strong>${Math.round(tot/22)} gepflanzten Bäumen</strong>.`;
 }
 
-function updateScissorChart(kwh,netz,ppa){
-  if(!scissorChart)return;
-  const labels=[...Array(21)].map((_,i)=>i===0?'Heute':'Jahr '+i);
-  scissorChart.data.datasets[0].data=labels.map((_,i)=>Math.round(kwh*netz*Math.pow(1.04,i)));
-  scissorChart.data.datasets[1].data=labels.map((_,i)=>Math.round(kwh*ppa));
-  scissorChart.update();
+/* ── LOGO ── */
+function handleLogo(file){
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    logoDataURL=e.target.result;
+    document.getElementById('logo-ph').style.display='none';
+    document.getElementById('logo-loaded').style.display='flex';
+    document.getElementById('logo-img').src=logoDataURL;
+    document.getElementById('logo-fname').textContent=file.name;
+    renderPDF();
+  };
+  reader.readAsDataURL(file);
+}
+function removeLogo(){
+  logoDataURL=null;
+  document.getElementById('logo-ph').style.display='block';
+  document.getElementById('logo-loaded').style.display='none';
+  document.getElementById('logo-file').value='';
+  renderPDF();
+}
+function setLogoPos(pos,btn){
+  logoPos=pos;
+  document.querySelectorAll('.lp-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');renderPDF();
 }
 
-function renderCO2Chart(){
-  const ctx=document.getElementById('chart-co2');if(!ctx||co2Chart)return;
-  const kwh=+document.getElementById('kwh-slider').value;
-  const co2=Math.round(kwh*.4);
-  const labels=[...Array(21)].map((_,i)=>i===0?'Start':'Jahr '+i);
-  const cumData=labels.map((_,i)=>co2*i);
-  co2Chart=new Chart(ctx,{type:'line',data:{labels,datasets:[{label:'Kumulierte CO₂-Einsparung (kg)',data:cumData,borderColor:'#0a0a0a',backgroundColor:'rgba(0,255,234,.3)',borderWidth:3,tension:.4,fill:true}]},options:{responsive:true,plugins:{legend:{labels:{font:{family:'JetBrains Mono',size:11},color:'#0a0a0a'}}},scales:{y:{ticks:{callback:v=>fmt(v)+' kg',color:'#0a0a0a',font:{family:'JetBrains Mono',size:10}},grid:{color:'rgba(0,0,0,.1)'}},x:{ticks:{color:'#0a0a0a',font:{family:'JetBrains Mono',size:10},maxTicksLimit:10},grid:{color:'rgba(0,0,0,.1)'}}}}});
+/* ── PDF ── */
+function renderPDF(){
+  const name=document.getElementById('pdf-name').value||'Kunde';
+  const addr=document.getElementById('pdf-addr').value||'—';
+  const contact=document.getElementById('pdf-contact').value||'—';
+  const tel=document.getElementById('pdf-tel').value||'—';
+  const company=document.getElementById('pdf-company').value||'Solar Energie Partner';
+  const advisor=document.getElementById('pdf-advisor').value||'—';
+  const valid=document.getElementById('pdf-valid').value;
+  const nr=document.getElementById('pdf-nr').value||'PPA-001';
+  const today=new Date().toLocaleDateString('de-DE');
+  const validFmt=valid?new Date(valid).toLocaleDateString('de-DE'):'30 Tage ab heute';
+  const logoSize=+document.getElementById('logo-size').value||60;
+  const{kwp,lz,spar1,kumSpar,ertrag,eigenV,ppa,netz,rows:pdfRows,type}=G;
+  const j1kN=pdfRows.length?pdfRows[0].kN:1;
+  if(!G.rows.length){document.getElementById('pdf-inner').innerHTML='<div style="text-align:center;padding:2rem;color:#888;font-size:.84rem">⚠ Bitte zuerst im Kalkulator Werte eingeben.</div>';return;}
+  const logoAlign=logoPos==='links'?'flex-start':logoPos==='mitte'?'center':'flex-end';
+  const logoHTML=logoDataURL?`<div style="display:flex;justify-content:${logoAlign};margin-bottom:.65rem"><img src="${logoDataURL}" style="max-height:${logoSize}px;max-width:220px;object-fit:contain"></div>`:'';
+  document.getElementById('pdf-inner').innerHTML=`
+<div style="font-family:Arial,sans-serif;color:#0a0a0a;max-width:660px;margin:0 auto;font-size:12.5px">
+  ${logoHTML}
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:1rem;border-bottom:3px solid #fdfd00;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+    <div><div style="font-size:1.2rem;font-weight:800;color:#0a0a0a;text-transform:uppercase;letter-spacing:-.02em">${company}</div><div style="font-size:.72rem;color:#888;margin-top:.1rem">Power Purchase Agreement · Solarenergie</div></div>
+    <div style="text-align:right;font-size:.72rem;color:#888"><div><strong style="color:#0a0a0a">Angebots-Nr.:</strong> ${nr}</div><div><strong style="color:#0a0a0a">Datum:</strong> ${today}</div><div><strong style="color:#0a0a0a">Gültig bis:</strong> ${validFmt}</div><div><strong style="color:#0a0a0a">Berater:</strong> ${advisor}</div></div>
+  </div>
+  <div style="background:#f5f5f0;padding:.9rem;margin-bottom:.9rem;border-left:4px solid #fdfd00">
+    <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:#888;margin-bottom:.35rem">Auftraggeber</div>
+    <div style="font-size:.95rem;font-weight:800;margin-bottom:.12rem">${name}</div>
+    <div style="font-size:.78rem;color:#333">${addr}</div>
+    <div style="font-size:.75rem;color:#888;margin-top:.12rem">${contact} · ${tel}</div>
+  </div>
+  <div style="display:grid;gap:.65rem;margin-bottom:.9rem" class="pdf-highlight-grid">
+    <div style="background:#fdfd00;border:2px solid #0a0a0a;padding:.8rem;text-align:center">
+      <div style="font-size:.58rem;font-weight:800;text-transform:uppercase;color:#0a0a0a;opacity:.6;margin-bottom:.18rem">🏆 Gesamtersparnis</div>
+      <div style="font-size:1.2rem;font-weight:800;color:#0a0a0a">${eu(kumSpar)}</div>
+      <div style="font-size:.62rem;color:#333">über ${lz} Jahre</div>
+    </div>
+    <div style="background:#00ffea;border:2px solid #0a0a0a;padding:.8rem;text-align:center">
+      <div style="font-size:.58rem;font-weight:800;text-transform:uppercase;color:#0a0a0a;opacity:.6;margin-bottom:.18rem">💰 Sofortige Ersparnis</div>
+      <div style="font-size:1.2rem;font-weight:800;color:#0a0a0a">${eu(spar1/12)}</div>
+      <div style="font-size:.62rem;color:#333">pro Monat — ab Tag 1</div>
+    </div>
+    <div style="background:#0a0a0a;border:2px solid #0a0a0a;padding:.8rem;text-align:center">
+      <div style="font-size:.58rem;font-weight:800;text-transform:uppercase;color:#fdfd00;opacity:.8;margin-bottom:.18rem">📉 Günstiger als Netz</div>
+      <div style="font-size:1.2rem;font-weight:800;color:#fdfd00">${fn(spar1/j1kN*100,1)} %</div>
+      <div style="font-size:.62rem;color:#aaa">sofort &amp; ohne Investition</div>
+    </div>
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-size:.76rem;margin-bottom:.9rem">
+    ${[['Kundentyp',type==='g'?'Gewerbekunde':'Privatkunde'],['Anlagengröße',kwp+' kWp'],['Jahresertrag',fn(ertrag)+' kWh'],['Eigenverbrauch p.a.',fn(eigenV)+' kWh'],['PPA-Preis Jahr 1','<strong>'+ppa.toFixed(3)+' €/kWh</strong>'],['Netzstrompreis',netz.toFixed(3)+' €/kWh'],['Vertragslaufzeit',lz+' Jahre']].map((r,i)=>`<tr style="background:${i%2?'white':'#f5f5f0'}"><td style="padding:.4rem .75rem;border:1px solid #ccc;font-weight:700;color:#888;width:42%">${r[0]}</td><td style="padding:.4rem .75rem;border:1px solid #ccc;font-weight:600">${r[1]}</td></tr>`).join('')}
+  </table>
+  <div style="background:#fffde0;border-left:4px solid #fdfd00;padding:.85rem;margin-bottom:1rem">
+    <div style="font-weight:800;font-size:.76rem;color:#0a0a0a;margin-bottom:.38rem">✅ Ihre Vorteile</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.22rem;font-size:.72rem;color:#333">
+      <div>✓ Keine Investition nötig</div><div>✓ Sofortige Kostensenkung</div>
+      <div>✓ Wartung &amp; Service inklusive</div><div>✓ Fester Preis — keine Überraschungen</div>
+      <div>✓ 100 % Solarstrom vom Dach</div><div>✓ CO₂-Einsparung &amp; ESG-Vorteil</div>
+    </div>
+  </div>
+  <div style="border-top:2px solid #0a0a0a;padding-top:.85rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:.85rem;font-size:.7rem;color:#888">
+    <div><strong style="color:#0a0a0a">${company}</strong><br>Berater: ${advisor}<br>${tel}</div>
+    <div style="text-align:right"><div style="margin-bottom:1.3rem">Unterschrift Auftraggeber:</div><div style="border-top:1.5px solid #0a0a0a;width:190px;padding-top:.18rem">${name} · ${today}</div></div>
+  </div>
+</div>`;
 }
 
-function renderROIChart(){
-  const ctx=document.getElementById('chart-roi');if(!ctx||roiChart)return;
-  updateROI();
+function printOffer(){
+  const c=document.getElementById('pdf-inner').innerHTML;
+  const w=window.open('','_blank');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>PPA Angebot — ${document.getElementById('pdf-name').value}</title><style>body{font-family:Arial,sans-serif;margin:1.5cm;color:#0a0a0a}@page{margin:1.5cm}table{border-collapse:collapse}*{box-sizing:border-box}</style></head><body>${c}</body></html>`);
+  w.document.close();w.focus();setTimeout(()=>w.print(),400);
 }
 
-function updateROI(){
-  const costKwp=+document.getElementById('roi-cost-kwp').value||700;
-  const kwp=+document.getElementById('roi-kwp').value||100;
-  const ourPpa=(+document.getElementById('roi-our-ppa').value||17)/100;
-  const rate=(+document.getElementById('roi-rate').value||4.5)/100;
-  const yieldKwh=+document.getElementById('roi-yield').value||950;
-  const margin=(+document.getElementById('roi-margin').value||12)/100;
-
-  const totalInvest=costKwp*kwp;
-  const annualProd=yieldKwh*kwp;
-  const annualRev=annualProd*ourPpa;
-  const annualCost=totalInvest*rate;
-  const annualProfit=annualRev*margin;
-  const amort=annualProfit>0?totalInvest/annualProfit:Infinity;
-
-  set('roi-invest',fmt(totalInvest)+' €');
-  set('roi-revenue',fmt(annualRev)+' €');
-  set('roi-profit',fmt(annualProfit)+' €');
-  set('roi-amort',isFinite(amort)?'~'+amort.toFixed(1)+' J.':'–');
-
-  // Table
-  const tbody=document.getElementById('roi-tbody');
-  if(tbody){
-    let html='';
-    let cumRev=0,cumCost=totalInvest;
-    for(let i=1;i<=20;i++){
-      cumRev+=annualRev;cumCost+=annualCost;
-      const gain=cumRev-cumCost;
-      const status=gain>0?'✓ Gewinn':'◎ Rückzahlung';
-      html+=`<tr><td>${i}</td><td>${fmt(cumRev)} €</td><td>${fmt(cumCost)} €</td><td style="color:${gain>0?'#00ffea':'#ff3a1f'};font-weight:700">${fmt(gain)} €</td><td style="color:${gain>0?'#00ffea':'#fdfd00'}">${status}</td></tr>`;
-    }
-    tbody.innerHTML=html;
-  }
-
-  // ROI Chart
-  const ctx=document.getElementById('chart-roi');if(!ctx)return;
-  const labels=[...Array(21)].map((_,i)=>i===0?'Start':'Jahr '+i);
-  const kwh=+document.getElementById('kwh-slider').value;
-  const netz=+document.getElementById('netz-slider').value;
-  const ppa=+document.getElementById('ppa-slider').value;
-  const netzData=labels.map((_,i)=>Math.round(kwh*netz*Math.pow(1.04,i)));
-  const ppaData=labels.map(()=>Math.round(kwh*ppa));
-  const cumRevData=labels.map((_,i)=>Math.round(annualRev*i));
-
-  if(roiChart){
-    roiChart.data.datasets[0].data=netzData;
-    roiChart.data.datasets[1].data=ppaData;
-    roiChart.data.datasets[2].data=cumRevData;
-    roiChart.update();
-  } else {
-    roiChart=new Chart(ctx,{type:'bar',data:{labels,datasets:[
-      {label:'Kundenstromkosten Netz',data:netzData,backgroundColor:'rgba(255,58,31,.7)',borderColor:'#ff3a1f',borderWidth:2},
-      {label:'Kundenstromkosten PPA',data:ppaData,backgroundColor:'rgba(0,255,234,.5)',borderColor:'#0a0a0a',borderWidth:2},
-      {label:'Unsere kum. PPA-Einnahmen',data:cumRevData,type:'line',borderColor:'#ff00aa',backgroundColor:'transparent',borderWidth:3,tension:.3},
-    ]},options:{responsive:true,plugins:{legend:{labels:{font:{family:'JetBrains Mono',size:11},color:'#fdfd00'}}},scales:{y:{ticks:{callback:v=>fmt(v)+' €',color:'#fdfd00',font:{family:'JetBrains Mono',size:10}},grid:{color:'rgba(253,253,0,.15)'}},x:{ticks:{color:'#fdfd00',font:{family:'JetBrains Mono',size:10},maxTicksLimit:10},grid:{color:'rgba(253,253,0,.1)'}}}}});
-  }
+/* ── INPUT MODE ── */
+let inputMode='kwh';
+function setInputMode(mode){
+  inputMode=mode;
+  document.getElementById('mode-kwh-wrap').style.display=mode==='kwh'?'block':'none';
+  document.getElementById('mode-abschl-wrap').style.display=mode==='abschl'?'block':'none';
+  const yel='#fdfd00',muted='transparent',blk='#0a0a0a',gry='#999';
+  document.getElementById('mode-kwh').style.background=mode==='kwh'?yel:muted;
+  document.getElementById('mode-kwh').style.color=mode==='kwh'?blk:'rgba(10,10,10,.5)';
+  document.getElementById('mode-kwh').style.borderColor=mode==='kwh'?yel:gry;
+  document.getElementById('mode-abschl').style.background=mode==='abschl'?yel:muted;
+  document.getElementById('mode-abschl').style.color=mode==='abschl'?blk:'rgba(10,10,10,.5)';
+  document.getElementById('mode-abschl').style.borderColor=mode==='abschl'?yel:gry;
+}
+function calcFromAbschl(){
+  const abschl=+document.getElementById('abschl-n').value||0;
+  if(!abschl){document.getElementById('abschl-result').textContent='';return;}
+  const netz=+document.getElementById('netz-n').value||0.32;
+  const kwh=Math.round((abschl*12)/netz);
+  document.getElementById('abschl-result').textContent=`≈ ${fn(kwh)} kWh/Jahr`;
+  const sl=document.getElementById('kwh-sl');
+  const clamped=Math.min(Math.max(kwh,+sl.min),+sl.max);
+  document.getElementById('kwh-n').value=kwh;sl.value=clamped;sd('kwh-d',fn(kwh)+' kWh');ub(sl);upd();
 }
 
-/* ── ANGEBOT FORM ── */
-function fillSummary(){
-  const kwh=+document.getElementById('kwh-slider').value;
-  const netz=+document.getElementById('netz-slider').value;
-  const ppa=+document.getElementById('ppa-slider').value;
-  const diff=Math.max(netz-ppa,0);
-  const yearly=Math.round(kwh*diff);
-  const co2=Math.round(kwh*.4);
-  set('sum-profile',presets[currentProfile].label);
-  set('sum-kwh',fmt(kwh)+' kWh');
-  set('sum-netz',fmtPct(netz)+' ct/kWh');
-  set('sum-ppa',fmtPct(ppa)+' ct/kWh');
-  set('sum-yearly',fmt(yearly)+' €');
-  set('sum-twenty',fmt(yearly*20)+' €');
-  set('sum-co2',fmt(co2)+' kg');
+function updMwstLabel(){
+  const el=document.getElementById('mwst-label');if(!el)return;
+  const v=document.getElementById('mwst-sel').value;
+  el.textContent=v==='1'?'✅ Nettobasis — Ergebnisse ohne MwSt.':'⚠ Bruttobasis — inkl. 19% MwSt.';
+  el.style.color=v==='1'?'#007a60':'#7a6000';
 }
 
-async function sendAngebot(e){e.preventDefault();
-  const btn=document.getElementById('af-btn');btn.textContent='SENDE...';btn.disabled=true;
-  const kwh=+document.getElementById('kwh-slider').value;
-  const netz=+document.getElementById('netz-slider').value;
-  const ppa=+document.getElementById('ppa-slider').value;
-  const diff=Math.max(netz-ppa,0);
-  const yearly=Math.round(kwh*diff);
+/* ── LOCALSTORAGE ── */
+function saveState(){
+  try{localStorage.setItem('sep_ppa_state',JSON.stringify({type:ctype,kwh:document.getElementById('kwh-n').value,netz:document.getElementById('netz-n').value,ppa:document.getElementById('ppa-n').value,ev:document.getElementById('ev-n').value,nst:document.getElementById('nst-n').value,ppast:document.getElementById('ppast-n').value,kwp:document.getElementById('kwp-n').value,lz:document.getElementById('lz-sel').value,kunde:document.getElementById('kunde-name').value,mwst:document.getElementById('mwst-sel').value,inputMode,tableMode}));}catch(e){}
+}
+function loadState(){
   try{
-    const r=await fetch('https://formspree.io/f/mwvybprv',{method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({
-        name:document.getElementById('af-name').value,
-        company:document.getElementById('af-company').value,
-        email:document.getElementById('af-email').value,
-        tel:document.getElementById('af-tel').value,
-        kwh:document.getElementById('af-kwh').value,
-        roof:document.getElementById('af-roof').value,
-        message:document.getElementById('af-msg').value,
-        profil:presets[currentProfile].label,
-        ersparnis_jahr:fmt(yearly)+' €',
-        ersparnis_20j:fmt(yearly*20)+' €',
-      })});
-    if(r.ok){document.getElementById('angebot-form').style.display='none';document.getElementById('angebot-ok').style.display='block';}
-    else throw 0;
-  }catch{document.getElementById('af-err').style.display='block';btn.textContent='[→] ANGEBOT ANFORDERN';btn.disabled=false;}
+    const s=JSON.parse(localStorage.getItem('sep_ppa_state')||'null');if(!s)return;
+    if(s.type)setType(s.type);
+    if(s.kwh){sv2('kwh-n','kwh-sl',s.kwh);sd('kwh-d',fn(s.kwh)+' kWh');}
+    if(s.netz){sv2('netz-n','netz-sl',s.netz);sd('netz-d',(+s.netz).toFixed(2)+' €/kWh');}
+    if(s.ppa){sv2('ppa-n','ppa-sl',s.ppa);sd('ppa-d',(+s.ppa).toFixed(3)+' €/kWh');}
+    if(s.ev){sv2('ev-n','ev-sl',s.ev);sd('ev-d',s.ev+' %');}
+    if(s.nst)document.getElementById('nst-n').value=s.nst;
+    if(s.ppast)document.getElementById('ppast-n').value=s.ppast;
+    if(s.kwp)document.getElementById('kwp-n').value=s.kwp;
+    if(s.lz)document.getElementById('lz-sel').value=s.lz;
+    if(s.kunde){document.getElementById('kunde-name').value=s.kunde;document.getElementById('pdf-name').value=s.kunde;}
+    if(s.mwst)document.getElementById('mwst-sel').value=s.mwst;
+    if(s.inputMode&&s.inputMode!=='kwh')setInputMode(s.inputMode);
+    if(s.tableMode){tableMode=s.tableMode;const btn=document.getElementById('tbl-'+s.tableMode);if(btn){document.querySelectorAll('.tbl-tog-btn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');}}
+    document.querySelectorAll('input[type=range]').forEach(ub);
+  }catch(e){}
+}
+function getNextOfferNr(){
+  try{const year=new Date().getFullYear();const key=`sep_offer_nr_${year}`;const n=(parseInt(localStorage.getItem(key)||'0')+1);localStorage.setItem(key,n);return`PPA-${year}-${String(n).padStart(3,'0')}`;}catch(e){return'PPA-001';}
 }
 
-/* ── MOBILE TABS ── */
-function checkMobile(){
-  const mt=document.querySelector('.mobile-tabs');
-  if(mt)mt.style.display=window.innerWidth<=768?'flex':'none';
+/* ── SETTINGS ── */
+function saveSettings(){
+  try{localStorage.setItem('sep_cfg',JSON.stringify({company:document.getElementById('cfg-company').value,advisor:document.getElementById('cfg-advisor').value,tel:document.getElementById('cfg-tel').value,impressum:document.getElementById('cfg-impressum').value,ppa:document.getElementById('cfg-ppa').value}));}catch(e){}
+  applySettings();showToast('✅ Einstellungen gespeichert!');
 }
-window.addEventListener('resize',checkMobile);
-checkMobile();
+function applySettings(){
+  const company=document.getElementById('cfg-company').value||'Solar Energie Partner';
+  const advisor=document.getElementById('cfg-advisor').value||'Doris Pilsner-Albrecht';
+  const tel=document.getElementById('cfg-tel').value||'09991 40227560';
+  const impressum=document.getElementById('cfg-impressum').value||'';
+  const ppa=document.getElementById('cfg-ppa').value;
+  document.getElementById('pdf-company').value=company;
+  document.getElementById('pdf-advisor').value=advisor;
+  document.getElementById('pdf-tel').value=tel;
+  document.getElementById('footer-company-display').textContent=company;
+  document.getElementById('imp-company').textContent=company;
+  document.getElementById('imp-tel').textContent=tel;
+  const urlEl=document.getElementById('imp-url');
+  if(impressum)urlEl.innerHTML=`Impressum: <a href="${impressum}" target="_blank">${impressum}</a>`;
+  if(ppa){sv2('ppa-n','ppa-sl',ppa);sd('ppa-d',(+ppa).toFixed(3)+' €/kWh');ub(document.getElementById('ppa-sl'));}
+  renderPDF();updTitle();updPrintHeader();
+}
+function loadSettings(){
+  try{
+    const cfg=JSON.parse(localStorage.getItem('sep_cfg')||'null');if(!cfg)return;
+    if(cfg.company)document.getElementById('cfg-company').value=cfg.company;
+    if(cfg.advisor)document.getElementById('cfg-advisor').value=cfg.advisor;
+    if(cfg.tel)document.getElementById('cfg-tel').value=cfg.tel;
+    if(cfg.impressum)document.getElementById('cfg-impressum').value=cfg.impressum;
+    if(cfg.ppa)document.getElementById('cfg-ppa').value=cfg.ppa;
+    applySettings();
+  }catch(e){}
+}
+
+/* ── TABLE ── */
+let tableMode='alle';
+function setTableMode(mode,btn){
+  tableMode=mode;
+  document.querySelectorAll('.tbl-tog-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');renderYearTable();
+}
+function renderYearTable(){
+  if(!G.rows.length)return;
+  const rows=tableMode==='alle'?G.rows:G.rows.filter(r=>[1,3,5,10,G.lz].includes(r.yr));
+  document.getElementById('yr-body').innerHTML=rows.map(r=>
+    `<tr><td>${r.yr}</td><td class="tr">${r.np.toFixed(3)} €</td><td class="tr">${eu(r.kN)}</td><td>${eu(r.kP)}</td><td class="tg">${eu(r.spar)}</td><td class="ts">${eu(r.kumSpar)}</td></tr>`
+  ).join('');
+}
+
+function updPreisHint(){
+  const netz=+document.getElementById('netz-n').value||0.32;
+  const el=document.getElementById('netz-hint-txt');if(!el)return;
+  if(netz<0.25){el.textContent='⚠ Sehr niedrig — bitte prüfen';el.style.color='var(--red)';}
+  else if(netz<=0.34){el.textContent='✅ Realistisch — Ø Deutschland 2025: 29–34 ct';el.style.color='#007a60';}
+  else if(netz<=0.45){el.textContent='⚠ Leicht erhöht — z.B. älterer Vertrag';el.style.color='#7a6000';}
+  else{el.textContent='🔴 Sehr hoch — bitte prüfen';el.style.color='var(--red)';}
+}
+function updTitle(){
+  const company=document.getElementById('cfg-company')?.value||'Solar Energie Partner';
+  const kunde=document.getElementById('kunde-name')?.value;
+  document.title=kunde?`${company} — ${kunde}`:`${company} — PPA Kalkulator`;
+  const pht=document.getElementById('page-title');if(pht)pht.textContent=document.title;
+}
+function ensurePDFReady(){if(!G.rows.length)upd();renderPDF();}
+function updPrintHeader(){
+  const company=document.getElementById('cfg-company')?.value||'Solar Energie Partner';
+  const advisor=document.getElementById('cfg-advisor')?.value||'';
+  const tel=document.getElementById('cfg-tel')?.value||'';
+  const kunde=document.getElementById('kunde-name')?.value||'';
+  const el=document.getElementById('ph-company');const dt=document.getElementById('ph-date');const adv=document.getElementById('ph-advisor-info');
+  if(el)el.textContent=company;
+  if(dt)dt.textContent=new Date().toLocaleDateString('de-DE');
+  if(adv)adv.innerHTML=(kunde?`Kunde: <strong>${kunde}</strong><br>`:'')+( advisor?`Berater: ${advisor}`:'')+( tel?`<br>${tel}`:'');
+}
+
+/* ── ROI CALC ── */
+let chRoiBar=null,chRoiCum=null;
+function roiCalc(){
+  const invest=+document.getElementById('roi-invest').value||120000;
+  const foerder=+document.getElementById('roi-foerder').value||0;
+  const zinssatz=(+document.getElementById('roi-finanz').value||0)/100;
+  const kreditLz=+document.getElementById('roi-kredit-lz').value||10;
+  const wartung=+document.getElementById('roi-wartung').value||1200;
+  const sonstK=+document.getElementById('roi-sonstkosten').value||200;
+  const ppaPreis=+document.getElementById('roi-ppa-preis').value||0.17;
+  const kwp=+document.getElementById('roi-kwp').value||10;
+  const spezErt=+document.getElementById('roi-ertrag').value||950;
+  const evQ=(+document.getElementById('roi-ev').value||75)/100;
+  const einspVg=+document.getElementById('roi-einsp').value||0.082;
+  const lz=+document.getElementById('roi-lz').value||20;
+  const ppaStg=(+document.getElementById('roi-ppa-steig').value||1.5)/100;
+  const degrad=(+document.getElementById('roi-degrad').value||0.5)/100;
+  const nettInvest=invest-foerder;
+  const basisErtrag=kwp*spezErt;
+  let annuitaet=0,gesamtZinsen=0;
+  if(zinssatz>0&&nettInvest>0){
+    const factor=Math.pow(1+zinssatz,kreditLz);
+    annuitaet=nettInvest*(zinssatz*factor)/(factor-1);
+    gesamtZinsen=annuitaet*kreditLz-nettInvest;
+  }
+  const kreditWrap=document.getElementById('roi-laufzeit-kredit-wrap');
+  if(kreditWrap)kreditWrap.style.display=zinssatz>0?'block':'none';
+  const annInfo=document.getElementById('roi-annuitat-info');
+  if(annInfo)annInfo.textContent=zinssatz>0?`Annuität: ${eu(annuitaet)}/Jahr | Gesamtzinsen: ${eu(gesamtZinsen)}`:'';
+  let rows=[],kumCF=-nettInvest,breakEvenJahr=null;
+  for(let yr=1;yr<=lz;yr++){
+    const ertJahr=basisErtrag*Math.pow(1-degrad,yr-1);
+    const evKwh=ertJahr*evQ;const einsKwh=ertJahr-evKwh;
+    const ppaJahr=ppaPreis*Math.pow(1+ppaStg,yr-1);
+    const einnahPPA=evKwh*ppaJahr;const einnahEinsp=einsKwh*einspVg;
+    const gesEinnah=einnahPPA+einnahEinsp;
+    const kreditKosten=(zinssatz>0&&yr<=kreditLz)?annuitaet:0;
+    const gesKosten=wartung+sonstK+kreditKosten;
+    const cf=gesEinnah-gesKosten;
+    kumCF+=cf;if(kumCF>=0&&!breakEvenJahr)breakEvenJahr=yr;
+    rows.push({yr,einnahPPA,einnahEinsp,gesEinnah,gesKosten,kreditKosten,cf,kumCF});
+  }
+  const finalKum=rows[rows.length-1].kumCF;
+  const gesamtInvest=nettInvest+gesamtZinsen;
+  const rendite=gesamtInvest>0?(finalKum/gesamtInvest/lz)*100:0;
+  const j1=rows[0];
+  document.getElementById('roi-gewinn').textContent=eu(finalKum);
+  document.getElementById('roi-breakeven').textContent=breakEvenJahr?breakEvenJahr+' J.':'> '+lz+' J.';
+  document.getElementById('roi-rendite').textContent=fn(rendite,1)+' %';
+  document.getElementById('roi-k-einnahmen').textContent=eu(j1.einnahPPA);
+  document.getElementById('roi-k-einsp').textContent=eu(j1.einnahEinsp);
+  document.getElementById('roi-k-kosten').textContent=eu(j1.gesKosten);
+  document.getElementById('roi-k-cf').textContent=eu(j1.cf);
+  document.getElementById('roi-gewinn').style.color=finalKum>=0?'var(--wht)':'#ff3a1f';
+  const lbls=rows.map(r=>'J'+r.yr);
+  if(chRoiBar)chRoiBar.destroy();
+  chRoiBar=new Chart(document.getElementById('roi-c-bar'),{type:'bar',data:{labels:lbls,datasets:[{label:'Einnahmen (€)',data:rows.map(r=>+r.gesEinnah.toFixed(0)),backgroundColor:'rgba(0,255,234,0.7)',borderRadius:0,borderSkipped:false},{label:'Kosten (€)',data:rows.map(r=>+r.gesKosten.toFixed(0)),backgroundColor:'rgba(255,58,31,0.6)',borderRadius:0,borderSkipped:false}]},options:cOpts()});
+  if(chRoiCum)chRoiCum.destroy();
+  chRoiCum=new Chart(document.getElementById('roi-c-cum'),{type:'line',data:{labels:lbls,datasets:[{label:'Kum. Cash-Flow (€)',data:rows.map(r=>+r.kumCF.toFixed(0)),borderColor:'#ff00aa',backgroundColor:'rgba(255,0,170,0.08)',borderWidth:2.5,fill:true,tension:.4,pointRadius:2,segment:{borderColor:ctx=>ctx.p1.parsed.y>=0?'#ff00aa':'#ff3a1f',backgroundColor:ctx=>ctx.p1.parsed.y>=0?'rgba(255,0,170,0.08)':'rgba(255,58,31,0.08)'}},{label:'Break-Even',data:Array(rows.length).fill(0),borderColor:'rgba(0,170,128,0.5)',borderWidth:1.5,borderDash:[6,4],pointRadius:0,fill:false}]},options:cOpts()});
+  document.getElementById('roi-tbody').innerHTML=rows.map(r=>`<tr><td>${r.yr}</td><td style="color:var(--pink);font-weight:700">${eu(r.einnahPPA)}</td><td style="color:var(--pink)">${eu(r.einnahEinsp)}</td><td style="color:var(--pink);font-weight:800">${eu(r.gesEinnah)}</td><td class="tr">${eu(r.gesKosten)}${r.kreditKosten>0?`<div style="font-size:.65rem;color:var(--muted)">Kredit: ${eu(r.kreditKosten)}</div>`:''}</td><td style="font-weight:700;color:${r.cf>=0?'#007a60':'#ff3a1f'}">${eu(r.cf)}</td><td style="color:${r.kumCF>=0?'var(--pink)':'#ff3a1f'};font-weight:800">${eu(r.kumCF)}</td></tr>`).join('');
+  const sumItems=[['Netto-Investition',eu(nettInvest)],['Förderung / Zuschuss',eu(foerder)],zinssatz>0?['Annuität (Kredit)',eu(annuitaet)+'/Jahr × '+kreditLz+' J.']:['Finanzierung','Eigenkapital'],zinssatz>0?['Gesamtzinsen',eu(gesamtZinsen)]:['Zinskosten','—'],['Wartung + Sonstiges p.a.',eu(wartung+sonstK)],['Gesamteinnahmen ('+lz+' J.)',eu(rows.reduce((s,r)=>s+r.gesEinnah,0))],['Gesamtkosten inkl. Invest',eu(rows.reduce((s,r)=>s+r.gesKosten,0)+nettInvest+gesamtZinsen)],['Nettogewinn',eu(finalKum)],['Ø Rendite p.a.',fn(rendite,1)+' % auf Gesamtinvest']];
+  document.getElementById('roi-summary-grid').innerHTML=sumItems.map(([k,v],i)=>`<div style="display:flex;flex-direction:column;gap:.15rem;padding:.5rem .6rem;background:${i%2?'white':'#fff0f8'}"><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--pink)">${k}</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.88rem;font-weight:800">${v}</div></div>`).join('');
+}
+
+/* ── GEO ── */
+async function fetchSunhours(){
+  const standort=document.getElementById('roi-standort').value.trim();
+  if(!standort){showGeoError('Bitte Standort eingeben');return;}
+  const btn=document.getElementById('geo-btn');btn.textContent='⏳ Lädt…';btn.disabled=true;
+  try{
+    const geoResp=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(standort)}&format=json&limit=1&countrycodes=de,at,ch`,{headers:{'Accept-Language':'de'}});
+    const geoData=await geoResp.json();
+    if(!geoData.length){showGeoError('Standort nicht gefunden');return;}
+    const{lat,lon,display_name}=geoData[0];const stadtName=display_name.split(',')[0];
+    const solar=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=sunshine_duration&timezone=auto&past_days=365&forecast_days=0`);
+    const solarData=await solar.json();
+    if(!solarData.daily?.sunshine_duration){showGeoError('Solardaten nicht verfügbar');return;}
+    const jahresSonnen=solarData.daily.sunshine_duration.reduce((a,b)=>a+b,0)/3600;
+    const spezErtrag=Math.round(jahresSonnen*0.85);
+    document.getElementById('roi-ertrag').value=spezErtrag;
+    showGeoSuccess(stadtName,Math.round(jahresSonnen),spezErtrag,lat,lon);roiCalc();
+  }catch(e){showGeoError('Verbindungsfehler — bitte Internetverbindung prüfen');}
+  finally{btn.textContent='☀ Abrufen';btn.disabled=false;}
+}
+function showGeoSuccess(stadt,stunden,ertrag,lat,lon){
+  const el=document.getElementById('geo-result');el.style.display='block';
+  el.style.cssText+=';background:#d8fff8;border:2px solid #0a0a0a;color:#0a0a0a;padding:.65rem .9rem';
+  el.innerHTML=`<div style="display:flex;align-items:flex-start;gap:.6rem"><span style="font-size:1.1rem">☀</span><div style="flex:1"><div style="font-weight:800;margin-bottom:.2rem">${stadt}</div><div style="font-size:.75rem;opacity:.85">${stunden} Sonnenstunden/Jahr → Systemertrag: <strong>${ertrag} kWh/kWp</strong></div><div style="font-size:.7rem;opacity:.65;margin-top:.1rem">✅ Spez. Ertrag automatisch aktualisiert</div></div></div>`;
+}
+function showGeoError(msg){
+  const el=document.getElementById('geo-result');el.style.display='block';
+  el.style.cssText+=';background:#fff0ee;border:2px solid #ff3a1f;color:#ff3a1f;padding:.65rem .9rem;font-weight:700';
+  el.textContent='⚠ '+msg;
+}
+function clearGeoResult(){const el=document.getElementById('geo-result');if(el)el.style.display='none';}
+
+/* ── VIEW SWITCH ── */
+function sv(id,btn,force=false){
+  const locked=['roi','args'];
+  if(locked.includes(id)&&!unlocked&&!force){
+    pendingView=id;document.getElementById('pw-modal').classList.add('open');
+    setTimeout(()=>document.getElementById('pw-inp').focus(),100);
+    return;
+  }
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.np').forEach(p=>p.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  else{
+    const allBtns=document.querySelectorAll('.np');
+    const idx={calc:0,co2:1,pdf:2,roi:3,args:4}[id];
+    if(idx!==undefined&&allBtns[idx])allBtns[idx].classList.add('active');
+  }
+  if(id==='co2')updCO2();
+  if(id==='pdf')ensurePDFReady();
+  if(id==='roi'){
+    const calcKwp=document.getElementById('kwp-n').value;
+    const calcPpa=document.getElementById('ppa-n').value;
+    if(calcKwp)document.getElementById('roi-kwp').value=calcKwp;
+    if(calcPpa)document.getElementById('roi-ppa-preis').value=calcPpa;
+    const kwpVal=+calcKwp||10;
+    if(+document.getElementById('roi-invest').value===120000&&kwpVal!==120)document.getElementById('roi-invest').value=Math.round(kwpVal*1400);
+    roiCalc();
+  }
+}
+
+/* ── TOAST ── */
+function showToast(msg){
+  const t=document.getElementById('toast');document.getElementById('toast-txt').textContent=msg;
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);
+}
+function closeModal(){document.querySelectorAll('.modal-ov').forEach(m=>m.classList.remove('open'));}
 
 /* ── INIT ── */
-setProfile('gewerbe');
-initScissorChart(80000,.31,.17);
+document.getElementById('pdf-valid').valueAsDate=new Date(Date.now()+30*24*60*60*1000);
+document.getElementById('mwst-sel').addEventListener('change',updMwstLabel);
+document.getElementById('kunde-name').addEventListener('input',updTitle);
+document.getElementById('netz-n').addEventListener('input',updPreisHint);
+document.getElementById('pw-inp').addEventListener('keydown',e=>{if(e.key==='Escape')closePW();});
+document.getElementById('pdf-nr').value=getNextOfferNr();
+document.querySelectorAll('input[type=range]').forEach(ub);
+renderChips('p');
+loadSettings();
+loadState();
+upd();roiCalc();
+updPreisHint();updPrintHeader();
 </script>
 </body>
 </html>
