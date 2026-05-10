@@ -183,7 +183,7 @@
         <a href="#kontakt" class="lift" style="background:#0a0a0a;color:#fdfd00;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;border:3px solid #0a0a0a;text-decoration:none;text-align:left;letter-spacing:0.05em">
           [→] BERATUNGSTERMIN<br><span style="font-size:10px;opacity:0.6">kostenlos // unverbindlich // eh klar</span>
         </a>
-        <a href="#rechner" class="lift" style="background:#ff00aa;color:#0a0a0a;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;border:3px solid #0a0a0a;text-decoration:none;text-align:left;letter-spacing:0.05em">
+        <a href="ppa-rechner.html" class="lift" style="background:#ff00aa;color:#0a0a0a;padding:20px 24px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;text-transform:uppercase;border:3px solid #0a0a0a;text-decoration:none;text-align:left;letter-spacing:0.05em">
           [⚡] PPA RECHNER<br><span style="font-size:10px;opacity:0.7">14 CT/kWh sparen, jährlich</span>
         </a>
       </div>
@@ -456,81 +456,19 @@
 
 <!-- ══ PPA-RECHNER ══ -->
 <section id="rechner" style="background:#00ffea;color:#0a0a0a;padding:80px 24px;border-top:4px solid #0a0a0a;position:relative;overflow:hidden">
-  <div class="rv" style="margin-bottom:40px">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px">░░░ RECHNER_v2.4 ░░░ LIVE ░░░ KEINE_ANMELDUNG ░░░</div>
-    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(56px,11vw,180px);line-height:0.85;letter-spacing:-0.05em;margin:0;text-transform:uppercase">
+  <div class="rv">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;opacity:.6">░░░ PPA_RECHNER ░░░ KOSTENLOS ░░░ SOFORT ░░░</div>
+    <h2 style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(48px,10vw,160px);line-height:0.85;letter-spacing:-0.05em;margin:0 0 32px;text-transform:uppercase">
       <span style="background:#0a0a0a;color:#00ffea;padding:0 .1em;display:inline-block;transform:rotate(-1deg)">WAS</span> sparst du?<br>
-      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">schieb den</span>
-      <span style="background:#ff00aa;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:skew(-4deg)">REGLER.</span>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;text-transform:lowercase">jetzt</span>
+      <span style="background:#ff00aa;color:#0a0a0a;padding:0 .1em;display:inline-block;transform:skew(-4deg)">AUSRECHNEN.</span>
     </h2>
-  </div>
-  <div style="display:inline-flex;border:3px solid #0a0a0a;margin-bottom:24px;background:#fff">
-    <button class="profile-btn" data-profile="eigenheim" onclick="setProfile('eigenheim')" style="padding:12px 24px;border:none;cursor:crosshair;background:transparent;color:#0a0a0a;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">■ EIGENHEIM</button>
-    <button class="profile-btn" data-profile="gewerbe" onclick="setProfile('gewerbe')" style="padding:12px 24px;border:none;cursor:crosshair;background:#0a0a0a;color:#fdfd00;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em">■ GEWERBE</button>
-  </div>
-  <div style="display:grid;grid-template-columns:1.1fr 1fr 0.8fr;gap:32px;align-items:stretch">
-    <div style="background:#fff;border:3px solid #0a0a0a;padding:28px;position:relative">
-      <div style="position:absolute;top:-14px;left:16px;background:#0a0a0a;color:#00ffea;padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase">► EINGABE</div>
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase">
-        <span>JAHRESVERBRAUCH</span><span id="kwh-display" style="font-weight:700">80.000 kWh</span>
-      </div>
-      <input type="range" id="kwh-slider" min="20000" max="2000000" step="10000" value="80000" oninput="updateCalc()" style="width:100%;accent-color:#ff00aa;height:24px;cursor:crosshair">
-      <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.5;margin-top:4px"><span>20.000</span><span>2.000.000</span></div>
-      <div style="margin-top:20px;padding-top:20px;border-top:2px dashed #0a0a0a">
-        <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-family:'JetBrains Mono',monospace;font-size:12px;text-transform:uppercase">
-          <span>PPA-PREIS</span><span id="ppa-display" style="font-weight:700;color:#0a0a0a">17,0 ct/kWh</span>
-        </div>
-        <input type="range" id="ppa-slider" min="0.08" max="0.26" step="0.005" value="0.17" oninput="updateCalc()" style="width:100%;accent-color:#0a0a0a;height:24px;cursor:crosshair">
-        <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.5;margin-top:4px"><span>8 ct</span><span>26 ct</span></div>
-      </div>
-      <div style="margin-top:20px;border-top:2px dashed #0a0a0a;padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6">NETZ-PREIS</div>
-          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:40px;font-weight:800;line-height:1;color:#ff3a1f"><span id="netz-price">31</span><span style="font-size:16px">ct</span></div>
-          <div id="netz-yearly" style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.6">24.800 €/J.</div>
-        </div>
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;opacity:0.6">PPA-PREIS</div>
-          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:40px;font-weight:800;line-height:1;color:#0a0a0a">17<span style="font-size:16px">ct</span></div>
-          <div id="ppa-yearly" style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.6">13.600 €/J.</div>
-        </div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+      <a href="ppa-rechner.html" class="lift" style="background:#0a0a0a;color:#fdfd00;padding:20px 36px;font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;text-transform:uppercase;border:3px solid #0a0a0a;text-decoration:none;letter-spacing:0.05em;display:inline-block">[⚡] PPA-RECHNER STARTEN →</a>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;opacity:.6;line-height:1.6">
+        Kalkulator · CO₂-Bilanz · Angebot<br>ROI · Preisschere · Jahrestabelle
       </div>
     </div>
-    <div style="background:#0a0a0a;color:#fdfd00;border:3px solid #0a0a0a;padding:28px;display:flex;flex-direction:column;justify-content:space-between;position:relative">
-      <div style="position:absolute;top:-14px;right:16px;background:#ff00aa;color:#0a0a0a;padding:0 12px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-transform:uppercase">► ERGEBNIS</div>
-      <div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;opacity:0.6;margin-bottom:4px">ERSPARNIS / JAHR</div>
-        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:clamp(80px,9vw,140px);line-height:0.85;letter-spacing:-0.04em;color:#00ffea;font-variant-numeric:tabular-nums">
-          <span id="yearly-out">11.200</span><span style="font-size:.4em;color:#ff00aa">€</span>
-        </div>
-        <div id="diff-display" style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.5;margin-top:8px">14,0 ct/kWh Differenz</div>
-      </div>
-      <div style="border-top:1px solid #fdfd00;margin-top:20px;padding-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.6;text-transform:uppercase">20 JAHRE</div>
-          <div id="twenty-out" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;color:#ff00aa;font-variant-numeric:tabular-nums">224.000 €</div>
-        </div>
-        <div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:0.6;text-transform:uppercase">CO₂ / JAHR</div>
-          <div id="co2-out" style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:32px;color:#00ffea;font-variant-numeric:tabular-nums">32.000 kg</div>
-        </div>
-      </div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;opacity:0.5;margin-top:14px;line-height:1.4;text-transform:uppercase">⚠ ESTIMATE. exakte rechnung in beratung. preise indikativ. keine zusicherung.</div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:0;justify-content:center">
-      <div style="padding-bottom:24px">
-        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:8px">► Optimal für Logistik, Industrie &amp; Landwirtschaft</div>
-        <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.55;opacity:0.75">Spezialisiert auf Hallendächer mit hohem Eigenverbrauch – dort rechnet sich PPA am stärksten.</div>
-      </div>
-      <div style="border-top:2px dashed rgba(0,0,0,0.15);padding-top:24px;padding-bottom:24px">
-        <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:8px">► 24/7 Notfall-Hotline</div>
-        <div style="font-family:'Instrument Serif',serif;font-size:14px;line-height:1.55;opacity:0.75">Direkter Draht zu unserem Serviceteam – nicht zur Warteschleife.</div>
-      </div>
-    </div>
-  </div>
-  <div style="margin-top:32px;display:flex;gap:16px;align-items:center;flex-wrap:wrap">
-    <a href="ppa-rechner.html" class="lift" style="background:#0a0a0a;color:#fdfd00;padding:16px 28px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-transform:uppercase;border:3px solid #0a0a0a;text-decoration:none;letter-spacing:0.05em">[⚡] VOLLSTÄNDIGER PPA-RECHNER →</a>
-    <span style="font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.6;text-transform:uppercase">inkl. ROI · Preisschere · Angebot</span>
   </div>
 </section>
 
@@ -1085,32 +1023,6 @@ document.querySelectorAll('.tilt-wrap').forEach(el=>{
   el.addEventListener('mouseleave',()=>{el.style.transform='';el.style.transition='transform .4s ease-out'});
 });
 
-// ── PPA CALC ──
-const presets={eigenheim:{kwh:4500,min:2000,max:30000,step:500,netz:.34,ppa:.16},gewerbe:{kwh:80000,min:20000,max:2000000,step:10000,netz:.31,ppa:.17}};
-let currentProfile='gewerbe';
-function setProfile(p){currentProfile=p;const pr=presets[p];
-  const ks=document.getElementById('kwh-slider');if(!ks)return;
-  ks.min=pr.min;ks.max=pr.max;ks.step=pr.step;ks.value=pr.kwh;
-  document.getElementById('ppa-slider').value=pr.ppa;
-  document.querySelectorAll('.profile-btn').forEach(b=>{const a=b.dataset.profile===p;b.style.background=a?'#0a0a0a':'transparent';b.style.color=a?'#fdfd00':'#0a0a0a'});
-  updateCalc();
-}
-function updateCalc(){const p=presets[currentProfile];
-  const ks=document.getElementById('kwh-slider');if(!ks)return;
-  const kwh=+ks.value,pp=+document.getElementById('ppa-slider').value;
-  const diff=Math.max(p.netz-pp,0),yearly=Math.round(kwh*diff),twenty=yearly*20,co2=Math.round(kwh*.4);
-  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
-  set('kwh-display',kwh.toLocaleString('de-DE')+' kWh');
-  set('ppa-display',(pp*100).toFixed(1)+' ct/kWh');
-  set('yearly-out',yearly.toLocaleString('de-DE'));
-  set('twenty-out',twenty.toLocaleString('de-DE')+' €');
-  set('co2-out',co2.toLocaleString('de-DE')+' kg');
-  set('diff-display',(diff*100).toFixed(1)+' ct/kWh Differenz');
-  set('netz-yearly',Math.round(kwh*p.netz).toLocaleString('de-DE')+' €/J.');
-  set('ppa-yearly',Math.round(kwh*pp).toLocaleString('de-DE')+' €/J.');
-  set('netz-price',(p.netz*100).toFixed(0));
-}
-setProfile('gewerbe');
 
 // ── CONTACT FORM ──
 async function submitForm(e){e.preventDefault();
