@@ -369,8 +369,8 @@ footer a:hover{color:var(--yel)}
     <h1 class="h-title">Wie viel sparen Sie<br>mit <span class="acc">Solar-PPA?</span></h1>
     <p class="h-sub" id="hero-sub">Verbrauch eingeben — sofort sehen was Sie gegenüber Netzstrom sparen.</p>
     <div class="type-row">
-      <button class="tb active" id="btn-p" onclick="setType('p')"><span>🏠</span> Privatkunde</button>
-      <button class="tb" id="btn-g" onclick="setType('g')"><span>🏢</span> Gewerbekunde</button>
+      <button type="button" class="tb active" id="btn-p" onclick="setType('p')"><span>🏠</span> Privatkunde</button>
+      <button type="button" class="tb" id="btn-g" onclick="setType('g')"><span>🏢</span> Gewerbekunde</button>
     </div>
   </div>
   <div class="wrap">
@@ -868,7 +868,7 @@ let ctype='p';
 function setType(t){
   ctype=t;
   ['p','g'].forEach(x=>document.getElementById('btn-'+x).classList.toggle('active',x===t));
-  document.body.classList.toggle('is-gew',t==='g');
+  if(t==='g'){document.body.classList.add('is-gew');}else{document.body.classList.remove('is-gew');}
   const isG=t==='g';
   if(!isG){
     const sl=document.getElementById('kwh-sl');sl.min=1000;sl.max=40000;sl.step=500;
