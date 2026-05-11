@@ -812,7 +812,7 @@ footer a:hover{color:var(--yel)}
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-Chart.defaults.font.family="'JetBrains Mono',monospace";
+if(typeof Chart!=='undefined')Chart.defaults.font.family="'JetBrains Mono',monospace";
 let chSav=null,chCmp=null,chSchere=null;
 let G={kwh:4500,netz:.32,ppa:.17,ev:.30,nst:.04,ppast:.015,kwp:10,lz:20,einsp:.082,ertrag:9500,eigenV:2850,rows:[],spar1:0,kumSpar:0,type:'p'};
 let logoDataURL=null,logoPos='links';
@@ -968,19 +968,21 @@ function upd(){
   document.getElementById('sc-netz1').textContent=(netz*100).toFixed(1)+' ct/kWh';
   document.getElementById('sc-netzN').textContent=(lastNetz*100).toFixed(1)+' ct/kWh';
   document.getElementById('sc-ppa').textContent=(ppa*100).toFixed(1)+' ct/kWh ±';
-  if(chSchere)chSchere.destroy();
-  chSchere=new Chart(document.getElementById('c-schere'),{
-    type:'line',
-    data:{labels:lbls,datasets:[
-      {label:'Netzstrompreis (ct/kWh)',data:netzPreise.map(v=>+(v*100).toFixed(3)),borderColor:'#ff3a1f',backgroundColor:'rgba(255,58,31,0.06)',borderWidth:2.5,fill:true,tension:.4,pointRadius:0},
-      {label:'Ihr PPA-Preis (ct/kWh)',data:ppaPreise.map(v=>+(v*100).toFixed(3)),borderColor:'#00aa80',backgroundColor:'rgba(0,170,128,0.08)',borderWidth:2.5,fill:true,tension:.1,pointRadius:0},
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'rgba(10,10,10,.5)',font:{size:11,weight:'700'}}},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)} ct/kWh`}}},scales:{x:{ticks:{color:'rgba(10,10,10,.4)',font:{size:9,weight:'600'}},grid:{color:'rgba(10,10,10,.06)'}},y:{ticks:{color:'rgba(10,10,10,.4)',font:{size:10},callback:v=>v.toFixed(1)+' ct'},grid:{color:'rgba(10,10,10,.06)'}}}}
-  });
-  if(chSav)chSav.destroy();
-  chSav=new Chart(document.getElementById('c-sav'),{type:'line',data:{labels:lbls,datasets:[{label:'Kumulierte Ersparnis (€)',data:rows.map(r=>+r.kumSpar.toFixed(0)),borderColor:'#00aa80',backgroundColor:'rgba(0,170,128,0.1)',borderWidth:2.5,fill:true,tension:.4,pointRadius:2}]},options:cOpts()});
-  if(chCmp)chCmp.destroy();
-  chCmp=new Chart(document.getElementById('c-cmp'),{type:'bar',data:{labels:lbls,datasets:[{label:'Netzstrom',data:rows.map(r=>+r.kN.toFixed(0)),backgroundColor:'rgba(255,58,31,0.65)',borderRadius:0,borderSkipped:false},{label:'Mit PPA',data:rows.map(r=>+r.kP.toFixed(0)),backgroundColor:'rgba(0,170,128,0.7)',borderRadius:0,borderSkipped:false}]},options:cOpts()});
+  try{
+    if(chSchere)chSchere.destroy();
+    chSchere=new Chart(document.getElementById('c-schere'),{
+      type:'line',
+      data:{labels:lbls,datasets:[
+        {label:'Netzstrompreis (ct/kWh)',data:netzPreise.map(v=>+(v*100).toFixed(3)),borderColor:'#ff3a1f',backgroundColor:'rgba(255,58,31,0.06)',borderWidth:2.5,fill:true,tension:.4,pointRadius:0},
+        {label:'Ihr PPA-Preis (ct/kWh)',data:ppaPreise.map(v=>+(v*100).toFixed(3)),borderColor:'#00aa80',backgroundColor:'rgba(0,170,128,0.08)',borderWidth:2.5,fill:true,tension:.1,pointRadius:0},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'rgba(10,10,10,.5)',font:{size:11,weight:'700'}}},tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)} ct/kWh`}}},scales:{x:{ticks:{color:'rgba(10,10,10,.4)',font:{size:9,weight:'600'}},grid:{color:'rgba(10,10,10,.06)'}},y:{ticks:{color:'rgba(10,10,10,.4)',font:{size:10},callback:v=>v.toFixed(1)+' ct'},grid:{color:'rgba(10,10,10,.06)'}}}}
+    });
+    if(chSav)chSav.destroy();
+    chSav=new Chart(document.getElementById('c-sav'),{type:'line',data:{labels:lbls,datasets:[{label:'Kumulierte Ersparnis (€)',data:rows.map(r=>+r.kumSpar.toFixed(0)),borderColor:'#00aa80',backgroundColor:'rgba(0,170,128,0.1)',borderWidth:2.5,fill:true,tension:.4,pointRadius:2}]},options:cOpts()});
+    if(chCmp)chCmp.destroy();
+    chCmp=new Chart(document.getElementById('c-cmp'),{type:'bar',data:{labels:lbls,datasets:[{label:'Netzstrom',data:rows.map(r=>+r.kN.toFixed(0)),backgroundColor:'rgba(255,58,31,0.65)',borderRadius:0,borderSkipped:false},{label:'Mit PPA',data:rows.map(r=>+r.kP.toFixed(0)),backgroundColor:'rgba(0,170,128,0.7)',borderRadius:0,borderSkipped:false}]},options:cOpts()});
+  }catch(e){}
   renderYearTable();updPreisHint();updTitle();updPrintHeader();updCO2();renderPDF();
 }
 
@@ -1295,10 +1297,12 @@ function roiCalc(){
   document.getElementById('roi-k-cf').textContent=eu(j1.cf);
   document.getElementById('roi-gewinn').style.color=finalKum>=0?'var(--wht)':'#ff3a1f';
   const lbls=rows.map(r=>'J'+r.yr);
-  if(chRoiBar)chRoiBar.destroy();
-  chRoiBar=new Chart(document.getElementById('roi-c-bar'),{type:'bar',data:{labels:lbls,datasets:[{label:'Einnahmen (€)',data:rows.map(r=>+r.gesEinnah.toFixed(0)),backgroundColor:'rgba(0,255,234,0.7)',borderRadius:0,borderSkipped:false},{label:'Kosten (€)',data:rows.map(r=>+r.gesKosten.toFixed(0)),backgroundColor:'rgba(255,58,31,0.6)',borderRadius:0,borderSkipped:false}]},options:cOpts()});
-  if(chRoiCum)chRoiCum.destroy();
-  chRoiCum=new Chart(document.getElementById('roi-c-cum'),{type:'line',data:{labels:lbls,datasets:[{label:'Kum. Cash-Flow (€)',data:rows.map(r=>+r.kumCF.toFixed(0)),borderColor:'#ff00aa',backgroundColor:'rgba(255,0,170,0.08)',borderWidth:2.5,fill:true,tension:.4,pointRadius:2,segment:{borderColor:ctx=>ctx.p1.parsed.y>=0?'#ff00aa':'#ff3a1f',backgroundColor:ctx=>ctx.p1.parsed.y>=0?'rgba(255,0,170,0.08)':'rgba(255,58,31,0.08)'}},{label:'Break-Even',data:Array(rows.length).fill(0),borderColor:'rgba(0,170,128,0.5)',borderWidth:1.5,borderDash:[6,4],pointRadius:0,fill:false}]},options:cOpts()});
+  try{
+    if(chRoiBar)chRoiBar.destroy();
+    chRoiBar=new Chart(document.getElementById('roi-c-bar'),{type:'bar',data:{labels:lbls,datasets:[{label:'Einnahmen (€)',data:rows.map(r=>+r.gesEinnah.toFixed(0)),backgroundColor:'rgba(0,255,234,0.7)',borderRadius:0,borderSkipped:false},{label:'Kosten (€)',data:rows.map(r=>+r.gesKosten.toFixed(0)),backgroundColor:'rgba(255,58,31,0.6)',borderRadius:0,borderSkipped:false}]},options:cOpts()});
+    if(chRoiCum)chRoiCum.destroy();
+    chRoiCum=new Chart(document.getElementById('roi-c-cum'),{type:'line',data:{labels:lbls,datasets:[{label:'Kum. Cash-Flow (€)',data:rows.map(r=>+r.kumCF.toFixed(0)),borderColor:'#ff00aa',backgroundColor:'rgba(255,0,170,0.08)',borderWidth:2.5,fill:true,tension:.4,pointRadius:2,segment:{borderColor:ctx=>ctx.p1.parsed.y>=0?'#ff00aa':'#ff3a1f',backgroundColor:ctx=>ctx.p1.parsed.y>=0?'rgba(255,0,170,0.08)':'rgba(255,58,31,0.08)'}},{label:'Break-Even',data:Array(rows.length).fill(0),borderColor:'rgba(0,170,128,0.5)',borderWidth:1.5,borderDash:[6,4],pointRadius:0,fill:false}]},options:cOpts()});
+  }catch(e){}
   document.getElementById('roi-tbody').innerHTML=rows.map(r=>`<tr><td>${r.yr}</td><td style="color:var(--pink);font-weight:700">${eu(r.einnahPPA)}</td><td style="color:var(--pink)">${eu(r.einnahEinsp)}</td><td style="color:var(--pink);font-weight:800">${eu(r.gesEinnah)}</td><td class="tr">${eu(r.gesKosten)}${r.kreditKosten>0?`<div style="font-size:.65rem;color:var(--muted)">Kredit: ${eu(r.kreditKosten)}</div>`:''}</td><td style="font-weight:700;color:${r.cf>=0?'#007a60':'#ff3a1f'}">${eu(r.cf)}</td><td style="color:${r.kumCF>=0?'var(--pink)':'#ff3a1f'};font-weight:800">${eu(r.kumCF)}</td></tr>`).join('');
   const sumItems=[['Netto-Investition',eu(nettInvest)],['Förderung / Zuschuss',eu(foerder)],zinssatz>0?['Annuität (Kredit)',eu(annuitaet)+'/Jahr × '+kreditLz+' J.']:['Finanzierung','Eigenkapital'],zinssatz>0?['Gesamtzinsen',eu(gesamtZinsen)]:['Zinskosten','—'],['Wartung + Sonstiges p.a.',eu(wartung+sonstK)],['Gesamteinnahmen ('+lz+' J.)',eu(rows.reduce((s,r)=>s+r.gesEinnah,0))],['Gesamtkosten inkl. Invest',eu(rows.reduce((s,r)=>s+r.gesKosten,0)+nettInvest+gesamtZinsen)],['Nettogewinn',eu(finalKum)],['Ø Rendite p.a.',fn(rendite,1)+' % auf Gesamtinvest']];
   document.getElementById('roi-summary-grid').innerHTML=sumItems.map(([k,v],i)=>`<div style="display:flex;flex-direction:column;gap:.15rem;padding:.5rem .6rem;background:${i%2?'white':'#fff0f8'}"><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--pink)">${k}</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.88rem;font-weight:800">${v}</div></div>`).join('');
