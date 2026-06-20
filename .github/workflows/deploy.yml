@@ -3,19 +3,26 @@ name: Deploy to Production
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
-      - name: Deploy to server
-        uses: appleboy/ssh-action@v1.0.3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: FTP Deploy to All-Inkl Webspace
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          host: 94.130.191.178
-          username: root
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          script: |
-            cd /opt/solar-energie-partner/html
-            GIT_SSH_COMMAND="ssh -i /root/.ssh/git_deploy -o StrictHostKeyChecking=no" git pull origin main
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /
+          exclude: |
+            .git*
+            .git*/**
+            .github/**
+            .claude/**
