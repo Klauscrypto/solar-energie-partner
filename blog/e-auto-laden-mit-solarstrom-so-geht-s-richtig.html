@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>E-Auto laden mit Solarstrom: So holst du in Bayern das Maximum raus — Solar Energie Partner</title>
-<meta name="description" content="E-Auto laden mit Solarstrom: So holst du in Bayern das Maximum raus. Praxiswissen von Solar Energie Partner aus Deggendorf." />
+<title>E-Auto mit Solarstrom laden: So holst du das Maximum aus deiner PV-Anlage raus — Solar Energie Partner</title>
+<meta name="description" content="E-Auto mit Solarstrom laden: So holst du das Maximum aus deiner PV-Anlage raus. Praxiswissen von Solar Energie Partner aus Deggendorf." />
 <link rel="canonical" href="https://solar-energie-partner.de/blog/e-auto-laden-mit-solarstrom-so-geht-s-richtig.html" />
 <link rel="stylesheet" href="../fonts/fonts.css" />
 <style>
@@ -57,54 +57,50 @@
   <a href="index.html" class="back">← Zurück zum Blog</a>
   <div class="meta">
     <span class="tag">BLOG</span>
-    <span>03.06.2026</span>
+    <span>25.07.2026</span>
     <span>Solar Energie Partner · Deggendorf</span>
   </div>
   <article>
     ```html
 <article>
 
-<h1>E-Auto laden mit Solarstrom: So holst du in Bayern das Maximum raus</h1>
+<h1>E-Auto mit Solarstrom laden: So holst du das Maximum aus deiner PV-Anlage raus</h1>
 
-<p>Wer ein E-Auto fährt und gleichzeitig eine Photovoltaikanlage auf dem Dach hat, sitzt theoretisch auf einer Goldmine. Praktisch läuft es bei vielen trotzdem suboptimal — weil Wallbox, Wechselrichter und Ladesteuerung nicht richtig zusammenspielen. Dabei ist es kein Hexenwerk, den Eigenverbrauch auf 70, 80 oder sogar über 90 Prozent zu treiben. Du musst nur wissen, wo die Stellschrauben sitzen.</p>
+<p>Wer ein E-Auto fährt und eine Photovoltaikanlage auf dem Dach hat, sitzt auf einer Goldgrube — und verschenkt sie oft trotzdem. Die Kombination funktioniert, aber nur wenn Wallbox, Wechselrichter und Steuerung zusammenspielen. Hier erfährst du, was technisch wirklich nötig ist, welche Fehler die meisten machen und wie du in Bayern das Beste aus beiden Systemen herausholst.</p>
 
-<h2>Das Grundproblem: Dein Auto lädt, wann es will — nicht wann die Sonne scheint</h2>
+<h2>Warum einfach einstecken nicht reicht</h2>
 
-<p>Die meisten E-Auto-Fahrer stecken ihr Fahrzeug abends ein, wenn sie nach Hause kommen. Logisch. Aber zu diesem Zeitpunkt produziert deine PV-Anlage schon seit Stunden nichts mehr. Das Ergebnis: Du lädst mit teurem Netzstrom, während der Solarstrom tagsüber mangels Abnehmer für läppische 8 Cent je Kilowattstunde ins Netz geflossen ist. In Bayern, wo viele Anlagen zwischen 9 und 15 Uhr auf Vollast laufen, ist das ein echtes Problem — und gleichzeitig die größte Hebel, den du drehen kannst.</p>
+<p>Das Missverständnis ist weit verbreitet: PV-Anlage läuft, Auto hängt an der Wallbox, also lädt das Auto mit Sonnenstrom. Stimmt — aber nur zufällig und ineffizient. Eine normale Wallbox lädt mit einer festen Leistung, meistens 11 kW. Deine PV-Anlage liefert tagsüber vielleicht 4 bis 8 kW, je nach Wetter, Uhrzeit und Ausrichtung. Was passiert? Die fehlende Leistung kommt aus dem Netz, oft teuer und fossil. Der selbst erzeugte Strom, den du nicht brauchst, wandert ins Netz — zu Einspeisevergütungen, die 2026 kaum noch den Aufwand rechtfertigen.</p>
 
-<p>Die Lösung liegt nicht im Fahrzeug selbst, sondern in der Steuerung des Ladevorgangs. Eine intelligente Wallbox, die mit deinem Wechselrichter kommuniziert, kann den Ladestart automatisch auf die sonnenstärksten Stunden legen. Voraussetzung: Du hast tagsüber Zugang zur Steckdose — im Carport, in der Garage, oder du arbeitest von zu Hause. Wer jeden Tag pendelt und das Auto zwischen 8 und 17 Uhr nicht zu Hause hat, muss anders denken. Dazu gleich mehr.</p>
+<p>Das Stichwort lautet <strong>dynamisches Laden</strong> oder auch <strong>PV-gesteuertes Laden</strong>. Dabei regelt die Wallbox ihre Ladeleistung in Echtzeit anhand des aktuellen Solarertrags. Produziert die Anlage gerade 5 kW Überschuss, lädt das Auto mit 5 kW. Steigt die Produktion auf 8 kW, wird auf 8 kW hochgeregelt. Das klingt simpel, ist technisch aber eine Frage der richtigen Komponenten.</p>
 
-<h2>Wallbox und Wechselrichter: Ohne Kommunikation läuft nichts</h2>
+<p>Wichtig zu wissen: Dreiphasiges Laden nach <strong>Mode 3 (IEC 61851)</strong> erlaubt eine Mindestladeleistung von 1,4 kW (einphasig, 6 A). Darunter geht es nach Norm nicht. Das heißt: An sehr bewölkten Tagen mit wenig Überschuss lädt das Auto gar nicht — was absolut sinnvoll ist.</p>
 
-<p>Eine günstige 11-kW-Wallbox ohne Schnittstelle ist für Solar-optimiertes Laden so nützlich wie ein Dachfenster ohne Griff. Du brauchst eine Wallbox, die entweder über das OCPP-Protokoll, eine proprietäre Schnittstelle oder schlicht über eine offene API mit deinem Energiemanagementsystem (EMS) sprechen kann. Gängige Kombinationen, die in der Praxis funktionieren:</p>
+<h2>Welche Technik du dafür brauchst</h2>
 
-<ul>
-  <li><strong>SMA Sunny Home Manager + SMA Wallbox:</strong> Funktioniert nahezu plug-and-play, Überschussladen ab Werk dabei.</li>
-  <li><strong>Fronius Wattpilot:</strong> Eigenentwicklung von Fronius, tief integriert in die Solar.web-Welt, sehr sauber im Zusammenspiel mit Symo-Wechselrichtern.</li>
-  <li><strong>go-eCharger + beliebiger Wechselrichter via MQTT oder Modbus:</strong> Etwas mehr Konfigurationsaufwand, dafür herstellerunabhängig und günstig.</li>
-  <li><strong>Keba P30 + Loxone oder Home Assistant:</strong> Für alle, die ohnehin auf Smarthome setzen und Flexibilität wollen.</li>
-</ul>
+<p>Die drei Kernkomponenten für intelligentes Solarladen sind: ein kompatibler Wechselrichter mit Energiemanagement-Schnittstelle, ein Energiezähler (Smartmeter) am Hausanschluss und eine steuerbare Wallbox. Klingt überschaubar — ist es auch, wenn man von Anfang an auf Kompatibilität achtet.</p>
 
-<p>Wichtig: Lass dir vom Anbieter nicht nur die Hardware verkaufen, sondern auch die Inbetriebnahme und Konfiguration des Überschussladens. Ohne korrektes Setup bringt die beste Wallbox nichts.</p>
+<p>Hersteller wie <strong>SMA, Fronius, Huawei und Kostal</strong> bieten eigene Energiemanagementsysteme (EMS) an, die direkt mit passenden Wallboxen kommunizieren. SMA nutzt das Sunny Home Manager 2.0, Fronius arbeitet mit dem Solar.web-System, Huawei hat das EMMA-System (Energy Management and Monitoring App) im Einsatz. Wallboxen von go-e, Keba, Easee oder Heidelberg lassen sich über standardisierte Protokolle wie <strong>OCPP, Modbus TCP oder den go-e API</strong> einbinden.</p>
 
-<h2>Überschussladen in der Praxis: Was funktioniert, was nervt</h2>
+<p>Wer bereits eine Anlage hat und nachrüsten möchte: Nicht jede Kombination funktioniert reibungslos. Ein nachgerüsteter Smartmeter am Zählerpunkt ist fast immer notwendig, wenn der bestehende Wechselrichter keine eigene Messung mitbringt. In Bayern ist die Anmeldung einer Wallbox über 3,7 kW beim Netzbetreiber — meist Bayernwerk — ohnehin Pflicht. Nutze das als Anlass, gleich die gesamte Steuerung sauber aufzusetzen.</p>
 
-<p>Überschussladen bedeutet: Die Wallbox lädt nur dann — oder lädt schneller — wenn deine PV-Anlage mehr produziert, als Haushalt und andere Verbraucher gerade brauchen. Klingt simpel, hat aber eine Tücke: Die meisten E-Autos akzeptieren keinen Ladestrom unter 6 Ampere. Bei einphasigem Laden entspricht das rund 1,4 kW Mindestleistung. Liegt dein PV-Überschuss darunter, lädt das Auto gar nicht — oder du ziehst trotzdem Netzstrom dazu.</p>
+<h2>Eigenverbrauch optimieren: Die Rechnung dahinter</h2>
 
-<p>Dreiphasiges Laden verschärft das Problem: Dort liegt die Mindestschwelle bei etwa 4,1 kW. Für viele Einfamilienhäuser mit 8–10 kWp-Anlage ist das an bewölkten Tagen schlicht zu viel. Die Praxis-Empfehlung: Lass die Wallbox einphasig regeln, solange der Überschuss unter 4 kW liegt, und schalte erst bei höherem Überschuss auf dreiphasig um. Systeme wie der Fronius Wattpilot oder openWB können das automatisch — man nennt es Phasenumschaltung. Nicht alle Fahrzeuge vertragen das, also vorher prüfen: Renault, VW und BMW sind in der Regel kompatibel, manche Tesla-Modelle zicken dabei.</p>
+<p>Warum lohnt sich der Aufwand überhaupt? Ein einfaches Rechenbeispiel aus der Praxis in der Region Deggendorf: Eine 10-kWp-Anlage erzeugt im bayerischen Jahresdurchschnitt rund 9.500 bis 10.500 kWh. Ein E-Auto mit 200 Fahrkilometern pro Woche verbraucht je nach Modell zwischen 2.500 und 3.500 kWh im Jahr. Das entspricht einem erheblichen Teil des Jahresertrags.</p>
 
-<h2>Speicher oder kein Speicher — das ist hier die Frage</h2>
+<p>Ohne Steuerung und mit ungünstigen Ladezeiten (nachts, morgens früh) zahlst du für diesen Strom den aktuellen Nettarif — 2026 liegt der in Bayern meist zwischen 28 und 35 Cent pro kWh. Mit optimiertem Solarladen kannst du 60 bis 80 Prozent des Fahrstroms selbst erzeugen, je nach Nutzungsverhalten und Anlagengröße. Der selbst genutzte Solarstrom kostet dich effektiv nur noch die Systemkosten, grob 8 bis 12 Cent pro kWh über die Anlagenlebensdauer gerechnet.</p>
 
-<p>Ein Batteriespeicher macht Solarstrom zeitlich flexibel — du lädst den Speicher tagsüber und zapfst ihn abends für das E-Auto an. Klingt gut, rechnet sich aber nur bedingt. Grund: Du wandelst Strom zweimal um (PV → Batterie → Auto), verlierst dabei 10–20 Prozent durch Wandlungsverluste, und ein Heimspeicher mit 10 kWh kostet 2025 immer noch 6.000 bis 10.000 Euro netto. Ein durchschnittliches E-Auto braucht für 100 km etwa 18–22 kWh. Ein 10-kWh-Speicher reicht also für rund 50 km rein aus dem Speicher — das relativiert die Erwartungen.</p>
+<p>Der Unterschied zwischen 10 Cent Eigenverbrauch und 32 Cent Netzbezug über 3.000 kWh Fahrstrom im Jahr: <strong>660 Euro weniger Stromkosten jährlich</strong> — ohne eine einzige Fahrt zu ändern.</p>
 
-<p>Sinnvoller ist der Speicher für die Grundlastversorgung des Haushalts, nicht primär fürs E-Auto. Wenn der Speicher tagsüber zuerst den Haushalt versorgt und überschüssige Kapazität dann ins Laden fließt, stimmt die Logik. Wer hingegen einen Speicher <em>ausschließlich</em> für das E-Auto plant, sollte den Taschenrechner zücken — die Amortisation zieht sich ohne nennenswerte Eigenverbrauchsoptimierung im Haushalt leicht auf 15 Jahre und mehr.</p>
+<h2>Häufige Fehler — und wie du sie vermeidest</h2>
 
-<h2>Was tun, wenn das Auto tagsüber weg ist?</h2>
+<p>Fehler Nummer eins: Die Wallbox wird als eigenständiges Gerät behandelt, ohne Einbindung ins Energiesystem. Viele kaufen Wallbox und PV-Anlage separat, von verschiedenen Anbietern, und wundern sich, warum kein intelligentes Laden stattfindet. Die Lösung ist keine Magie — aber sie braucht Planung vor dem Kauf, nicht danach.</p>
 
-<p>Das ist die Realität bei vielen Berufstätigen: Das E-Auto steht von 7 bis 17 Uhr nicht zuhause, die Sonne scheint aber genau dann. Drei Wege helfen hier weiter:</p>
+<p>Fehler Nummer zwei: Der Zählerplatz ist nicht vorbereitet. Ein Smartmeter braucht Platz im Zählerschrank und eine freie Messposition. In älteren Häusern in der Region — Baujahr vor 2000 — ist das keine Selbstverständlichkeit. Kläre das mit deinem Elektriker, bevor du Geräte bestellst.</p>
 
-<ul>
-  <li><strong>Laden beim Arbeitgeber:</strong> Immer mehr Betriebe in Bayern installieren PV-Anlagen mit Ladepunkten für Mitarbeiter. Sprich
+<p>Fehler Nummer drei: Überschussladung wird aktiviert, aber das Auto steht tagsüber nicht zu Hause. Wer morgens um 7 Uhr losfährt und abends um 18 Uhr zurückkommt, verpasst den solaren Peak. Hier helfen entweder ein Heimspeicher als Puffer oder — pragmatisch gedacht — eine Anpassung der Arbeitszeiten oder zumindest der Lagestrategie. Manche laden bewusst mittags in der Mittagspause an der Betriebswallbox mit Solarstrom, den der Betrieb eh überschüssig produziert.</p>
+
+<p>Fehler Nummer vier: Unterschä
   </article>
   <div class="cta-box">
     <h2>Persönliche Beratung?</h2>
