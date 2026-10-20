@@ -338,7 +338,7 @@ def build_article_page(slug: str, html_body: str, title: str, tag: str) -> str:
   <span>
     <a href="../impressum.html">Impressum</a>
     &nbsp;·&nbsp;
-    <a href="../datenschutz.html">Datenschutz</a> <a href="#" data-consent-open>Cookie-Einstellungen</a>
+    <a href="../datenschutz.html">Datenschutz</a> <a href="#" data-consent-open>Cookie-Einstellungen</a> <a href="https://pilsner-digital.de/">Website: Pilsner Digital</a>
   </span>
 </footer>
 

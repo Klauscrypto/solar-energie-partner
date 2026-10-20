@@ -143,6 +143,7 @@
           <span style={{ display: "flex", gap: 20 }}>
             <a href={`${base}impressum.html`} style={{ color: COL.yellow, textDecoration: "none" }}>IMPRESSUM</a>
             <a href={`${base}datenschutz.html`} style={{ color: COL.yellow, textDecoration: "none" }}>DATENSCHUTZ</a>
+            <a href="https://pilsner-digital.de/" style={{ color: COL.yellow, textDecoration: "none" }}>WEBSITE: PILSNER DIGITAL</a>
           </span>
         </div>
       </footer>
