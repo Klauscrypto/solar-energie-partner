@@ -778,7 +778,7 @@ footer a:hover{color:var(--yel)}
     <div style="display:flex;flex-direction:column;gap:.85rem">
       <div class="mf"><div class="ml">Ihr Unternehmensname</div><input class="mi" id="cfg-company" placeholder="Solar Energie Partner" oninput="applySettings()"></div>
       <div class="mf"><div class="ml">Berater Name</div><input class="mi" id="cfg-advisor" placeholder="Doris Pilsner-Albrecht" oninput="applySettings()"></div>
-      <div class="mf"><div class="ml">Telefon / E-Mail</div><input class="mi" id="cfg-tel" placeholder="09991 40227560 | info@solar-energie-partner.de" oninput="applySettings()"></div>
+      <div class="mf"><div class="ml">Telefon / E-Mail</div><input class="mi" id="cfg-tel" placeholder="0991 40227560 | info@solar-energie-partner.de" oninput="applySettings()"></div>
       <div class="mf"><div class="ml">Impressum URL</div><input class="mi" id="cfg-impressum" placeholder="https://solar-energie-partner.de/impressum.html" oninput="applySettings()"></div>
       <div class="mf"><div class="ml">Standard PPA-Preis (€/kWh)</div><input class="mi" type="number" id="cfg-ppa" value="0.17" step="0.005" oninput="applySettings()"></div>
       <div style="padding:.75rem;background:#fffde0;border:2px solid var(--blk);font-size:.77rem;color:var(--blk);font-weight:600">
@@ -801,7 +801,7 @@ footer a:hover{color:var(--yel)}
     </div>
     <div style="font-size:.82rem;color:var(--muted);line-height:1.7" id="impressum-content">
       <p style="margin-bottom:.5rem"><strong style="color:var(--blk)" id="imp-company">Solar Energie Partner</strong></p>
-      <p id="imp-tel">09991 40227560 | info@solar-energie-partner.de</p>
+      <p id="imp-tel">0991 40227560 | info@solar-energie-partner.de</p>
       <p style="margin-top:.75rem;font-size:.75rem">Dieses Tool dient ausschließlich zur internen Vertriebsunterstützung. Alle Berechnungen sind unverbindliche Schätzungen.</p>
       <p style="margin-top:.5rem;font-size:.75rem">Datenschutz: Alle eingegebenen Daten werden ausschließlich lokal im Browser gespeichert und nicht übertragen.</p>
       <p id="imp-url" style="margin-top:.5rem;font-size:.75rem"></p>
@@ -1178,7 +1178,7 @@ function saveSettings(){
 function applySettings(){
   const company=document.getElementById('cfg-company').value||'Solar Energie Partner';
   const advisor=document.getElementById('cfg-advisor').value||'Doris Pilsner-Albrecht';
-  const tel=document.getElementById('cfg-tel').value||'09991 40227560';
+  const tel=document.getElementById('cfg-tel').value||'0991 40227560';
   const impressum=document.getElementById('cfg-impressum').value||'';
   const ppa=document.getElementById('cfg-ppa').value;
   document.getElementById('pdf-company').value=company;
