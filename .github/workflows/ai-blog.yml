@@ -39,7 +39,7 @@ jobs:
         run: |
           git config user.name  "KI-Blog-Bot"
           git config user.email "bot@solar-energie-partner.de"
-          git add blog/
+          git add blog/ sitemap.xml
           git diff --cached --quiet || git commit -m "auto: neuer Artikel $(date +'%Y-%m-%d')"
           git push
 

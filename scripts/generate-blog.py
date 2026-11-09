@@ -8,7 +8,17 @@ Umgebungsvariablen:
   ANTHROPIC_API_KEY  — Pflichtfeld (GitHub Secret)
 
 Aufruf:
-  python3 scripts/generate-blog.py
+  python3 scripts/generate-blog.py            # echter Lauf (Claude-API)
+  python3 scripts/generate-blog.py --mock     # Trockenlauf ohne API-Aufruf
+                                              # (schreibt Dateien wie ein echter Lauf,
+                                              #  nur auf einer Kopie des Repos verwenden)
+  python3 scripts/generate-blog.py --sync     # nur Index/Sitemap aus blog/*.html abgleichen
+
+Regeln:
+  - Bereits vorhandene Artikel-Dateien werden NIE überschrieben.
+  - Benutzte Slugs = Dateien in blog/ (nicht nur der Index).
+  - Der Index wird nicht gekappt; Artikel ohne Index-Eintrag werden nachgetragen.
+  - sitemap.xml (Abschnitt zwischen den BLOG-ARTICLES-Markern) wird mitgeschrieben.
 """
 
 import os
@@ -16,20 +26,23 @@ import sys
 import json
 import re
 import datetime
+import html
 from pathlib import Path
-
-try:
-    import anthropic
-except ImportError:
-    print("ERROR: anthropic package not installed. Run: pip install anthropic")
-    sys.exit(1)
 
 
 # ── Konfiguration ────────────────────────────────────────────────────────────
 
 SITE_URL    = "https://solar-energie-partner.de"
-BLOG_DIR    = Path(__file__).parent.parent / "blog"
-TODAY       = datetime.date.today()
+ROOT_DIR    = Path(__file__).resolve().parent.parent
+BLOG_DIR    = ROOT_DIR / "blog"
+SITEMAP     = ROOT_DIR / "sitemap.xml"
+SITEMAP_START = "<!-- BLOG-ARTICLES:START (automatisch, generate-blog.py) -->"
+SITEMAP_END   = "<!-- BLOG-ARTICLES:END -->"
+CARDS_START   = "<!-- STATIC-CARDS:START (automatisch, generate-blog.py) -->"
+CARDS_END     = "<!-- STATIC-CARDS:END -->"
+# BLOG_TODAY=JJJJ-MM-TT nur für Tests (Trockenlauf mit anderem Datum)
+TODAY       = (datetime.date.fromisoformat(os.environ["BLOG_TODAY"])
+               if os.environ.get("BLOG_TODAY") else datetime.date.today())
 IS_RATGEBER = TODAY.day % 2 == 0   # Gerade Tage = Ratgeber, ungerade = Blog
 
 ARTICLE_TOPICS_BLOG = [
@@ -159,16 +172,20 @@ ARTICLE_TOPICS_RATGEBER = [
 ]
 
 
-def pick_topic(used_slugs: list[str]) -> tuple[str, str]:
-    """Wählt ein noch nicht verwendetes Thema."""
+def existing_slugs() -> set[str]:
+    """Alle Slugs, für die bereits eine Datei in blog/ existiert."""
+    return {p.stem for p in BLOG_DIR.glob("*.html") if p.stem != "index"}
+
+
+def pick_topic(used_slugs: set[str]) -> tuple[str, str] | None:
+    """Wählt ein noch nicht verwendetes Thema. None, wenn alle Themen vergeben sind."""
     topics = ARTICLE_TOPICS_RATGEBER if IS_RATGEBER else ARTICLE_TOPICS_BLOG
     for topic in topics:
         slug_candidate = slugify(topic)
         if slug_candidate not in used_slugs:
             return topic, slug_candidate
-    # Fallback: erstes Thema + Datum
-    topic = topics[0]
-    return topic, slugify(topic) + "-" + TODAY.strftime("%Y-%m")
+    # Keine Themen mehr: lieber nichts erzeugen als ein Thema doppelt.
+    return None
 
 
 def slugify(text: str) -> str:
@@ -191,18 +208,114 @@ def load_index() -> dict:
     return []
 
 
+def _parse_date(d: str) -> datetime.date:
+    try:
+        return datetime.datetime.strptime(d, "%d.%m.%Y").date()
+    except (ValueError, TypeError):
+        return datetime.date(1970, 1, 1)
+
+
+def article_meta_from_file(path: Path) -> dict:
+    """Liest Titel, Tag und Datum aus einer bestehenden Artikel-Datei."""
+    content = path.read_text(encoding="utf-8")
+    h1 = re.search(r"<h1[^>]*>(.*?)</h1>", content, re.DOTALL)
+    title = html.unescape(re.sub(r"<[^>]+>", "", h1.group(1)).strip()) if h1 else path.stem
+    meta = re.search(r'<span class="tag">([^<]+)</span>\s*<span>([0-9.]+)</span>', content)
+    tag = meta.group(1).strip().lower() if meta else "blog"
+    date = meta.group(2).strip() if meta else TODAY.strftime("%d.%m.%Y")
+    first_p = re.search(r"<p[^>]*>(.*?)</p>", content.split("<article>", 1)[-1], re.DOTALL)
+    excerpt = html.unescape(re.sub(r"<[^>]+>", "", first_p.group(1)).strip()) if first_p else title
+    if len(excerpt) > 160:
+        excerpt = excerpt[:157].rsplit(" ", 1)[0] + " …"
+    return {"slug": path.stem, "title": title, "excerpt": excerpt, "tag": tag, "date": date}
+
+
+def sync_index(articles: list[dict]) -> list[dict]:
+    """Ergänzt Artikel-Dateien ohne Index-Eintrag, entfernt Einträge ohne Datei,
+    entfernt doppelte Slugs und sortiert neueste zuerst. Keine Obergrenze."""
+    files = existing_slugs()
+    seen: set[str] = set()
+    result = []
+    for a in articles:
+        if a.get("slug") in files and a["slug"] not in seen:
+            seen.add(a["slug"])
+            result.append(a)
+    for slug in sorted(files - seen):
+        result.append(article_meta_from_file(BLOG_DIR / f"{slug}.html"))
+        print(f"Index: nachgetragen {slug}")
+    result.sort(key=lambda a: _parse_date(a.get("date")), reverse=True)
+    return result
+
+
+def _static_cards(articles: list[dict]) -> str:
+    """Statische Karten für Crawler/ohne JS; renderGrid() ersetzt sie im Browser."""
+    e = html.escape
+    out = []
+    for a in articles:
+        tag = e(a["tag"])
+        out.append(
+            f'    <a class="card" href="{e(a["slug"])}.html"><div class="card-top">'
+            f'<span class="card-tag {tag}">{tag.upper()}</span>'
+            f'<h2>{e(a["title"])}</h2><p>{e(a["excerpt"])}</p></div>'
+            f'<div class="card-bottom"><span>{e(a["date"])}</span><span class="arrow">→</span></div></a>'
+        )
+    return "\n".join(out)
+
+
 def save_index(articles: list[dict]) -> None:
-    """Schreibt den Artikel-Index in blog/index.html zurück."""
+    """Schreibt den Artikel-Index (JS-Array + statische Karten) in blog/index.html zurück."""
     idx_path = BLOG_DIR / "index.html"
     content = idx_path.read_text(encoding="utf-8")
-    articles_json = json.dumps(articles, ensure_ascii=False, indent=2)
+    # "</" escapen, damit ein Titel das <script> nicht beenden kann
+    articles_json = json.dumps(articles, ensure_ascii=False, indent=2).replace("</", "<\\/")
     new_content = re.sub(
         r"const ARTICLES = \[.*?\];",
-        f"const ARTICLES = {articles_json};",
+        lambda _m: f"const ARTICLES = {articles_json};",
         content,
         flags=re.DOTALL,
     )
+    cards = f"{CARDS_START}\n{_static_cards(articles)}\n    {CARDS_END}"
+    if CARDS_START in new_content:
+        new_content = re.sub(
+            re.escape(CARDS_START) + r".*?" + re.escape(CARDS_END),
+            lambda _m: cards,
+            new_content,
+            flags=re.DOTALL,
+        )
+    else:
+        new_content = new_content.replace(
+            "<!-- Articles injected by generate-blog.py -->",
+            "<!-- Articles injected by generate-blog.py -->\n    " + cards,
+            1,
+        )
     idx_path.write_text(new_content, encoding="utf-8")
+
+
+def save_sitemap(articles: list[dict]) -> None:
+    """Schreibt alle Blog-Artikel in sitemap.xml (zwischen den Markern)."""
+    if not SITEMAP.exists():
+        print("WARN: sitemap.xml fehlt, übersprungen")
+        return
+    content = SITEMAP.read_text(encoding="utf-8")
+    lines = []
+    for a in articles:
+        lastmod = _parse_date(a.get("date"))
+        lm = f"<lastmod>{lastmod.isoformat()}</lastmod>" if lastmod.year > 1970 else ""
+        lines.append(
+            f"  <url><loc>{SITE_URL}/blog/{html.escape(a['slug'])}.html</loc>{lm}"
+            f"<changefreq>monthly</changefreq><priority>0.6</priority></url>"
+        )
+    block = f"{SITEMAP_START}\n" + "\n".join(lines) + f"\n  {SITEMAP_END}"
+    if SITEMAP_START in content:
+        content = re.sub(
+            re.escape(SITEMAP_START) + r".*?" + re.escape(SITEMAP_END),
+            lambda _m: block,
+            content,
+            flags=re.DOTALL,
+        )
+    else:
+        content = content.replace("</urlset>", f"  {block}\n</urlset>", 1)
+    SITEMAP.write_text(content, encoding="utf-8")
 
 
 def generate_article(topic: str, tag: str) -> tuple[str, str, str]:
@@ -210,6 +323,12 @@ def generate_article(topic: str, tag: str) -> tuple[str, str, str]:
     Lässt Claude den Artikel generieren.
     Gibt (html_body, excerpt, h1_title) zurück.
     """
+    try:
+        import anthropic
+    except ImportError:
+        print("ERROR: anthropic package not installed. Run: pip install anthropic")
+        sys.exit(1)
+
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
 
     article_type = "Ratgeber (praktische Anleitung / Checkliste)" if IS_RATGEBER else "Blog-Artikel (Meinung, Analyse, Praxisbericht)"
@@ -218,7 +337,11 @@ def generate_article(topic: str, tag: str) -> tuple[str, str, str]:
 Die Marke ist direkt, ehrlich, leicht provokant — kein Werbesprech, kein Bullshit.
 Zielgruppe: Eigenheimbesitzer und Gewerbetreibende in Bayern, die ernsthaft über PV nachdenken.
 Schreib auf Deutsch. Duze den Leser. Keine Emojis. Keine Bullet-Points ohne Mehrwert.
-Die Inhalte müssen faktisch korrekt und stand 2026 sein."""
+Die Inhalte müssen faktisch korrekt und stand 2026 sein.
+Nenne keine konkreten Förderbeträge, Einspeisevergütungssätze oder Zinssätze, sondern verweise
+auf die aktuellen Angaben von KfW, BAFA bzw. Bundesnetzagentur (Sätze ändern sich halbjährlich).
+Das KfW-Programm 442 und das bayerische 10.000-Häuser-/PV-Speicher-Programm gibt es nicht mehr;
+stelle sie nicht als verfügbar dar."""
 
     prompt = f"""Erstelle einen {article_type} zum Thema: **{topic}**
 
@@ -255,7 +378,14 @@ Direkt nach dem HTML: eine Zeile "EXCERPT: " gefolgt von maximal 160 Zeichen Zus
     return html_body, excerpt, title
 
 
+def mock_article(topic: str, tag: str) -> tuple[str, str, str]:
+    """Ersatz für generate_article() im Trockenlauf (kein API-Aufruf)."""
+    body = f"<h1>{html.escape(topic)} <Test & \"Mock\"></h1>\n<p>Trockenlauf-Inhalt.</p>"
+    return body, f"Mock-Excerpt zu {topic}", f'{topic} <Test & "Mock">'
+
+
 def build_article_page(slug: str, html_body: str, title: str, tag: str) -> str:
+    title = html.escape(title, quote=True)
     tag_color = {"ratgeber": "#00ffea", "blog": "#ff00aa", "aktuell": "#fdfd00"}.get(tag, "#fdfd00")
     tag_text_color = "#0a0a0a" if tag != "blog" else "#ffffff"
     date_str = TODAY.strftime("%d.%m.%Y")
@@ -352,33 +482,51 @@ def build_article_page(slug: str, html_body: str, title: str, tag: str) -> str:
 
 
 def main():
-    api_key = os.environ.get("ANTHROPIC_API_KEY")
-    if not api_key:
+    args = set(sys.argv[1:])
+    mock = "--mock" in args
+    sync_only = "--sync" in args
+
+    BLOG_DIR.mkdir(exist_ok=True)
+    articles = sync_index(load_index())
+
+    if sync_only:
+        save_index(articles)
+        save_sitemap(articles)
+        print(f"Sync fertig. Artikel im Index: {len(articles)}")
+        return
+
+    if not mock and not os.environ.get("ANTHROPIC_API_KEY"):
         print("ERROR: ANTHROPIC_API_KEY not set")
         sys.exit(1)
 
-    BLOG_DIR.mkdir(exist_ok=True)
-
-    articles = load_index()
-    used_slugs = [a["slug"] for a in articles]
+    used_slugs = existing_slugs() | {a["slug"] for a in articles}
 
     tag = "ratgeber" if IS_RATGEBER else "blog"
-    topic, slug = pick_topic(used_slugs)
+    picked = pick_topic(used_slugs)
+    if picked is None:
+        print(f"Alle {tag}-Themen sind vergeben – kein neuer Artikel. Bitte Themenliste ergänzen.")
+        save_index(articles)
+        save_sitemap(articles)
+        return
+    topic, slug = picked
 
-    print(f"Generating [{tag.upper()}]: {topic}")
+    article_path = BLOG_DIR / f"{slug}.html"
+    if article_path.exists():
+        # Darf durch existing_slugs() nicht passieren – harte Sicherung gegen Überschreiben.
+        print(f"ERROR: {article_path} existiert bereits, wird nicht überschrieben.")
+        sys.exit(1)
+
+    print(f"Generating [{tag.upper()}]{' (MOCK)' if mock else ''}: {topic}")
     print(f"Slug: {slug}")
 
-    html_body, excerpt, title = generate_article(topic, tag)
+    html_body, excerpt, title = (mock_article if mock else generate_article)(topic, tag)
 
-    # Artikel-HTML schreiben
-    article_path = BLOG_DIR / f"{slug}.html"
-    article_path.write_text(
-        build_article_page(slug, html_body, title, tag),
-        encoding="utf-8",
-    )
+    # "x" = nur neu anlegen, niemals überschreiben
+    with open(article_path, "x", encoding="utf-8") as fh:
+        fh.write(build_article_page(slug, html_body, title, tag))
     print(f"Written: {article_path}")
 
-    # Index aktualisieren (neueste zuerst)
+    # Index aktualisieren (neueste zuerst, keine Obergrenze)
     articles.insert(0, {
         "slug": slug,
         "title": title,
@@ -386,11 +534,9 @@ def main():
         "tag": tag,
         "date": TODAY.strftime("%d.%m.%Y"),
     })
-
-    # Index auf max. 50 Einträge begrenzen
-    articles = articles[:50]
     save_index(articles)
-    print(f"Index updated. Total articles: {len(articles)}")
+    save_sitemap(articles)
+    print(f"Index + Sitemap aktualisiert. Artikel gesamt: {len(articles)}")
 
 
 if __name__ == "__main__":
