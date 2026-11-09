@@ -330,18 +330,6 @@ footer a:hover{color:var(--yel)}
 </head>
 <body>
 
-<!-- PASSWORD MODAL -->
-<div id="pw-modal">
-  <div id="pw-box">
-    <h2>🔒 INTERNER BEREICH</h2>
-    <p>Dieser Bereich ist nur für interne Nutzung durch Solar Energie Partner.</p>
-    <input type="password" id="pw-inp" placeholder="Passwort eingeben…" onkeydown="if(event.key==='Enter')checkPW()">
-    <button id="pw-btn" onclick="checkPW()">ENTSPERREN →</button>
-    <div id="pw-error">⚠ Falsches Passwort</div>
-    <button id="pw-cancel" onclick="closePW()">ABBRECHEN</button>
-  </div>
-</div>
-
 <!-- PRINT HEADER -->
 <div class="print-header" style="padding:1rem 1.5rem;border-bottom:3px solid #fdfd00;margin-bottom:1rem;display:flex;justify-content:space-between;align-items:center;background:#0a0a0a;color:#ffffff">
   <div>
@@ -358,8 +346,6 @@ footer a:hover{color:var(--yel)}
     <button class="np active" onclick="sv('calc',this)">⚡ Kalkulator</button>
     <button class="np" onclick="sv('co2',this)">🌱 CO₂</button>
     <button class="np" onclick="sv('pdf',this)">📄 Angebot</button>
-    <button class="np roi-pill" onclick="sv('roi',this)">🔒 Mein ROI</button>
-    <button class="np" onclick="sv('args',this)">🔒 Argumente</button>
   </div>
 </nav>
 
@@ -606,154 +592,6 @@ footer a:hover{color:var(--yel)}
   </div>
 </div>
 
-<!-- ══════ MEIN ROI (passwortgeschützt) ══════ -->
-<div id="view-roi" class="view">
-  <div class="hero" style="padding-bottom:1rem">
-    <div class="h-tag" style="background:var(--blk);color:var(--yel)">🔒 Anbieter-Rentabilität</div>
-    <h1 class="h-title">Wie rechnet es sich <span class="acc">für mich?</span></h1>
-    <p class="h-sub">Trag deine Kosten und Einnahmen ein — sieh sofort ob und wann sich das Projekt für dich lohnt.</p>
-  </div>
-  <div style="max-width:1080px;margin:0 auto;padding:0 1rem 2.5rem;display:grid;grid-template-columns:340px 1fr;gap:1rem;align-items:start" id="roi-layout">
-    <div class="card" style="position:sticky;top:60px">
-      <div class="c-stripe" style="background:var(--pink)"></div>
-      <div class="c-head">
-        <div class="c-title">⚙ Meine Projektdaten</div>
-        <div class="c-badge" style="background:var(--pink);color:var(--wht)">Anbieter</div>
-      </div>
-      <div class="inp-body">
-        <div class="g-lbl">📍 Standort &amp; Sonnenstunden</div>
-        <div class="fld">
-          <div class="flbl">Standort / PLZ <span class="fhint">für Sonnenertrag</span></div>
-          <div style="display:flex;gap:.5rem">
-            <input class="inp" type="text" id="roi-standort" placeholder="z.B. München oder 80331" style="flex:1" oninput="clearGeoResult()">
-            <button onclick="fetchSunhours()" style="background:var(--yel);color:var(--blk);border:2px solid var(--blk);padding:.5rem .85rem;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.78rem;font-weight:800;cursor:pointer;white-space:nowrap;flex-shrink:0;text-transform:uppercase" id="geo-btn">☀ Abrufen</button>
-          </div>
-          <div id="geo-result" style="display:none;margin-top:.4rem;padding:.6rem .85rem;font-size:.76rem;font-weight:700"></div>
-        </div>
-        <div class="divider"></div>
-        <div class="g-lbl">🏗 Investition &amp; Kosten</div>
-        <div class="fld">
-          <div class="flbl">Anlagenpreis (Invest) <span class="fhint">€ netto</span></div>
-          <input class="inp" type="number" id="roi-invest" value="120000" step="1000" oninput="roiCalc()" style="font-size:.95rem;font-weight:800;border-color:var(--pink)">
-        </div>
-        <div class="frow">
-          <div class="fld"><div class="flbl">Förderung / Zuschuss €</div><input class="inp" type="number" id="roi-foerder" value="0" step="500" oninput="roiCalc()"></div>
-          <div class="fld"><div class="flbl">Kredit-Zinssatz % p.a. <span class="fhint">0 = kein Kredit</span></div><input class="inp" type="number" id="roi-finanz" value="0" step="0.1" min="0" max="20" placeholder="z.B. 3.5" oninput="roiCalc()"></div>
-        </div>
-        <div class="fld" id="roi-laufzeit-kredit-wrap" style="display:none">
-          <div class="flbl">Kreditlaufzeit Jahre <span class="fhint">Tilgungszeitraum</span></div>
-          <select class="inp" id="roi-kredit-lz" onchange="roiCalc()">
-            <option value="5">5 Jahre</option><option value="10" selected>10 Jahre</option><option value="15">15 Jahre</option><option value="20">20 Jahre</option>
-          </select>
-          <div id="roi-annuitat-info" style="font-size:.69rem;color:var(--pink);font-weight:700;margin-top:.25rem"></div>
-        </div>
-        <div class="fld"><div class="flbl">Wartung &amp; Versicherung €/Jahr</div><input class="inp" type="number" id="roi-wartung" value="1200" step="100" oninput="roiCalc()"></div>
-        <div class="fld"><div class="flbl">Sonstige Kosten €/Jahr</div><input class="inp" type="number" id="roi-sonstkosten" value="200" step="100" oninput="roiCalc()"></div>
-        <div class="divider"></div>
-        <div class="g-lbl">💰 Meine Einnahmen</div>
-        <div class="fld"><div class="flbl">PPA-Preis den Kunde zahlt <span class="fhint">€/kWh</span></div><input class="inp" type="number" id="roi-ppa-preis" value="0.17" step="0.005" oninput="roiCalc()" style="font-size:.95rem;font-weight:800;border-color:var(--pink)"></div>
-        <div class="fld"><div class="flbl">Anlagengröße <span class="fhint">kWp</span></div><input class="inp" type="number" id="roi-kwp" value="10" step="1" oninput="roiCalc()"></div>
-        <div class="fld"><div class="flbl">Spez. Jahresertrag <span class="fhint">kWh/kWp — vom Standort</span></div><input class="inp" type="number" id="roi-ertrag" value="950" step="10" oninput="roiCalc()"></div>
-        <div class="fld"><div class="flbl">Eigenverbrauchsquote Kunde <span class="fhint">%</span></div><input class="inp" type="number" id="roi-ev" value="75" min="0" max="100" oninput="roiCalc()"></div>
-        <div class="fld"><div class="flbl">Einspeisevergütung (für mich) <span class="fhint">€/kWh</span></div><input class="inp" type="number" id="roi-einsp" value="0.082" step="0.001" oninput="roiCalc()"></div>
-        <div class="divider"></div>
-        <div class="g-lbl">📅 Laufzeit &amp; Entwicklung</div>
-        <div class="frow">
-          <div class="fld"><div class="flbl">PPA Laufzeit</div>
-            <select class="inp" id="roi-lz" onchange="roiCalc()">
-              <option value="10">10 Jahre</option><option value="15">15 Jahre</option><option value="20" selected>20 Jahre</option><option value="25">25 Jahre</option>
-            </select>
-          </div>
-          <div class="fld"><div class="flbl">PPA Steigerung % p.a.</div><input class="inp" type="number" id="roi-ppa-steig" value="1.5" step="0.5" oninput="roiCalc()"></div>
-        </div>
-        <div class="fld"><div class="flbl">Degradation Anlage % p.a.</div><input class="inp" type="number" id="roi-degrad" value="0.5" step="0.1" oninput="roiCalc()"></div>
-        <button class="calc-btn" onclick="roiCalc()" style="background:var(--pink);color:var(--wht);border-color:var(--blk)">💼 ROI BERECHNEN</button>
-      </div>
-    </div>
-    <!-- ROI RESULTS -->
-    <div id="roi-res" style="display:flex;flex-direction:column;gap:.85rem">
-      <div id="roi-total-box" class="ai" style="background:var(--pink);border:2px solid var(--blk);padding:1.25rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:.85rem;align-items:center">
-        <div>
-          <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--wht);opacity:.7;margin-bottom:.2rem">🏆 Mein Gesamtgewinn</div>
-          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:var(--wht);line-height:1" id="roi-gewinn">—</div>
-          <div style="font-size:.69rem;color:rgba(255,255,255,.7);margin-top:.15rem;font-weight:600">nach Abzug aller Kosten</div>
-        </div>
-        <div style="text-align:center">
-          <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--yel);margin-bottom:.2rem">⏱ Break-Even</div>
-          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.6rem;font-weight:800;color:var(--yel)" id="roi-breakeven">—</div>
-          <div style="font-size:.67rem;color:rgba(255,255,255,.6);margin-top:.1rem;font-weight:600">dann reiner Gewinn</div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--wht);opacity:.7;margin-bottom:.2rem">📊 Ø Rendite p.a.</div>
-          <div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:1.6rem;font-weight:800;color:var(--wht)" id="roi-rendite">—</div>
-          <div style="font-size:.67rem;color:rgba(255,255,255,.6);margin-top:.1rem;font-weight:600">auf investiertes Kapital</div>
-        </div>
-      </div>
-      <div class="kpi-grid">
-        <div class="kpi" style="border-color:var(--blk);background:#fff0f8"><div class="ki">💰</div><div class="kl">PPA-Einnahmen Jahr 1</div><div class="kv" style="color:var(--pink)" id="roi-k-einnahmen">—</div><div class="ks">vom Kunden</div></div>
-        <div class="kpi" style="border-color:var(--blk);background:#fff0f8"><div class="ki">⚡</div><div class="kl">Einspeise-Erlös Jahr 1</div><div class="kv" style="color:var(--pink)" id="roi-k-einsp">—</div><div class="ks">Überschuss ins Netz</div></div>
-        <div class="kpi ar"><div class="ki">📉</div><div class="kl">Gesamtkosten Jahr 1</div><div class="kv re" id="roi-k-kosten">—</div><div class="ks">Wartung + Kapitalkosten</div></div>
-        <div class="kpi ag"><div class="ki">✅</div><div class="kl">Cash-Flow Jahr 1</div><div class="kv gr" id="roi-k-cf">—</div><div class="ks">Einnahmen minus Kosten</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.85rem" id="roi-charts-grid">
-        <div class="card ai"><div class="c-head"><div class="c-title">📊 Einnahmen vs. Kosten</div></div><div class="chart-box" style="height:195px"><canvas id="roi-c-bar"></canvas></div></div>
-        <div class="card ai"><div class="c-head"><div class="c-title">📈 Kumulierter Cash-Flow</div></div><div class="chart-box" style="height:195px"><canvas id="roi-c-cum"></canvas></div></div>
-      </div>
-      <div class="card ai">
-        <div class="c-head"><div class="c-title">📅 Meine Jahresrechnung</div><button class="print-btn" onclick="window.print()">🖨 Drucken</button></div>
-        <div class="tbl-wrap">
-          <table><thead><tr><th style="text-align:left">Jahr</th><th>PPA-Einnahmen</th><th>Einspeisung</th><th>Gesamteinnahmen</th><th>Kosten</th><th>Cash-Flow</th><th>Kum. Cash-Flow</th></tr></thead>
-          <tbody id="roi-tbody"></tbody></table>
-        </div>
-      </div>
-      <div class="card ai">
-        <div class="c-head"><div class="c-title">🔢 Investitions-Zusammenfassung</div></div>
-        <div style="padding:1rem 1.25rem;display:grid;grid-template-columns:1fr 1fr;gap:.6rem" id="roi-summary-grid"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════ ARGUMENTE (passwortgeschützt) ══════ -->
-<div id="view-args" class="view">
-  <div class="hero" style="padding-bottom:1.25rem">
-    <div class="h-tag" style="background:var(--blk);color:var(--yel)">🔒 Verkaufsargumente</div>
-    <h1 class="h-title">Das <span class="acc">überzeugt</span> Ihre Kunden</h1>
-    <p class="h-sub">Stärkste Argumente für Privat- &amp; Gewerbekunden — inkl. Einwandbehandlung.</p>
-  </div>
-  <div class="args-wrap">
-    <div class="ast" style="color:var(--org)">🏠 Privatkunden</div>
-    <div class="args-grid">
-      <div class="arg-card"><div class="a-icon s">💰</div><div><div class="a-tit">Sofort sparen</div><div class="a-desc">Bereits im ersten Monat weniger zahlen — ohne Investition.</div></div></div>
-      <div class="arg-card"><div class="a-icon s">🔒</div><div><div class="a-tit">Preissicherheit</div><div class="a-desc">Stabiler PPA-Preis während Netzstrom jährlich steigt.</div></div></div>
-      <div class="arg-card"><div class="a-icon g">🌱</div><div><div class="a-tit">Grünes Gewissen</div><div class="a-desc">100 % Solarstrom — CO₂-Fußabdruck senken ohne Aufwand.</div></div></div>
-      <div class="arg-card"><div class="a-icon g">🔧</div><div><div class="a-tit">Null Aufwand</div><div class="a-desc">Anlage, Wartung, Versicherung inklusive.</div></div></div>
-      <div class="arg-card"><div class="a-icon s">📈</div><div><div class="a-tit">Immobilienwert</div><div class="a-desc">Solaranlage steigert nachweislich den Immobilienwert.</div></div></div>
-      <div class="arg-card"><div class="a-icon g">⚡</div><div><div class="a-tit">Unabhängigkeit</div><div class="a-desc">Weniger abhängig von Energieversorgern und Preisentwicklungen.</div></div></div>
-    </div>
-    <div style="height:2px;background:var(--blk);margin:1rem 0;opacity:.15"></div>
-    <div class="ast" style="color:var(--cyan)">🏢 Gewerbekunden</div>
-    <div class="args-grid">
-      <div class="arg-card"><div class="a-icon g">📊</div><div><div class="a-tit">ROI ab Tag 1</div><div class="a-desc">Kein Invest — sofortige Kostensenkung verbessert die GuV.</div></div></div>
-      <div class="arg-card"><div class="a-icon g">📉</div><div><div class="a-tit">Kosten senken</div><div class="a-desc">30–70 % günstiger als Netzbezug — direkter Wettbewerbsvorteil.</div></div></div>
-      <div class="arg-card"><div class="a-icon s">🏛</div><div><div class="a-tit">Bilanzierungsvorteil</div><div class="a-desc">PPA als Operating Lease — kein Einfluss auf Eigenkapital.</div></div></div>
-      <div class="arg-card"><div class="a-icon g">🌍</div><div><div class="a-tit">ESG &amp; Reporting</div><div class="a-desc">Grüner Strom verbessert ESG-Rating und CSR-Bericht.</div></div></div>
-      <div class="arg-card"><div class="a-icon s">📋</div><div><div class="a-tit">Planungssicherheit</div><div class="a-desc">20-jähriger Festpreis — unabhängig von der Marktvolatilität.</div></div></div>
-      <div class="arg-card"><div class="a-icon g">🤝</div><div><div class="a-tit">Null Risiko</div><div class="a-desc">Wartung und Ertragsschwankungen sind Sache des Betreibers.</div></div></div>
-    </div>
-    <div class="obj-card">
-      <div class="obj-tit">💡 Einwandbehandlung</div>
-      <div class="obj-it"><div class="obj-q">„Ich muss erst nachdenken…"</div><div class="obj-a">Jeden Monat ohne PPA kostet bares Geld. Schauen wir kurz auf Ihre aktuelle Stromrechnung.</div></div>
-      <div class="obj-it"><div class="obj-q">„Was wenn die Anlage nicht funktioniert?"</div><div class="obj-a">Das ist unser Risiko — Sie zahlen nur für tatsächlich gelieferten Solarstrom.</div></div>
-      <div class="obj-it"><div class="obj-q">„20 Jahre sind zu lang."</div><div class="obj-a">Kürzere Laufzeiten möglich. Ihr Netzstromvertrag läuft auch — nur ohne Preisgarantie.</div></div>
-      <div class="obj-it" style="margin-bottom:0"><div class="obj-q">„Ich bin Mieter."</div><div class="obj-a">Wir holen das Okay des Vermieters — oft profitiert auch dieser von der Anlage.</div></div>
-    </div>
-    <div style="margin-top:1rem;display:flex;gap:.5rem">
-      <button class="print-btn" onclick="window.print()">🖨 Drucken</button>
-    </div>
-  </div>
-</div>
-
 <!-- TOAST -->
 <div class="toast" id="toast"><span id="toast-txt">OK</span></div>
 
@@ -761,8 +599,9 @@ footer a:hover{color:var(--yel)}
 <footer>
   <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
     <span id="footer-company-display">Solar Energie Partner</span>
-    <button onclick="document.getElementById('impressum-modal').classList.add('open')" style="font-size:.67rem;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;font-family:'JetBrains Mono',monospace;text-decoration:underline">Impressum</button>
-    <button onclick="document.getElementById('impressum-modal').classList.add('open')" style="font-size:.67rem;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;font-family:'JetBrains Mono',monospace;text-decoration:underline">Datenschutz</button>
+    <a href="impressum.html" style="font-size:.67rem;color:rgba(255,255,255,.6);font-family:'JetBrains Mono',monospace;text-decoration:underline">Impressum</a>
+    <a href="datenschutz.html" style="font-size:.67rem;color:rgba(255,255,255,.6);font-family:'JetBrains Mono',monospace;text-decoration:underline">Datenschutz</a>
+    <a href="#" data-consent-open style="font-size:.67rem;color:rgba(255,255,255,.6);font-family:'JetBrains Mono',monospace;text-decoration:underline">Cookie-Einstellungen</a>
     <a href="https://pilsner-digital.de/" style="font-size:.67rem;color:rgba(255,255,255,.4);font-family:'JetBrains Mono',monospace;text-decoration:none">Website: Pilsner Digital</a>
   </div>
   <button onclick="document.getElementById('settings-modal').classList.add('open')" style="font-size:.67rem;font-weight:700;color:var(--blk);background:var(--yel);border:none;padding:.2rem .7rem;cursor:pointer;font-family:'JetBrains Mono',monospace;text-transform:uppercase">⚙ Konfigurieren</button>
@@ -778,7 +617,7 @@ footer a:hover{color:var(--yel)}
     <div style="display:flex;flex-direction:column;gap:.85rem">
       <div class="mf"><div class="ml">Ihr Unternehmensname</div><input class="mi" id="cfg-company" placeholder="Solar Energie Partner" oninput="applySettings()"></div>
       <div class="mf"><div class="ml">Berater Name</div><input class="mi" id="cfg-advisor" placeholder="Doris Pilsner-Albrecht" oninput="applySettings()"></div>
-      <div class="mf"><div class="ml">Telefon / E-Mail</div><input class="mi" id="cfg-tel" placeholder="09991 40227560 | info@solar-energie-partner.de" oninput="applySettings()"></div>
+      <div class="mf"><div class="ml">Telefon / E-Mail</div><input class="mi" id="cfg-tel" placeholder="0991 40227560 | info@solar-energie-partner.de" oninput="applySettings()"></div>
       <div class="mf"><div class="ml">Impressum URL</div><input class="mi" id="cfg-impressum" placeholder="https://solar-energie-partner.de/impressum.html" oninput="applySettings()"></div>
       <div class="mf"><div class="ml">Standard PPA-Preis (€/kWh)</div><input class="mi" type="number" id="cfg-ppa" value="0.17" step="0.005" oninput="applySettings()"></div>
       <div style="padding:.75rem;background:#fffde0;border:2px solid var(--blk);font-size:.77rem;color:var(--blk);font-weight:600">
@@ -801,7 +640,7 @@ footer a:hover{color:var(--yel)}
     </div>
     <div style="font-size:.82rem;color:var(--muted);line-height:1.7" id="impressum-content">
       <p style="margin-bottom:.5rem"><strong style="color:var(--blk)" id="imp-company">Solar Energie Partner</strong></p>
-      <p id="imp-tel">09991 40227560 | info@solar-energie-partner.de</p>
+      <p id="imp-tel">0991 40227560 | info@solar-energie-partner.de</p>
       <p style="margin-top:.75rem;font-size:.75rem">Dieses Tool dient ausschließlich zur internen Vertriebsunterstützung. Alle Berechnungen sind unverbindliche Schätzungen.</p>
       <p style="margin-top:.5rem;font-size:.75rem">Datenschutz: Alle eingegebenen Daten werden ausschließlich lokal im Browser gespeichert und nicht übertragen.</p>
       <p id="imp-url" style="margin-top:.5rem;font-size:.75rem"></p>
@@ -812,42 +651,12 @@ footer a:hover{color:var(--yel)}
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="js/chart-4.4.0.umd.min.js"></script>
 <script>
 if(typeof Chart!=='undefined')Chart.defaults.font.family="'JetBrains Mono',monospace";
 let chSav=null,chCmp=null,chSchere=null;
 let G={kwh:4500,netz:.32,ppa:.17,ev:.30,nst:.04,ppast:.015,kwp:10,lz:20,einsp:.082,ertrag:9500,eigenV:2850,rows:[],spar1:0,kumSpar:0,type:'p'};
 let logoDataURL=null,logoPos='links';
-
-/* ── SHA-256 PASSWORT-GATE ── */
-const PW_HASH='6fd045573d3fb825a183706af835568dd9618b911c85636b2fee17a34f64eb1d';
-let unlocked=sessionStorage.getItem('sep_unlocked')==='1';
-let pendingView=null;
-
-async function hashStr(s){
-  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
-  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
-}
-async function checkPW(){
-  const inp=document.getElementById('pw-inp').value;
-  const h=await hashStr(inp);
-  if(h===PW_HASH){
-    unlocked=true;sessionStorage.setItem('sep_unlocked','1');
-    document.getElementById('pw-modal').classList.remove('open');
-    document.getElementById('pw-inp').value='';
-    document.getElementById('pw-error').style.display='none';
-    if(pendingView){sv(pendingView,null,true);pendingView=null;}
-  } else {
-    document.getElementById('pw-error').style.display='block';
-    document.getElementById('pw-inp').select();
-  }
-}
-function closePW(){
-  document.getElementById('pw-modal').classList.remove('open');
-  document.getElementById('pw-inp').value='';
-  document.getElementById('pw-error').style.display='none';
-  pendingView=null;
-}
 
 /* ── SCENARIOS ── */
 const SC={
@@ -1178,7 +987,7 @@ function saveSettings(){
 function applySettings(){
   const company=document.getElementById('cfg-company').value||'Solar Energie Partner';
   const advisor=document.getElementById('cfg-advisor').value||'Doris Pilsner-Albrecht';
-  const tel=document.getElementById('cfg-tel').value||'09991 40227560';
+  const tel=document.getElementById('cfg-tel').value||'0991 40227560';
   const impressum=document.getElementById('cfg-impressum').value||'';
   const ppa=document.getElementById('cfg-ppa').value;
   document.getElementById('pdf-company').value=company;
@@ -1245,128 +1054,19 @@ function updPrintHeader(){
   if(adv)adv.innerHTML=(kunde?`Kunde: <strong>${kunde}</strong><br>`:'')+( advisor?`Berater: ${advisor}`:'')+( tel?`<br>${tel}`:'');
 }
 
-/* ── ROI CALC ── */
-let chRoiBar=null,chRoiCum=null;
-function roiCalc(){
-  const invest=+document.getElementById('roi-invest').value||120000;
-  const foerder=+document.getElementById('roi-foerder').value||0;
-  const zinssatz=(+document.getElementById('roi-finanz').value||0)/100;
-  const kreditLz=+document.getElementById('roi-kredit-lz').value||10;
-  const wartung=+document.getElementById('roi-wartung').value||1200;
-  const sonstK=+document.getElementById('roi-sonstkosten').value||200;
-  const ppaPreis=+document.getElementById('roi-ppa-preis').value||0.17;
-  const kwp=+document.getElementById('roi-kwp').value||10;
-  const spezErt=+document.getElementById('roi-ertrag').value||950;
-  const evQ=(+document.getElementById('roi-ev').value||75)/100;
-  const einspVg=+document.getElementById('roi-einsp').value||0.082;
-  const lz=+document.getElementById('roi-lz').value||20;
-  const ppaStg=(+document.getElementById('roi-ppa-steig').value||1.5)/100;
-  const degrad=(+document.getElementById('roi-degrad').value||0.5)/100;
-  const nettInvest=invest-foerder;
-  const basisErtrag=kwp*spezErt;
-  let annuitaet=0,gesamtZinsen=0;
-  if(zinssatz>0&&nettInvest>0){
-    const factor=Math.pow(1+zinssatz,kreditLz);
-    annuitaet=nettInvest*(zinssatz*factor)/(factor-1);
-    gesamtZinsen=annuitaet*kreditLz-nettInvest;
-  }
-  const kreditWrap=document.getElementById('roi-laufzeit-kredit-wrap');
-  if(kreditWrap)kreditWrap.style.display=zinssatz>0?'block':'none';
-  const annInfo=document.getElementById('roi-annuitat-info');
-  if(annInfo)annInfo.textContent=zinssatz>0?`Annuität: ${eu(annuitaet)}/Jahr | Gesamtzinsen: ${eu(gesamtZinsen)}`:'';
-  let rows=[],kumCF=-nettInvest,breakEvenJahr=null;
-  for(let yr=1;yr<=lz;yr++){
-    const ertJahr=basisErtrag*Math.pow(1-degrad,yr-1);
-    const evKwh=ertJahr*evQ;const einsKwh=ertJahr-evKwh;
-    const ppaJahr=ppaPreis*Math.pow(1+ppaStg,yr-1);
-    const einnahPPA=evKwh*ppaJahr;const einnahEinsp=einsKwh*einspVg;
-    const gesEinnah=einnahPPA+einnahEinsp;
-    const kreditKosten=(zinssatz>0&&yr<=kreditLz)?annuitaet:0;
-    const gesKosten=wartung+sonstK+kreditKosten;
-    const cf=gesEinnah-gesKosten;
-    kumCF+=cf;if(kumCF>=0&&!breakEvenJahr)breakEvenJahr=yr;
-    rows.push({yr,einnahPPA,einnahEinsp,gesEinnah,gesKosten,kreditKosten,cf,kumCF});
-  }
-  const finalKum=rows[rows.length-1].kumCF;
-  const gesamtInvest=nettInvest+gesamtZinsen;
-  const rendite=gesamtInvest>0?(finalKum/gesamtInvest/lz)*100:0;
-  const j1=rows[0];
-  document.getElementById('roi-gewinn').textContent=eu(finalKum);
-  document.getElementById('roi-breakeven').textContent=breakEvenJahr?breakEvenJahr+' J.':'> '+lz+' J.';
-  document.getElementById('roi-rendite').textContent=fn(rendite,1)+' %';
-  document.getElementById('roi-k-einnahmen').textContent=eu(j1.einnahPPA);
-  document.getElementById('roi-k-einsp').textContent=eu(j1.einnahEinsp);
-  document.getElementById('roi-k-kosten').textContent=eu(j1.gesKosten);
-  document.getElementById('roi-k-cf').textContent=eu(j1.cf);
-  document.getElementById('roi-gewinn').style.color=finalKum>=0?'var(--wht)':'#ff3a1f';
-  const lbls=rows.map(r=>'J'+r.yr);
-  mkChart('roi-c-bar','bar',{labels:lbls,datasets:[{label:'Einnahmen (€)',data:rows.map(r=>+r.gesEinnah.toFixed(0)),backgroundColor:'rgba(0,255,234,0.7)',borderRadius:0,borderSkipped:false},{label:'Kosten (€)',data:rows.map(r=>+r.gesKosten.toFixed(0)),backgroundColor:'rgba(255,58,31,0.6)',borderRadius:0,borderSkipped:false}]},cOpts());
-  mkChart('roi-c-cum','line',{labels:lbls,datasets:[{label:'Kum. Cash-Flow (€)',data:rows.map(r=>+r.kumCF.toFixed(0)),borderColor:'#ff00aa',backgroundColor:'rgba(255,0,170,0.08)',borderWidth:2.5,fill:true,tension:.4,pointRadius:2,segment:{borderColor:ctx=>ctx.p1.parsed.y>=0?'#ff00aa':'#ff3a1f',backgroundColor:ctx=>ctx.p1.parsed.y>=0?'rgba(255,0,170,0.08)':'rgba(255,58,31,0.08)'}},{label:'Break-Even',data:Array(rows.length).fill(0),borderColor:'rgba(0,170,128,0.5)',borderWidth:1.5,borderDash:[6,4],pointRadius:0,fill:false}]},cOpts());
-  document.getElementById('roi-tbody').innerHTML=rows.map(r=>`<tr><td>${r.yr}</td><td style="color:var(--pink);font-weight:700">${eu(r.einnahPPA)}</td><td style="color:var(--pink)">${eu(r.einnahEinsp)}</td><td style="color:var(--pink);font-weight:800">${eu(r.gesEinnah)}</td><td class="tr">${eu(r.gesKosten)}${r.kreditKosten>0?`<div style="font-size:.65rem;color:var(--muted)">Kredit: ${eu(r.kreditKosten)}</div>`:''}</td><td style="font-weight:700;color:${r.cf>=0?'#007a60':'#ff3a1f'}">${eu(r.cf)}</td><td style="color:${r.kumCF>=0?'var(--pink)':'#ff3a1f'};font-weight:800">${eu(r.kumCF)}</td></tr>`).join('');
-  const sumItems=[['Netto-Investition',eu(nettInvest)],['Förderung / Zuschuss',eu(foerder)],zinssatz>0?['Annuität (Kredit)',eu(annuitaet)+'/Jahr × '+kreditLz+' J.']:['Finanzierung','Eigenkapital'],zinssatz>0?['Gesamtzinsen',eu(gesamtZinsen)]:['Zinskosten','—'],['Wartung + Sonstiges p.a.',eu(wartung+sonstK)],['Gesamteinnahmen ('+lz+' J.)',eu(rows.reduce((s,r)=>s+r.gesEinnah,0))],['Gesamtkosten inkl. Invest',eu(rows.reduce((s,r)=>s+r.gesKosten,0)+nettInvest+gesamtZinsen)],['Nettogewinn',eu(finalKum)],['Ø Rendite p.a.',fn(rendite,1)+' % auf Gesamtinvest']];
-  document.getElementById('roi-summary-grid').innerHTML=sumItems.map(([k,v],i)=>`<div style="display:flex;flex-direction:column;gap:.15rem;padding:.5rem .6rem;background:${i%2?'white':'#fff0f8'}"><div style="font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--pink)">${k}</div><div style="font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:.88rem;font-weight:800">${v}</div></div>`).join('');
-}
-
-/* ── GEO ── */
-async function fetchSunhours(){
-  const standort=document.getElementById('roi-standort').value.trim();
-  if(!standort){showGeoError('Bitte Standort eingeben');return;}
-  const btn=document.getElementById('geo-btn');btn.textContent='⏳ Lädt…';btn.disabled=true;
-  try{
-    const geoResp=await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(standort)}&format=json&limit=1&countrycodes=de,at,ch`,{headers:{'Accept-Language':'de'}});
-    const geoData=await geoResp.json();
-    if(!geoData.length){showGeoError('Standort nicht gefunden');return;}
-    const{lat,lon,display_name}=geoData[0];const stadtName=display_name.split(',')[0];
-    const solar=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=sunshine_duration&timezone=auto&past_days=365&forecast_days=0`);
-    const solarData=await solar.json();
-    if(!solarData.daily?.sunshine_duration){showGeoError('Solardaten nicht verfügbar');return;}
-    const jahresSonnen=solarData.daily.sunshine_duration.reduce((a,b)=>a+b,0)/3600;
-    const spezErtrag=Math.round(jahresSonnen*0.85);
-    document.getElementById('roi-ertrag').value=spezErtrag;
-    showGeoSuccess(stadtName,Math.round(jahresSonnen),spezErtrag,lat,lon);roiCalc();
-  }catch(e){showGeoError('Verbindungsfehler — bitte Internetverbindung prüfen');}
-  finally{btn.textContent='☀ Abrufen';btn.disabled=false;}
-}
-function showGeoSuccess(stadt,stunden,ertrag,lat,lon){
-  const el=document.getElementById('geo-result');el.style.display='block';
-  el.style.cssText+=';background:#d8fff8;border:2px solid #0a0a0a;color:#0a0a0a;padding:.65rem .9rem';
-  el.innerHTML=`<div style="display:flex;align-items:flex-start;gap:.6rem"><span style="font-size:1.1rem">☀</span><div style="flex:1"><div style="font-weight:800;margin-bottom:.2rem">${stadt}</div><div style="font-size:.75rem;opacity:.85">${stunden} Sonnenstunden/Jahr → Systemertrag: <strong>${ertrag} kWh/kWp</strong></div><div style="font-size:.7rem;opacity:.65;margin-top:.1rem">✅ Spez. Ertrag automatisch aktualisiert</div></div></div>`;
-}
-function showGeoError(msg){
-  const el=document.getElementById('geo-result');el.style.display='block';
-  el.style.cssText+=';background:#fff0ee;border:2px solid #ff3a1f;color:#ff3a1f;padding:.65rem .9rem;font-weight:700';
-  el.textContent='⚠ '+msg;
-}
-function clearGeoResult(){const el=document.getElementById('geo-result');if(el)el.style.display='none';}
-
 /* ── VIEW SWITCH ── */
 function sv(id,btn,force=false){
-  const locked=['roi','args'];
-  if(locked.includes(id)&&!unlocked&&!force){
-    pendingView=id;document.getElementById('pw-modal').classList.add('open');
-    setTimeout(()=>document.getElementById('pw-inp').focus(),100);
-    return;
-  }
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.querySelectorAll('.np').forEach(p=>p.classList.remove('active'));
   document.getElementById('view-'+id).classList.add('active');
   if(btn)btn.classList.add('active');
   else{
     const allBtns=document.querySelectorAll('.np');
-    const idx={calc:0,co2:1,pdf:2,roi:3,args:4}[id];
+    const idx={calc:0,co2:1,pdf:2}[id];
     if(idx!==undefined&&allBtns[idx])allBtns[idx].classList.add('active');
   }
   if(id==='co2')updCO2();
   if(id==='pdf')ensurePDFReady();
-  if(id==='roi'){
-    const calcKwp=document.getElementById('kwp-n').value;
-    const calcPpa=document.getElementById('ppa-n').value;
-    if(calcKwp)document.getElementById('roi-kwp').value=calcKwp;
-    if(calcPpa)document.getElementById('roi-ppa-preis').value=calcPpa;
-    const kwpVal=+calcKwp||10;
-    if(+document.getElementById('roi-invest').value===120000&&kwpVal!==120)document.getElementById('roi-invest').value=Math.round(kwpVal*1400);
-    roiCalc();
-  }
 }
 
 /* ── TOAST ── */
@@ -1381,13 +1081,12 @@ document.getElementById('pdf-valid').valueAsDate=new Date(Date.now()+30*24*60*60
 document.getElementById('mwst-sel').addEventListener('change',updMwstLabel);
 document.getElementById('kunde-name').addEventListener('input',updTitle);
 document.getElementById('netz-n').addEventListener('input',updPreisHint);
-document.getElementById('pw-inp').addEventListener('keydown',e=>{if(e.key==='Escape')closePW();});
 document.getElementById('pdf-nr').value=getNextOfferNr();
 document.querySelectorAll('input[type=range]').forEach(ub);
 renderChips('p');
 loadSettings();
 loadState();
-upd();roiCalc();
+upd();
 updPreisHint();updPrintHeader();
 </script>
 </body>

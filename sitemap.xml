@@ -32,4 +32,59 @@
   <!-- Legal (kein SEO-Wert, trotzdem drin) -->
   <url><loc>https://solar-energie-partner.de/impressum.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <url><loc>https://solar-energie-partner.de/datenschutz.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <!-- BLOG-ARTICLES:START (automatisch, generate-blog.py) -->
+  <url><loc>https://solar-energie-partner.de/blog/einspeisevertrag-mit-dem-netzbetreiber-was-steht-drin.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/e-auto-laden-mit-solarstrom-so-geht-s-richtig.html</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/solaranlage-anmelden-schritt-fuer-schritt-anleitung.html</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/wie-lange-haelt-eine-solaranlage-wirklich.html</loc><lastmod>2026-11-05</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/monitoring-systeme-fuer-pv-ueberblick-und-vergleich.html</loc><lastmod>2026-11-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/null-energie-haus-mit-solar-in-bayern-realistisch.html</loc><lastmod>2026-11-03</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/0-mwst-auf-pv-anlagen-wer-profitiert-wie.html</loc><lastmod>2026-11-02</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/wallbox-und-pv-kombinieren.html</loc><lastmod>2026-11-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/repowering-alter-pv-anlagen-wann-lohnt-es-sich.html</loc><lastmod>2026-10-31</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/gewerbe-ppa-checkliste-fuer-den-vertragsabschluss.html</loc><lastmod>2026-10-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/waermepumpe-pv-synergie-oder-mythos.html</loc><lastmod>2026-10-29</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/steuer-und-pv-was-gilt-2026.html</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/eigenverbrauch-erhoehen-5-tipps-die-wirklich-helfen.html</loc><lastmod>2026-10-27</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/dachstatik-fuer-pv-was-muss-ich-pruefen-lassen.html</loc><lastmod>2026-10-26</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/hauskauf-mit-alter-pv-anlage-worauf-achten.html</loc><lastmod>2026-10-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/netzvertraeglichkeitspruefung-was-steckt-dahinter.html</loc><lastmod>2026-10-22</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/speicher-richtig-dimensionieren-schritt-fuer-schritt.html</loc><lastmod>2026-10-21</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/pv-anlage-versichern-welche-police-brauche-ich.html</loc><lastmod>2026-10-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/ppa-vs-kauf-was-ist-2026-sinnvoller.html</loc><lastmod>2026-10-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/eeg-einspeiseverguetung-berechnen.html</loc><lastmod>2026-10-18</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/warum-steigen-strompreise-weiter.html</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/netzanschluss-beantragen-ablauf-und-zeitplan.html</loc><lastmod>2026-10-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/lohnt-sich-photovoltaik-2026-noch.html</loc><lastmod>2026-10-15</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/marktstammdatenregister-alles-was-pv-betreiber-wissen-muesse.html</loc><lastmod>2026-10-14</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/bifaziale-module-lohnen-sich-die-mehrkosten.html</loc><lastmod>2026-10-13</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/kfw-270-antrag-stellen-schritt-fuer-schritt.html</loc><lastmod>2026-10-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/netzueberlastung-in-bayern-warum-speicher-wichtiger-werden.html</loc><lastmod>2026-10-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/stromspeicher-warten-was-einmal-im-jahr-geprueft-werden-muss.html</loc><lastmod>2026-10-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/pv-rendite-berechnen-was-verkaeufer-verschweigen.html</loc><lastmod>2026-10-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/pv-anlage-bei-hausverkauf-was-zu-beachten-ist.html</loc><lastmod>2026-10-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/blackout-vorsorge-mit-pv-und-speicher-wie-realistisch.html</loc><lastmod>2026-10-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/einspeisemanagement-was-bedeutet-das-fuer-meine-anlage.html</loc><lastmod>2026-10-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/warum-ost-west-ausrichtung-oft-besser-ist-als-sued.html</loc><lastmod>2026-10-05</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/smart-meter-einbauen-lassen-schritt-fuer-schritt.html</loc><lastmod>2026-10-04</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/solaranlage-auf-dem-denkmalschutz-haus-geht-das.html</loc><lastmod>2026-10-03</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/photovoltaik-anlage-abschreiben-steuerliche-anleitung.html</loc><lastmod>2026-10-02</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/flachdach-pv-fuer-gewerbe-die-ehrliche-rechnung.html</loc><lastmod>2026-10-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/balkonkraftwerk-anmelden-was-wirklich-gilt-2026.html</loc><lastmod>2026-09-30</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/pv-anlage-im-winter-was-betreiber-wirklich-erwarten-koennen.html</loc><lastmod>2026-09-29</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/weg-und-pv-so-klappt-der-beschluss-in-der-eigentuemergemeins.html</loc><lastmod>2026-09-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/mieterstrommodell-lohnt-sich-das-fuer-vermieter.html</loc><lastmod>2026-09-27</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/eigenverbrauchsoptimierung-checkliste-fuer-mehr-autarkie.html</loc><lastmod>2026-09-26</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/warum-viele-pv-anlagen-in-bayern-zu-klein-geplant-werden.html</loc><lastmod>2026-09-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/speicher-foerderung-beantragen-anleitung-fuer-bayern.html</loc><lastmod>2026-09-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/solaranlage-bei-eigenheim-kauf-was-pruefen.html</loc><lastmod>2026-09-23</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/angebot-fuer-pv-anlage-pruefen-checkliste-fuer-kaeufer.html</loc><lastmod>2026-09-22</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/einspeiseverguetung-2026-lohnt-der-vergleich.html</loc><lastmod>2026-09-21</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/wartungsvertrag-pv-was-ist-sinnvoll-was-abzocke.html</loc><lastmod>2026-09-20</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/stromspeicher-ohne-pv-sinnvoll-oder-nicht.html</loc><lastmod>2026-09-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/foerdermittel-bayern-2026-vollstaendiger-ueberblick.html</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/balkonkraftwerk-vs-dachanlage-ehrlicher-vergleich.html</loc><lastmod>2026-09-17</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/garantien-und-gewaehrleistung-bei-pv-anlagen-erklaert.html</loc><lastmod>2026-09-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://solar-energie-partner.de/blog/gewerbe-strom-selbst-erzeugen-was-sich-2026-rechnet.html</loc><lastmod>2026-09-01</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- BLOG-ARTICLES:END -->
 </urlset>

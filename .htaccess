@@ -1,0 +1,19 @@
+# solar-energie-partner.de – Apache (All-Inkl)
+# Zweite Verteidigungslinie: interne Dateien sperren, auch wenn sie
+# versehentlich hochgeladen werden (erste Linie: exclude in deploy.yml).
+
+ErrorDocument 404 /404.html
+
+# Deploy-Status, Skripte, Quell- und Konfigurationsdateien nicht ausliefern
+<FilesMatch "(^\.ftp-deploy-sync-state\.json$|^\.|\.(py|pyc|sh|md|yml|yaml|jsx|env|log|bak)$)">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Verzeichnis scripts/ komplett sperren
+RedirectMatch 404 ^/scripts(/|$)

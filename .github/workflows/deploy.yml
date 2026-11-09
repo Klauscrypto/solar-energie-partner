@@ -26,3 +26,11 @@ jobs:
             .git*/**
             .github/**
             .claude/**
+            .ftp-deploy-sync-state.json
+            scripts/**
+            **/*.py
+            **/*.md
+            *.jsx
+            data.js
+            vendor/**
+            intern/**
