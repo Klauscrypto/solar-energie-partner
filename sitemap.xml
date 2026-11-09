@@ -33,6 +33,7 @@
   <url><loc>https://solar-energie-partner.de/impressum.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <url><loc>https://solar-energie-partner.de/datenschutz.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <!-- BLOG-ARTICLES:START (automatisch, generate-blog.py) -->
+  <url><loc>https://solar-energie-partner.de/blog/photovoltaik-auf-carport-oft-unterschaetzte-option.html</loc><lastmod>2026-11-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/einspeisevertrag-mit-dem-netzbetreiber-was-steht-drin.html</loc><lastmod>2026-11-08</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/e-auto-laden-mit-solarstrom-so-geht-s-richtig.html</loc><lastmod>2026-11-07</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/solaranlage-anmelden-schritt-fuer-schritt-anleitung.html</loc><lastmod>2026-11-06</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
