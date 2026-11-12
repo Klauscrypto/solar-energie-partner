@@ -33,6 +33,7 @@
   <url><loc>https://solar-energie-partner.de/impressum.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <url><loc>https://solar-energie-partner.de/datenschutz.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <!-- BLOG-ARTICLES:START (automatisch, generate-blog.py) -->
+  <url><loc>https://solar-energie-partner.de/blog/foerderprogramme-fuer-gewerbe-pv-in-bayern-2026.html</loc><lastmod>2026-11-12</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/solaranlage-und-hausverkauf-wertsteigerung-oder-last.html</loc><lastmod>2026-11-11</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/pv-anlagegroesse-berechnen-formel-und-beispiele-fuer-bayern.html</loc><lastmod>2026-11-10</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/photovoltaik-auf-carport-oft-unterschaetzte-option.html</loc><lastmod>2026-11-09</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
