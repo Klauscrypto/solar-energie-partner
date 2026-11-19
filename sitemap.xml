@@ -33,6 +33,7 @@
   <url><loc>https://solar-energie-partner.de/impressum.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <url><loc>https://solar-energie-partner.de/datenschutz.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <!-- BLOG-ARTICLES:START (automatisch, generate-blog.py) -->
+  <url><loc>https://solar-energie-partner.de/blog/batterielebensdauer-was-nach-10-jahren-wirklich-passiert.html</loc><lastmod>2026-11-19</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/eeg-einspeiseverguetung-richtig-versteuern.html</loc><lastmod>2026-11-18</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/wie-viel-dach-brauche-ich-wirklich-fuer-pv-in-bayern.html</loc><lastmod>2026-11-17</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/ertragsgarantie-pruefen-was-hersteller-wirklich-versprechen.html</loc><lastmod>2026-11-16</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
