@@ -33,6 +33,7 @@
   <url><loc>https://solar-energie-partner.de/impressum.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <url><loc>https://solar-energie-partner.de/datenschutz.html</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
   <!-- BLOG-ARTICLES:START (automatisch, generate-blog.py) -->
+  <url><loc>https://solar-energie-partner.de/blog/was-kostet-solarstrom-wirklich-vollkostenrechnung.html</loc><lastmod>2026-11-27</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/pv-anlage-reinigen-wann-wie-womit.html</loc><lastmod>2026-11-26</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/peak-shaving-mit-pv-lastspitzen-im-gewerbe-senken.html</loc><lastmod>2026-11-25</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://solar-energie-partner.de/blog/wallbox-mit-pv-verbinden-technische-anforderungen.html</loc><lastmod>2026-11-24</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
